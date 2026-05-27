@@ -1,14 +1,23 @@
 python-dotenv
 requests
 python-docx
+docx2txt
 pandas
 openpyxl
 PyMuPDF
+pdfplumber
+pdf2image
+pytesseract
+easyocr
 tqdm
 qdrant-client
 sentence-transformers
 langgraph
+langchain-core
+langchain-community
 streamlit
+openai
+ollama
 
 # Mermaid PNG generation uses the Node.js package below, not pip:
 # npm install -g @mermaid-js/mermaid-cli

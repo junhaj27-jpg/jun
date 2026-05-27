@@ -1,5 +1,6 @@
 .env
 __pycache__/
+node_modules/
 json_temp/
 mmd_temp/
 output/
