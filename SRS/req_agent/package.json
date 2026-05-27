@@ -1,0 +1,15 @@
+{
+  "name": "req_agent",
+  "version": "1.0.0",
+  "main": "gen_req_docx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "docx": "^9.7.0"
+  }
+}

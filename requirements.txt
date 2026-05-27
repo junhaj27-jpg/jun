@@ -1,0 +1,35 @@
+python-dotenv
+requests
+python-docx
+docx2txt
+pandas
+openpyxl
+PyMuPDF
+pdfplumber
+pdf2image
+pytesseract
+easyocr
+tqdm
+qdrant-client
+sentence-transformers
+langgraph
+langchain-core
+langchain-community
+streamlit
+openai
+ollama
+
+# Mermaid PNG generation uses the Node.js package below, not pip:
+# npm install -g @mermaid-js/mermaid-cli
+# docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
+# ollama pull qwen3:1.7b
+
+
+# QDRANT_URL=http://localhost:6333
+# QDRANT_COLLECTION=arkive
+
+# EMBED_MODEL_NAME=BAAI/bge-m3
+
+# LLM_BASE_URL=http://localhost:11434/v1
+# LLM_MODEL_NAME=qwen3:1.7b
+# LLM_API_KEY=EMPTY
