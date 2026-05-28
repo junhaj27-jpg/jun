@@ -1,0 +1,37 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="420" rx="32" fill="#08131F"/>
+<rect x="24" y="24" width="1152" height="372" rx="24" fill="url(#bg)"/>
+<circle cx="989" cy="87" r="168" fill="#1F9D8B" fill-opacity="0.16"/>
+<circle cx="1068" cy="334" r="144" fill="#F5B700" fill-opacity="0.12"/>
+<circle cx="166" cy="96" r="118" fill="#1E3A5F" fill-opacity="0.55"/>
+<path d="M735 110C735 98.9543 743.954 90 755 90H1015C1026.05 90 1035 98.9543 1035 110V280C1035 291.046 1026.05 300 1015 300H755C743.954 300 735 291.046 735 280V110Z" fill="#0B1C2D" fill-opacity="0.92" stroke="#87D9C7" stroke-opacity="0.45" stroke-width="2"/>
+<path d="M781 140H989" stroke="#87D9C7" stroke-width="4" stroke-linecap="round"/>
+<path d="M781 176H950" stroke="#2BC4A8" stroke-width="4" stroke-linecap="round"/>
+<path d="M781 212H963" stroke="#87D9C7" stroke-opacity="0.65" stroke-width="4" stroke-linecap="round"/>
+<path d="M781 248H918" stroke="#2BC4A8" stroke-opacity="0.9" stroke-width="4" stroke-linecap="round"/>
+<rect x="814" y="115" width="120" height="34" rx="17" fill="#113A56"/>
+<text x="874" y="137" text-anchor="middle" fill="#CFFAF1" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">MULTI AGENT</text>
+<circle cx="293" cy="145" r="34" fill="#0F3C57"/>
+<circle cx="408" cy="118" r="30" fill="#14506E"/>
+<circle cx="446" cy="213" r="32" fill="#0F3C57"/>
+<circle cx="326" cy="242" r="28" fill="#14506E"/>
+<circle cx="528" cy="153" r="30" fill="#14506E"/>
+<path d="M323 145L380 124" stroke="#87D9C7" stroke-width="5" stroke-linecap="round"/>
+<path d="M320 159L386 205" stroke="#87D9C7" stroke-width="5" stroke-linecap="round"/>
+<path d="M432 144L503 153" stroke="#87D9C7" stroke-width="5" stroke-linecap="round"/>
+<path d="M349 236L415 217" stroke="#87D9C7" stroke-width="5" stroke-linecap="round"/>
+<path d="M436 186L417 145" stroke="#87D9C7" stroke-width="5" stroke-linecap="round"/>
+<text x="86" y="145" fill="#F6FBFF" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="800">ALPLED</text>
+<text x="86" y="193" fill="#87D9C7" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">AI-DLC platform for enterprise documentation</text>
+<text x="86" y="243" fill="#D7E4EF" font-family="Segoe UI, Arial, sans-serif" font-size="20">RFP, meeting notes, prototypes, and architecture</text>
+<text x="86" y="275" fill="#D7E4EF" font-family="Segoe UI, Arial, sans-serif" font-size="20">flow through specialized agents to generate deliverables.</text>
+<rect x="86" y="309" width="184" height="42" rx="21" fill="#1F9D8B"/>
+<text x="178" y="336" text-anchor="middle" fill="#08131F" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800">DOCUMENT AUTOMATION</text>
+<defs>
+<linearGradient id="bg" x1="66" y1="39" x2="1125" y2="381" gradientUnits="userSpaceOnUse">
+<stop stop-color="#10263B"/>
+<stop offset="0.52" stop-color="#0A1624"/>
+<stop offset="1" stop-color="#152A37"/>
+</linearGradient>
+</defs>
+</svg>

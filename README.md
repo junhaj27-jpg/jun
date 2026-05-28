@@ -1,5 +1,7 @@
 # 🦇 멀티 에이전트 기반 AI-DLC 문서 생성 자동화 플랫폼
 
+![ALPLED project banner](assets/readme/alpled-project-banner.svg)
+
 > 자체 sLLM과 멀티 에이전트 구조를 활용하여 RFP(제안요청서), 회의록, 프로토타입 이미지 기반의 개발 산출물을 자동 생성하는 기업형 생성형 AI 플랫폼입니다.
 
 <br />
