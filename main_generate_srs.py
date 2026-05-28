@@ -10,7 +10,9 @@ DEFAULT_RFP_JSON_PATH = (
 )
 DEFAULT_MINUTES_PATH = "./data/requirement_sources/meeting_minutes/RFP_변경_회의록.txt"
 DEFAULT_OUTPUT_JSON_PATH = "./json_temp/srs_agent_output.json"
-DEFAULT_EXISTING_REQS_PATH = "./json_temp/srs_agent_output.json"
+DEFAULT_EXISTING_REQS_PATH = "./output/final_reqs.json"
+DEFAULT_FINAL_REQS_PATH = "./output/final_reqs.json"
+DEFAULT_REVIEW_REQS_PATH = "./output/review_reqs.json"
 
 
 def _load_rfp(path: str) -> list[dict]:
@@ -54,6 +56,14 @@ def _save_final_reqs(result: dict, output_reqs_path: str | None):
         json.dump(result.get("final_reqs", []), f, ensure_ascii=False, indent=2)
 
 
+def _save_review_reqs(result: dict, output_review_path: str | None):
+    if not output_review_path:
+        return
+    Path(output_review_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(output_review_path, "w", encoding="utf-8") as f:
+        json.dump(result.get("review_reqs", []), f, ensure_ascii=False, indent=2)
+
+
 def generate_mode(args):
     from agents.srs_app import run
 
@@ -77,6 +87,7 @@ def generate_mode(args):
 
     _save_result(result, output_json_path)
     _save_final_reqs(result, args.output_reqs_path)
+    _save_review_reqs(result, getattr(args, "output_review_path", None))
 
     if result.get("review_reqs"):
         print(f"[검토 필요] {len(result['review_reqs'])}건")
@@ -84,8 +95,14 @@ def generate_mode(args):
     print("[완료] SRS JSON:", output_json_path)
     if args.output_reqs_path:
         print("[완료] SRS final_reqs:", args.output_reqs_path)
-    if args.save_docx:
-        print("[완료] SRS DOCX: output/generated_*.docx")
+    if getattr(args, "output_review_path", None):
+        print("[완료] SRS review_reqs:", args.output_review_path)
+    if args.save_docx and result.get("docx_path"):
+        print("[완료] 사용자 요구사항 정의서 DOCX:", result["docx_path"])
+    elif args.save_docx:
+        print("[건너뜀] 사용자 요구사항 정의서 DOCX: final_reqs가 비어 있습니다.")
+
+    return result
 
 
 def modify_mode(args):
@@ -118,6 +135,7 @@ def modify_mode(args):
 
     _save_result(result, output_json_path)
     _save_final_reqs(result, args.output_reqs_path)
+    _save_review_reqs(result, getattr(args, "output_review_path", None))
 
     if result.get("review_reqs"):
         print(f"[검토 필요] {len(result['review_reqs'])}건")
@@ -125,8 +143,14 @@ def modify_mode(args):
     print("[완료] SRS 수정 JSON:", output_json_path)
     if args.output_reqs_path:
         print("[완료] SRS final_reqs:", args.output_reqs_path)
-    if args.save_docx:
-        print("[완료] SRS DOCX: output/modified_*.docx")
+    if getattr(args, "output_review_path", None):
+        print("[완료] SRS review_reqs:", args.output_review_path)
+    if args.save_docx and result.get("docx_path"):
+        print("[완료] 사용자 요구사항 정의서 DOCX:", result["docx_path"])
+    elif args.save_docx:
+        print("[건너뜀] 사용자 요구사항 정의서 DOCX: final_reqs가 비어 있습니다.")
+
+    return result
 
 
 def build_parser():
@@ -143,16 +167,67 @@ def build_parser():
     generate.add_argument("--rfp-json-path", default=None)
     generate.add_argument("--minutes-path", default=None)
     generate.add_argument("--output-json-path", default=None)
-    generate.add_argument("--output-reqs-path", default="./json_temp/srs_final_reqs.json")
+    generate.add_argument("--output-reqs-path", default=DEFAULT_FINAL_REQS_PATH)
+    generate.add_argument("--output-review-path", default=DEFAULT_REVIEW_REQS_PATH)
 
     modify_parser = sub.add_parser("modify", help="기존 SRS 요구사항을 수정 지시로 변경")
     modify_parser.add_argument("--existing-reqs-path", default=None)
     modify_parser.add_argument("--instruction", default=None)
     modify_parser.add_argument("--instruction-file", default=None)
     modify_parser.add_argument("--output-json-path", default=None)
-    modify_parser.add_argument("--output-reqs-path", default="./json_temp/srs_final_reqs.json")
+    modify_parser.add_argument("--output-reqs-path", default=DEFAULT_FINAL_REQS_PATH)
+    modify_parser.add_argument("--output-review-path", default=DEFAULT_REVIEW_REQS_PATH)
+
+    sample = sub.add_parser("sample", help="사용자 요구사항 정의서 DOCX 생성 단독 테스트")
+    sample.add_argument("--output-json-path", default=None)
 
     return parser
+
+
+def sample_mode(args):
+    from generators.srs_docx_service import generate_docx
+
+    sample_reqs = [
+        {
+            "requirement_id": "REQ-001",
+            "requirement_name": "샘플 신규 요구사항",
+            "requirement_type": "기능",
+            "description": "시스템은 신규 요구사항 행을 연두색으로 표시하여야 한다.",
+            "source": ["sample"],
+            "constraints": [],
+            "priority": "중",
+            "validation_criteria": ["DOCX 생성 여부를 확인한다."],
+            "note": None,
+            "status": "신규",
+        },
+        {
+            "requirement_id": "REQ-002",
+            "requirement_name": "샘플 수정 요구사항",
+            "requirement_type": "기능",
+            "description": "시스템은 수정 요구사항 행을 연파랑색으로 표시하여야 한다.",
+            "source": ["sample"],
+            "constraints": [],
+            "priority": "중",
+            "validation_criteria": ["DOCX 생성 여부를 확인한다."],
+            "note": None,
+            "status": "수정",
+        },
+        {
+            "requirement_id": "REQ-003",
+            "requirement_name": "샘플 기존 요구사항",
+            "requirement_type": "비기능",
+            "description": "시스템은 기존 요구사항 행을 흰색으로 표시하여야 한다.",
+            "source": ["sample"],
+            "constraints": [],
+            "priority": "하",
+            "validation_criteria": ["DOCX 생성 여부를 확인한다."],
+            "note": None,
+            "status": "기존",
+        },
+    ]
+    path = generate_docx(sample_reqs, prefix="sample")
+    print("[완료] SRS 샘플 DOCX:", path)
+    return {"final_reqs": sample_reqs, "review_reqs": [], "docx_path": path}
 
 
 def main():
@@ -165,6 +240,8 @@ def main():
         generate_mode(args)
     elif args.command == "modify":
         modify_mode(args)
+    elif args.command == "sample":
+        sample_mode(args)
     else:
         parser.print_help()
         raise SystemExit(2)

@@ -2,7 +2,7 @@ import argparse
 
 
 def build_parser():
-    parser = argparse.ArgumentParser(description="통합시험 시나리오 생성")
+    parser = argparse.ArgumentParser(description="통합 시험 시나리오 생성")
     parser.add_argument("--requirement-json-path", default="./data/requirements/requirement.json")
     parser.add_argument(
         "--ui",
@@ -11,7 +11,7 @@ def build_parser():
         help="UI 설계서 JSON 파일 경로 목록",
     )
     parser.add_argument("--output-json-path", default="./json_temp/ts_agent_output.json")
-    parser.add_argument("--output-docx-path", default="./output/integration_test_scenario.docx")
+    parser.add_argument("--output-docx-path", default="./output/통합 시험 시나리오.docx")
     parser.add_argument("--max-retries", type=int, default=1)
     return parser
 
@@ -33,10 +33,10 @@ def main():
     )
 
     if result.get("status") != "VALID":
-        raise RuntimeError("통합시험 시나리오 생성 실패")
+        raise RuntimeError("통합 시험 시나리오 생성 실패")
 
-    print("[완료] 통합시험 시나리오 JSON:", result.get("output_json_path"))
-    print("[완료] 통합시험 시나리오 DOCX:", result.get("output_docx_path"))
+    print("[완료] 통합 시험 시나리오 JSON:", result.get("output_json_path"))
+    print("[완료] 통합 시험 시나리오 DOCX:", result.get("output_docx_path"))
     print("[요약]", result.get("summary", {}))
 
 

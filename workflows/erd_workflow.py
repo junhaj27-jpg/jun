@@ -16,7 +16,6 @@ from workflows.erd_state import ErdWorkflowState
 
 MAX_RETRIES = 2
 DEFAULT_OUTPUT_JSON_PATH = "./json_temp/erd_agent_output.json"
-DEFAULT_RAG_CONTEXT_PATH = "./json_temp/erd_rag_context.json"
 
 
 def _join_list(value: Any) -> str:
@@ -70,6 +69,7 @@ def _required_text(value: Any) -> bool:
 def _validate_erd(erd: Dict[str, Any]) -> List[str]:
     errors = []
     required_top_fields = ["system_name", "erd_id", "erd_name", "requirement_id", "entities"]
+
     for field in required_top_fields:
         if not erd.get(field):
             errors.append(f"필수 필드 누락: {field}")
@@ -80,8 +80,10 @@ def _validate_erd(erd: Dict[str, Any]) -> List[str]:
         return errors
 
     entity_names = set()
+
     for entity_idx, entity in enumerate(entities, start=1):
         entity_name = entity.get("entity_name", "")
+
         if not _required_text(entity_name):
             errors.append(f"ENT-{entity_idx:03d}: entity_name 누락")
         else:
@@ -103,12 +105,34 @@ def _validate_erd(erd: Dict[str, Any]) -> List[str]:
     for rel_idx, rel in enumerate(erd.get("relationships", []), start=1):
         from_entity = rel.get("from_entity", "")
         to_entity = rel.get("to_entity", "")
+
         if from_entity and from_entity not in entity_names:
             errors.append(f"relationship[{rel_idx}] from_entity가 entities에 없습니다: {from_entity}")
         if to_entity and to_entity not in entity_names:
             errors.append(f"relationship[{rel_idx}] to_entity가 entities에 없습니다: {to_entity}")
 
     return errors
+
+
+def normalize_erd_entities(erd: Dict[str, Any]) -> Dict[str, Any]:
+    entities = erd.get("entities", [])
+    if not isinstance(entities, list):
+        return erd
+
+    for idx, entity in enumerate(entities, start=1):
+        if not isinstance(entity, dict):
+            continue
+
+        entity_id = str(entity.get("entity_id") or "").strip()
+        if not entity_id or entity_id.upper() in {"ALL", "SYSTEM-ALL"}:
+            entity["entity_id"] = f"ENT-{idx:03d}"
+
+        entity_name = str(entity.get("entity_name") or "").strip()
+        if not entity_name:
+            fallback_name = entity.get("table_name") or entity.get("name") or f"ENTITY_{idx:03d}"
+            entity["entity_name"] = str(fallback_name).strip()
+
+    return erd
 
 
 def load_requirement_node(state: ErdWorkflowState) -> ErdWorkflowState:
@@ -128,11 +152,6 @@ def load_requirement_node(state: ErdWorkflowState) -> ErdWorkflowState:
 
 def build_erd_rag_context_node(state: ErdWorkflowState) -> ErdWorkflowState:
     rag_context = build_erd_rag_context(state["system_context"])
-    rag_context_path = Path(DEFAULT_RAG_CONTEXT_PATH)
-    rag_context_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(rag_context_path, "w", encoding="utf-8") as f:
-        json.dump(rag_context, f, ensure_ascii=False, indent=2)
-
     return {"rag_context": rag_context}
 
 
@@ -141,7 +160,7 @@ def generate_erd_candidate_node(state: ErdWorkflowState) -> ErdWorkflowState:
     if use_llm:
         try:
             erd = call_qwen_for_erd(state["system_context"], state["rag_context"])
-            return {"erd": erd, "status": "GENERATED_BY_LLM"}
+            return {"erd": normalize_erd_entities(erd), "status": "GENERATED_BY_LLM"}
         except Exception as exc:
             return {
                 "validation_errors": [f"LLM ERD 생성 실패: {exc}"],
@@ -149,14 +168,14 @@ def generate_erd_candidate_node(state: ErdWorkflowState) -> ErdWorkflowState:
             }
 
     return {
-        "erd": fallback_rule_based_erd(state["requirement"]),
+        "erd": normalize_erd_entities(fallback_rule_based_erd(state["system_context"])),
         "status": "GENERATED_BY_RULE",
     }
 
 
 def repair_erd_node(state: ErdWorkflowState) -> ErdWorkflowState:
     retry_count = state.get("retry_count", 0) + 1
-    erd = fallback_rule_based_erd(state["system_context"])
+    erd = normalize_erd_entities(fallback_rule_based_erd(state["system_context"]))
     return {
         "erd": erd,
         "retry_count": retry_count,
@@ -190,7 +209,7 @@ def generate_erd_docx_node(state: ErdWorkflowState) -> ErdWorkflowState:
         state["erd"],
         output_path=output_docx_path,
         use_mermaid=state.get("use_mermaid", True),
-        fast_table=state.get("fast_table", True),
+        fast_table=state.get("fast_table", False),
     )
     return {"erd_docx_path": saved_path, "output_docx_path": output_docx_path}
 

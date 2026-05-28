@@ -15,7 +15,7 @@ except ImportError:
 load_dotenv()
 
 TEMPLATE_PATH = os.getenv("DB_DESIGN_TEMPLATE_PATH", "./template/데이터베이스 설계서.docx")
-OUTPUT_PATH = os.getenv("DB_DESIGN_OUTPUT_PATH", f"./output/데이터베이스_설계서_{date.today()}.docx")
+OUTPUT_PATH = os.getenv("DB_DESIGN_OUTPUT_PATH", f"./output/데이터베이스 설계서_{date.today()}.docx")
 
 
 def clean_text(value: Any) -> str:

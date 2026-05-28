@@ -6,8 +6,8 @@ def build_parser():
     parser.add_argument("--requirement-json-path", default=None)
     parser.add_argument("--infra-spec-path", default=None)
     parser.add_argument("--output-json-path", default="./json_temp/architecture_agent_output.json")
-    parser.add_argument("--output-md-path", default="./output/architecture_report.md")
-    parser.add_argument("--output-docx-path", default="./output/architecture_report.docx")
+    parser.add_argument("--output-md-path", default=None)
+    parser.add_argument("--output-docx-path", default="./output/아키텍처 설계서.docx")
     parser.add_argument("--output-image-path", default="./output/architecture_diagram.png")
     parser.add_argument(
         "--no-image",
@@ -41,7 +41,8 @@ def main():
         raise RuntimeError(f"아키텍처 설계서 생성 실패: {result.get('validation_result')}")
 
     print("[완료] 아키텍처 JSON:", result.get("output_json_path"))
-    print("[완료] 아키텍처 Markdown:", result.get("output_md_path"))
+    if result.get("output_md_path"):
+        print("[완료] 아키텍처 Markdown:", result.get("output_md_path"))
     print("[완료] 아키텍처 DOCX:", result.get("output_docx_path"))
     if result.get("output_image_path"):
         print("[완료] 아키텍처 이미지:", result.get("output_image_path"))

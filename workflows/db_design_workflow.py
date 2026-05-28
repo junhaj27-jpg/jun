@@ -6,10 +6,8 @@ from langgraph.graph import END, START, StateGraph
 
 from agents.database_design_agent import (
     OUTPUT_JSON_PATH,
-    RAG_CONTEXT_PATH,
     build_database_design,
     build_database_design_rag_context,
-    compact_database_design_rag_context,
     enhance_database_design_with_rag,
     parse_erd_docx,
     resolve_erd_docx_path,
@@ -93,10 +91,6 @@ def build_database_rag_context_node(state: DatabaseDesignWorkflowState) -> Datab
         return {"rag_context": {}}
 
     rag_context = build_database_design_rag_context(state["database_design"])
-    Path(RAG_CONTEXT_PATH).parent.mkdir(parents=True, exist_ok=True)
-    with open(RAG_CONTEXT_PATH, "w", encoding="utf-8") as f:
-        json.dump(compact_database_design_rag_context(rag_context), f, ensure_ascii=False, indent=2)
-
     return {"rag_context": rag_context}
 
 

@@ -12,16 +12,15 @@ from agents.arch_nodes.save_outputs import (
     save_architecture_json_node,
 )
 from agents.arch_nodes.validate_mermaid import validate_mermaid_node
-from agents.erd_agent import REQ_JSON_PATH
 from workflows.architecture_state import ArchitectureWorkflowState
 
 
-MAX_RETRIES = 3
+DEFAULT_ARCHITECTURE_REQUIREMENT_PATH = "./data/architecture/architecture_requirements.json"
 DEFAULT_INFRA_SPEC_PATH = "./data/architecture/infra_spec.json"
 
 
 def load_architecture_inputs_node(state: ArchitectureWorkflowState) -> ArchitectureWorkflowState:
-    requirement_json_path = state.get("requirement_json_path") or REQ_JSON_PATH
+    requirement_json_path = state.get("requirement_json_path") or DEFAULT_ARCHITECTURE_REQUIREMENT_PATH
     infra_spec_path = state.get("infra_spec_path") or DEFAULT_INFRA_SPEC_PATH
 
     with open(requirement_json_path, encoding="utf-8") as f:
@@ -38,16 +37,7 @@ def load_architecture_inputs_node(state: ArchitectureWorkflowState) -> Architect
         "infra_spec_path": infra_spec_path,
         "requirement_doc": requirement_doc,
         "user_infra_spec": user_infra_spec,
-        "retry_count": state.get("retry_count", 0),
     }
-
-
-def route_after_mermaid_validation(state: ArchitectureWorkflowState) -> str:
-    if state.get("validation_result", {}).get("status") == "PASS":
-        return "save_architecture_json_node"
-    if state.get("retry_count", 0) < MAX_RETRIES:
-        return "generate_mermaid_node"
-    return END
 
 
 def compile_architecture_graph():
@@ -68,17 +58,8 @@ def compile_architecture_graph():
     workflow.add_edge("extract_infra_node", "generate_spec_node")
     workflow.add_edge("generate_spec_node", "generate_mermaid_node")
     workflow.add_edge("generate_mermaid_node", "validate_mermaid_node")
-    workflow.add_conditional_edges(
-        "validate_mermaid_node",
-        route_after_mermaid_validation,
-        {
-            "save_architecture_json_node": "save_architecture_json_node",
-            "generate_mermaid_node": "generate_mermaid_node",
-            END: END,
-        },
-    )
+    workflow.add_edge("validate_mermaid_node", "save_architecture_json_node")
     workflow.add_edge("save_architecture_json_node", "generate_architecture_report_node")
     workflow.add_edge("generate_architecture_report_node", END)
 
     return workflow.compile()
-

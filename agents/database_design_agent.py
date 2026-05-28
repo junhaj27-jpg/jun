@@ -17,9 +17,8 @@ except ImportError:
 
 load_dotenv()
 
-ERD_DOCX_PATH = os.getenv("ERD_DOCX_PATH", f"./output/ERD_설계서_{date.today()}.docx")
+ERD_DOCX_PATH = os.getenv("ERD_DOCX_PATH", f"./output/엔티티 관계 모형 설계서_{date.today()}.docx")
 OUTPUT_JSON_PATH = os.getenv("DB_DESIGN_JSON_PATH", "./json_temp/database_design_agent_output.json")
-RAG_CONTEXT_PATH = os.getenv("DB_DESIGN_RAG_CONTEXT_PATH", "./json_temp/database_design_rag_context.json")
 
 
 def clean_text(value: Any) -> str:
@@ -34,7 +33,7 @@ def cell_text(row, idx: int) -> str:
 
 def find_latest_erd_docx(output_dir: str = "./output") -> Optional[str]:
     paths = sorted(
-        Path(output_dir).glob("ERD_설계서*.docx"),
+        Path(output_dir).glob("엔티티 관계 모형 설계서*.docx"),
         key=lambda path: path.stat().st_mtime,
         reverse=True,
     )
@@ -396,9 +395,6 @@ def generate_database_design_json(
         try:
             print("[DB 설계 Agent] RAG 기반 제약조건 보강 시작")
             rag_context = build_database_design_rag_context(database_design)
-            Path(RAG_CONTEXT_PATH).parent.mkdir(parents=True, exist_ok=True)
-            with open(RAG_CONTEXT_PATH, "w", encoding="utf-8") as f:
-                json.dump(compact_database_design_rag_context(rag_context), f, ensure_ascii=False, indent=2)
             database_design = enhance_database_design_with_rag(database_design, rag_context)
             print("[DB 설계 Agent] RAG 기반 제약조건 보강 완료")
         except Exception as e:

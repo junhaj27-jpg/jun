@@ -51,7 +51,7 @@ def save_ts_json_node(state: TestScenarioWorkflowState) -> TestScenarioWorkflowS
 
 
 def generate_ts_docx_node(state: TestScenarioWorkflowState) -> TestScenarioWorkflowState:
-    output_docx_path = state.get("output_docx_path") or "./output/integration_test_scenario.docx"
+    output_docx_path = state.get("output_docx_path") or "./output/통합 시험 시나리오.docx"
     generate_ts_docx(state.get("test_scenario_doc", {}), output_docx_path)
     return {"output_docx_path": output_docx_path, "status": "VALID"}
 

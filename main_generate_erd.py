@@ -6,7 +6,7 @@ def main():
     result = app.invoke({
         "use_llm": True,
         "use_mermaid": True,
-        "fast_table": True,
+        "fast_table": False,
     })
 
     if result.get("status") != "VALID":

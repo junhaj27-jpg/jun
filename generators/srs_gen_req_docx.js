@@ -9,6 +9,11 @@ const reqs = JSON.parse(fs.readFileSync('/home/claude/sample_reqs.json', 'utf-8'
 
 const GRAY  = "D9D9D9";
 const WHITE = "FFFFFF";
+const STATUS_COLORS = {
+  "신규": "E8F5E9",
+  "수정": "E3F2FD",
+  "기존": "FFFFFF",
+};
 const PAGE_W = 15840;
 const MARGIN  = 720;
 const TABLE_W = PAGE_W - MARGIN * 2;
@@ -17,10 +22,11 @@ const border  = { style: BorderStyle.SINGLE, size: 1, color: "999999" };
 const borders = { top: border, bottom: border, left: border, right: border };
 
 function cell(text, opts = {}) {
+  const fill = opts.fill || (opts.shade ? GRAY : WHITE);
   return new TableCell({
     borders,
     width: opts.width ? { size: opts.width, type: WidthType.DXA } : undefined,
-    shading: opts.shade ? { fill: GRAY, type: ShadingType.CLEAR } : { fill: WHITE, type: ShadingType.CLEAR },
+    shading: { fill, type: ShadingType.CLEAR },
     verticalAlign: VerticalAlign.CENTER,
     columnSpan: opts.span || 1,
     margins: { top: 60, bottom: 60, left: 100, right: 100 },
@@ -76,7 +82,7 @@ function buildHeaderRow() {
       cell("중요도",         { shade: true, bold: true, center: true, width: COLS[6] }),
       cell("해결방안",       { shade: true, bold: true, center: true, width: COLS[7] }),
       cell("검수기준",       { shade: true, bold: true, center: true, width: COLS[8] }),
-      cell("비고",           { shade: true, bold: true, center: true, width: COLS[9] }),
+      cell("상태",           { shade: true, bold: true, center: true, width: COLS[9] }),
     ]
   });
 }
@@ -85,19 +91,21 @@ function buildReqRow(req) {
   const source      = Array.isArray(req.source)              ? req.source.join(", ")              : (req.source || "");
   const constraints = Array.isArray(req.constraints)         ? req.constraints.join("\n")         : (req.constraints || "");
   const criteria    = Array.isArray(req.validation_criteria) ? req.validation_criteria.join("\n") : (req.validation_criteria || "");
+  const status      = req.status || "기존";
+  const fill        = STATUS_COLORS[status] || WHITE;
 
   return new TableRow({
     children: [
-      cell(req.requirement_id   || "", { width: COLS[0], center: true }),
-      cell(req.requirement_name || "", { width: COLS[1] }),
-      cell(req.requirement_type || "", { width: COLS[2], center: true }),
-      cell(req.description      || "", { width: COLS[3] }),
-      cell(source,                     { width: COLS[4] }),
-      cell(constraints,                { width: COLS[5] }),
-      cell(req.priority         || "", { width: COLS[6], center: true }),
-      cell(req.note             || "", { width: COLS[7] }),
-      cell(criteria,                   { width: COLS[8] }),
-      cell("",                         { width: COLS[9] }),
+      cell(req.requirement_id   || "", { width: COLS[0], center: true, fill }),
+      cell(req.requirement_name || "", { width: COLS[1], fill }),
+      cell(req.requirement_type || "", { width: COLS[2], center: true, fill }),
+      cell(req.description      || "", { width: COLS[3], fill }),
+      cell(source,                     { width: COLS[4], fill }),
+      cell(constraints,                { width: COLS[5], fill }),
+      cell(req.priority         || "", { width: COLS[6], center: true, fill }),
+      cell(req.note             || "", { width: COLS[7], fill }),
+      cell(criteria,                   { width: COLS[8], fill }),
+      cell(status,                     { width: COLS[9], center: true, fill }),
     ]
   });
 }

@@ -1,0 +1,59 @@
+```json
+{
+  "screen_name_candidates": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+  "screen_type": "AI 채팅",
+  "menu_path_candidates": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+  "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+  "functional_areas": [
+    {
+      "name": "AI 채팅",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "AI 채팅",
+      "x_ratio": 0.1,
+      "y_ratio": 0.1
+    },
+    {
+      "name": "문서/RAG",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "문서/RAG",
+      "x_ratio": 0.2,
+      "y_ratio": 0.2
+    },
+    {
+      "name": "Agent Builder",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "Agent Builder",
+      "x_ratio": 0.3,
+      "y_ratio": 0.3
+    },
+    {
+      "name": "OCR 자동화",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "OCR 자동화",
+      "x_ratio": 0.4,
+      "y_ratio": 0.4
+    },
+    {
+      "name": "데이터 분석",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "데이터 분석",
+      "x_ratio": 0.5,
+      "y_ratio": 0.5
+    },
+    {
+      "name": "모델 운영",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "모델 운영",
+      "x_ratio": 0.6,
+      "y_ratio": 0.6
+    },
+    {
+      "name": "관리자",
+      "visible_texts": ["AI 채팅", "문서/RAG", "Agent Builder", "OCR 자동화", "데이터 분석", "모델 운영", "관리자"],
+      "area_role": "관리자",
+      "x_ratio": 0.7,
+      "y_ratio": 0.7
+    }
+  ]
+}
+```

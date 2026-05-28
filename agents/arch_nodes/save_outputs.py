@@ -26,10 +26,14 @@ def save_architecture_json_node(state: ArchitectureWorkflowState) -> Architectur
 
 def generate_architecture_report_node(state: ArchitectureWorkflowState) -> ArchitectureWorkflowState:
     result = generate_architecture_report(
+        requirement_doc=state.get("requirement_doc", {}),
+        analyzed_reqs=state.get("analyzed_reqs", []),
         report_specs=state.get("report_specs", ""),
         mermaid_script=state.get("mermaid_script", ""),
-        output_md_path=state.get("output_md_path") or "./output/architecture_report.md",
-        output_docx_path=state.get("output_docx_path") or "./output/architecture_report.docx",
+        user_infra_spec=state.get("user_infra_spec", {}),
+        extracted_infra=state.get("extracted_infra", {}),
+        output_md_path=state.get("output_md_path"),
+        output_docx_path=state.get("output_docx_path") or "./output/아키텍처 설계서.docx",
         output_image_path=state.get("output_image_path") or "./output/architecture_diagram.png",
         render_image=state.get("render_image", True),
     )
@@ -39,4 +43,3 @@ def generate_architecture_report_node(state: ArchitectureWorkflowState) -> Archi
         "output_image_path": result.get("image_path"),
         "status": "VALID",
     }
-

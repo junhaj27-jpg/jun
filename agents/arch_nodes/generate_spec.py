@@ -6,14 +6,8 @@ from workflows.architecture_state import ArchitectureWorkflowState
 
 SPEC_GENERATOR_PROMPT = """
 당신은 엔터프라이즈 인프라 아키텍처 명세서 작성 전문가입니다.
-분석된 요구사항과 도출된 인프라 구성안을 매핑하여 아키텍처 설계서 본문을 마크다운으로 작성하세요.
-
-포함 항목:
-- 아키텍처 개요
-- 요구사항별 구현 방안 표
-- 미들웨어 구성
-- 보안/네트워크 구성
-- 운영 고려사항
+제공된 '분석된 요구사항'과 '도출된 인프라 구성안'을 철저히 매핑하여, 요구사항별 기술 명세 섹션을 마크다운 표(Table)와 상세 텍스트 형식으로 작성하세요.
+명세 섹션은 각 요구사항별로 '요구사항 ID, 요구사항 내용, 구현 방안'을 포함해야 합니다.
 """.strip()
 
 
@@ -30,7 +24,6 @@ def generate_spec_node(state: ArchitectureWorkflowState) -> ArchitectureWorkflow
             temperature=0,
         ).strip()
     except Exception as exc:
-        report_specs = f"# 아키텍처 설계서\n\n명세 생성 실패: {exc}\n"
+        report_specs = ""
 
     return {"report_specs": report_specs}
-

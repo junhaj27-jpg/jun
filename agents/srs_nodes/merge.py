@@ -8,7 +8,7 @@ _INTERNAL_KEYS = {"_grounded", "_score", "_reason", "_parse_error", "_llm_error"
 _OUTPUT_KEYS = [
     "requirement_id", "requirement_name", "requirement_type",
     "description", "source", "constraints",
-    "priority", "validation_criteria", "note",
+    "priority", "validation_criteria", "note", "status",
 ]
 
 def merge_node(state: State) -> dict:
@@ -17,17 +17,24 @@ def merge_node(state: State) -> dict:
 
     for r in new_reqs:
         r.setdefault("source", ["generated"])
+        r["status"] = "신규"
 
     assigned = assign_ids(existing, new_reqs, prefix=PIPELINE["req_prefix"])
+    existing_reqs = [_mark_existing(r) for r in existing]
 
     # 출력용 / 검토용 분리
     final_reqs   = [_to_output(r) for r in assigned]
     review_reqs  = [_to_review(r) for r in assigned if not r.get("_grounded", True)]
 
     return {
-        "final_reqs":  existing + final_reqs,
+        "final_reqs":  existing_reqs + final_reqs,
         "review_reqs": review_reqs,   # ungrounded만 따로
     }
+
+def _mark_existing(req: dict) -> dict:
+    item = req.copy()
+    item["status"] = item.get("status") or "기존"
+    return _to_output(item)
 
 def _to_output(req: dict) -> dict:
     """입력과 동일한 포맷으로 정제"""

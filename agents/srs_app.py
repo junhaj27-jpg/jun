@@ -19,9 +19,13 @@ def run(rfp, minutes, existing_reqs=None, save_docx=True) -> dict:
     final  = result.get("final_reqs",  [])
     review = result.get("review_reqs", [])
     logger.info("생성 완료: 전체=%d 검토필요=%d", len(final), len(review))
+    result["docx_path"] = None
     if save_docx and final:
-        path = generate_docx(final, prefix="generated")   # Agent 1
+        path = generate_docx(final, prefix="사용자 요구사항 정의서")   # Agent 1
         logger.info("문서 저장: %s", path)
+        result["docx_path"] = path
+    elif save_docx:
+        logger.warning("DOCX 생성 건너뜀: final_reqs가 비어 있습니다.")
     return result
 
 
@@ -33,7 +37,11 @@ def modify(existing_reqs: list[dict], instruction: str, save_docx=True) -> dict:
     final  = result.get("final_reqs",  [])
     review = result.get("review_reqs", [])
     logger.info("수정 완료: 전체=%d 검토필요=%d", len(final), len(review))
+    result["docx_path"] = None
     if save_docx and final:
-        path = generate_docx(final, prefix="modified")    # Agent 2
+        path = generate_docx(final, prefix="사용자 요구사항 정의서")    # Agent 2
         logger.info("문서 저장: %s", path)
+        result["docx_path"] = path
+    elif save_docx:
+        logger.warning("DOCX 생성 건너뜀: final_reqs가 비어 있습니다.")
     return result

@@ -5,7 +5,6 @@ class State(TypedDict):
     minutes:          str
     existing_reqs:    NotRequired[list[dict]]
     cleaned_minutes:  str
-    topics:           list[str]
     rag_context:      str
     draft_reqs:       list[dict]
     refined_reqs:     list[dict]

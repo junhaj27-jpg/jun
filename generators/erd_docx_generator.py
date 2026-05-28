@@ -18,7 +18,7 @@ except ImportError:
 load_dotenv()
 
 TEMPLATE_PATH = os.getenv("ERD_TEMPLATE_PATH", "./template/엔티티 관계 모형 설계서.docx")
-OUTPUT_PATH = os.getenv("ERD_OUTPUT_PATH", f"./output/ERD_설계서_{date.today()}.docx")
+OUTPUT_PATH = os.getenv("ERD_OUTPUT_PATH", f"./output/엔티티 관계 모형 설계서_{date.today()}.docx")
 
 
 def clean_text(text):
@@ -295,7 +295,7 @@ def generate_erd_docx(
     output_path: str = OUTPUT_PATH,
     *,
     use_mermaid: bool = True,
-    fast_table: bool = True,
+    fast_table: bool = False,
 ):
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 

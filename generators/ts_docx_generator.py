@@ -51,7 +51,7 @@ def generate_ts_docx(data: dict[str, Any], output_path: str) -> str:
     section.top_margin = Cm(1.3)
     section.bottom_margin = Cm(1.3)
 
-    title = doc.add_heading("통합시험 시나리오", level=1)
+    title = doc.add_heading("통합 시험 시나리오", level=1)
     title.runs[0].font.name = "Malgun Gothic"
     title.runs[0]._element.rPr.rFonts.set(qn("w:eastAsia"), "맑은 고딕")
 

@@ -6,16 +6,14 @@ from workflows.architecture_state import ArchitectureWorkflowState
 
 
 EXTRACTOR_SYSTEM_PROMPT = """
-너는 20년 차 엔터프라이즈 인프라 아키텍트이다.
-분석된 요구사항과 사용자의 인프라 제약 사양을 바탕으로 시스템 아키텍처 구성 요소, 미들웨어, 보안 구조를 도출하라.
+너는 20년 차 금융 시스템 인프라 아키텍트이다.
+분석가 에이전트들이 취합한 비기능 요구사항 리스트와 사용자의 인프라 제약 사양을 바탕으로, 온프레미스 환경에 최적화된 시스템 아키텍처 구성 요소들을 도출하고 각 구성 요소간 흐름을 설계하라.
 
-반드시 아래 JSON 객체만 출력하라.
+반드시 다른 설명 없이 오직 다음 구조의 JSON 포맷으로만 출력하라.
 {
-  "system_architecture": ["구성 요소"],
-  "network_zones": {"zone_name": ["component"]},
+  "system_architecture": ["시스템 아키텍처 구성 요소들"],
   "selected_middleware": ["확정 미들웨어 스택"],
-  "security_architecture": "보안/방화벽/인증 구조 요약",
-  "deployment_considerations": ["배포/운영 고려사항"]
+  "security_architecture": "요구사항에 필요한 방화벽 및 세션/보안 인증 방식 요약"
 }
 """.strip()
 
@@ -39,13 +37,11 @@ def extract_infra_node(state: ArchitectureWorkflowState) -> ArchitectureWorkflow
             "extracted_infra": {
                 "network_zones": {
                     "DMZ": ["Web Server"],
-                    "Internal": ["Application Server"],
-                    "Data": ["Database"],
+                    "Internal_Zone": ["Core API WAS"],
+                    "DB_Zone": ["Primary DB"],
                 },
-                "selected_middleware": ["Web", "WAS", "RDBMS"],
+                "selected_middleware": state.get("user_infra_spec", {}).get("middleware_stack", ["Standard Stack"]),
                 "security_architecture": "기본 온프레미스 보안 표준 적용",
-                "deployment_considerations": [f"추출 실패로 기본 구조 사용: {exc}"],
             },
             "validation_errors": [f"인프라 구성 추출 실패: {exc}"],
         }
-

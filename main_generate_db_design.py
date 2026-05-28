@@ -8,10 +8,10 @@ def main():
     })
 
     if result.get("status") != "VALID":
-        raise RuntimeError(f"DB 설계서 생성 실패: {result.get('validation_errors', [])}")
+        raise RuntimeError(f"데이터베이스 설계서 생성 실패: {result.get('validation_errors', [])}")
 
-    print("[완료] DB 설계 JSON:", result.get("output_json_path"))
-    print("[완료] DB 설계서:", result.get("database_design_docx_path"))
+    print("[완료] 데이터베이스 설계 JSON:", result.get("output_json_path"))
+    print("[완료] 데이터베이스 설계서:", result.get("database_design_docx_path"))
 
 
 if __name__ == "__main__":

@@ -1,12 +1,6 @@
 import json
 
 
-ANALYZE_SYSTEM = """\
-당신은 요구사항 분석 전문가입니다.
-RFP와 회의록에서 RAG 검색에 사용할 핵심 주제/키워드를 추출하십시오.
-반드시 JSON만 출력: {"topics": ["주제1", "주제2"]}
-"""
-
 GENERATION_SYSTEM = """\
 당신은 15년 경력의 요구사항 엔지니어링(RE) 전문가입니다.
 RFP 요구사항과 회의록을 함께 분석하여 요구사항 명세서를 생성합니다.
@@ -66,9 +60,6 @@ _FMT = """\
 """
 
 # ── 유저 프롬프트 빌더 ────────────────────────────────────
-
-def build_analyze_prompt(rfp: list[dict], cleaned_minutes: str) -> str:
-    return f"[RFP]\n{json.dumps(rfp, ensure_ascii=False)}\n\n[회의록]\n{cleaned_minutes}"
 
 def build_pass1_prompt(rfp, cleaned_minutes, rag_context) -> str:
     return f"""{_FMT}

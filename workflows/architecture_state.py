@@ -5,7 +5,7 @@ class ArchitectureWorkflowState(TypedDict, total=False):
     requirement_json_path: str
     infra_spec_path: str
     output_json_path: str
-    output_md_path: str
+    output_md_path: str | None
     output_docx_path: str
     output_image_path: str
     render_image: bool
@@ -20,4 +20,3 @@ class ArchitectureWorkflowState(TypedDict, total=False):
     validation_errors: List[str]
     retry_count: int
     status: str
-

@@ -244,10 +244,6 @@ def generate_erd_json_from_requirement(requirement: Dict[str, Any], use_llm: boo
     rag_context = build_erd_rag_context(requirement)
     print("[2] RAG 검색 완료")
 
-    Path("./json_temp").mkdir(exist_ok=True)
-    with open("./json_temp/erd_rag_context.json", "w", encoding="utf-8") as f:
-        json.dump(rag_context, f, ensure_ascii=False, indent=2)
-
     if use_llm:
         try:
             print("[3] LLM 호출 시작")

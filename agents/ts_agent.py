@@ -149,7 +149,7 @@ def generate_test_scenarios(
         parsed = fill_missing_cases(parsed)
         all_scenarios.extend(parsed.get("scenarios", []))
         all_cases.extend(parsed.get("cases", []))
-        print(f"[PASS] {requirement_id} 통합시험 시나리오 생성 완료 ({time.time() - started_at:.1f}초)")
+        print(f"[PASS] {requirement_id} 통합 시험 시나리오 생성 완료 ({time.time() - started_at:.1f}초)")
 
     return {
         "scenarios": all_scenarios,
