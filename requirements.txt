@@ -16,6 +16,11 @@ langgraph
 langchain-core
 langchain-community
 streamlit
+Pillow
+torch
+transformers
+qwen-vl-utils
+accelerate
 openai
 ollama
 
