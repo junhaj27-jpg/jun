@@ -13,6 +13,7 @@ LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434/v1")
 LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "qwen3:4b")
 LLM_API_KEY = os.getenv("LLM_API_KEY", "EMPTY")
 LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.5"))
+LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "600"))
 
 
 def call_llm(
@@ -21,7 +22,7 @@ def call_llm(
     *,
     temperature: float | None = None,
     max_tokens: int | None = None,
-    timeout: int = 600,
+    timeout: int = LLM_TIMEOUT,
 ) -> str:
     messages = [
         {"role": "system", "content": system_prompt},
@@ -40,7 +41,7 @@ def call_llm_messages(
     *,
     temperature: float | None = None,
     max_tokens: int | None = None,
-    timeout: int = 600,
+    timeout: int = LLM_TIMEOUT,
 ) -> str:
     url = f"{LLM_BASE_URL.rstrip('/')}/chat/completions"
     headers = {
@@ -62,6 +63,11 @@ def call_llm_messages(
     except requests.exceptions.ConnectionError:
         raise RuntimeError(
             "LLM 서버 연결 실패. .env의 LLM_BASE_URL과 서버 실행 상태를 확인하세요."
+        )
+    except requests.exceptions.Timeout:
+        raise RuntimeError(
+            f"LLM 응답 시간 초과({timeout}초). 입력이 너무 크거나 모델 응답이 느립니다. "
+            "더 큰 모델을 쓰거나 입력 크기를 줄여야 합니다."
         )
     except KeyError:
         raise RuntimeError(f"LLM 응답 형식 오류:\n{response.text[:300]}")

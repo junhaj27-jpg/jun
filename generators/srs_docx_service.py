@@ -10,11 +10,18 @@ _ROOT_DIR = Path(__file__).parent
 _PROJECT_ROOT = Path(__file__).parent.parent
 
 
-def generate_docx(reqs: list[dict], prefix: str = "requirements") -> str:
+def generate_docx(
+    reqs: list[dict],
+    prefix: str = "requirements",
+    output_path: str | None = None,
+) -> str:
     _OUT_DIR.mkdir(exist_ok=True)
 
     ts       = datetime.now().strftime("%Y%m%d_%H%M%S")
-    out_path = _OUT_DIR / f"{prefix}_{ts}.docx"
+    out_path = Path(output_path) if output_path else _OUT_DIR / f"{prefix}_{ts}.docx"
+    if not out_path.is_absolute():
+        out_path = _PROJECT_ROOT / out_path
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
     clean    = [{k: v for k, v in r.items() if not k.startswith("_")} for r in reqs]
 

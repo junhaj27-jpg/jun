@@ -10,7 +10,7 @@ graph        = build_graph()
 modify_graph = build_modify_graph()
 
 
-def run(rfp, minutes, existing_reqs=None, save_docx=True) -> dict:
+def run(rfp, minutes, existing_reqs=None, save_docx=True, output_docx_path=None) -> dict:
     result = graph.invoke({
         "rfp":           rfp,
         "minutes":       minutes,
@@ -21,7 +21,11 @@ def run(rfp, minutes, existing_reqs=None, save_docx=True) -> dict:
     logger.info("생성 완료: 전체=%d 검토필요=%d", len(final), len(review))
     result["docx_path"] = None
     if save_docx and final:
-        path = generate_docx(final, prefix="사용자 요구사항 정의서")   # Agent 1
+        path = generate_docx(
+            final,
+            prefix="사용자 요구사항 정의서",
+            output_path=output_docx_path,
+        )   # Agent 1
         logger.info("문서 저장: %s", path)
         result["docx_path"] = path
     elif save_docx:
@@ -29,7 +33,7 @@ def run(rfp, minutes, existing_reqs=None, save_docx=True) -> dict:
     return result
 
 
-def modify(existing_reqs: list[dict], instruction: str, save_docx=True) -> dict:
+def modify(existing_reqs: list[dict], instruction: str, save_docx=True, output_docx_path=None) -> dict:
     result = modify_graph.invoke({
         "existing_reqs": existing_reqs,
         "instruction":   instruction,
@@ -39,7 +43,11 @@ def modify(existing_reqs: list[dict], instruction: str, save_docx=True) -> dict:
     logger.info("수정 완료: 전체=%d 검토필요=%d", len(final), len(review))
     result["docx_path"] = None
     if save_docx and final:
-        path = generate_docx(final, prefix="사용자 요구사항 정의서")    # Agent 2
+        path = generate_docx(
+            final,
+            prefix="사용자 요구사항 정의서",
+            output_path=output_docx_path,
+        )    # Agent 2
         logger.info("문서 저장: %s", path)
         result["docx_path"] = path
     elif save_docx:

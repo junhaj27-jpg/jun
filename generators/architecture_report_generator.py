@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from agents.arch_nodes.common import strip_mermaid_block
-from generators.architecture_docx_service import generate_architecture_docx_with_node
 from generators.architecture_image_generator import render_mermaid_image
+from generators.architecture_template_docx_generator import generate_architecture_docx_from_template
 
 
 def generate_architecture_report(
@@ -45,7 +45,7 @@ def generate_architecture_report(
 
     resolved_image_path = str(Path(image_path).resolve()) if image_path else None
 
-    docx_path = generate_architecture_docx_with_node(
+    docx_path = generate_architecture_docx_from_template(
         {
             "requirement_doc": requirement_doc or {},
             "analyzed_reqs": analyzed_reqs or [],
@@ -55,7 +55,7 @@ def generate_architecture_report(
             "user_infra_spec": user_infra_spec or {},
             "extracted_infra": extracted_infra or {},
         },
-        output_docx_path,
+        output_path=output_docx_path,
     )
 
     return {

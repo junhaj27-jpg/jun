@@ -193,6 +193,9 @@ def render_srs_tab() -> None:
     st.subheader("사용자 요구사항 정의서 생성/수정")
     mode = st.radio("실행 모드", ["신규 생성", "수정"], horizontal=True, key="srs_mode")
     save_docx = st.checkbox("DOCX 생성", value=True, key="srs_save_docx")
+    st.caption(
+        "DOCX 생성 시 아래 `출력 DOCX 경로`에 저장됩니다."
+    )
     output_json_path = st.text_input(
         "출력 JSON 경로",
         value=f"./json_temp/srs_agent_output_{_timestamp()}.json",
@@ -207,6 +210,11 @@ def render_srs_tab() -> None:
         "review_reqs 출력 경로",
         value="./output/review_reqs.json",
         key="srs_output_review_reqs",
+    )
+    output_docx_path = st.text_input(
+        "출력 DOCX 경로",
+        value=_docx_output_path("사용자 요구사항 정의서"),
+        key="srs_output_docx",
     )
 
     if mode == "신규 생성":
@@ -238,68 +246,6 @@ def render_srs_tab() -> None:
             key="srs_minutes_path",
         )
 
-        with st.expander("회의록 먼저 생성", expanded=False):
-            _input_priority_note("아래 회의록 생성용 RFP 기본 경로")
-            raw_rfp_upload = st.file_uploader(
-                "회의록 생성용 RFP 원문 업로드",
-                type=["pdf", "docx", "txt", "md", "json"],
-                key="srs_minutes_rfp_upload",
-            )
-            raw_rfp_path = st.text_input(
-                "회의록 생성용 RFP 원문 기본 경로 (업로드 없을 때 사용)",
-                value="./data/requirement_sources/RFP/서민금융진흥원 AI기반 통합 플랫폼 구축 사업 제안요청서.pdf",
-                key="srs_minutes_rfp_path",
-            )
-            minutes_type = st.radio(
-                "회의록 종류",
-                ["변경 회의록", "착수 회의록"],
-                horizontal=True,
-                key="srs_minutes_type",
-            )
-            provider = st.selectbox(
-                "생성 모델",
-                ["OpenAI API", "현재 .env LLM"],
-                key="srs_minutes_provider",
-            )
-            openai_model = st.text_input(
-                "OpenAI 모델명",
-                value="gpt-4.1-mini",
-                key="srs_minutes_openai_model",
-            )
-            max_rfp_chars = st.number_input(
-                "RFP 입력 최대 글자 수",
-                min_value=1000,
-                max_value=30000,
-                value=8000,
-                step=1000,
-                key="srs_minutes_max_chars",
-            )
-            minutes_output_path = st.text_input(
-                "생성 회의록 저장 경로",
-                value="./data/requirement_sources/meeting_minutes/RFP_변경_회의록.txt",
-                key="srs_minutes_output_path",
-            )
-
-            if st.button("회의록 생성 실행", key="run_srs_minutes"):
-                uploaded_raw_rfp_path = _save_uploaded_file(raw_rfp_upload, "srs_minutes_rfp")
-                with st.spinner("회의록 생성 중입니다..."):
-                    from services.minutes_generator import generate_minutes
-
-                    saved_minutes_path = generate_minutes(
-                        uploaded_raw_rfp_path or raw_rfp_path,
-                        minutes_output_path,
-                        minutes_type="change" if minutes_type == "변경 회의록" else "kickoff",
-                        provider="openai" if provider == "OpenAI API" else "common_llm",
-                        model=openai_model.strip() or None,
-                        max_rfp_chars=int(max_rfp_chars),
-                        existing_requirements_path=output_reqs_path,
-                    )
-                st.success("회의록 생성 완료")
-                st.write(f"회의록 TXT: `{saved_minutes_path}`")
-                _download_file(saved_minutes_path, "회의록 TXT")
-                with st.expander("회의록 미리보기", expanded=True):
-                    st.text(Path(saved_minutes_path).read_text(encoding="utf-8")[:5000])
-
         if st.button("사용자 요구사항 정의서 신규 생성 실행", type="primary", key="run_srs_generate"):
             uploaded_rfp_path = _save_uploaded_file(rfp_upload, "srs_rfp")
             uploaded_minutes_path = _save_uploaded_file(minutes_upload, "srs_minutes")
@@ -323,12 +269,18 @@ def render_srs_tab() -> None:
                 output_json_path=output_json_path,
                 output_reqs_path=output_reqs_path,
                 output_review_path=output_review_path,
+                output_docx_path=output_docx_path,
                 save_docx=save_docx,
             )
             with st.spinner("SRS 신규 생성 중입니다..."):
                 from main_generate_srs import generate_mode
 
-                result = generate_mode(args)
+                try:
+                    result = generate_mode(args)
+                except Exception as e:
+                    st.error("사용자 요구사항 정의서 생성 실패")
+                    st.exception(e)
+                    return
             st.success("사용자 요구사항 정의서 신규 생성 완료")
             st.write(
                 f"생성 요구사항: `{len(result.get('final_reqs', []))}`건 / "
@@ -338,10 +290,10 @@ def render_srs_tab() -> None:
             st.write(f"final_reqs: `{output_reqs_path}`")
             st.write(f"review_reqs: `{output_review_path}`")
             if result.get("docx_path"):
-                st.write(f"DOCX: `{result['docx_path']}`")
+                st.write(f"사용자 요구사항 정의서 DOCX 저장 위치: `{result['docx_path']}`")
                 _download_file(result["docx_path"], "사용자 요구사항 정의서 DOCX")
             elif save_docx:
-                st.warning("final_reqs가 비어 있어 DOCX를 생성하지 않았습니다.")
+                st.warning("final_reqs가 비어 있어 DOCX를 생성하지 않았습니다. 생성 성공 시 `./output/generated_YYYYMMDD_HHMMSS.docx`에 저장됩니다.")
             _download_file(output_json_path, "사용자 요구사항 정의서 JSON")
             _download_file(output_reqs_path, "사용자 요구사항 정의서 final_reqs")
             _download_file(output_review_path, "사용자 요구사항 정의서 review_reqs")
@@ -368,12 +320,18 @@ def render_srs_tab() -> None:
                 output_json_path=output_json_path,
                 output_reqs_path=output_reqs_path,
                 output_review_path=output_review_path,
+                output_docx_path=output_docx_path,
                 save_docx=save_docx,
             )
             with st.spinner("SRS 수정 중입니다..."):
                 from main_generate_srs import modify_mode
 
-                result = modify_mode(args)
+                try:
+                    result = modify_mode(args)
+                except Exception as e:
+                    st.error("사용자 요구사항 정의서 수정 실패")
+                    st.exception(e)
+                    return
             st.success("사용자 요구사항 정의서 수정 완료")
             st.write(
                 f"수정 요구사항: `{len(result.get('final_reqs', []))}`건 / "
@@ -383,219 +341,14 @@ def render_srs_tab() -> None:
             st.write(f"final_reqs: `{output_reqs_path}`")
             st.write(f"review_reqs: `{output_review_path}`")
             if result.get("docx_path"):
-                st.write(f"DOCX: `{result['docx_path']}`")
+                st.write(f"사용자 요구사항 정의서 DOCX 저장 위치: `{result['docx_path']}`")
                 _download_file(result["docx_path"], "사용자 요구사항 정의서 DOCX")
             elif save_docx:
-                st.warning("final_reqs가 비어 있어 DOCX를 생성하지 않았습니다.")
+                st.warning("final_reqs가 비어 있어 DOCX를 생성하지 않았습니다. 생성 성공 시 `./output/modified_YYYYMMDD_HHMMSS.docx`에 저장됩니다.")
             _download_file(output_json_path, "사용자 요구사항 정의서 수정 JSON")
             _download_file(output_reqs_path, "사용자 요구사항 정의서 final_reqs")
             _download_file(output_review_path, "사용자 요구사항 정의서 review_reqs")
             _load_json_preview(output_json_path)
-
-
-def render_ui_design_tab() -> None:
-    st.subheader("사용자 인터페이스 설계서 생성")
-    _input_priority_note("아래 사용자 요구사항/프로토타입 기본 경로 또는 폴더")
-    requirement_uploads = st.file_uploader(
-        "사용자 요구사항 JSON 업로드",
-        type=["json"],
-        accept_multiple_files=True,
-        key="ui_req_uploads",
-    )
-    image_uploads = st.file_uploader(
-        "프로토타입 이미지 업로드",
-        type=["png", "jpg", "jpeg"],
-        accept_multiple_files=True,
-        key="ui_image_uploads",
-    )
-    requirement_path = st.text_input(
-        "사용자 요구사항 JSON 기본 경로/폴더 (업로드 없을 때 사용)",
-        value="./data/interface/requirements",
-        key="ui_req_path",
-    )
-    image_path = st.text_input(
-        "프로토타입 이미지 기본 경로/폴더 (업로드 없을 때 사용)",
-        value="./data/interface/prototypes",
-        key="ui_image_path",
-    )
-    max_images = st.number_input(
-        "처리할 이미지 수",
-        min_value=1,
-        max_value=50,
-        value=1,
-        step=1,
-        key="ui_max_images",
-    )
-    all_images = st.checkbox("전체 이미지 처리", value=False, key="ui_all_images")
-    work_dir = st.text_input(
-        "작업 JSON/모델 원문 저장 폴더",
-        value="./json_temp/interface",
-        key="ui_work_dir",
-    )
-    output_json_path = st.text_input(
-        "출력 통합 JSON 경로",
-        value=f"./json_temp/interface/ui_design_integrated_{_timestamp()}.json",
-        key="ui_output_json",
-    )
-    output_docx_path = st.text_input(
-        "출력 DOCX 경로",
-        value=_docx_output_path("사용자 인터페이스 설계서", "interface"),
-        key="ui_output_docx",
-    )
-
-    if st.button("사용자 인터페이스 설계서 생성 실행", type="primary", key="run_ui_design"):
-        uploaded_req_paths = _save_uploaded_files(requirement_uploads, "ui_requirement")
-        uploaded_image_paths = _save_uploaded_files(image_uploads, "ui_prototype")
-        with st.spinner("사용자 인터페이스 설계서 생성 중입니다..."):
-            from workflows.interface_workflow import compile_interface_graph
-
-            result = compile_interface_graph().invoke(
-                {
-                    "requirement_paths": uploaded_req_paths or requirement_path,
-                    "image_paths": uploaded_image_paths or image_path,
-                    "output_json_path": output_json_path,
-                    "output_docx_path": output_docx_path,
-                    "work_dir": work_dir,
-                    "max_images": None if all_images else int(max_images),
-                }
-            )
-
-        if result.get("status") != "VALID":
-            st.error("사용자 인터페이스 설계서 생성 실패")
-            return
-        st.success("사용자 인터페이스 설계서 생성 완료")
-        st.write(f"화면 수: `{len(result.get('screen_specs', []))}`")
-        _show_result_paths(
-            result,
-            [("output_json_path", "사용자 인터페이스 설계서 JSON"), ("output_docx_path", "사용자 인터페이스 설계서 DOCX")],
-        )
-        _load_json_preview(result.get("output_json_path"))
-
-
-def render_arch_tab() -> None:
-    st.subheader("아키텍처 설계서 생성")
-    _input_priority_note("아래 요구사항/인프라 스펙 기본 경로")
-    requirement_upload = st.file_uploader("요구사항 JSON 업로드", type=["json"], key="arch_req_upload")
-    infra_upload = st.file_uploader("인프라 스펙 JSON 업로드", type=["json"], key="arch_infra_upload")
-
-    requirement_path = st.text_input(
-        "요구사항 JSON 기본 경로 (업로드 없을 때 사용)",
-        value="./data/architecture/architecture_requirements.json",
-        key="arch_req_path",
-    )
-    infra_spec_path = st.text_input(
-        "인프라 스펙 JSON 기본 경로 (업로드 없을 때 사용)",
-        value="./data/architecture/infra_spec.json",
-        key="arch_infra_path",
-    )
-    render_image = st.checkbox("Mermaid PNG 생성", value=True, key="arch_render_image")
-    output_json_path = st.text_input(
-        "출력 JSON 경로",
-        value=f"./json_temp/architecture_agent_output_{_timestamp()}.json",
-        key="arch_output_json",
-    )
-    output_docx_path = st.text_input(
-        "출력 DOCX 경로",
-        value=_docx_output_path("아키텍처 설계서"),
-        key="arch_output_docx",
-    )
-    output_image_path = st.text_input(
-        "출력 이미지 경로",
-        value=f"./output/architecture_diagram_{_timestamp()}.png",
-        key="arch_output_image",
-    )
-
-    if st.button("아키텍처 설계서 생성 실행", type="primary", key="run_arch"):
-        uploaded_req_path = _save_uploaded_file(requirement_upload, "arch_requirement")
-        uploaded_infra_path = _save_uploaded_file(infra_upload, "arch_infra")
-        initial_state = {
-            "requirement_json_path": uploaded_req_path or requirement_path,
-            "infra_spec_path": uploaded_infra_path or infra_spec_path,
-            "render_image": render_image,
-            "output_json_path": output_json_path,
-            "output_docx_path": output_docx_path,
-            "output_image_path": output_image_path,
-        }
-        with st.spinner("아키텍처 설계서 생성 중입니다..."):
-            from workflows.architecture_workflow import compile_architecture_graph
-
-            result = compile_architecture_graph().invoke(initial_state)
-
-        if result.get("status") != "VALID":
-            st.error("아키텍처 설계서 생성 실패")
-            st.write(result.get("validation_result", {}))
-            return
-        st.success("아키텍처 설계서 생성 완료")
-        _show_result_paths(
-            result,
-            [
-                ("output_json_path", "아키텍처 JSON"),
-                ("output_docx_path", "아키텍처 설계서 DOCX"),
-                ("output_image_path", "아키텍처 이미지"),
-            ],
-        )
-        _load_json_preview(result.get("output_json_path"))
-
-
-def render_ts_tab() -> None:
-    st.subheader("통합 시험 시나리오 생성")
-    _input_priority_note("아래 요구사항/UI 설계서 기본 경로")
-    requirement_upload = st.file_uploader("요구사항 JSON 업로드", type=["json"], key="ts_req_upload")
-    ui_uploads = st.file_uploader(
-        "UI 설계서 JSON 업로드",
-        type=["json"],
-        accept_multiple_files=True,
-        key="ts_ui_uploads",
-    )
-    requirement_path = st.text_input(
-        "요구사항 JSON 기본 경로 (업로드 없을 때 사용)",
-        value="./data/requirements/requirement.json",
-        key="ts_req_path",
-    )
-    ui_paths_text = st.text_area(
-        "UI 설계서 JSON 기본 경로 목록 (업로드 없을 때 추가 사용)",
-        value="",
-        height=90,
-        help="여러 개면 줄바꿈으로 입력합니다.",
-        key="ts_ui_paths",
-    )
-    max_retries = st.number_input("요구사항별 재시도 횟수", min_value=0, max_value=5, value=1, step=1)
-    output_json_path = st.text_input(
-        "출력 JSON 경로",
-        value=f"./json_temp/ts_agent_output_{_timestamp()}.json",
-        key="ts_output_json",
-    )
-    output_docx_path = st.text_input(
-        "출력 DOCX 경로",
-        value=_docx_output_path("통합 시험 시나리오"),
-        key="ts_output_docx",
-    )
-
-    if st.button("통합 시험 시나리오 생성 실행", type="primary", key="run_ts"):
-        uploaded_req_path = _save_uploaded_file(requirement_upload, "ts_requirement")
-        uploaded_ui_paths = _save_uploaded_files(ui_uploads, "ts_ui")
-        typed_ui_paths = [line.strip() for line in ui_paths_text.splitlines() if line.strip()]
-
-        with st.spinner("통합 시험 시나리오 생성 중입니다..."):
-            from workflows.ts_workflow import compile_ts_graph
-
-            result = compile_ts_graph().invoke(
-                {
-                    "requirement_json_path": uploaded_req_path or requirement_path,
-                    "ui_paths": uploaded_ui_paths + typed_ui_paths,
-                    "output_json_path": output_json_path,
-                    "output_docx_path": output_docx_path,
-                    "max_retries": int(max_retries),
-                }
-            )
-
-        if result.get("status") != "VALID":
-            st.error("통합 시험 시나리오 생성 실패")
-            return
-        st.success("통합 시험 시나리오 생성 완료")
-        st.write("요약:", result.get("summary", {}))
-        _show_result_paths(result, [("output_json_path", "통합 시험 시나리오 JSON"), ("output_docx_path", "통합 시험 시나리오 DOCX")])
-        _load_json_preview(result.get("output_json_path"))
 
 
 def main() -> None:
@@ -604,28 +357,19 @@ def main() -> None:
     JSON_TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
     st.title("ALPLED 산출물 Agent Runner")
-    st.caption("엔티티 관계 모형 설계서, 사용자 요구사항 정의서, 사용자 인터페이스 설계서, 아키텍처 설계서, 통합 시험 시나리오, 데이터베이스 설계서를 같은 화면에서 실행합니다.")
+    st.caption("엔티티 관계 모형 설계서, 사용자 요구사항 정의서, 데이터베이스 설계서를 같은 화면에서 실행합니다.")
 
     tabs = st.tabs([
         "사용자 요구사항 정의서",
-        "사용자 인터페이스 설계서",
-        "아키텍처 설계서",
         "엔티티 관계 모형 설계서",
         "데이터베이스 설계서",
-        "통합 시험 시나리오",
     ])
     with tabs[0]:
         render_srs_tab()
     with tabs[1]:
-        render_ui_design_tab()
-    with tabs[2]:
-        render_arch_tab()
-    with tabs[3]:
         render_erd_tab()
-    with tabs[4]:
+    with tabs[2]:
         render_db_tab()
-    with tabs[5]:
-        render_ts_tab()
 
 
 if __name__ == "__main__":

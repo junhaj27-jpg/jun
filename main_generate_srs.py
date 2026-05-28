@@ -13,6 +13,7 @@ DEFAULT_OUTPUT_JSON_PATH = "./json_temp/srs_agent_output.json"
 DEFAULT_EXISTING_REQS_PATH = "./output/final_reqs.json"
 DEFAULT_FINAL_REQS_PATH = "./output/final_reqs.json"
 DEFAULT_REVIEW_REQS_PATH = "./output/review_reqs.json"
+DEFAULT_OUTPUT_DOCX_PATH = "./output/사용자_요구사항_정의서.docx"
 
 
 def _load_rfp(path: str) -> list[dict]:
@@ -83,6 +84,7 @@ def generate_mode(args):
         rfp=_load_rfp(rfp_json_path),
         minutes=_load_text(minutes_path),
         save_docx=args.save_docx,
+        output_docx_path=getattr(args, "output_docx_path", None),
     )
 
     _save_result(result, output_json_path)
@@ -131,6 +133,7 @@ def modify_mode(args):
         existing_reqs=_load_requirements(existing_reqs_path),
         instruction=instruction,
         save_docx=args.save_docx,
+        output_docx_path=getattr(args, "output_docx_path", None),
     )
 
     _save_result(result, output_json_path)
@@ -169,6 +172,7 @@ def build_parser():
     generate.add_argument("--output-json-path", default=None)
     generate.add_argument("--output-reqs-path", default=DEFAULT_FINAL_REQS_PATH)
     generate.add_argument("--output-review-path", default=DEFAULT_REVIEW_REQS_PATH)
+    generate.add_argument("--output-docx-path", default=DEFAULT_OUTPUT_DOCX_PATH)
 
     modify_parser = sub.add_parser("modify", help="기존 SRS 요구사항을 수정 지시로 변경")
     modify_parser.add_argument("--existing-reqs-path", default=None)
@@ -177,6 +181,7 @@ def build_parser():
     modify_parser.add_argument("--output-json-path", default=None)
     modify_parser.add_argument("--output-reqs-path", default=DEFAULT_FINAL_REQS_PATH)
     modify_parser.add_argument("--output-review-path", default=DEFAULT_REVIEW_REQS_PATH)
+    modify_parser.add_argument("--output-docx-path", default=DEFAULT_OUTPUT_DOCX_PATH)
 
     sample = sub.add_parser("sample", help="사용자 요구사항 정의서 DOCX 생성 단독 테스트")
     sample.add_argument("--output-json-path", default=None)
