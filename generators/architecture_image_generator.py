@@ -71,7 +71,8 @@ def render_mermaid_ink_image(mermaid_script: str, output_image_path: str) -> str
         base64_string = base64.b64encode(script_bytes).decode("utf-8")
         image_url = f"https://mermaid.ink/img/{base64_string}"
 
-        response = requests.get(image_url, timeout=15)
+        timeout = int(os.getenv("ARCH_MERMAID_INK_TIMEOUT", "3"))
+        response = requests.get(image_url, timeout=timeout)
         response.raise_for_status()
 
         output_path = Path(output_image_path)

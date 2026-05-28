@@ -1,5 +1,6 @@
 # services/llm_service.py
 import logging
+import os
 import time
 
 from agents.srs_core.parser import extract_json
@@ -14,7 +15,11 @@ class LLMService:
     def complete(self, system_prompt: str, user_prompt: str) -> str:
         for attempt in range(1, PIPELINE["max_retries"] + 1):
             try:
-                return call_llm(system_prompt, user_prompt)
+                return call_llm(
+                    system_prompt,
+                    user_prompt,
+                    timeout=int(os.getenv("SRS_LLM_TIMEOUT", "60")),
+                )
             except RuntimeError as e:
                 logger.warning("llm: attempt %d failed — %s", attempt, e)
                 if attempt < PIPELINE["max_retries"]:

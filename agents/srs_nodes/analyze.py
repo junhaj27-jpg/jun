@@ -1,14 +1,16 @@
-# nodes/analyze.py
 from agents.srs_state import State
-from agents.srs_llm_service import LLMService
-from agents.srs_prompts import ANALYZE_SYSTEM, build_analyze_prompt
-
-llm = LLMService()
 
 
 def analyze_node(state: State) -> dict:
-    result = llm.complete_json(
-        ANALYZE_SYSTEM,
-        build_analyze_prompt(state["rfp"], state["cleaned_minutes"]),
-    )
-    return {"topics": result.get("topics", [])}
+    topics = []
+    for item in state["rfp"]:
+        if not isinstance(item, dict):
+            continue
+        for key in ("requirement_name", "requirement_type"):
+            value = str(item.get(key, "")).strip()
+            if value and value not in topics:
+                topics.append(value)
+        if len(topics) >= 20:
+            break
+
+    return {"topics": topics}

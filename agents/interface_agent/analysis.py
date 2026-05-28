@@ -2,6 +2,8 @@ from agents.interface_agent.config import *
 from agents.interface_agent.model_runtime import qwen_generate_text, qwen_analyze_image, parse_or_repair_json
 from generators.interface_image_markers import create_numbered_prototype_image
 
+import os
+
 UI_ELEMENT_ANALYSIS_PROMPT = """
 너는 사용자 인터페이스 화면을 관찰하는 UI 분석가다.
 현재 이미지만 보고 화면에 실제로 보이는 텍스트와 기능 영역을 추출하라.
@@ -386,9 +388,77 @@ def ensure_screen_spec_content(
     return normalize_screen_spec(data, image_path, ui_observation, idx)
 
 
+def build_fallback_ui_observation(image_path: Path) -> Dict[str, Any]:
+    """VLM을 사용할 수 없을 때 파일명 기반으로 최소 화면 관찰 결과를 만든다."""
+    name = re.sub(r"^\d+_", "", image_path.stem)
+    name = re.sub(r"^ui_prototype_\d+_\d+_", "", name, flags=re.IGNORECASE)
+    screen_name = name.replace("_", " ").strip() or f"화면 {image_path.stem}"
+    visible_texts = [screen_name, "조회", "검색", "상세", "저장"]
+    return normalize_ui_observation({
+        "screen_name_candidates": [screen_name],
+        "screen_type": "업무 화면",
+        "menu_path_candidates": [screen_name],
+        "visible_texts": visible_texts,
+        "functional_areas": [
+            {
+                "name": "화면 제목 및 메뉴 영역",
+                "visible_texts": [screen_name],
+                "area_role": "사용자가 현재 화면과 업무 위치를 확인한다.",
+                "x_ratio": 0.18,
+                "y_ratio": 0.12,
+            },
+            {
+                "name": "검색 조건 영역",
+                "visible_texts": ["검색", "조회"],
+                "area_role": "사용자가 조건을 입력하고 목록을 조회한다.",
+                "x_ratio": 0.22,
+                "y_ratio": 0.28,
+            },
+            {
+                "name": "목록 및 현황 영역",
+                "visible_texts": ["목록", "현황", "상태"],
+                "area_role": "시스템이 조회 결과와 업무 상태를 목록 또는 카드 형태로 표시한다.",
+                "x_ratio": 0.48,
+                "y_ratio": 0.52,
+            },
+            {
+                "name": "상세 처리 영역",
+                "visible_texts": ["상세", "저장", "처리"],
+                "area_role": "사용자가 선택한 항목의 상세 내용을 확인하고 필요한 처리를 수행한다.",
+                "x_ratio": 0.78,
+                "y_ratio": 0.72,
+            },
+        ],
+    })
+
+
+def build_fallback_screen_spec(image_path: Path, requirement_summary: Dict[str, Any], idx: int) -> Dict[str, Any]:
+    """VLM 실패 시에도 DOCX 생성을 계속하기 위한 최소 화면 상세 설계."""
+    ui_observation = build_fallback_ui_observation(image_path)
+    related_requirements = select_related_requirements(requirement_summary, ui_observation, image_path, limit=10)
+    data = ensure_screen_spec_content({}, image_path, ui_observation, related_requirements, idx)
+    data["ui_observation"] = ui_observation
+    data["related_requirements"] = related_requirements
+    data["quality_issues"] = ["VLM 분석 실패로 파일명/요구사항 기반 fallback 생성"]
+    data["image_path"] = str(image_path)
+    data["annotated_image_path"] = str(create_numbered_prototype_image(image_path, data, WORK_DIR / "numbered_images"))
+    return data
+
+
 def analyze_screen_image(image_path: Path, requirement_summary: Dict[str, Any], idx: int) -> Dict[str, Any]:
     """이미지 관찰, 요구사항 선별, 상세 설계 생성을 순서대로 수행합니다."""
-    raw_observation = qwen_analyze_image(image_path, UI_ELEMENT_ANALYSIS_PROMPT, max_new_tokens=MAX_NEW_TOKENS_SCREEN)
+    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "false").strip().lower() in {"1", "true", "yes", "y"}
+    if not use_vlm:
+        print(f"VLM 분석 생략: {image_path.name} (INTERFACE_VLM_ENABLED=false)")
+        return build_fallback_screen_spec(image_path, requirement_summary, idx)
+
+    try:
+        raw_observation = qwen_analyze_image(image_path, UI_ELEMENT_ANALYSIS_PROMPT, max_new_tokens=MAX_NEW_TOKENS_SCREEN)
+    except Exception as e:
+        print(f"VLM 분석 실패, fallback 사용: {image_path.name}")
+        print(type(e).__name__, str(e)[:500])
+        return build_fallback_screen_spec(image_path, requirement_summary, idx)
+
     raw_dir = WORK_DIR / "model_raw"
     raw_dir.mkdir(parents=True, exist_ok=True)
     (raw_dir / f"{idx:03d}_{image_path.stem}_observation.txt").write_text(raw_observation, encoding="utf-8")
@@ -514,6 +584,10 @@ def normalize_ui_structure_data(data: Any, screen_specs: List[Dict[str, Any]]) -
 
 def generate_ui_structure(screen_specs: List[Dict[str, Any]]) -> List[Dict[str, str]]:
     """분석된 화면 목록을 기반으로 UI 메뉴 구조도를 생성합니다."""
+    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "false").strip().lower() in {"1", "true", "yes", "y"}
+    if not use_vlm:
+        return normalize_ui_structure_data([], screen_specs)
+
     screen_list = [
         {
             "screen_id": s.get("screen_id"),

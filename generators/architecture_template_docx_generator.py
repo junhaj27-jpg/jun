@@ -121,17 +121,8 @@ def fill_system_architecture_table(doc, payload: Dict[str, Any], image_path: str
     cell = table.cell(0, 0)
     cell.text = ""
 
-    for line in build_system_architecture_text(payload):
-        if not line:
-            cell.add_paragraph()
-        elif line.startswith("[") and line.endswith("]"):
-            add_cell_paragraph(cell, line, bold=True)
-        else:
-            add_cell_paragraph(cell, line)
-
     if image_path and Path(image_path).exists():
-        cell.add_paragraph()
-        paragraph = cell.add_paragraph()
+        paragraph = cell.paragraphs[0] if cell.paragraphs else cell.add_paragraph()
         run = paragraph.add_run()
         run.add_picture(str(image_path), width=Inches(6.2))
 

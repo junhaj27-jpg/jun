@@ -1,4 +1,5 @@
 import os
+import base64
 import copy
 import shutil
 import subprocess
@@ -8,6 +9,7 @@ from typing import Dict, Any
 
 from docx import Document
 from docx.shared import Inches
+import requests
 
 try:
     from dotenv import load_dotenv
@@ -95,6 +97,10 @@ def save_mermaid_files(erd: Dict[str, Any]):
     mermaid_code = generate_mermaid_erd(erd)
     mmd_path.write_text(mermaid_code, encoding="utf-8")
 
+    ink_path = render_mermaid_ink_image(mermaid_code, str(png_path))
+    if ink_path:
+        return str(mmd_path), ink_path
+
     mmdc_path = os.getenv("MMDC_PATH") or shutil.which("mmdc") or r"C:\Users\Playdata\AppData\Roaming\npm\mmdc.cmd"
     env = os.environ.copy()
     puppeteer_executable_path = env.get("PUPPETEER_EXECUTABLE_PATH") or find_puppeteer_browser()
@@ -114,10 +120,106 @@ def save_mermaid_files(erd: Dict[str, Any]):
         )
     except (FileNotFoundError, subprocess.CalledProcessError) as e:
         print(f"[WARN] Mermaid 이미지 생성 실패: {e}")
+        fallback_path = render_basic_erd_image(erd, str(png_path))
+        if fallback_path:
+            print("[WARN] 기본 ERD 이미지 fallback을 생성했습니다.")
+            return str(mmd_path), fallback_path
         print("[WARN] mmd_temp/erd_diagram.mmd 파일만 저장하고 ERD 이미지 삽입은 건너뜁니다.")
         return str(mmd_path), None
 
     return str(mmd_path), str(png_path)
+
+
+def render_mermaid_ink_image(mermaid_code: str, output_image_path: str) -> str | None:
+    try:
+        encoded = base64.b64encode(mermaid_code.encode("utf-8")).decode("utf-8")
+        timeout = int(os.getenv("ERD_MERMAID_INK_TIMEOUT", "3"))
+        response = requests.get(f"https://mermaid.ink/img/{encoded}", timeout=timeout)
+        response.raise_for_status()
+        output_path = Path(output_image_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_bytes(response.content)
+        return str(output_path)
+    except Exception as exc:
+        print(f"[WARN] Mermaid Ink ERD 이미지 생성 실패: {exc}")
+        return None
+
+
+def render_basic_erd_image(erd: Dict[str, Any], output_image_path: str) -> str | None:
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except Exception as exc:
+        print(f"[WARN] Pillow ERD fallback 이미지 생성 실패: {exc}")
+        return None
+
+    entities = erd.get("entities", []) or []
+    if not entities:
+        return None
+
+    width = 1400
+    entity_height = 54
+    column_height = 24
+    box_width = 300
+    gap_x = 45
+    gap_y = 45
+    cols = 4
+    rows = (len(entities) + cols - 1) // cols
+    height = max(520, 120 + rows * 260)
+
+    image = Image.new("RGB", (width, height), "white")
+    draw = ImageDraw.Draw(image)
+    try:
+        font_title = ImageFont.truetype("malgun.ttf", 28)
+        font_bold = ImageFont.truetype("malgunbd.ttf", 16)
+        font = ImageFont.truetype("malgun.ttf", 13)
+    except Exception:
+        font_title = ImageFont.load_default()
+        font_bold = ImageFont.load_default()
+        font = ImageFont.load_default()
+
+    draw.text((40, 30), erd.get("erd_name") or "ERD Diagram", fill="#1f2937", font=font_title)
+    positions = {}
+
+    for idx, entity in enumerate(entities[:16]):
+        col = idx % cols
+        row = idx // cols
+        x = 40 + col * (box_width + gap_x)
+        y = 90 + row * 260
+        entity_name = str(entity.get("entity_name") or f"ENTITY_{idx + 1}")
+        columns = entity.get("columns", []) or []
+        box_height = entity_height + min(len(columns), 7) * column_height + 18
+
+        draw.rounded_rectangle((x, y, x + box_width, y + box_height), radius=6, fill="#f8fafc", outline="#2563eb", width=2)
+        draw.rectangle((x, y, x + box_width, y + entity_height), fill="#dbeafe", outline="#2563eb", width=2)
+        draw.text((x + 12, y + 16), _clip_text(entity_name, 28), fill="#111827", font=font_bold)
+        positions[entity_name] = (x, y, box_width, box_height)
+
+        for cidx, column in enumerate(columns[:7]):
+            prefix = "PK " if column.get("pk") == "Y" else "FK " if column.get("fk") == "Y" else ""
+            text = f"{prefix}{column.get('name', '')} : {column.get('type', '')}"
+            draw.text((x + 12, y + entity_height + 10 + cidx * column_height), _clip_text(text, 34), fill="#374151", font=font)
+
+    for rel in erd.get("relationships", []) or []:
+        from_pos = positions.get(rel.get("from_entity", ""))
+        to_pos = positions.get(rel.get("to_entity", ""))
+        if not from_pos or not to_pos:
+            continue
+        x1, y1, w1, h1 = from_pos
+        x2, y2, _w2, h2 = to_pos
+        start = (x1 + w1, y1 + h1 // 2)
+        end = (x2, y2 + h2 // 2)
+        draw.line((*start, *end), fill="#64748b", width=2)
+        draw.polygon([(end[0], end[1]), (end[0] - 8, end[1] - 5), (end[0] - 8, end[1] + 5)], fill="#64748b")
+
+    output_path = Path(output_image_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    image.save(output_path)
+    return str(output_path)
+
+
+def _clip_text(text: str, max_len: int) -> str:
+    value = str(text or "")
+    return value if len(value) <= max_len else value[: max_len - 1] + "..."
 
 
 def find_puppeteer_browser():

@@ -31,8 +31,13 @@ class RAGService:
     ) -> list[dict]:
         target_collections = collections or _COLLECTIONS
         hits = []
+        try:
+            vector = get_embedding(text)
+        except Exception as e:
+            logger.error("rag: embedding failed -> %s", e)
+            return []
         for collection in target_collections:
-            hits.extend(self._search(collection, text, doc_types, top_k))
+            hits.extend(self._search(collection, vector, doc_types, top_k))
         return sorted(hits, key=lambda x: x["score"], reverse=True)[: top_k * 2]
 
     def format_context(self, results: list[dict]) -> str:
@@ -43,11 +48,11 @@ class RAGService:
             for r in results
         )
 
-    def _search(self, collection: str, text: str, doc_types, top_k: int):
+    def _search(self, collection: str, vector, doc_types, top_k: int):
         try:
             hits = get_client().query_points(
                 collection_name=collection,
-                query=get_embedding(text),
+                query=vector,
                 query_filter=_build_filter(doc_types),
                 limit=top_k,
                 with_payload=True,
