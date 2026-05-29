@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import time
 from collections import Counter
@@ -6,6 +7,11 @@ from typing import Any
 
 from agents.ts_prompt import build_prompt
 from services.llm_client import call_llm_messages
+
+TS_FIELD_MAX_CHARS = int(os.getenv("TS_FIELD_MAX_CHARS", "2500"))
+TS_LIST_ITEM_MAX_CHARS = int(os.getenv("TS_LIST_ITEM_MAX_CHARS", "800"))
+TS_REQUIREMENT_MAX_CHARS = int(os.getenv("TS_REQUIREMENT_MAX_CHARS", "8000"))
+TS_MAX_TOKENS = int(os.getenv("TS_MAX_TOKENS", "4096"))
 
 
 def _strip_markdown_json(raw_output: str) -> str:
@@ -21,6 +27,66 @@ def _strip_markdown_json(raw_output: str) -> str:
         if match:
             text = match.group(0)
     return text
+
+
+def _truncate_text(value: Any, max_chars: int) -> str:
+    text = str(value or "").strip()
+    if len(text) <= max_chars:
+        return text
+    return text[:max_chars].rstrip() + "\n...(입력 길이 제한으로 일부 생략)"
+
+
+def _compact_value(value: Any, max_chars: int = TS_FIELD_MAX_CHARS) -> Any:
+    if isinstance(value, str):
+        return _truncate_text(value, max_chars)
+    if isinstance(value, list):
+        compacted = []
+        total_chars = 0
+        for item in value:
+            compacted_item = _compact_value(item, TS_LIST_ITEM_MAX_CHARS)
+            item_size = len(json.dumps(compacted_item, ensure_ascii=False))
+            if total_chars + item_size > max_chars:
+                compacted.append("...(입력 길이 제한으로 나머지 항목 생략)")
+                break
+            compacted.append(compacted_item)
+            total_chars += item_size
+        return compacted
+    if isinstance(value, dict):
+        return {
+            key: _compact_value(item, max_chars)
+            for key, item in value.items()
+            if key not in {"raw_text", "page_text", "full_text", "chunks", "tables"}
+        }
+    return value
+
+
+def compact_requirement_for_ts(requirement: dict[str, Any]) -> dict[str, Any]:
+    preferred_keys = [
+        "requirement_id",
+        "requirement_name",
+        "requirement_type",
+        "description",
+        "constraints",
+        "validation_criteria",
+        "priority",
+        "source",
+    ]
+    compacted = {
+        key: _compact_value(requirement.get(key))
+        for key in preferred_keys
+        if key in requirement
+    }
+    payload = json.dumps(compacted, ensure_ascii=False)
+    if len(payload) <= TS_REQUIREMENT_MAX_CHARS:
+        return compacted
+
+    for key in ["source", "constraints", "validation_criteria", "description"]:
+        if key in compacted:
+            compacted[key] = _compact_value(compacted[key], max(TS_FIELD_MAX_CHARS // 2, 1000))
+        payload = json.dumps(compacted, ensure_ascii=False)
+        if len(payload) <= TS_REQUIREMENT_MAX_CHARS:
+            break
+    return compacted
 
 
 def parse_and_validate(raw_output: str) -> tuple[dict[str, Any] | None, str]:
@@ -123,14 +189,25 @@ def generate_test_scenarios(
 
     for index, requirement in enumerate(requirements, start=1):
         requirement_id = requirement.get("requirement_id", f"REQ-{index}")
-        single_req_json = json.dumps({"requirements": [requirement]}, ensure_ascii=False, indent=2)
+        compacted_requirement = compact_requirement_for_ts(requirement)
+        single_req_json = json.dumps({"requirements": [compacted_requirement]}, ensure_ascii=False, indent=2)
         messages = build_prompt(single_req_json, ui_screens_raw)
 
         parsed = None
         last_error = ""
         started_at = time.time()
         for _ in range(max_retries + 1):
-            raw_output = call_llm_messages(messages, temperature=0.2, timeout=600)
+            try:
+                raw_output = call_llm_messages(
+                    messages,
+                    temperature=0.2,
+                    max_tokens=TS_MAX_TOKENS,
+                    timeout=600,
+                )
+            except Exception as exc:
+                last_error = f"LLM 호출 실패: {exc}"
+                break
+
             parsed, last_error = parse_and_validate(raw_output)
             if not last_error and parsed:
                 break

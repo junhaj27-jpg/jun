@@ -6,6 +6,7 @@ from langgraph.graph import END, START, StateGraph
 
 from agents.erd_agent import (
     REQ_JSON_PATH,
+    build_integrated_requirement,
     build_erd_rag_context,
     call_qwen_for_erd,
     fallback_rule_based_erd,
@@ -16,50 +17,9 @@ from workflows.erd_state import ErdWorkflowState
 
 MAX_RETRIES = 2
 DEFAULT_OUTPUT_JSON_PATH = "./json_temp/erd_agent_output.json"
-
-
-def _join_list(value: Any) -> str:
-    if isinstance(value, list):
-        return "\n".join(str(item) for item in value if item)
-    return str(value or "")
-
-
 def build_system_context(requirement_doc: Dict[str, Any]) -> Dict[str, Any]:
     """Create one system-level context object for ERD/DB design."""
-    requirements = requirement_doc.get("requirements", [])
-    if not requirements:
-        raise ValueError("requirements가 비어 있습니다.")
-
-    requirement_ids = [item.get("requirement_id", "") for item in requirements if item.get("requirement_id")]
-    requirement_names = [item.get("requirement_name", "") for item in requirements if item.get("requirement_name")]
-
-    sections = []
-    validation_sections = []
-    constraint_sections = []
-    source_sections = []
-    for item in requirements:
-        req_id = item.get("requirement_id", "")
-        req_name = item.get("requirement_name", "")
-        prefix = f"[{req_id}] {req_name}".strip()
-        sections.append(f"{prefix}\n{item.get('description', '')}".strip())
-        validation_sections.append(f"{prefix}\n{_join_list(item.get('validation_criteria', []))}".strip())
-        constraint_sections.append(f"{prefix}\n{_join_list(item.get('constraints', []))}".strip())
-        source_sections.append(f"{prefix}\n{_join_list(item.get('source', []))}".strip())
-
-    return {
-        "requirement_id": "SYSTEM-ALL",
-        "requirement_name": "전체 요구사항 기반 통합 ERD",
-        "requirement_type": "통합",
-        "description": "\n\n".join(section for section in sections if section),
-        "source": source_sections,
-        "constraints": constraint_sections,
-        "priority": "통합",
-        "validation_criteria": validation_sections,
-        "note": requirement_doc.get("note", ""),
-        "requirement_ids": requirement_ids,
-        "requirement_names": requirement_names,
-        "requirement_count": len(requirements),
-    }
+    return build_integrated_requirement(requirement_doc)
 
 
 def _required_text(value: Any) -> bool:
@@ -123,9 +83,7 @@ def normalize_erd_entities(erd: Dict[str, Any]) -> Dict[str, Any]:
         if not isinstance(entity, dict):
             continue
 
-        entity_id = str(entity.get("entity_id") or "").strip()
-        if not entity_id or entity_id.upper() in {"ALL", "SYSTEM-ALL"}:
-            entity["entity_id"] = f"ENT-{idx:03d}"
+        entity["entity_id"] = f"ENT-{idx:03d}"
 
         entity_name = str(entity.get("entity_name") or "").strip()
         if not entity_name:

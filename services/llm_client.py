@@ -69,5 +69,12 @@ def call_llm_messages(
             f"LLM 응답 시간 초과({timeout}초). 입력이 너무 크거나 모델 응답이 느립니다. "
             "더 큰 모델을 쓰거나 입력 크기를 줄여야 합니다."
         )
+    except requests.exceptions.HTTPError as exc:
+        status_code = exc.response.status_code if exc.response is not None else "unknown"
+        response_text = exc.response.text[:1000] if exc.response is not None else ""
+        raise RuntimeError(
+            f"LLM HTTP 오류({status_code}). 요청 크기, 모델명, 컨텍스트 길이를 확인하세요.\n"
+            f"응답 본문: {response_text}"
+        ) from exc
     except KeyError:
         raise RuntimeError(f"LLM 응답 형식 오류:\n{response.text[:300]}")
