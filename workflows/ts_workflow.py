@@ -31,11 +31,22 @@ def generate_ts_node(state: TestScenarioWorkflowState) -> TestScenarioWorkflowSt
     test_scenario_doc = generate_test_scenarios(
         state.get("requirement_doc", {}),
         state.get("ui_screens_raw") or None,
-        max_retries=state.get("max_retries", 1),
+        max_retries=state.get("max_retries", 0),
     )
+    scenarios = test_scenario_doc.get("scenarios", [])
+    cases = test_scenario_doc.get("cases", [])
+    errors = test_scenario_doc.get("errors", [])
+    if not scenarios or not cases:
+        return {
+            "test_scenario_doc": test_scenario_doc,
+            "summary": test_scenario_doc.get("summary", {}),
+            "status": "INVALID",
+            "validation_errors": errors or [{"error": "생성된 scenarios/cases가 없습니다."}],
+        }
     return {
         "test_scenario_doc": test_scenario_doc,
         "summary": test_scenario_doc.get("summary", {}),
+        "status": "VALID",
     }
 
 
@@ -51,6 +62,9 @@ def save_ts_json_node(state: TestScenarioWorkflowState) -> TestScenarioWorkflowS
 
 
 def generate_ts_docx_node(state: TestScenarioWorkflowState) -> TestScenarioWorkflowState:
+    if state.get("status") != "VALID":
+        return {"status": "INVALID"}
+
     output_docx_path = state.get("output_docx_path") or "./output/통합 시험 시나리오.docx"
     generate_ts_docx(state.get("test_scenario_doc", {}), output_docx_path)
     return {"output_docx_path": output_docx_path, "status": "VALID"}

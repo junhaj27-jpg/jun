@@ -18,7 +18,8 @@ class LLMService:
                 return call_llm(
                     system_prompt,
                     user_prompt,
-                    timeout=int(os.getenv("SRS_LLM_TIMEOUT", "60")),
+                    max_tokens=int(os.getenv("SRS_MAX_TOKENS", "1024")),
+                    timeout=int(os.getenv("SRS_LLM_TIMEOUT", "240")),
                 )
             except RuntimeError as e:
                 logger.warning("llm: attempt %d failed — %s", attempt, e)
@@ -31,6 +32,8 @@ class LLMService:
         for attempt in range(1, PIPELINE["max_retries"] + 1):
             raw = self.complete(system_prompt, user_prompt)
 
+            print(f"\n[LLM RAW {attempt}차]\n{raw[:300]}\n")
+
             if not raw:
                 continue
 
@@ -41,8 +44,8 @@ class LLMService:
             # JSON 아닌 텍스트 나오면 더 강하게 재시도
             user_prompt = f"""{user_prompt}
 
-반드시 아래 형식의 JSON만 출력하라. 설명 금지.
-{{"requirements": []}}"""
+    반드시 아래 형식의 JSON만 출력하라. 설명 금지.
+    {{"topics": ["키워드1", "키워드2"]}}"""
 
         logger.error("llm: JSON 추출 최종 실패")
         return {"requirements": [], "_parse_error": True}

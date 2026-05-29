@@ -1,5 +1,5 @@
 PIPELINE = {
-    "max_retries":   1,
+    "max_retries":   3,
     "retry_delay":   1.0,
     "req_prefix":    "REQ",
     "lex_threshold": 0.25,

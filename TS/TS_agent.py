@@ -53,8 +53,11 @@ from pathlib import Path
 try:
     from TS_prompt import SYSTEM_PROMPT, build_prompt
 except ImportError:
-    print("[ERROR] TS_prompt.py 파일이 같은 디렉토리에 있어야 합니다.")
-    sys.exit(1)
+    try:
+        from TS.TS_prompt import SYSTEM_PROMPT, build_prompt
+    except ImportError:
+        print("[ERROR] TS_prompt.py 파일이 같은 디렉토리에 있어야 합니다.")
+        sys.exit(1)
 
 
 # ─────────────────────────────────────────────

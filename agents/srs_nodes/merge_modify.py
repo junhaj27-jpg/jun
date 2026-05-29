@@ -7,7 +7,7 @@ from agents.srs_pipeline_config import PIPELINE
 _OUTPUT_KEYS = [
     "requirement_id", "requirement_name", "requirement_type",
     "description", "source", "constraints",
-    "priority", "validation_criteria", "note", "status",
+    "priority", "validation_criteria", "note",
 ]
 _INTERNAL = {"_grounded", "_score", "_reason"}
 
@@ -15,23 +15,26 @@ def merge_modify_node(state: ModifyState) -> dict:
     existing   = state["existing_reqs"]
     modified   = state["validated_reqs"]
 
-    existing_map = {r.get("requirement_id", "").strip(): r for r in existing}
-    kept_existing = []
-    new_items = []
+    # LLM이 반환한 ID 기준으로 기존 항목 교체/추가
+    existing_map = {r["requirement_id"]: r for r in existing}
 
     for req in modified:
-        item = req.copy()
-        rid = item.get("requirement_id", "").strip()
+        rid = req.get("requirement_id", "").strip()
         if rid and rid in existing_map:
-            item["status"] = "기존" if _same_requirement(existing_map[rid], item) else "수정"
-            kept_existing.append(item)
+            existing_map[rid] = req          # 기존 항목 교체
         else:
-            item["status"] = "신규"
-            new_items.append(item)
+            existing_map[f"__new__{id(req)}"] = req  # 신규 항목
 
-    # LLM 응답에 없는 기존 요구사항은 삭제된 것으로 처리한다.
-    assigned = assign_ids(existing, new_items, prefix=PIPELINE["req_prefix"])
-    all_reqs = kept_existing + assigned
+    # LLM 응답에 없는 기존 항목 = 삭제된 것 → 유지 (삭제는 명시적으로만)
+    # → LLM이 반환한 ID 목록에 없으면 삭제로 처리
+    returned_ids = {r.get("requirement_id", "").strip() for r in modified}
+    survivors    = [r for r in existing if r["requirement_id"] in returned_ids]
+    new_items    = [r for r in modified if not r.get("requirement_id", "").strip()
+                    or r.get("requirement_id") not in {e["requirement_id"] for e in existing}]
+
+    # 신규 항목 ID 발급
+    assigned = assign_ids(survivors, new_items, prefix=PIPELINE["req_prefix"])
+    all_reqs = survivors + assigned
 
     final_reqs  = [_to_output(r) for r in all_reqs]
     review_reqs = [_to_review(r) for r in all_reqs if not r.get("_grounded", True)]
@@ -48,11 +51,3 @@ def _to_review(req):
     base = _to_output(req)
     base.update({k: req.get(k) for k in _INTERNAL})
     return base
-
-def _same_requirement(left: dict, right: dict) -> bool:
-    for key in _OUTPUT_KEYS:
-        if key == "status":
-            continue
-        if left.get(key) != right.get(key):
-            return False
-    return True

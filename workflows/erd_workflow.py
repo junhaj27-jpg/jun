@@ -17,6 +17,7 @@ from workflows.erd_state import ErdWorkflowState
 
 MAX_RETRIES = 2
 DEFAULT_OUTPUT_JSON_PATH = "./json_temp/erd_agent_output.json"
+
 def build_system_context(requirement_doc: Dict[str, Any]) -> Dict[str, Any]:
     """Create one system-level context object for ERD/DB design."""
     return build_integrated_requirement(requirement_doc)

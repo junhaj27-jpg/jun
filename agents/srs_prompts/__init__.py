@@ -65,20 +65,10 @@ _FMT = """\
 허용값: requirement_type → "기능"|"비기능" / priority → "상"|"중"|"하"
 """
 
-# ── 유저 프롬프트 빌더 ─────────────────────────────────────
+# ── 유저 프롬프트 빌더 ────────────────────────────────────
 
 def build_analyze_prompt(rfp: list[dict], cleaned_minutes: str) -> str:
-    compact_rfp = [
-        {
-            "requirement_id": item.get("requirement_id", ""),
-            "requirement_name": item.get("requirement_name", ""),
-            "requirement_type": item.get("requirement_type", ""),
-            "description": str(item.get("description", ""))[:300],
-        }
-        for item in rfp[:80]
-        if isinstance(item, dict)
-    ]
-    return f"[RFP 요약]\n{json.dumps(compact_rfp, ensure_ascii=False)}\n\n[회의록]\n{cleaned_minutes}"
+    return f"[RFP]\n{json.dumps(rfp, ensure_ascii=False)}\n\n[회의록]\n{cleaned_minutes}"
 
 def build_pass1_prompt(rfp, cleaned_minutes, rag_context) -> str:
     return f"""{_FMT}

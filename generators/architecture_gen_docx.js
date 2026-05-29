@@ -14,7 +14,6 @@ const {
   HeadingLevel,
   ImageRun,
   TableLayoutType,
-  PageOrientation,
   PageBreak,
 } = require("docx");
 const fs = require("fs");
@@ -24,9 +23,9 @@ const payload = JSON.parse(fs.readFileSync("__ARCH_INPUT_JSON__", "utf-8"));
 const outputPath = "__ARCH_OUTPUT_DOCX__";
 const ROOT_DIR = path.resolve(__dirname, "..");
 
-const PAGE_W = 16838;
-const PAGE_H = 11906;
-const MARGIN = 720;
+const PAGE_W = 11906;
+const PAGE_H = 16838;
+const MARGIN = 850;
 const TABLE_W = PAGE_W - MARGIN * 2;
 const COLOR = {
   title: "1F2937",
@@ -47,16 +46,22 @@ function asText(value) {
   return String(value ?? "");
 }
 
-function listText(value) {
-  if (Array.isArray(value)) return value.filter(Boolean).join("\n");
-  return asText(value);
+function asList(value) {
+  if (Array.isArray(value)) return value.filter(Boolean).map((item) => String(item));
+  const text = asText(value).trim();
+  return text ? [text] : [];
+}
+
+function truncate(value, max = 180) {
+  const text = asText(value).replace(/\s+/g, " ").trim();
+  return text.length > max ? `${text.slice(0, max - 1)}...` : text;
 }
 
 function run(value, opts = {}) {
   return new TextRun({
     text: asText(value),
     bold: opts.bold || false,
-    size: opts.size || 18,
+    size: opts.size || 19,
     font: "Malgun Gothic",
     color: opts.color || COLOR.text,
   });
@@ -66,10 +71,18 @@ function paragraph(value, opts = {}) {
   return new Paragraph({
     heading: opts.heading,
     alignment: opts.center ? AlignmentType.CENTER : AlignmentType.LEFT,
-    spacing: { before: opts.before ?? 80, after: opts.after ?? 80 },
+    spacing: { before: opts.before ?? 60, after: opts.after ?? 90 },
     bullet: opts.bullet ? { level: 0 } : undefined,
     children: [run(value, opts)],
   });
+}
+
+function body(value) {
+  return paragraph(value, { size: 19, before: 20, after: 90 });
+}
+
+function bullet(value) {
+  return paragraph(value, { bullet: true, size: 18, before: 10, after: 45 });
 }
 
 function cellParagraphs(value, opts = {}) {
@@ -77,7 +90,7 @@ function cellParagraphs(value, opts = {}) {
   return (lines.length ? lines : [""]).map((line) =>
     new Paragraph({
       alignment: opts.center ? AlignmentType.CENTER : AlignmentType.LEFT,
-      spacing: { before: 0, after: 40 },
+      spacing: { before: 0, after: 25 },
       children: [run(line, { bold: opts.bold, size: opts.size || 16, color: opts.color })],
     })
   );
@@ -92,8 +105,7 @@ function cell(value, opts = {}) {
       type: ShadingType.CLEAR,
     },
     verticalAlign: VerticalAlign.TOP,
-    columnSpan: opts.span || 1,
-    margins: { top: 90, bottom: 90, left: 120, right: 120 },
+    margins: { top: 80, bottom: 80, left: 120, right: 120 },
     children: cellParagraphs(value, opts),
   });
 }
@@ -106,18 +118,15 @@ function table(rows, widths) {
       (row, rowIndex) =>
         new TableRow({
           tableHeader: rowIndex === 0,
-          children: row.map((item, colIndex) => {
-            const opts = typeof item === "object" && item !== null && "value" in item ? item : { value: item };
-            return cell(opts.value, {
+          children: row.map((value, colIndex) =>
+            cell(value, {
               width: widths[colIndex],
-              header: rowIndex === 0 || opts.header,
-              label: opts.label,
-              bold: rowIndex === 0 || opts.bold,
-              center: rowIndex === 0 || opts.center,
-              size: opts.size || (rowIndex === 0 ? 17 : 16),
-              fill: opts.fill,
-            });
-          }),
+              header: rowIndex === 0,
+              bold: rowIndex === 0,
+              center: rowIndex === 0,
+              size: rowIndex === 0 ? 16 : 15,
+            })
+          ),
         })
     ),
   });
@@ -135,159 +144,68 @@ function analyzedById() {
   return map;
 }
 
-function buildRevisionTable() {
-  return table(
-    [
-      ["날짜", "버전", "작성자", "승인자", "변경 내용"],
-      ["", "v1.0", "", "", "아키텍처 설계서 초안 작성"],
-    ],
-    [2200, 1500, 2200, 2200, TABLE_W - 8100]
-  );
-}
-
-function buildSummaryTable() {
+function buildMetaTable() {
   const infra = payload.user_infra_spec || {};
-  const extracted = payload.extracted_infra || {};
   const rows = [
-    ["미들웨어 스택", infra.middleware_stack || listText(extracted.selected_middleware)],
-    ["방화벽 구성", infra.firewall_setting],
-    ["보안/인증", infra.security_auth || extracted.security_architecture],
-    ["예상 동시 사용자", infra.expected_ccu],
-    ["구축 환경", infra.is_cloud === true ? "Cloud" : "On-Premise"],
-    ["서버 사양", infra.server_hardware_spec],
+    ["구분", "내용"],
+    ["구축 형태", infra.is_cloud === true ? "Cloud" : "On-Premise"],
+    ["미들웨어", infra.middleware_stack || ""],
+    ["예상 동시 사용자", infra.expected_ccu ?? ""],
+    ["서버 사양", infra.server_hardware_spec || ""],
+    ["방화벽/인증", [infra.firewall_setting, infra.security_auth].filter(Boolean).join(" / ")],
   ];
-
-  return table([["구분", "내용"], ...rows], [3000, TABLE_W - 3000]);
+  return table(rows, [2300, TABLE_W - 2300]);
 }
 
-function buildRequirementMappingTable() {
-  const analyzed = analyzedById();
-  const rows = [
-    ["요구사항 ID", "요구사항명", "구분/우선순위", "주요 설계 반영"],
-  ];
+function buildComponentTable() {
+  const extracted = payload.extracted_infra || {};
+  const rows = [["구성 영역", "주요 구성요소", "역할"]];
+  const components = asList(extracted.system_architecture);
+  const middleware = asList(extracted.selected_middleware);
 
+  rows.push([
+    "AI 실행",
+    components.filter((x) => /AI|Kubernetes|GPU|모델|LLM/i.test(x)).join(", ") || components.slice(0, 3).join(", "),
+    "온프레미스 내부망에서 LLM 실행, 모델 운영, GPU 추론 처리를 담당합니다.",
+  ]);
+  rows.push([
+    "검색/RAG",
+    components.filter((x) => /RAG|검색|벡터|Vector|Hybrid/i.test(x)).join(", ") || middleware.filter((x) => /RAG|검색|벡터|Vector|Hybrid/i.test(x)).join(", "),
+    "문서 임베딩, 의미 검색, 하이브리드 검색 및 응답 근거 검색을 담당합니다.",
+  ]);
+  rows.push([
+    "문서 처리",
+    components.filter((x) => /문서|파일|DRM|Q&A/i.test(x)).join(", ") || middleware.filter((x) => /문서|파일|DRM/i.test(x)).join(", "),
+    "업로드 문서 처리, 저장, DRM 복호화 및 질의응답 연계를 담당합니다.",
+  ]);
+  rows.push([
+    "인증/연계",
+    components.filter((x) => /SSO|ERP|인증|세션/i.test(x)).join(", ") || middleware.filter((x) => /SSO|ERP|인증|세션/i.test(x)).join(", "),
+    "SSO, ERP, 세션 검증, 조직 정보 동기화 등 외부 연계와 접근 제어를 담당합니다.",
+  ]);
+
+  return table(rows, [1900, 4200, TABLE_W - 6100]);
+}
+
+function buildTraceabilityTable() {
+  const analyzed = analyzedById();
+  const rows = [["요구사항 ID", "요구사항명", "설계 반영"]];
   for (const req of requirements()) {
     const analysis = analyzed.get(req.requirement_id) || {};
     rows.push([
       req.requirement_id || "",
       req.requirement_name || "",
-      `${req.requirement_type || ""}\n${req.priority ? `우선순위: ${req.priority}` : ""}`,
-      `비기능 요소: ${asText(analysis.non_functional_elements)}\n필요 구성: ${asText(analysis.implied_middleware_needs)}`,
+      truncate(asText(analysis.implied_middleware_needs || analysis.technical_constraints), 160),
     ]);
   }
-
-  if (rows.length === 1) {
-    rows.push(["", "요구사항 데이터가 없습니다.", "", ""]);
-  }
-
-  return table(rows, [1800, 4300, 2500, TABLE_W - 8600]);
+  if (rows.length === 1) rows.push(["", "요구사항 데이터가 없습니다.", ""]);
+  return table(rows, [1500, 3000, TABLE_W - 4500]);
 }
 
-function buildRequirementDetailSections() {
-  const analyzed = analyzedById();
-  const extracted = payload.extracted_infra || {};
-  const children = [];
-
-  for (const req of requirements()) {
-    const analysis = analyzed.get(req.requirement_id) || {};
-    children.push(
-      paragraph(`${req.requirement_id || ""} ${req.requirement_name || ""}`, {
-        heading: HeadingLevel.HEADING_3,
-        bold: true,
-        size: 20,
-        before: 180,
-      })
-    );
-    children.push(
-      table(
-        [
-          ["항목", "내용"],
-          ["요구사항 설명", req.description || ""],
-          ["제약조건", listText(req.constraints)],
-          ["검증 기준", listText(req.validation_criteria)],
-          ["비기능 요소", listText(analysis.non_functional_elements)],
-          ["기술 제약", listText(analysis.technical_constraints)],
-          ["필요 미들웨어/구성", listText(analysis.implied_middleware_needs)],
-          [
-            "구현 방안",
-            [
-              `적용 아키텍처: ${listText(extracted.system_architecture)}`,
-              `선정 미들웨어: ${listText(extracted.selected_middleware)}`,
-              `보안 반영: ${extracted.security_architecture || ""}`,
-            ].join("\n\n"),
-          ],
-        ],
-        [2600, TABLE_W - 2600]
-      )
-    );
-  }
-
-  if (!children.length) {
-    children.push(paragraph("요구사항 상세 데이터가 없습니다.", { color: COLOR.muted }));
-  }
-
-  return children;
-}
-
-function buildComponentTable() {
-  const extracted = payload.extracted_infra || {};
-  const components = extracted.system_architecture || [];
-  const middleware = new Set(extracted.selected_middleware || []);
-  const rows = [["구성요소", "구분", "설계 반영 내용"]];
-
-  for (const component of components) {
-    rows.push([
-      component,
-      middleware.has(component) ? "선정 미들웨어/플랫폼" : "아키텍처 구성요소",
-      `${component}를 온프레미스 내부망 아키텍처 구성에 반영하고, 요구사항 매핑 표의 관련 기능 구현에 사용합니다.`,
-    ]);
-  }
-
-  if (rows.length === 1) {
-    rows.push(["", "", "도출된 인프라 구성요소가 없습니다."]);
-  }
-
-  return table(rows, [3600, 3300, TABLE_W - 6900]);
-}
-
-function cleanMarkdownish(value) {
-  return asText(value)
-    .replace(/```markdown/gi, "")
-    .replace(/```/g, "")
-    .split(/\r?\n/)
-    .filter((line) => {
-      const trimmed = line.trim();
-      if (!trimmed) return true;
-      if (trimmed.startsWith("|")) return false;
-      if (/^-{3,}$/.test(trimmed.replace(/\|/g, "").trim())) return false;
-      return true;
-    })
-    .join("\n")
-    .trim();
-}
-
-function markdownishToParagraphs(content) {
-  const cleaned = cleanMarkdownish(content);
-  if (!cleaned) return [paragraph("추가 설명 데이터가 없습니다.", { color: COLOR.muted })];
-
-  const children = [];
-  for (const raw of cleaned.split(/\r?\n/)) {
-    const line = raw.trim();
-    if (!line) {
-      children.push(new Paragraph({ text: "" }));
-    } else if (line.startsWith("### ")) {
-      children.push(paragraph(line.slice(4), { heading: HeadingLevel.HEADING_3, bold: true, size: 22 }));
-    } else if (line.startsWith("## ")) {
-      children.push(paragraph(line.slice(3), { heading: HeadingLevel.HEADING_2, bold: true, size: 24 }));
-    } else if (line.startsWith("# ")) {
-      children.push(paragraph(line.slice(2), { heading: HeadingLevel.HEADING_1, bold: true, size: 26 }));
-    } else if (line.startsWith("- ")) {
-      children.push(paragraph(line.replace(/^\-\s*/, "").replace(/\*\*/g, ""), { bullet: true }));
-    } else {
-      children.push(paragraph(line.replace(/\*\*/g, "")));
-    }
-  }
-  return children;
+function resolveImagePath(imagePath) {
+  if (!imagePath) return null;
+  if (path.isAbsolute(imagePath)) return imagePath;
+  return path.resolve(ROOT_DIR, imagePath);
 }
 
 function pngSize(buffer) {
@@ -301,12 +219,6 @@ function pngSize(buffer) {
   return { width: 1200, height: 675 };
 }
 
-function resolveImagePath(imagePath) {
-  if (!imagePath) return null;
-  if (path.isAbsolute(imagePath)) return imagePath;
-  return path.resolve(ROOT_DIR, imagePath);
-}
-
 function buildImageParagraph(imagePath) {
   const resolved = resolveImagePath(imagePath);
   if (!resolved || !fs.existsSync(resolved)) {
@@ -315,12 +227,12 @@ function buildImageParagraph(imagePath) {
 
   const data = fs.readFileSync(resolved);
   const size = pngSize(data);
-  const maxWidth = 920;
+  const maxWidth = 620;
   const width = Math.min(maxWidth, size.width);
   const height = Math.round((size.height / size.width) * width);
 
   return new Paragraph({
-    spacing: { before: 160, after: 160 },
+    spacing: { before: 120, after: 160 },
     alignment: AlignmentType.CENTER,
     children: [
       new ImageRun({
@@ -332,19 +244,7 @@ function buildImageParagraph(imagePath) {
   });
 }
 
-function codeParagraph(value) {
-  return new Paragraph({
-    spacing: { before: 80, after: 80 },
-    children: [
-      new TextRun({
-        text: asText(value),
-        font: "Consolas",
-        size: 14,
-        color: COLOR.muted,
-      }),
-    ],
-  });
-}
+const extracted = payload.extracted_infra || {};
 
 const children = [
   paragraph("아키텍처 설계서", {
@@ -353,32 +253,40 @@ const children = [
     size: 34,
     color: COLOR.title,
     before: 0,
-    after: 240,
+    after: 220,
   }),
-  paragraph("1. 제개정 이력", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 160 }),
-  buildRevisionTable(),
-  paragraph("2. 인프라 구성 요약", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
-  buildSummaryTable(),
-  paragraph("3. 요구사항별 아키텍처 매핑", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
-  buildRequirementMappingTable(),
-  paragraph("4. 요구사항 상세 설계", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
-  ...buildRequirementDetailSections(),
-  paragraph("5. 시스템 구성요소 설계", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
+
+  paragraph("1. 설계 개요", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 100 }),
+  body("본 문서는 온프레미스 생성형 AI 플랫폼 구축을 위한 논리 아키텍처와 주요 인프라 구성요소를 정의합니다. 요구사항 원문을 반복하기보다, 실제 설계에 반영되는 실행 환경, 검색/RAG, 문서 처리, 인증/연계, 보안 경계를 중심으로 정리합니다."),
+  bullet(`구성요소: ${asText(extracted.system_architecture)}`),
+  bullet(`선정 미들웨어: ${asText(extracted.selected_middleware)}`),
+  bullet(`보안 방향: ${extracted.security_architecture || "보안 아키텍처 데이터 없음"}`),
+
+  paragraph("2. 인프라 조건", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 180 }),
+  buildMetaTable(),
+
+  paragraph("3. 시스템 구성", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 180 }),
   buildComponentTable(),
-  paragraph("6. 보안 아키텍처", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
-  table([["항목", "내용"], ["보안 설계", payload.extracted_infra?.security_architecture || ""]], [2600, TABLE_W - 2600]),
-  new Paragraph({ children: [new PageBreak()] }),
-  paragraph("7. 시스템 아키텍처 다이어그램", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 0 }),
+
+  paragraph("4. 시스템 아키텍처 다이어그램", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 180 }),
   buildImageParagraph(payload.image_path),
-  paragraph("8. 생성 상세 설명", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 240 }),
-  ...markdownishToParagraphs(payload.report_specs || ""),
+
+  new Paragraph({ children: [new PageBreak()] }),
+  paragraph("5. 보안 및 연계 설계", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 0 }),
+  body(extracted.security_architecture || "보안 아키텍처 데이터가 없습니다."),
+  bullet("DMZ와 내부망 사이의 방화벽 정책을 기준으로 외부 접근 경로를 제한합니다."),
+  bullet("SSO/ERP 연계는 세션 검증 모듈과 권한 관리 체계를 통해 통제합니다."),
+  bullet("문서 처리 및 RAG 검색 구간은 내부망 저장소와 벡터DB를 기준으로 폐쇄망 운영을 전제합니다."),
+
+  paragraph("6. 요구사항 추적성", { heading: HeadingLevel.HEADING_2, bold: true, size: 24, before: 180 }),
+  buildTraceabilityTable(),
 ];
 
 const doc = new Document({
   styles: {
     default: {
       document: {
-        run: { font: "Malgun Gothic", size: 18 },
+        run: { font: "Malgun Gothic", size: 19 },
         paragraph: { spacing: { after: 80 } },
       },
     },
@@ -387,7 +295,7 @@ const doc = new Document({
     {
       properties: {
         page: {
-          size: { width: PAGE_W, height: PAGE_H, orientation: PageOrientation.LANDSCAPE },
+          size: { width: PAGE_W, height: PAGE_H },
           margin: { top: MARGIN, right: MARGIN, bottom: MARGIN, left: MARGIN },
         },
       },

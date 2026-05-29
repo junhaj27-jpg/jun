@@ -3,7 +3,6 @@ import logging
 from qdrant_client.models import FieldCondition, Filter, MatchValue
 
 from rag.qdrant_config import (
-    REQUIREMENT_EXAMPLES_COLLECTION,
     REQUIREMENT_RAG_TOP_K,
     REQUIREMENT_REFERENCE_COLLECTION,
     REQUIREMENT_SOURCES_COLLECTION,
@@ -13,11 +12,8 @@ from rag.qdrant_config import (
 
 logger = logging.getLogger(__name__)
 
-_COLLECTIONS = [
-    REQUIREMENT_REFERENCE_COLLECTION,
-    REQUIREMENT_SOURCES_COLLECTION,
-    REQUIREMENT_EXAMPLES_COLLECTION,
-]
+_COL_RFP = REQUIREMENT_SOURCES_COLLECTION
+_COL_REQ = REQUIREMENT_REFERENCE_COLLECTION
 _TOP_K = REQUIREMENT_RAG_TOP_K
 
 
@@ -27,18 +23,16 @@ class RAGService:
         text: str,
         doc_types: list[str] | None = None,
         top_k: int = _TOP_K,
-        collections: list[str] | None = None,
     ) -> list[dict]:
-        target_collections = collections or _COLLECTIONS
-        hits = []
         try:
             vector = get_embedding(text)
         except Exception as e:
             logger.error("rag: embedding failed -> %s", e)
             return []
-        for collection in target_collections:
-            hits.extend(self._search(collection, vector, doc_types, top_k))
-        return sorted(hits, key=lambda x: x["score"], reverse=True)[: top_k * 2]
+        rfp_hits = self._search(_COL_RFP, vector, doc_types, top_k)
+        req_hits = self._search(_COL_REQ, vector, None, top_k)
+        combined = sorted(rfp_hits + req_hits, key=lambda x: x["score"], reverse=True)
+        return combined[: top_k * 2]
 
     def format_context(self, results: list[dict]) -> str:
         if not results:

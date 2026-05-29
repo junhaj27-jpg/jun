@@ -54,9 +54,8 @@ langchain-core
 langchain-community
 streamlit==1.41.1
 
-torch
 transformers>=4.57.0
-qwen-vl-utils==0.0.14
 accelerate>=1.1.0
+qwen-vl-utils==0.0.14
 openai
 ollama
