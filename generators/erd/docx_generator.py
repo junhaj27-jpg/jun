@@ -1,5 +1,4 @@
 import os
-import base64
 import copy
 import shutil
 import subprocess
@@ -9,7 +8,8 @@ from typing import Dict, Any
 
 from docx import Document
 from docx.shared import Inches
-import requests
+from generators.common.docx_utils import save_docx_with_fallback
+from generators.common.mermaid_renderer import find_puppeteer_browser, render_mermaid_ink_image
 
 try:
     from dotenv import load_dotenv
@@ -130,21 +130,6 @@ def save_mermaid_files(erd: Dict[str, Any]):
     return str(mmd_path), str(png_path)
 
 
-def render_mermaid_ink_image(mermaid_code: str, output_image_path: str) -> str | None:
-    try:
-        encoded = base64.b64encode(mermaid_code.encode("utf-8")).decode("utf-8")
-        timeout = int(os.getenv("ERD_MERMAID_INK_TIMEOUT", "3"))
-        response = requests.get(f"https://mermaid.ink/img/{encoded}", timeout=timeout)
-        response.raise_for_status()
-        output_path = Path(output_image_path)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_bytes(response.content)
-        return str(output_path)
-    except Exception as exc:
-        print(f"[WARN] Mermaid Ink ERD 이미지 생성 실패: {exc}")
-        return None
-
-
 def render_basic_erd_image(erd: Dict[str, Any], output_image_path: str) -> str | None:
     try:
         from PIL import Image, ImageDraw, ImageFont
@@ -220,24 +205,6 @@ def render_basic_erd_image(erd: Dict[str, Any], output_image_path: str) -> str |
 def _clip_text(text: str, max_len: int) -> str:
     value = str(text or "")
     return value if len(value) <= max_len else value[: max_len - 1] + "..."
-
-
-def find_puppeteer_browser():
-    cache_dir = Path.home() / ".cache" / "puppeteer"
-    candidates = []
-    patterns = [
-        "chrome-headless-shell/**/chrome-headless-shell.exe",
-        "chrome/**/chrome.exe",
-    ]
-
-    for pattern in patterns:
-        candidates.extend(path for path in cache_dir.glob(pattern) if path.is_file())
-
-    if not candidates:
-        return None
-
-    candidates.sort(key=lambda path: path.stat().st_mtime, reverse=True)
-    return str(candidates[0])
 
 
 def fill_header_table(doc, erd):
@@ -377,20 +344,6 @@ def fill_entity_tables_separate(doc, erd):
         fill_entity_table(table, entity)
 
 
-def save_docx_with_fallback(doc, output_path: str) -> str:
-    path = Path(output_path)
-
-    for idx in range(0, 100):
-        candidate = path if idx == 0 else path.with_name(f"{path.stem}_{idx}{path.suffix}")
-        try:
-            doc.save(str(candidate))
-            return str(candidate)
-        except PermissionError:
-            continue
-
-    raise PermissionError(f"DOCX 저장 실패: {output_path} 및 대체 파일명을 사용할 수 없습니다.")
-
-
 def generate_erd_docx(
     erd: Dict[str, Any],
     template_path: str = TEMPLATE_PATH,
@@ -398,6 +351,7 @@ def generate_erd_docx(
     *,
     use_mermaid: bool = True,
     fast_table: bool = False,
+    erd_image_path: str | None = None,
 ):
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
@@ -406,7 +360,10 @@ def generate_erd_docx(
     fill_header_table(doc, erd)
     fill_erd_table(doc, erd)
 
-    if use_mermaid:
+    if erd_image_path:
+        print("[DOCX] 전달받은 ERD 이미지 삽입")
+        insert_erd_image(doc, erd_image_path, erd)
+    elif use_mermaid:
         print("[DOCX] Mermaid ERD 이미지 생성")
         mmd_path, png_path = save_mermaid_files(erd)
         if png_path:

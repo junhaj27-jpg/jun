@@ -1,14 +1,11 @@
 import os
-import base64
 import re
 import shutil
 import subprocess
 from pathlib import Path
 
-import requests
-
-from agents.arch_nodes.common import normalize_mermaid_syntax, strip_mermaid_block
-from generators.erd_docx_generator import find_puppeteer_browser
+from agents.arch_nodes.common import normalize_mermaid_syntax
+from generators.common.mermaid_renderer import find_puppeteer_browser, render_mermaid_ink_image
 
 
 def render_mermaid_image(
@@ -63,25 +60,6 @@ def render_mermaid_image(
         return str(mmd_path), fallback_path
 
     return str(mmd_path), str(image_path)
-
-
-def render_mermaid_ink_image(mermaid_script: str, output_image_path: str) -> str | None:
-    try:
-        script_bytes = mermaid_script.encode("utf-8")
-        base64_string = base64.b64encode(script_bytes).decode("utf-8")
-        image_url = f"https://mermaid.ink/img/{base64_string}"
-
-        timeout = int(os.getenv("ARCH_MERMAID_INK_TIMEOUT", "3"))
-        response = requests.get(image_url, timeout=timeout)
-        response.raise_for_status()
-
-        output_path = Path(output_image_path)
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_bytes(response.content)
-        return str(output_path)
-    except Exception as exc:
-        print(f"[WARN] Mermaid Ink 이미지 생성 실패: {exc}")
-        return None
 
 
 def render_basic_architecture_image(mermaid_script: str, output_image_path: str) -> str | None:

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from generators.architecture_report_generator import generate_architecture_report
+from generators.architecture.report_generator import generate_architecture_report
 from workflows.architecture_state import ArchitectureWorkflowState
 
 

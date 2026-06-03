@@ -1,10 +1,10 @@
-import copy
 import os
 from datetime import date
 from pathlib import Path
 from typing import Any, Dict
 
 from docx import Document
+from generators.common.docx_utils import clean_text, clone_table_after, save_docx_with_fallback, set_cell
 
 try:
     from dotenv import load_dotenv
@@ -16,19 +16,6 @@ load_dotenv()
 
 TEMPLATE_PATH = os.getenv("DB_DESIGN_TEMPLATE_PATH", "./template/데이터베이스 설계서.docx")
 OUTPUT_PATH = os.getenv("DB_DESIGN_OUTPUT_PATH", f"./output/데이터베이스 설계서_{date.today()}.docx")
-
-
-def clean_text(value: Any) -> str:
-    return "" if value is None else str(value).strip()
-
-
-def set_cell(cell, value: Any):
-    cell.text = clean_text(value)
-
-
-def clone_table_after(table):
-    new_tbl = copy.deepcopy(table._tbl)
-    table._tbl.addnext(new_tbl)
 
 
 def fill_header_table(doc, design: Dict[str, Any]):
@@ -129,20 +116,6 @@ def fill_table_spec_tables(doc, design: Dict[str, Any]):
 
     for table, item in zip(doc.tables[3:3 + len(tables)], tables):
         fill_table_spec(table, item)
-
-
-def save_docx_with_fallback(doc, output_path: str) -> str:
-    path = Path(output_path)
-
-    for idx in range(0, 100):
-        candidate = path if idx == 0 else path.with_name(f"{path.stem}_{idx}{path.suffix}")
-        try:
-            doc.save(str(candidate))
-            return str(candidate)
-        except PermissionError:
-            continue
-
-    raise PermissionError(f"DOCX 저장 실패: {output_path} 및 대체 파일명을 사용할 수 없습니다.")
 
 
 def generate_database_design_docx(

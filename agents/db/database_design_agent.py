@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 from docx import Document
 
-from rag.rag_service import search_rag
+from rag.base_rag_service import search_rag
 
 try:
     from dotenv import load_dotenv

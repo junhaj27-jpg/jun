@@ -8,7 +8,8 @@ from typing import Dict, Any, List
 from dotenv import load_dotenv
 
 from services.llm_client import call_llm
-from rag.rag_service import build_erd_rag_context, compact_rag_context
+from rag.base_rag_service import compact_rag_context
+from rag.erd_rag_service import build_erd_rag_context
 
 load_dotenv()
 

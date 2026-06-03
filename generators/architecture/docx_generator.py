@@ -1,4 +1,3 @@
-import copy
 import os
 from datetime import date
 from pathlib import Path
@@ -6,6 +5,7 @@ from typing import Any, Dict, List
 
 from docx import Document
 from docx.shared import Inches
+from generators.common.docx_utils import clean_text, clone_table_after, save_docx_with_fallback, set_cell
 
 try:
     from dotenv import load_dotenv
@@ -33,18 +33,6 @@ def resolve_template_path(template_path: str = TEMPLATE_PATH) -> str:
     raise FileNotFoundError(f"아키텍처 설계서 템플릿을 찾지 못했습니다: {template_path}")
 
 
-def clean_text(value: Any) -> str:
-    if value is None:
-        return ""
-    if isinstance(value, list):
-        return "\n".join(str(item).strip() for item in value if str(item).strip())
-    return str(value).strip()
-
-
-def set_cell(cell, value: Any) -> None:
-    cell.text = clean_text(value)
-
-
 def add_cell_paragraph(cell, value: Any, *, bold: bool = False) -> None:
     text = clean_text(value)
     if not text:
@@ -52,26 +40,6 @@ def add_cell_paragraph(cell, value: Any, *, bold: bool = False) -> None:
     paragraph = cell.add_paragraph()
     run = paragraph.add_run(text)
     run.bold = bold
-
-
-def clone_table_after(table):
-    new_tbl = copy.deepcopy(table._tbl)
-    table._tbl.addnext(new_tbl)
-
-
-def save_docx_with_fallback(doc, output_path: str) -> str:
-    path = Path(output_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    for idx in range(0, 100):
-        candidate = path if idx == 0 else path.with_name(f"{path.stem}_{idx}{path.suffix}")
-        try:
-            doc.save(str(candidate))
-            return str(candidate)
-        except PermissionError:
-            continue
-
-    raise PermissionError(f"DOCX 저장 실패: {output_path} 및 대체 파일명을 사용할 수 없습니다.")
 
 
 def fill_header_table(doc, payload: Dict[str, Any]) -> None:
@@ -187,7 +155,7 @@ def fill_requirement_tables(doc, payload: Dict[str, Any]) -> None:
         fill_requirement_table(table, req, analysis_by_id.get(req.get("requirement_id"), {}), payload)
 
 
-def generate_architecture_docx_from_template(
+def generate_architecture_docx(
     payload: Dict[str, Any],
     template_path: str = TEMPLATE_PATH,
     output_path: str = OUTPUT_PATH,
@@ -211,4 +179,4 @@ if __name__ == "__main__":
     with open("./json_temp/architecture_agent_output.json", encoding="utf-8") as f:
         data = json.load(f)
 
-    generate_architecture_docx_from_template(data)
+    generate_architecture_docx(data)

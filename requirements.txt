@@ -1,4 +1,4 @@
-# python-dotenv
+﻿# python-dotenv
 # requests
 # python-docx
 # pandas
@@ -33,29 +33,27 @@
 
 python-dotenv==1.0.1
 requests==2.32.3
+PyMySQL==1.1.1
 
 python-docx==1.1.2
-docx2txt
 pandas==2.2.3
 openpyxl==3.1.5
 PyMuPDF==1.24.14
-pdfplumber
-pdf2image
-pytesseract
-easyocr
 tqdm==4.67.1
 Pillow==10.4.0
 
 qdrant-client==1.12.1
 sentence-transformers==3.3.1
+filelock==3.16.1
 
 langgraph==0.2.60
-langchain-core
-langchain-community
 streamlit==1.41.1
 
 transformers>=4.57.0
 accelerate>=1.1.0
 qwen-vl-utils==0.0.14
+
+langchain-core
+langchain-community
 openai
 ollama

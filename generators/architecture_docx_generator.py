@@ -1,5 +1,0 @@
-from generators.architecture_template_docx_generator import generate_architecture_docx_from_template
-
-generate_architecture_docx = generate_architecture_docx_from_template
-
-__all__ = ["generate_architecture_docx", "generate_architecture_docx_from_template"]

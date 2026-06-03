@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 from langgraph.graph import END, START, StateGraph
 
-from agents.database_design_agent import (
+from agents.db.database_design_agent import (
     OUTPUT_JSON_PATH,
     build_database_design,
     build_database_design_rag_context,
@@ -12,8 +12,8 @@ from agents.database_design_agent import (
     parse_erd_docx,
     resolve_erd_docx_path,
 )
-from agents.erd_agent import REQ_JSON_PATH
-from generators.database_design_docx_generator import (
+from agents.erd.erd_agent import REQ_JSON_PATH
+from generators.db.docx_generator import (
     OUTPUT_PATH,
     generate_database_design_docx,
 )

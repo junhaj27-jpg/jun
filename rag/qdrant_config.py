@@ -1,8 +1,9 @@
 import os
+from typing import Any
+
 from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
-from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
@@ -34,9 +35,11 @@ def get_client() -> QdrantClient:
     return _client
 
 
-def get_embedder() -> SentenceTransformer:
+def get_embedder() -> Any:
     global _embedder
     if _embedder is None:
+        from sentence_transformers import SentenceTransformer
+
         _embedder = SentenceTransformer(EMBED_MODEL_NAME)
     return _embedder
 
