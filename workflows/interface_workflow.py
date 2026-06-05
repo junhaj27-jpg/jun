@@ -29,7 +29,7 @@ from workflows.interface_state import InterfaceWorkflowState
 def _work_dir(state: InterfaceWorkflowState) -> Path:
     return Path(state.get("work_dir") or WORK_DIR)
 
-
+# 요구사항 JSON, 프로토타입 이미지 로드 
 def load_interface_inputs_node(state: InterfaceWorkflowState) -> InterfaceWorkflowState:
     requirement_paths = state.get("requirement_paths") or REQUIREMENT_DIR
     image_paths = state.get("image_paths") or PROTOTYPE_DIR
@@ -65,6 +65,7 @@ def load_interface_inputs_node(state: InterfaceWorkflowState) -> InterfaceWorkfl
     }
 
 
+# 프로토타입 이미지 분석 
 def analyze_interface_screens_node(state: InterfaceWorkflowState) -> InterfaceWorkflowState:
     work_dir = _work_dir(state)
     interface_analysis.WORK_DIR = work_dir
@@ -102,6 +103,7 @@ def analyze_interface_screens_node(state: InterfaceWorkflowState) -> InterfaceWo
     return {"screen_specs": screen_specs}
 
 
+# UI 구조 생성 
 def generate_interface_structure_node(state: InterfaceWorkflowState) -> InterfaceWorkflowState:
     work_dir = _work_dir(state)
     ui_structure = generate_ui_structure(state.get("screen_specs", []))
@@ -112,6 +114,7 @@ def generate_interface_structure_node(state: InterfaceWorkflowState) -> Interfac
     return {"ui_structure": ui_structure}
 
 
+# 통합 UI 디자인 JSON 저장
 def save_interface_json_node(state: InterfaceWorkflowState) -> InterfaceWorkflowState:
     output_docx_path = ensure_docx_output_path(Path(state.get("output_docx_path") or OUTPUT_DOCX_PATH))
     output_json_path = Path(state.get("output_json_path") or (_work_dir(state) / "ui_design_integrated.json"))
@@ -130,6 +133,7 @@ def save_interface_json_node(state: InterfaceWorkflowState) -> InterfaceWorkflow
     }
 
 
+# DOCX 생성
 def generate_interface_docx_node(state: InterfaceWorkflowState) -> InterfaceWorkflowState:
     output_docx_path = create_ui_design_docx(
         requirement_summary=state.get("requirement_summary", {}),
@@ -142,6 +146,7 @@ def generate_interface_docx_node(state: InterfaceWorkflowState) -> InterfaceWork
     return {"output_docx_path": str(output_docx_path), "status": "VALID"}
 
 
+# 노드 연결
 def compile_interface_graph():
     workflow = StateGraph(InterfaceWorkflowState)
 

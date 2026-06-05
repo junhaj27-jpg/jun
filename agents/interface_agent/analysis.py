@@ -1,8 +1,11 @@
 from agents.interface_agent.config import *
 from agents.interface_agent.model_runtime import qwen_generate_text, qwen_analyze_image, parse_or_repair_json
 from generators.interface_image_markers import create_numbered_prototype_image
+from rag.interface_rag_service import InterfaceRAGService
 
 import os
+
+interface_rag = InterfaceRAGService()
 
 UI_ELEMENT_ANALYSIS_PROMPT = """
 너는 사용자 인터페이스 화면을 관찰하는 UI 분석가다.
@@ -87,8 +90,39 @@ SCREEN_DETAIL_PROMPT = """
 [UI 관찰 결과]
 {ui_observation}
 
+[UIUX Guide RAG Context]
+{ui_reference_context}
+
 [선별된 사용자 요구사항]
 {related_requirements}
+"""
+
+REQUIREMENT_MATCH_PROMPT = """
+너는 사용자 인터페이스 설계서 생성을 위해 화면 관찰 결과와 사용자 요구사항 정의서를 매칭하는 분석가다.
+아래 UI 관찰 결과는 프로토타입 이미지를 보고 실제로 보이는 텍스트와 기능 영역만 추출한 것이다.
+요구사항 목록 중 현재 화면과 관련성이 높은 항목만 선택하라.
+
+반드시 JSON으로만 출력하라. 마크다운 금지.
+
+출력 JSON schema:
+{
+  "selected_requirement_ids": ["string"],
+  "reason": "string"
+}
+
+판단 규칙:
+- 화면에 보이는 메뉴, 제목, 버튼, 입력 항목, 목록/표/상세 영역과 요구사항의 기능 내용이 연결되는지 판단한다.
+- 이미지에 없는 기능을 억지로 포함하지 않는다.
+- 같은 업무 흐름에 속하는 요구사항은 함께 선택할 수 있다.
+- 관련성이 불명확한 요구사항은 제외한다.
+- 최대 {limit}개까지만 선택한다.
+- requirement_id가 비어 있으면 목록의 row_no 값을 문자열로 선택한다.
+
+[UI 관찰 결과]
+{ui_observation}
+
+[요구사항 후보 목록]
+{requirements}
 """
 
 
@@ -171,6 +205,95 @@ def select_related_requirements(requirement_summary: Dict[str, Any], ui_observat
     if selected:
         return selected
     return [compact_requirement(req) for req in requirements[:limit]]
+
+
+def build_requirement_match_candidates(requirement_summary: Dict[str, Any], max_candidates: int = 40) -> List[Dict[str, Any]]:
+    """Create a compact requirement candidate list for LLM-based matching."""
+    requirements = requirement_summary.get("requirements", []) or []
+    candidates = []
+    for row_no, requirement in enumerate(requirements[:max_candidates], start=1):
+        compact = compact_requirement(requirement, max_text_len=260)
+        compact["row_no"] = str(row_no)
+        candidates.append(compact)
+    return candidates
+
+
+def select_related_requirements_with_llm(
+    requirement_summary: Dict[str, Any],
+    ui_observation: Dict[str, Any],
+    image_path: Path,
+    limit: int = 10,
+) -> List[Dict[str, Any]]:
+    """Let the LLM judge requirement relevance, falling back to keyword matching."""
+    fallback = select_related_requirements(requirement_summary, ui_observation, image_path, limit=limit)
+    enabled = os.getenv("INTERFACE_REQUIREMENT_MATCH_LLM_ENABLED", "true").strip().lower() in {"1", "true", "yes", "y"}
+    if not enabled:
+        return fallback
+
+    candidates = build_requirement_match_candidates(requirement_summary)
+    if not candidates:
+        return fallback
+
+    prompt = (
+        REQUIREMENT_MATCH_PROMPT
+        .replace("{limit}", str(limit))
+        .replace("{ui_observation}", json.dumps(ui_observation, ensure_ascii=False, indent=2)[:5000])
+        .replace("{requirements}", json.dumps(candidates, ensure_ascii=False, indent=2)[:12000])
+    )
+
+    try:
+        raw = qwen_generate_text(prompt, max_new_tokens=MAX_NEW_TOKENS_FINAL)
+        matched = parse_or_repair_json(raw, "관련 요구사항 매칭 JSON", max_new_tokens=MAX_NEW_TOKENS_FINAL)
+        selected_ids = matched.get("selected_requirement_ids", []) if isinstance(matched, dict) else []
+        selected_keys = {str(value).strip() for value in selected_ids if str(value).strip()}
+        if not selected_keys:
+            return fallback
+
+        selected = []
+        for candidate in candidates:
+            req_id = str(candidate.get("requirement_id") or "").strip()
+            row_no = str(candidate.get("row_no") or "").strip()
+            if req_id in selected_keys or row_no in selected_keys:
+                item = {key: value for key, value in candidate.items() if key != "row_no"}
+                selected.append(item)
+            if len(selected) >= limit:
+                break
+        return selected or fallback
+    except Exception as exc:
+        print(f"관련 요구사항 LLM 매칭 실패, 키워드 fallback 사용: {type(exc).__name__}: {str(exc)[:300]}")
+        return fallback
+
+
+def build_interface_rag_query(
+    image_path: Path,
+    ui_observation: Dict[str, Any],
+    related_requirements: List[Dict[str, Any]],
+) -> str:
+    """Build a retrieval query from prototype observations and related requirements."""
+    parts = [image_path.stem, build_screen_match_context(image_path, ui_observation)]
+    for req in related_requirements[:5]:
+        parts.append(str(req.get("requirement_id") or ""))
+        parts.append(str(req.get("requirement_name") or ""))
+        parts.append(str(req.get("description") or "")[:260])
+    return normalize_text_for_match(parts)
+
+
+def retrieve_ui_reference_context(
+    image_path: Path,
+    ui_observation: Dict[str, Any],
+    related_requirements: List[Dict[str, Any]],
+) -> str:
+    """Retrieve UIUX guideline context without blocking document generation on RAG failures."""
+    enabled = os.getenv("INTERFACE_RAG_ENABLED", "true").strip().lower() in {"1", "true", "yes", "y"}
+    if not enabled:
+        return ""
+    query = build_interface_rag_query(image_path, ui_observation, related_requirements)
+    try:
+        results = interface_rag.query(query)
+        return interface_rag.format_context(results)[:6000]
+    except Exception as exc:
+        print(f"UI RAG context skipped: {type(exc).__name__}: {str(exc)[:300]}")
+        return ""
 
 
 def normalize_ui_observation(data: Any) -> Dict[str, Any]:
@@ -469,11 +592,13 @@ def analyze_screen_image(image_path: Path, requirement_summary: Dict[str, Any], 
         print(raw_observation[:1000])
         raise RuntimeError("UI 관찰 JSON 생성에 실패했습니다. 하드코딩 fallback은 사용하지 않습니다.") from e
 
-    related_requirements = select_related_requirements(requirement_summary, ui_observation, image_path, limit=10)
+    related_requirements = select_related_requirements_with_llm(requirement_summary, ui_observation, image_path, limit=10)
+    ui_reference_context = retrieve_ui_reference_context(image_path, ui_observation, related_requirements)
     detail_prompt = (
         SCREEN_DETAIL_PROMPT
         .replace("{image_name}", image_path.name)
         .replace("{ui_observation}", json.dumps(ui_observation, ensure_ascii=False, indent=2)[:5000])
+        .replace("{ui_reference_context}", ui_reference_context)
         .replace("{related_requirements}", json.dumps(related_requirements, ensure_ascii=False, indent=2)[:7000])
     )
     raw_detail = qwen_analyze_image(image_path, detail_prompt, max_new_tokens=MAX_NEW_TOKENS_SCREEN)
@@ -514,6 +639,7 @@ def analyze_screen_image(image_path: Path, requirement_summary: Dict[str, Any], 
 
     data["ui_observation"] = ui_observation
     data["related_requirements"] = related_requirements
+    data["ui_reference_context"] = ui_reference_context
     data["quality_issues"] = quality_issues
     data["image_path"] = str(image_path)
     data["annotated_image_path"] = str(create_numbered_prototype_image(image_path, data, WORK_DIR / "numbered_images"))

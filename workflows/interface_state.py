@@ -1,6 +1,6 @@
 from typing import Any, TypedDict
 
-
+# 워크 플로우 상태 정의
 class InterfaceWorkflowState(TypedDict, total=False):
     requirement_paths: str | list[str]
     image_paths: str | list[str]
