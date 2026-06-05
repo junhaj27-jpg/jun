@@ -1,4 +1,4 @@
-﻿# python-dotenv
+# python-dotenv
 # requests
 # python-docx
 # pandas
@@ -52,7 +52,6 @@ streamlit==1.41.1
 transformers>=4.57.0
 accelerate>=1.1.0
 qwen-vl-utils==0.0.14
-
 langchain-core
 langchain-community
 openai
