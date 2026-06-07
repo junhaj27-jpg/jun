@@ -8,7 +8,7 @@ def load_qwen_vl(model_id: str = MODEL_ID):
     """Qwen2-VL 모델과 프로세서를 로드해 추론 준비 상태로 반환합니다."""
     import importlib.util
     import torch
-    from transformers import AutoModelForImageTextToText, AutoProcessor
+    from transformers import AutoConfig, AutoModelForImageTextToText, AutoProcessor
     try:
         from transformers import Qwen2VLForConditionalGeneration
     except ImportError:
@@ -16,6 +16,7 @@ def load_qwen_vl(model_id: str = MODEL_ID):
 
     print(f"Loading model: {model_id}")
     try:
+        loaded_config = AutoConfig.from_pretrained(model_id, trust_remote_code=True)
         loaded_processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
 
         use_cuda = torch.cuda.is_available()
@@ -28,7 +29,11 @@ def load_qwen_vl(model_id: str = MODEL_ID):
             dtype = torch.float32
             device_map = None
 
-        model_cls = Qwen2VLForConditionalGeneration or AutoModelForImageTextToText
+        model_type = str(getattr(loaded_config, "model_type", "")).lower()
+        if model_type.startswith("qwen2") and Qwen2VLForConditionalGeneration is not None:
+            model_cls = Qwen2VLForConditionalGeneration
+        else:
+            model_cls = AutoModelForImageTextToText
         loaded_model = model_cls.from_pretrained(
             model_id,
             torch_dtype=dtype,

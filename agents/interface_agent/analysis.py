@@ -570,7 +570,7 @@ def build_fallback_screen_spec(image_path: Path, requirement_summary: Dict[str, 
 
 def analyze_screen_image(image_path: Path, requirement_summary: Dict[str, Any], idx: int) -> Dict[str, Any]:
     """이미지 관찰, 요구사항 선별, 상세 설계 생성을 순서대로 수행합니다."""
-    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "false").strip().lower() in {"1", "true", "yes", "y"}
+    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "true").strip().lower() in {"1", "true", "yes", "y"}
     if not use_vlm:
         print(f"VLM 분석 생략: {image_path.name} (INTERFACE_VLM_ENABLED=false)")
         return build_fallback_screen_spec(image_path, requirement_summary, idx)
@@ -710,7 +710,7 @@ def normalize_ui_structure_data(data: Any, screen_specs: List[Dict[str, Any]]) -
 
 def generate_ui_structure(screen_specs: List[Dict[str, Any]]) -> List[Dict[str, str]]:
     """분석된 화면 목록을 기반으로 UI 메뉴 구조도를 생성합니다."""
-    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "false").strip().lower() in {"1", "true", "yes", "y"}
+    use_vlm = os.getenv("INTERFACE_VLM_ENABLED", "true").strip().lower() in {"1", "true", "yes", "y"}
     if not use_vlm:
         return normalize_ui_structure_data([], screen_specs)
 

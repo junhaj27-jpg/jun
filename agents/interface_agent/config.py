@@ -26,7 +26,7 @@ SUPPORTED_IMAGE_EXTS = {".png", ".jpg", ".jpeg"}
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 WORK_DIR.mkdir(parents=True, exist_ok=True)
 
-MODEL_ID = os.getenv("INTERFACE_VLM_MODEL_ID", "Qwen/Qwen2-VL-2B-Instruct")
+MODEL_ID = os.getenv("INTERFACE_VLM_MODEL_ID", "Qwen/Qwen3-VL-8B-Instruct")
 
 MAX_NEW_TOKENS_SCREEN = int(os.getenv("INTERFACE_MAX_NEW_TOKENS_SCREEN", "1536"))
 MAX_NEW_TOKENS_FINAL = int(os.getenv("INTERFACE_MAX_NEW_TOKENS_FINAL", "1024"))
