@@ -10,6 +10,8 @@ def read_file_text(file_path: str, file_ext: str | None = None) -> str:
 
     if ext == "txt":
         return path.read_text(encoding="utf-8", errors="ignore")
+    if ext == "json":
+        return path.read_text(encoding="utf-8", errors="ignore")
     if ext == "docx":
         return _read_docx(path)
     if ext == "pdf":

@@ -82,15 +82,52 @@ def _input_priority_note(default_target: str = "아래 기본 경로") -> None:
     st.info(f"파일을 업로드하면 업로드한 파일로 실행합니다. 업로드하지 않으면 {default_target}를 사용합니다.")
 
 
+def _parse_int_list(value: str) -> list[int]:
+    items = []
+    for token in (value or "").replace("\n", ",").split(","):
+        token = token.strip()
+        if not token:
+            continue
+        items.append(int(token))
+    return items
+
+
 def render_erd_tab() -> None:
     st.subheader("엔티티 관계 모형 설계서 생성")
-    _input_priority_note("아래 요구사항 JSON 기본 경로")
-    requirement_upload = st.file_uploader("요구사항 JSON 업로드", type=["json"], key="erd_req_upload")
-    requirement_path = st.text_input(
-        "요구사항 JSON 기본 경로 (업로드 없을 때 사용)",
-        value="./data/requirements/requirement.json",
-        key="erd_req_path",
+    st.info(
+        "ERD 설계서는 DB에 등록된 요구사항 정의서와 회의록 파일을 기준으로 생성합니다. "
+        "tbl_docs/tbl_docs_detail 또는 tbl_file에 등록된 일련번호를 입력해 주세요."
     )
+
+    col_db1, col_db2 = st.columns(2)
+    with col_db1:
+        prj_sn = st.number_input("프로젝트 일련번호 prj_sn", min_value=1, step=1, value=1, key="erd_prj_sn")
+        login_user_sn = st.number_input("로그인 사용자 일련번호 login_user_sn", min_value=1, step=1, value=1, key="erd_login_user_sn")
+        requirement_docs_sn = st.number_input(
+            "요구사항 산출물 docs_sn (tbl_docs 기준)",
+            min_value=0,
+            step=1,
+            value=0,
+            key="erd_requirement_docs_sn",
+            help="요구사항 정의서가 tbl_docs/tbl_docs_detail에 저장된 경우 입력합니다. 0이면 사용하지 않습니다.",
+        )
+    with col_db2:
+        requirement_file_sn = st.number_input(
+            "요구사항 파일 file_sn (tbl_file 기준)",
+            min_value=0,
+            step=1,
+            value=0,
+            key="erd_requirement_file_sn",
+            help="요구사항 정의서 JSON 또는 문서 파일이 tbl_file에 저장된 경우 입력합니다. docs_sn이 있으면 docs_sn을 우선 사용합니다.",
+        )
+        meeting_file_sns_text = st.text_input(
+            "회의록 file_sn 목록",
+            value="",
+            key="erd_meeting_file_sns",
+            help="예: 21,22,23",
+        )
+        save_to_db = st.checkbox("생성 DOCX DB 등록", value=True, key="erd_save_to_db")
+        save_image_file = st.checkbox("ERD 이미지 tbl_file 등록", value=True, key="erd_save_image_file")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -110,27 +147,57 @@ def render_erd_tab() -> None:
     )
 
     if st.button("엔티티 관계 모형 설계서 생성 실행", type="primary", key="run_erd"):
-        uploaded_path = _save_uploaded_file(requirement_upload, "erd_requirement")
-        with st.spinner("ERD 생성 중입니다..."):
-            from workflows.erd_workflow import compile_erd_graph
+        if not (requirement_docs_sn or requirement_file_sn):
+            st.error("requirement_docs_sn 또는 requirement_file_sn 중 하나가 필요합니다.")
+            return
 
-            result = compile_erd_graph().invoke(
-                {
-                    "requirement_json_path": uploaded_path or requirement_path,
-                    "use_llm": use_llm,
-                    "use_mermaid": use_mermaid,
-                    "fast_table": False,
-                    "output_json_path": output_json_path,
-                    "output_docx_path": output_docx_path,
-                }
-            )
+        try:
+            meeting_file_sns = _parse_int_list(meeting_file_sns_text)
+        except ValueError:
+            st.error("회의록 file_sn 목록은 숫자를 쉼표로 구분해서 입력해 주세요. 예: 21,22")
+            return
+
+        state = {
+            "use_llm": use_llm,
+            "use_mermaid": use_mermaid,
+            "fast_table": False,
+            "output_json_path": output_json_path,
+            "output_docx_path": output_docx_path,
+            "prj_sn": int(prj_sn),
+            "login_user_sn": int(login_user_sn),
+            "requirement_docs_sn": int(requirement_docs_sn) or None,
+            "requirement_file_sn": int(requirement_file_sn) or None,
+            "meeting_file_sns": meeting_file_sns,
+            "save_to_db": save_to_db,
+            "save_image_file": save_image_file,
+        }
+
+        with st.spinner("ERD 생성 중입니다..."):
+            from workflows.erd_workflow import run_erd_graph_with_status
+
+            result = run_erd_graph_with_status(state)
 
         if result.get("status") != "VALID":
             st.error("ERD 생성 실패")
             st.write(result.get("validation_errors", []))
             return
         st.success("엔티티 관계 모형 설계서 생성 완료")
-        _show_result_paths(result, [("output_json_path", "엔티티 관계 모형 JSON"), ("erd_docx_path", "엔티티 관계 모형 설계서 DOCX")])
+        _show_result_paths(
+            result,
+            [
+                ("output_json_path", "엔티티 관계 모형 JSON"),
+                ("erd_docx_path", "엔티티 관계 모형 설계서 DOCX"),
+                ("erd_image_path", "엔티티 관계 모형 이미지"),
+            ],
+        )
+        if result.get("docs_sn") or result.get("docs_dtl_sn") or result.get("erd_image_file_sn"):
+            st.write(
+                {
+                    "docs_sn": result.get("docs_sn"),
+                    "docs_dtl_sn": result.get("docs_dtl_sn"),
+                    "erd_image_file_sn": result.get("erd_image_file_sn"),
+                }
+            )
         _load_json_preview(result.get("output_json_path"))
 
 

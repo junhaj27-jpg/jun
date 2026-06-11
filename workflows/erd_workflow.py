@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Any, Dict, List
 
 from langgraph.graph import END, START, StateGraph
@@ -11,7 +12,12 @@ from agents.erd.erd_agent import (
 )
 from generators.erd.docx_generator import OUTPUT_PATH, generate_erd_docx, generate_mermaid_erd
 from common.services.document_loader_service import load_meeting_documents, load_requirement_document
-from common.db.repositories.docs_repository import insert_docs_with_detail
+from common.db.repositories.docs_repository import (
+    insert_docs_detail_and_complete,
+    insert_docs_processing,
+    insert_docs_with_detail,
+    update_docs_failed,
+)
 from common.db.repositories.file_repository import insert_file_metadata
 from agents.erd.erd_mapper import (
     build_entity_candidate_json,
@@ -28,6 +34,17 @@ from workflows.erd_state import ErdWorkflowState
 
 MAX_RETRIES = 2
 DEFAULT_OUTPUT_JSON_PATH = "./json_temp/erd_agent_output.json"
+
+
+def _delete_json_temp_file(path_text: str | None) -> None:
+    if not path_text:
+        return
+
+    path = Path(path_text)
+    if path.suffix.lower() != ".json" or "json_temp" not in path.parts:
+        return
+    if path.exists():
+        path.unlink()
 
 def build_system_context(requirement_doc: Dict[str, Any]) -> Dict[str, Any]:
     """Create one system-level context object for ERD/DB design."""
@@ -257,6 +274,8 @@ def generate_erd_docx_node(state: ErdWorkflowState) -> ErdWorkflowState:
         fast_table=state.get("fast_table", False),
         erd_image_path=state.get("erd_image_path") or None,
     )
+    if Path(saved_path).exists():
+        _delete_json_temp_file(state.get("output_json_path"))
     return {"erd_docx_path": saved_path, "output_docx_path": output_docx_path}
 
 
@@ -264,15 +283,23 @@ def insert_docs_db_node(state: ErdWorkflowState) -> ErdWorkflowState:
     if not state.get("prj_sn") or not state.get("save_to_db", False):
         return {"success": True}
 
-    saved = insert_docs_with_detail(
-        prj_sn=int(state["prj_sn"]),
-        docs_cd="ERD",
-        docs_ver="1.0",
-        mdfcn_cn="ERD 설계서 자동 생성",
-        docs_path=state["erd_docx_path"],
-        login_user_sn=int(state["login_user_sn"]),
-        pssn_user_sn=int(state["login_user_sn"]),
-    )
+    if state.get("docs_sn"):
+        saved = insert_docs_detail_and_complete(
+            docs_sn=int(state["docs_sn"]),
+            docs_path=state["erd_docx_path"],
+            login_user_sn=int(state["login_user_sn"]),
+            mdfcn_cn="ERD 설계서 생성 완료",
+        )
+    else:
+        saved = insert_docs_with_detail(
+            prj_sn=int(state["prj_sn"]),
+            docs_cd="DOC_ERD",
+            docs_ver="1.0",
+            mdfcn_cn="ERD 설계서 생성 완료",
+            docs_path=state["erd_docx_path"],
+            login_user_sn=int(state["login_user_sn"]),
+            pssn_user_sn=int(state["login_user_sn"]),
+        )
 
     result: ErdWorkflowState = {
         "docs_sn": saved["docs_sn"],
@@ -283,11 +310,44 @@ def insert_docs_db_node(state: ErdWorkflowState) -> ErdWorkflowState:
     if state.get("save_image_file", True) and state.get("erd_image_path"):
         image_saved = insert_file_metadata(
             prj_sn=int(state["prj_sn"]),
-            file_cd="ERD_IMG",
+            file_cd="FILE_ERD_IMG",
             file_path=state["erd_image_path"],
             login_user_sn=int(state["login_user_sn"]),
         )
         result["erd_image_file_sn"] = image_saved["file_sn"]
+
+    return result
+
+
+def run_erd_graph_with_status(initial_state: dict[str, Any]) -> dict[str, Any]:
+    state = dict(initial_state)
+    docs_sn = state.get("docs_sn")
+    save_to_db = bool(state.get("save_to_db", False) and state.get("prj_sn") and state.get("login_user_sn"))
+
+    if save_to_db and not docs_sn:
+        created = insert_docs_processing(
+            prj_sn=int(state["prj_sn"]),
+            docs_cd="DOC_ERD",
+            docs_ver="1.0",
+            mdfcn_cn="ERD 설계서 생성 중",
+            login_user_sn=int(state["login_user_sn"]),
+            pssn_user_sn=int(state["login_user_sn"]),
+        )
+        docs_sn = created["docs_sn"]
+        state["docs_sn"] = docs_sn
+
+    try:
+        result = compile_erd_graph().invoke(state)
+    except Exception as exc:
+        if save_to_db and docs_sn:
+            update_docs_failed(int(docs_sn), int(state["login_user_sn"]), str(exc))
+        raise
+
+    if save_to_db and docs_sn and result.get("status") != "VALID":
+        errors = result.get("validation_errors") or ["ERD 설계서 생성 실패"]
+        update_docs_failed(int(docs_sn), int(state["login_user_sn"]), json.dumps(errors, ensure_ascii=False))
+        result["docs_sn"] = docs_sn
+        result["success"] = False
 
     return result
 
@@ -357,7 +417,7 @@ def compile_erd_graph():
 
 
 def generate_erd_design_from_request(payload: dict[str, Any]) -> dict[str, Any]:
-    result = compile_erd_graph().invoke(
+    result = run_erd_graph_with_status(
         {
             "prj_sn": payload["prj_sn"],
             "requirement_docs_sn": payload.get("requirement_docs_sn"),
