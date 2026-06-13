@@ -9,3 +9,12 @@ pydantic-settings
 requests
 SQLAlchemy
 uvicorn[standard]
+docx2txt
+pdfplumber
+pdf2image
+pytesseract
+easyocr
+langchain-core
+langchain-community
+openai
+ollama
