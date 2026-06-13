@@ -1,0 +1,1 @@
+FIND_ARCHITECTURE_CONFIG_BY_PROJECT_SN = ""  # TODO: 프로젝트 아키텍처 설정 조회 SQL

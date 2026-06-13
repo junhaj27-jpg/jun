@@ -1,0 +1,17 @@
+from typing import Any
+
+from sqlalchemy.orm import Session
+
+
+class CommonRepository:
+    def __init__(self, session: Session) -> None:
+        self.session = session
+
+    def fetch_one(self, query: str, params: dict[str, Any] | None = None) -> Any | None:
+        raise NotImplementedError
+
+    def fetch_all(self, query: str, params: dict[str, Any] | None = None) -> list[Any]:
+        raise NotImplementedError
+
+    def execute(self, query: str, params: dict[str, Any] | None = None) -> Any:
+        raise NotImplementedError

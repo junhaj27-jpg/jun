@@ -1,0 +1,7 @@
+# 워크플로우 실행 상태 코드를 정의합니다.
+
+READY = "READY"
+FAILED = "FAILED"
+GENERATING = "GENERATING"
+SUPERVISOR = "SUPERVISOR"
+END = "END"

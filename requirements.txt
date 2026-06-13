@@ -1,58 +1,11 @@
-# python-dotenv
-# requests
-# python-docx
-# pandas
-# openpyxl
-# PyMuPDF
-# tqdm
-# qdrant-client
-# sentence-transformers
-# langgraph
-# streamlit
-# Pillow
-# torch
-# transformers
-# qwen-vl-utils
-# accelerate
-
-# Mermaid PNG generation uses the Node.js package below, not pip:
-# npm install -g @mermaid-js/mermaid-cli
-# docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
-# ollama pull qwen3:1.7b
-
-
-# QDRANT_URL=http://localhost:6333
-# QDRANT_COLLECTION=arkive
-
-# EMBED_MODEL_NAME=BAAI/bge-m3
-
-# LLM_BASE_URL=http://localhost:11434/v1
-# LLM_MODEL_NAME=qwen3:1.7b
-# LLM_API_KEY=EMPTY
-
-
-python-dotenv==1.0.1
-requests==2.32.3
-PyMySQL==1.1.1
-
-python-docx==1.1.2
-pandas==2.2.3
-openpyxl==3.1.5
-PyMuPDF==1.24.14
-tqdm==4.67.1
-Pillow==10.4.0
-
-qdrant-client==1.12.1
-sentence-transformers==3.3.1
-filelock==3.16.1
-
-langgraph==0.2.60
-streamlit==1.41.1
-
-transformers>=4.57.0
-accelerate>=1.1.0
-qwen-vl-utils==0.0.14
-langchain-core
-langchain-community
-openai
-ollama
+boto3
+fastapi
+langgraph
+PyMuPDF
+PyMySQL
+python-docx
+python-dotenv
+pydantic-settings
+requests
+SQLAlchemy
+uvicorn[standard]
