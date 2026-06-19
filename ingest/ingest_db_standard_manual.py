@@ -1,189 +1,113 @@
+"""
+[INGEST] 공공데이터베이스 표준화 관리 매뉴얼 (2023.4)
+
+청킹 전략: 소절(N.N 또는 N.N.N) 단위 분할 (초과 시 슬라이딩 윈도우 보조 분할)
+패턴: r"\d+\.\d+(?:\.\d+)?\s+\S"
+페이지 필터: 11 <= page < 174 (I~IV장만, V장 메타데이터 관리시스템 제외)
+
+[참고] 패턴이 본문 소절 번호 외에 표/추진과제 번호(예: p.40 진단항목 1.1~4.2,
+p.36 "추진과제 2.1")에도 매칭되는 경우가 있음. 다만 해당 조각들도 의미 있는
+내용(진단기준 등)을 포함하고 있어 retrieval 가치는 유지됨. title이 정확한
+소절명이 아닐 수 있다는 점만 평가 시 참고.
+
+[참고] erd_rag_service.py에서 doc_type="db_standard_manual"로 쿼리하는
+DB_ERD_REFERENCE_COLLECTION에 적재됨. 공공데이터 공통표준.xlsx
+(ingest_public_standard.py)도 동일 collection 사용.
+"""
+
 import os
 import re
-import uuid
 from pathlib import Path
-from typing import List, Dict, Any
 
-import fitz
-from tqdm import tqdm
-from dotenv import load_dotenv
-from qdrant_client.models import PointStruct
+from rag.chunker import split_by_pattern, split_oversized_chunk
+from rag.ingest_base import (
+    build_base_payload,
+    locate_chunk_page,
+    make_chunk_id,
+    merge_pages_with_offsets,
+    upsert_payloads,
+)
+from rag.pdf_reader import read_pdf_pages
+from rag.qdrant_config import ALPLED_REFERENCE_COLLECTION, ensure_named_collection
 
-from rag.qdrant_config import get_client, get_embedder, ensure_collection, COLLECTION_NAME
+TARGET_COLLECTION = ALPLED_REFERENCE_COLLECTION
 
-load_dotenv()
-
-PDF_PATH = os.getenv(
-    "DB_STANDARD_MANUAL_PATH",
-    "./data/db_standards/공공데이터베이스_표준화_관리_매뉴얼_202106.pdf",
+SOURCE_PATH = Path(
+    os.getenv(
+        "DB_STANDARD_MANUAL_PATH",
+        "./data/requirement_reference/요구사항 가이드/공공데이터베이스_표준화_관리_매뉴얼_23년_4월.pdf",
+    )
 )
 
+CHUNK_PATTERN = r"\d+\.\d+(?:\.\d+)?\s+\S"
+PAGE_FILTER = lambda page_num: 11 <= page_num < 174  # I~IV장만 (V장 메타데이터 관리시스템 제외)
 
-def normalize_text(text: str) -> str:
-    text = str(text).replace("\n", " ")
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
+MAX_CHARS = 1500
+OVERLAP = 150
 
-
-def split_text_by_size(text: str, chunk_size: int = 900, overlap: int = 120) -> List[str]:
-    chunks = []
-    start = 0
-
-    while start < len(text):
-        end = start + chunk_size
-        chunk = text[start:end].strip()
-
-        if len(chunk) >= 100:
-            chunks.append(chunk)
-
-        start = end - overlap
-
-    return chunks
+DOC_TYPE = "db_standard_manual"
+DOMAIN = "public_data"
+APPLIES_TO = "erd,database_design,table_design,column_design,column_name,naming_rule"
+PRIORITY = "required"
 
 
-def infer_section(page_num: int) -> str:
-    if 1 <= page_num <= 14:
-        return "공공데이터베이스 표준화 총론"
-    if 15 <= page_num <= 28:
-        return "공공데이터베이스 표준화 추진체계"
-    if 29 <= page_num <= 60:
-        return "공공데이터 구축 시 표준화 관리"
-    if 61 <= page_num <= 128:
-        return "공공데이터베이스 공통표준용어 관리"
-    if 129 <= page_num <= 168:
-        return "공공데이터베이스 메타데이터 관리"
-    if 169 <= page_num <= 208:
-        return "공공데이터베이스 표준화 관련서식"
-    if page_num >= 209:
-        return "공공기관의 데이터베이스 표준화 지침"
-    return "기타"
+def extract_payloads() -> list[dict]:
+    if not SOURCE_PATH.exists():
+        print(f"[SKIP] file not found: {SOURCE_PATH}")
+        return []
 
+    full_text, page_offsets = merge_pages_with_offsets(
+        read_pdf_pages(SOURCE_PATH, page_filter=PAGE_FILTER)
+    )
 
-def infer_chunk_type(section: str, text: str) -> str:
-    if "서식" in section:
-        return "template_form"
-    if "메타데이터" in section:
-        return "metadata_policy"
-    if "공통표준용어" in section:
-        return "standard_term_rule"
-    if "공통표준단어" in text:
-        return "standard_word_rule"
-    if "공통표준도메인" in text:
-        return "standard_domain_rule"
-    if "표준코드" in text:
-        return "standard_code_rule"
-    if "데이터타입" in text or "데이터길이" in text:
-        return "data_type_rule"
-    if "테이블정의서" in text or "컬럼정의서" in text or "데이터베이스정의서" in text:
-        return "db_design_form"
-    return "standard_guide"
+    primary_chunks = split_by_pattern(full_text, CHUNK_PATTERN)
 
-
-def build_payload(
-    *,
-    text: str,
-    chunk_id: str,
-    page: int,
-    chunk_idx: int,
-    section: str,
-    chunk_type: str,
-) -> Dict[str, Any]:
-    return {
-        "text": text,
-        "chunk_id": chunk_id,
-        "doc_type": "db_standard_manual",
-        "domain": "public_data",
-        "source_name": "공공데이터베이스 표준화 관리 매뉴얼",
-        "section": section,
-        "title": f"{section} p.{page}-{chunk_idx}",
-        "applies_to": "database_design,table_design,column_design,erd,metadata,standardization",
-        "priority": "required",
-        "source_file": Path(PDF_PATH).name,
-        "version": "2021.06",
-        "chunk_type": chunk_type,
-        "keywords": [
-            "공공데이터베이스",
-            "표준화",
-            "공통표준용어",
-            "공통표준단어",
-            "공통표준도메인",
-            "메타데이터",
-            "데이터베이스정의서",
-            "테이블정의서",
-            "컬럼정의서",
-        ],
-        "effective_date": "2021-06",
-        "is_active": True,
-        "language": "ko",
-        "page": page,
-    }
-
-
-def extract_manual_chunks(pdf_path: str) -> List[Dict[str, Any]]:
-    doc = fitz.open(pdf_path)
     payloads = []
+    search_pos = 0
+    chunk_index = 0
 
-    for page_idx in range(len(doc)):
-        page_num = page_idx + 1
-        text = normalize_text(doc[page_idx].get_text())
+    for primary_chunk in primary_chunks:
+        section_no, title = extract_section_info(primary_chunk)
 
-        if not text or len(text) < 80:
-            continue
+        sub_chunks = split_oversized_chunk(primary_chunk, max_chars=MAX_CHARS, overlap=OVERLAP)
 
-        section = infer_section(page_num)
-        chunks = split_text_by_size(text, chunk_size=900, overlap=120)
+        for sub_chunk in sub_chunks:
+            chunk_index += 1
+            page_num, search_pos = locate_chunk_page(sub_chunk, full_text, search_pos, page_offsets)
 
-        for chunk_idx, chunk in enumerate(chunks, start=1):
-            chunk_type = infer_chunk_type(section, chunk)
-            chunk_id = f"db_standard_manual_p{page_num}_c{chunk_idx}"
-
+            chunk_id = make_chunk_id("db_standard_manual", SOURCE_PATH.name, str(chunk_index))
             payloads.append(
-                build_payload(
-                    text=chunk,
+                build_base_payload(
+                    text=sub_chunk,
                     chunk_id=chunk_id,
+                    doc_type=DOC_TYPE,
+                    domain=DOMAIN,
+                    source_file=SOURCE_PATH,
+                    section=section_no or "공공데이터베이스 표준화 관리 매뉴얼",
+                    title=title,
+                    applies_to=APPLIES_TO,
+                    priority=PRIORITY,
+                    chunk_type="db_standard_reference",
+                    keywords=["공공데이터베이스", "표준화", "DB설계", "ERD"],
                     page=page_num,
-                    chunk_idx=chunk_idx,
-                    section=section,
-                    chunk_type=chunk_type,
                 )
             )
-
     return payloads
 
 
-def upsert_payloads(payloads: List[Dict[str, Any]], batch_size: int = 32):
-    client = get_client()
-    embedder = get_embedder()
-
-    for i in tqdm(range(0, len(payloads), batch_size)):
-        batch = payloads[i:i + batch_size]
-        texts = [p["text"] for p in batch]
-
-        vectors = embedder.encode(
-            texts,
-            normalize_embeddings=True,
-            show_progress_bar=False,
-        ).tolist()
-
-        points = [
-            PointStruct(
-                id=str(uuid.uuid5(uuid.NAMESPACE_DNS, payload["chunk_id"])),
-                vector=vector,
-                payload=payload,
-            )
-            for vector, payload in zip(vectors, batch)
-        ]
-
-        client.upsert(collection_name=COLLECTION_NAME, points=points)
-
-    print(f"[적재 완료] {len(payloads)} chunks")
+def extract_section_info(chunk: str) -> tuple[str, str]:
+    """청크 시작 부분에서 '1.1 표준화 관리체계' 형태에서 소절 번호와 제목을 추출."""
+    match = re.match(r"(\d+\.\d+(?:\.\d+)?)\s+(\S[^\n]{0,40})", chunk)
+    if match:
+        return match.group(1), match.group(2).strip()
+    return "", ""
 
 
 def main():
-    ensure_collection(recreate=False)
-    payloads = extract_manual_chunks(PDF_PATH)
-    print(f"[추출 완료] DB 표준화 매뉴얼 chunk 수: {len(payloads)}")
-    upsert_payloads(payloads)
+    ensure_named_collection(TARGET_COLLECTION, recreate=False)
+    payloads = extract_payloads()
+    print(f"[EXTRACTED] db standard manual chunks={len(payloads)}")
+    upsert_payloads(payloads, TARGET_COLLECTION)
 
 
 if __name__ == "__main__":

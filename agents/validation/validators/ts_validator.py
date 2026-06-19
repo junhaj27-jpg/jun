@@ -66,10 +66,19 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
         and interface_ids and str(step.get("screen_id") or step.get("화면ID")) not in interface_ids
     ]
     case_types = {str(case.get("case_type") or "").upper() for case in cases if isinstance(case, dict)}
+    scenario_case_map: dict[str, set[str]] = {}
+    for case in cases:
+        if isinstance(case, dict):
+            scenario_case_map.setdefault(str(case.get("scenario_id") or ""), set()).add(str(case.get("case_type") or "").upper())
     trace_missing = [
         str(case.get("test_case_id") or index)
         for index, case in enumerate(cases) if isinstance(case, dict)
         and is_empty(case.get("scenario_id"))
+    ]
+    missing_quality_cases = [
+        scenario_id
+        for scenario_id, types in scenario_case_map.items()
+        if scenario_id and not {"AUTHORIZATION", "STATE_CHANGE", "DATA_INTEGRITY"}.intersection(types)
     ]
     checks.extend(
         [
@@ -79,6 +88,7 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
         make_check("TS_INTERFACE_001", "인터페이스 화면 매핑 검증", not invalid_interface_steps, failure_type="TS_INTERFACE_MAPPING_MISSING", message="참조 인터페이스와 매핑되지 않은 Step이 있습니다.", target_agent=TARGET, target_scope=invalid_interface_steps),
         make_check("TS_CASE_002", "정상 케이스 존재 검증", "NORMAL" in case_types, failure_type="TS_NORMAL_CASE_MISSING", message="정상 시험 케이스가 없습니다.", target_agent=TARGET),
         make_check("TS_CASE_003", "예외 케이스 존재 검증", "EXCEPTION" in case_types, failure_type="TS_EXCEPTION_CASE_MISSING", message="예외 시험 케이스가 없습니다.", target_agent=TARGET),
+        make_check("TS_CASE_004", "권한/상태/데이터 검증 케이스 존재 검증", not missing_quality_cases, failure_type="TS_TRACEABILITY_MISSING", message="권한/상태변경/데이터정합성 검증 케이스가 부족합니다.", target_agent=TARGET, target_scope=missing_quality_cases, severity="MEDIUM", warning=True),
         make_check("TS_TRACE_001", "Scenario-Test Case 추적성 검증", not trace_missing, failure_type="TS_TRACEABILITY_MISSING", message="scenario_id가 없는 시험 케이스가 있습니다.", target_agent=TARGET, target_scope=trace_missing),
         _meeting_check(state),
         ]

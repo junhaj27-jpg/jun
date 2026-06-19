@@ -13,13 +13,35 @@ class ConfigTest(unittest.TestCase):
     def test_settings_loads_environment_values(self) -> None:
         settings = Settings(
             _env_file=None,
-            database_url="sqlite:///test.db",
+            db_host="localhost",
+            db_port=3306,
+            db_name="alpled_db",
+            db_user="alpled",
+            db_password="password",
             qdrant_url="http://localhost:6333",
             llm_base_url="http://localhost:8000/v1",
         )
 
-        self.assertEqual(settings.database_url, "sqlite:///test.db")
-        self.assertEqual(settings.qdrant_collection, "arkive")
+        self.assertEqual(
+            settings.resolved_database_url,
+            "mysql+pymysql://alpled:password@localhost:3306/alpled_db",
+        )
+        self.assertEqual(settings.alpled_reference_collection, "ALPLED_reference")
+
+    def test_settings_builds_database_url_from_db_parts(self) -> None:
+        settings = Settings(
+            _env_file=None,
+            db_host="localhost",
+            db_port=3306,
+            db_name="alpled_db",
+            db_user="alpled",
+            db_password="p@ss word",
+        )
+
+        self.assertEqual(
+            settings.resolved_database_url,
+            "mysql+pymysql://alpled:p%40ss+word@localhost:3306/alpled_db",
+        )
 
     def test_constants_match_design_codes(self) -> None:
         self.assertEqual(

@@ -13,9 +13,9 @@ except ModuleNotFoundError:
 load_dotenv()
 
 DATA_ROOT = Path(os.getenv("INTERFACE_REFERENCE_ROOT", "./data/interface_reference"))
-COLLECTION_NAME = os.getenv("INTERFACE_UIUX_COLLECTION", "interface_uiux_reference")
+COLLECTION_NAME = os.getenv("ALPLED_REFERENCE_COLLECTION", "ALPLED_reference")
 SUPPORTED_EXTENSIONS = {".pdf", ".txt", ".md"}
-MIN_INCLUDED_PAGE = int(os.getenv("INTERFACE_UIUX_MIN_PAGE", "40"))
+MIN_INCLUDED_PAGE = int(os.getenv("INTERFACE_UIUX_MIN_PAGE", "43"))
 
 INCLUDED_SECTION_RULES = [
     ("design_principle", "디자인 원칙"),

@@ -1,0 +1,31 @@
+{
+  "output_type": "GOLD_REQUIREMENT_SPECIFICATION",
+  "document_id": "DOC-SAMPLE-001",
+  "document_name": "샘플 RFP 기능 요구사항",
+  "input_type": "RFP_FUNCTIONAL_REQUIREMENTS",
+  "gold_requirement_count": 2,
+  "gold_requirement_specification": [
+    {
+      "requirement_id": "GOLD-001",
+      "requirement_type": "기능",
+      "action_type": "관리",
+      "requirement_name": "통합 게시판 관리 기능",
+      "requirement_detail": "공지사항, FAQ 및 문의 게시글을 등록·수정·삭제·조회할 수 있어야 하며, 관리자 권한에 따라 게시글 노출 여부를 관리할 수 있어야 한다.",
+      "source": ["FUR-001"],
+      "source_text": "FUR-001",
+      "source_task2_ids": ["T2-001"],
+      "source_atomic_ids": ["FUR-001::A-001"],
+      "processing_type": "KEPT",
+      "merge_basis": "동일 FUR 내부 기능 범위를 하나의 검수 가능한 관리 기능으로 보존",
+      "rag_validation": {
+        "status": "NOT_APPLIED",
+        "evidence": [],
+        "notes": "GOLD 생성 후 RAG 검증 모듈에서 갱신"
+      }
+    }
+  ],
+  "quality": {
+    "status": "PASS",
+    "fallback_count": 0
+  }
+}

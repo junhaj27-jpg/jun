@@ -1,0 +1,52 @@
+@host = http://localhost:8000
+@projectSn = 1
+@rfpFileSn = 3
+@meetingFileSn = 2
+
+### Health check
+GET {{host}}/health
+
+### Generate SRS from RFP
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "SRS",
+  "udt_yn": "N",
+  "file_list": [3, 2],
+  "image_list": [],
+  "etc": {
+    "debug": true
+  }
+}
+
+### Generate INTERFACE from RFP
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "INTERFACE",
+  "udt_yn": "N",
+  "file_list": [],
+  "image_list": [24, 25, 26, 27, 28, 29, 30, 31, 32, 33],
+  "etc": {
+    "debug": true
+  }
+}
+
+### Generate ERD from RFP
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "ERD",
+  "udt_yn": "N",
+  "file_list": [2],
+  "image_list": [],
+  "etc": {
+    "debug": true
+  }
+}

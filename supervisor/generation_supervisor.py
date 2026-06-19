@@ -7,7 +7,7 @@ from supervisor.plan.plan_builder import build_plan
 from supervisor.reduce.reduce_builder import reduce_outputs
 from supervisor.registry.agent_registry import AgentRegistry, default_agent_registry
 from supervisor.replan.replan_builder import build_replan
-from supervisor.replan.retry_policy import can_replan
+from supervisor.replan.retry_policy import can_replan, can_retry_step, is_terminal_failure
 from workflow.state import WorkflowState
 
 
@@ -29,6 +29,8 @@ class GenerationSupervisor:
             failure = self._execute_plan(state)
             if failure is None:
                 return reduce_outputs(state)
+            if failure.get("action") == "END":
+                return self._mark_failed(state, failure)
             if not can_replan(state["current_round"], state["max_round"]):
                 return self._mark_failed(state, failure)
             state["execution_plan"] = build_replan(
@@ -37,35 +39,59 @@ class GenerationSupervisor:
                 str(failure["failure_type"]),
                 current_round=state["current_round"],
                 max_round=state["max_round"],
+                target_agent=failure.get("target_agent"),
+                target_scope=failure.get("target_scope"),
+                failed_checks=failure.get("failed_checks"),
             )
 
     def _execute_plan(self, state: WorkflowState) -> dict[str, Any] | None:
         for step in state["execution_plan"]["steps"]:
             agent_name = step["agent"]
-            step["status"] = "RUNNING"
-            try:
-                output = self.agent_registry.run(agent_name, state)
-            except Exception as exc:
-                output = {
-                    "status": "FAILED",
-                    "failure_type": f"{agent_name.upper()}_EXECUTION_FAILED",
-                    "warnings": [],
-                    "errors": [{"message": str(exc)}],
+            retry_count = 0
+            while True:
+                step["status"] = "RUNNING"
+                step["retry_count"] = retry_count
+                try:
+                    output = self.agent_registry.run(agent_name, state)
+                except Exception as exc:
+                    output = {
+                        "status": "FAILED",
+                        "failure_type": f"{agent_name.upper()}_EXECUTION_FAILED",
+                        "warnings": [],
+                        "errors": [{"message": str(exc)}],
+                    }
+
+                state["agent_outputs"][agent_name] = output
+                if agent_name == "validation_agent":
+                    state["validation_result"] = output.get("validation_result")
+
+                evaluation = evaluate_step(
+                    agent_name,
+                    output,
+                    step.get("required_output_keys", []),
+                )
+                if evaluation["success"]:
+                    step["status"] = "DONE"
+                    break
+
+                evaluation = {
+                    **evaluation,
+                    "agent": agent_name,
+                    "step": step.get("step"),
                 }
-
-            state["agent_outputs"][agent_name] = output
-            if agent_name == "validation_agent":
-                state["validation_result"] = output.get("validation_result")
-
-            evaluation = evaluate_step(
-                agent_name,
-                output,
-                step.get("required_output_keys", []),
-            )
-            if not evaluation["success"]:
+                if evaluation.get("action") != "REPLAN" and is_terminal_failure(
+                    str(evaluation.get("failure_type") or "")
+                ):
+                    step["status"] = "FAILED"
+                    evaluation["action"] = "END"
+                    return evaluation
+                if can_retry_step(agent_name, evaluation, retry_count):
+                    retry_count += 1
+                    step["status"] = "RETRY"
+                    step["retry_count"] = retry_count
+                    continue
                 step["status"] = "FAILED"
                 return evaluation
-            step["status"] = "DONE"
         return None
 
     @staticmethod

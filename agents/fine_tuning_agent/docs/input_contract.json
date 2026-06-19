@@ -1,0 +1,22 @@
+{
+  "document_id": "string, required, 문서 고유 ID",
+  "document_name": "string, required, 문서명",
+  "functional_requirements": [
+    {
+      "requirement_id": "string, required, 원본 FUR ID",
+      "requirement_name": "string, required, 원본 요구사항명",
+      "requirement_type": "string, required, 보통 '기능'",
+      "requirement_definition": "string, required, 원본 정의",
+      "requirement_detail": "string, required, 원문 상세내용 전문",
+      "source": "string/list, optional, RFP 페이지·표·출처"
+    }
+  ],
+  "scope_reference_requirements": [
+    {
+      "scope_id": "string, optional",
+      "requirement_name": "string, optional",
+      "requirement_detail": "string, required",
+      "global_scope": "boolean, optional"
+    }
+  ]
+}

@@ -6,7 +6,7 @@ from typing import Any
 
 REDUCE_HARNESS: dict[str, dict[str, Any]] = {
     "SRS": {"docs_cd": "SRS", "requirement_json_list": []},
-    "INTERFACE": {"docs_cd": "INTERFACE", "interface_json_list": []},
+    "INTERFACE": {"docs_cd": "INTERFACE", "interface_json_list": [], "ui_structure": []},
     "TS": {"docs_cd": "TS", "integrated_test_scenario_json": {}},
     "ERD": {"docs_cd": "ERD", "erd_entity_json": {}, "mermaid_image_path": ""},
     "DB": {"docs_cd": "DB", "db_design_json": {}},

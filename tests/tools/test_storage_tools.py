@@ -153,6 +153,47 @@ class StorageToolsTest(unittest.TestCase):
             for path in [docx, pdf, hwp]:
                 self.assertTrue(path.exists())
 
+    def test_cleanup_workflow_resources_cleans_explicit_temp_lists(self) -> None:
+        with tempfile.TemporaryDirectory() as root:
+            storage = Path(root)
+            temp_dir = storage / "temp"
+            extracted_dir = storage / "extracted_images"
+            mermaid_dir = storage / "mermaid"
+            output_dir = storage / "output"
+            for directory in [temp_dir, extracted_dir, mermaid_dir, output_dir]:
+                directory.mkdir()
+
+            temp_file = temp_dir / "middle.tmp"
+            extracted_image = extracted_dir / "screen.png"
+            mermaid_file = mermaid_dir / "diagram.mmd"
+            export_file = output_dir / "result.docx"
+            for path in [temp_file, extracted_image, mermaid_file, export_file]:
+                path.write_text("data", encoding="utf-8")
+
+            settings = Settings(
+                _env_file=None,
+                local_storage_root=storage,
+                output_dir=output_dir,
+                temp_dir=temp_dir,
+                extract_image_dir=extracted_dir,
+                mermaid_dir=mermaid_dir,
+            )
+            result = cleanup_workflow_resources(
+                {
+                    "temp_file_paths": [str(temp_file)],
+                    "extracted_image_paths": [str(extracted_image)],
+                    "mermaid_file_paths": [str(mermaid_file)],
+                    "export_result": {"local_file_path": str(export_file)},
+                },
+                settings=settings,
+            )
+
+            self.assertTrue(result["success"])
+            self.assertFalse(temp_file.exists())
+            self.assertFalse(extracted_image.exists())
+            self.assertFalse(mermaid_file.exists())
+            self.assertTrue(export_file.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

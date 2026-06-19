@@ -23,18 +23,11 @@ class AgentStubsTest(unittest.TestCase):
         self.assertEqual(updated["status"], "FAILED")
         self.assertEqual(updated["failure_type"], "EXISTING_OUTPUT_MISSING")
 
-    def test_agent_output_keys_are_empty_stubs(self) -> None:
-        cases = [
-            (ArchitectureAnalysisAgent(), "architecture_document_json", {}),
-        ]
+    def test_architecture_analysis_agent_is_no_longer_an_empty_stub(self) -> None:
+        result = ArchitectureAnalysisAgent().execute({"docs_cd": "SRS", "udt_yn": "N"})
 
-        for agent, output_key, expected in cases:
-            with self.subTest(agent=type(agent).__name__):
-                result = agent.execute({"docs_cd": "SRS", "udt_yn": "N"})
-                self.assertEqual(result["status"], "SUCCESS")
-                self.assertEqual(result[output_key], expected)
-                self.assertEqual(result["warnings"], [])
-                self.assertEqual(result["errors"], [])
+        self.assertEqual(result["status"], "FAILED")
+        self.assertEqual(result["failure_type"], "ARCHITECTURE_INVALID_DOCS_CD")
 
     def test_mermaid_generation_agent_is_no_longer_an_empty_stub(self) -> None:
         result = MermaidGenerationAgent().execute({"docs_cd": "DB"})

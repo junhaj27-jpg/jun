@@ -6,7 +6,7 @@ def validate_mermaid(code: str, diagram_type: str | None = None) -> ToolResult:
     if not stripped:
         return error_result("MERMAID_CODE_EMPTY", "Mermaid 코드가 비어 있습니다.")
     first_line = stripped.splitlines()[0].strip()
-    allowed = {"erDiagram", "flowchart TD", "flowchart LR", "graph TD", "graph LR"}
+    allowed = {"erDiagram", "flowchart TD", "flowchart TB", "flowchart LR", "graph TD", "graph TB", "graph LR"}
     if diagram_type == "ERD" and first_line != "erDiagram":
         return error_result("MERMAID_ERD_HEADER_INVALID", "ERD Mermaid 코드는 erDiagram으로 시작해야 합니다.")
     if diagram_type == "ARCH" and not first_line.startswith(("flowchart", "graph")):

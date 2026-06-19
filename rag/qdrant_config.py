@@ -2,36 +2,39 @@ import os
 from typing import Any
 
 from dotenv import load_dotenv
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams
 
 load_dotenv()
 
-QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
-COLLECTION_NAME = os.getenv("QDRANT_COLLECTION", "arkive")
-EMBED_MODEL_NAME = os.getenv("EMBED_MODEL_NAME", "BAAI/bge-m3")
-REQUIREMENT_REFERENCE_COLLECTION = os.getenv(
-    "REQUIREMENT_REFERENCE_COLLECTION",
-    "requirement_reference",
+QDRANT_URL = os.getenv("QDRANT_URL") or (
+    f"http://{os.getenv('QDRANT_HOST', 'localhost')}:{os.getenv('QDRANT_PORT', '6333')}"
 )
-REQUIREMENT_SOURCES_COLLECTION = os.getenv(
-    "REQUIREMENT_SOURCES_COLLECTION",
-    "requirement_sources",
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+EMBED_MODEL_NAME = (
+    os.getenv("EMBED_MODEL_NAME")
+    or os.getenv("EMBEDDING_MODEL")
+    or "BAAI/bge-m3"
 )
-REQUIREMENT_EXAMPLES_COLLECTION = os.getenv(
-    "REQUIREMENT_EXAMPLES_COLLECTION",
-    "requirement_examples",
+
+ALPLED_REFERENCE_COLLECTION = os.getenv(
+    "ALPLED_REFERENCE_COLLECTION",
+    "ALPLED_reference",
 )
+COLLECTION_NAME = ALPLED_REFERENCE_COLLECTION
 REQUIREMENT_RAG_TOP_K = int(os.getenv("REQUIREMENT_RAG_TOP_K", "3"))
 
 _client = None
 _embedder = None
 
 
-def get_client() -> QdrantClient:
+def get_client() -> Any:
     global _client
     if _client is None:
-        _client = QdrantClient(url=QDRANT_URL)
+        from qdrant_client import QdrantClient
+
+        kwargs = {"url": QDRANT_URL}
+        if QDRANT_API_KEY:
+            kwargs["api_key"] = QDRANT_API_KEY
+        _client = QdrantClient(**kwargs)
     return _client
 
 
@@ -59,6 +62,8 @@ def get_embeddings(texts: list[str]):
 
 
 def ensure_named_collection(collection_name: str, recreate: bool = False):
+    from qdrant_client.models import Distance, VectorParams
+
     client = get_client()
     embedder = get_embedder()
     dim = embedder.get_sentence_embedding_dimension()
@@ -81,3 +86,4 @@ def ensure_named_collection(collection_name: str, recreate: bool = False):
 
 def ensure_collection(recreate: bool = False):
     ensure_named_collection(COLLECTION_NAME, recreate=recreate)
+

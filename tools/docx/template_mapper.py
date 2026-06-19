@@ -8,7 +8,7 @@ from tools.result import ToolResult, error_result, success_result
 
 DOCUMENT_CONTENT_KEYS = {
     "SRS": ("requirement_json_list",),
-    "INTERFACE": ("interface_json_list",),
+    "INTERFACE": ("interface_json_list", "ui_structure"),
     "TS": ("integrated_test_scenario_json",),
     "ERD": ("erd_entity_json", "mermaid_image_path"),
     "DB": ("db_design_json",),
@@ -52,15 +52,26 @@ def map_document_to_template(
         {
             "docs_cd": docs_cd,
             "title": DOCUMENT_TITLES[docs_cd],
+            "metadata": deepcopy(final_document_json.get("metadata", {}))
+            if isinstance(final_document_json.get("metadata"), dict)
+            else {},
             "content": {
                 key: deepcopy(final_document_json[key])
                 for key in DOCUMENT_CONTENT_KEYS[docs_cd]
                 if key != "mermaid_image_path"
             },
-            "image_paths": [
-                str(final_document_json["mermaid_image_path"])
-            ]
-            if final_document_json.get("mermaid_image_path")
+            "image_paths": _mermaid_image_paths(final_document_json),
+            "image_groups": deepcopy(final_document_json.get("mermaid_groups", []))
+            if isinstance(final_document_json.get("mermaid_groups"), list)
             else [],
         }
     )
+
+
+def _mermaid_image_paths(final_document_json: dict[str, Any]) -> list[str]:
+    values = final_document_json.get("mermaid_image_paths")
+    if isinstance(values, list) and values:
+        return [str(value) for value in values if value]
+    if final_document_json.get("mermaid_image_path"):
+        return [str(final_document_json["mermaid_image_path"])]
+    return []

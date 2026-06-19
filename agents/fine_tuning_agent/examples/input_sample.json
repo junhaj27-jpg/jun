@@ -1,0 +1,30 @@
+{
+  "document_id": "DOC-SAMPLE-001",
+  "document_name": "샘플 RFP 기능 요구사항",
+  "functional_requirements": [
+    {
+      "requirement_id": "FUR-001",
+      "requirement_name": "통합 게시판 관리",
+      "requirement_type": "기능",
+      "requirement_definition": "공지사항과 문의 게시글을 통합 관리한다.",
+      "requirement_detail": "공지사항, FAQ, 문의 게시글을 등록·수정·삭제·조회할 수 있어야 하며, 관리자 권한에 따라 게시글 노출 여부를 관리할 수 있어야 한다.",
+      "source": "RFP p.10"
+    },
+    {
+      "requirement_id": "FUR-002",
+      "requirement_name": "웹 접근성 및 브라우저 호환성",
+      "requirement_type": "기능",
+      "requirement_definition": "웹 화면의 접근성과 호환성을 확보한다.",
+      "requirement_detail": "주요 웹 화면은 웹 접근성 지침과 HTML 표준 문법을 준수하여야 하며, 주요 브라우저에서 정상 동작하여야 한다.",
+      "source": "RFP p.11"
+    }
+  ],
+  "scope_reference_requirements": [
+    {
+      "scope_id": "SCOPE-001",
+      "requirement_name": "공통 권한 적용",
+      "requirement_detail": "관리자 기능은 사용자 권한에 따라 접근을 제어하여야 한다.",
+      "global_scope": true
+    }
+  ]
+}

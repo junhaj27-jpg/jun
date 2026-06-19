@@ -14,6 +14,7 @@ def download_file(
     *,
     file_path: str | None = None,
     s3_key: str | None = None,
+    s3_bucket: str | None = None,
     file_name: str | None = None,
     destination_dir: str | Path | None = None,
     s3_client: Any | None = None,
@@ -39,9 +40,10 @@ def download_file(
 
         if s3_key:
             client = s3_client or create_s3_client(config)
-            if not config.s3_bucket:
+            bucket = s3_bucket or config.s3_bucket
+            if not bucket:
                 return error_result("S3_BUCKET_MISSING", "S3_BUCKET이 설정되지 않았습니다.")
-            client.download_file(config.s3_bucket, s3_key, str(target))
+            client.download_file(bucket, s3_key, str(target))
         elif file_path and file_path.startswith(("http://", "https://")):
             _download_http(file_path, target)
         else:

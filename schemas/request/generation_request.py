@@ -1,7 +1,8 @@
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from config.constants import DOCS_CODES, normalize_docs_cd
 from schemas.common.common_schema import DocsCode, UpdateYn
 from schemas.common.file_schema import FileSn
 
@@ -15,5 +16,13 @@ class GenerationRequest(BaseModel):
     docs_cd: DocsCode
     udt_yn: UpdateYn
     file_list: list[FileSn] = Field(default_factory=list)
-    image_list: list[FileSn] = Field(default_factory=list)
+    image_list: list[str] = Field(default_factory=list)
     etc: dict[str, Any] = Field(default_factory=dict)
+
+    @field_validator("docs_cd", mode="before")
+    @classmethod
+    def validate_docs_cd(cls, value: Any) -> str:
+        normalized = normalize_docs_cd(value)
+        if normalized not in DOCS_CODES:
+            raise ValueError(f"지원하지 않는 docs_cd입니다: {value}")
+        return normalized

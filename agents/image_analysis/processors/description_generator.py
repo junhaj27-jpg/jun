@@ -22,3 +22,17 @@ def build_description(
     purpose = screen.get("analysis", {}).get("purpose") or f"{name} 기능을 제공하는 화면"
     references = len(ux_guides) + len(interface_requirements)
     return f"{purpose}입니다. 관련 UI/UX 및 인터페이스 참고사항 {references}건을 반영합니다."
+
+
+def build_image_request_message(screen: dict[str, Any]) -> str:
+    status = screen["match_status"]
+    name = screen["screen_name"]
+    if status == "IMAGE_ADD_REQUIRED":
+        return f"{name}에 대응하는 화면 이미지 추가가 필요합니다."
+    if status == "UNMAPPED_IMAGE":
+        return f"{name} 이미지는 요구사항과 매칭되지 않은 이미지입니다. 사용 여부 확인이 필요합니다."
+    if status == "IMAGE_MODIFY_REQUIRED":
+        return f"{name} 화면의 변경사항 반영을 위해 이미지 수정이 필요합니다."
+    if status == "IMAGE_DELETE_CANDIDATE":
+        return f"{name} 이미지는 수정 산출물과 매칭되지 않아 삭제 가능 여부 확인이 필요합니다."
+    return ""

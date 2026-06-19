@@ -1,5 +1,6 @@
 from typing import Any
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 
@@ -8,10 +9,12 @@ class CommonRepository:
         self.session = session
 
     def fetch_one(self, query: str, params: dict[str, Any] | None = None) -> Any | None:
-        raise NotImplementedError
+        row = self.session.execute(text(query), params or {}).mappings().first()
+        return dict(row) if row is not None else None
 
     def fetch_all(self, query: str, params: dict[str, Any] | None = None) -> list[Any]:
-        raise NotImplementedError
+        rows = self.session.execute(text(query), params or {}).mappings().all()
+        return [dict(row) for row in rows]
 
     def execute(self, query: str, params: dict[str, Any] | None = None) -> Any:
-        raise NotImplementedError
+        return self.session.execute(text(query), params or {})

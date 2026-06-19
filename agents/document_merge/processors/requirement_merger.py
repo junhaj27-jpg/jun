@@ -23,7 +23,7 @@ def merge_items(
                 merged[index] = {**merged[index], **content}
             else:
                 merged[index] = content
-        elif change_type == "UPDATE":
+        elif change_type == "UPDATE" and target_id is not None:
             merged.append(content)
     return merged
 

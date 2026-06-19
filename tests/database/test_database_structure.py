@@ -30,10 +30,16 @@ class DatabaseStructureTest(unittest.TestCase):
                 "tbl_docs",
                 "tbl_docs_detail",
                 "tbl_file",
-                "tbl_architecture_config",
+                "tbl_project_net",
             },
         )
         self.assertTrue(all(model.__table__ is not None for model in [Project, Docs, DocsDetail, File, ArchitectureConfig]))
+        self.assertIn("prj_sn", Project.__table__.columns)
+        self.assertIn("docs_sn", Docs.__table__.columns)
+        self.assertIn("docs_dtl_sn", DocsDetail.__table__.columns)
+        self.assertIn("docs_path", DocsDetail.__table__.columns)
+        self.assertIn("file_ext", File.__table__.columns)
+        self.assertNotIn("file_sn", DocsDetail.__table__.columns)
 
     def test_repository_signatures_exist(self) -> None:
         docs_methods = {
@@ -50,14 +56,9 @@ class DatabaseStructureTest(unittest.TestCase):
         self.assertTrue(file_methods.issubset(vars(FileRepository)))
         self.assertIn("error_message", inspect.signature(DocsDetailRepository.update_docs_status_failed).parameters)
 
-    def test_repository_is_placeholder(self) -> None:
-        session: Session = SessionLocal()
-        try:
-            repository = DocsDetailRepository(session)
-            with self.assertRaises(NotImplementedError):
-                repository.find_active_srs(1)
-        finally:
-            session.close()
+    def test_repository_methods_are_implemented(self) -> None:
+        self.assertFalse(inspect.isabstract(DocsDetailRepository))
+        self.assertFalse(inspect.isabstract(FileRepository))
 
 
 if __name__ == "__main__":

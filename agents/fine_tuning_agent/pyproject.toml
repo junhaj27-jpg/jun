@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "requirements-gold-agent"
+version = "1.0.0"
+description = "RFP 기능 요구사항을 GOLD 요구사항명세서로 변환하는 SLLM 멀티에이전트 패키지"
+requires-python = ">=3.11"
+dependencies = [
+  "torch", "transformers", "peft", "accelerate", "datasets",
+  "huggingface_hub", "sentence-transformers", "json-repair",
+  "python-dotenv", "tqdm", "numpy", "pandas", "safetensors"
+]
+
+[project.scripts]
+requirements-gold-agent = "requirements_gold_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["requirements_gold_agent*"]

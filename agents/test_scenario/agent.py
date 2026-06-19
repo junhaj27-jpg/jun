@@ -2,10 +2,14 @@
 
 from typing import Any
 
+from agents.test_scenario.prompts import compact_requirement_for_ts
 from agents.test_scenario.processors import (
+    apply_scenario_rules,
+    build_step_detail_list,
     filter_function_requirements,
     generate_scenarios,
     generate_steps,
+    generate_steps_with_llm,
     generate_test_cases,
     refine_scenarios,
     refine_steps,
@@ -44,25 +48,61 @@ class TestScenarioGenerationAgent:
         if not functional:
             return self._failed("TS_FUNCTION_REQUIREMENT_MISSING", "기능 요구사항이 없습니다.")
 
-        scenarios, warnings = generate_scenarios(functional, llm_client=self.llm_client)
-        cases = generate_test_cases(scenarios)
-        steps = generate_steps(cases, interfaces)
-        return self._success(state, scenarios, cases, steps, warnings, {"functional_requirements": functional})
+        compacted_functional = [compact_requirement_for_ts(item) for item in functional]
+        scenarios, warnings = generate_scenarios(compacted_functional, llm_client=self.llm_client)
+        cases, case_warnings = generate_test_cases(scenarios, llm_client=self.llm_client)
+        steps, step_warnings = generate_steps_with_llm(cases, interfaces, llm_client=self.llm_client)
+        warnings.extend(case_warnings)
+        warnings.extend(step_warnings)
+        return self._success(
+            state,
+            scenarios,
+            cases,
+            steps,
+            warnings,
+            {
+                "functional_requirements": functional,
+                "compacted_functional_requirements": compacted_functional,
+            },
+        )
 
     def _update(self, document_merge: dict[str, Any], state: WorkflowState) -> dict[str, Any]:
         artifacts = document_merge.get("integrated_artifact_json_list")
         if not isinstance(artifacts, list) or not artifacts:
             return self._failed("TS_ARTIFACT_MISSING", "integrated_artifact_json_list가 필요합니다.")
 
-        scenarios = _collect_list(artifacts, "scenario_json_list", "scenarios")
-        cases = _collect_list(artifacts, "test_case_json_list", "test_cases")
-        steps = _collect_list(artifacts, "step_json_list", "steps")
+        rule_applied_artifacts, warnings = apply_scenario_rules(
+            [item for item in artifacts if isinstance(item, dict)],
+            llm_client=self.llm_client,
+        )
+        scenarios = _collect_list(rule_applied_artifacts, "scenario_json_list", "scenarios")
+        cases = _collect_list(rule_applied_artifacts, "test_case_json_list", "test_cases")
+        steps = _collect_list(rule_applied_artifacts, "step_json_list", "steps")
         if not scenarios:
-            scenarios = [item for item in artifacts if isinstance(item, dict)]
-        scenarios, warnings = refine_scenarios(scenarios, llm_client=self.llm_client)
-        cases = refine_test_cases(cases) if cases else generate_test_cases(scenarios)
-        steps = refine_steps(steps) if steps else generate_steps(cases, [])
-        return self._success(state, scenarios, cases, steps, warnings, {"source_artifacts": artifacts})
+            scenarios = [item for item in rule_applied_artifacts if isinstance(item, dict)]
+        scenarios, scenario_warnings = refine_scenarios(scenarios, llm_client=self.llm_client)
+        if cases:
+            cases, case_warnings = refine_test_cases(cases, llm_client=self.llm_client)
+        else:
+            cases, case_warnings = generate_test_cases(scenarios, llm_client=self.llm_client)
+        if steps:
+            steps, step_warnings = refine_steps(steps, llm_client=self.llm_client)
+        else:
+            steps, step_warnings = generate_steps(cases, [])
+        warnings.extend(scenario_warnings)
+        warnings.extend(case_warnings)
+        warnings.extend(step_warnings)
+        return self._success(
+            state,
+            scenarios,
+            cases,
+            steps,
+            warnings,
+            {
+                "source_artifacts": artifacts,
+                "scenario_rule_applied_json_list": rule_applied_artifacts,
+            },
+        )
 
     @staticmethod
     def _success(
@@ -79,6 +119,7 @@ class TestScenarioGenerationAgent:
                 "scenario_json_list": scenarios,
                 "test_case_json_list": cases,
                 "step_json_list": steps,
+                "step_detail_json_list": build_step_detail_list(steps),
             },
             "warnings": warnings,
             "errors": [],

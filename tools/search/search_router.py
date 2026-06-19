@@ -4,6 +4,7 @@ from tools.result import ToolResult, error_result, success_result
 from tools.search.rag_search_tool import QdrantSearchClient, rag_search
 from tools.search.search_schema import SearchRequest, SearchTarget
 from tools.search.web_search_tool import WebSearchProvider, web_search
+from tools.vector.embedding_client import embed_text
 
 
 def search(
@@ -16,6 +17,7 @@ def search(
     collection: str | None = None,
     rag_client: QdrantSearchClient | None = None,
     web_provider: WebSearchProvider | None = None,
+    embedding_provider: Any | None = None,
 ) -> ToolResult:
     request_meta: dict[str, Any] = {}
     if isinstance(query, (dict, SearchRequest)):
@@ -48,9 +50,12 @@ def search(
             }
         )
     if target == "RAG":
+        vector_result = _ensure_query_vector(str(query), query_vector, embedding_provider)
+        if not vector_result["success"]:
+            return vector_result
         result = rag_search(
             query,
-            query_vector=query_vector,
+            query_vector=vector_result["data"]["query_vector"],
             filters=filters,
             top_k=top_k,
             collection=collection,
@@ -61,9 +66,10 @@ def search(
         result = web_search(query, filters=filters, top_k=top_k, provider=web_provider)
         return _with_request_meta(result, request_meta)
     if target == "BOTH":
+        vector_result = _ensure_query_vector(str(query), query_vector, embedding_provider)
         rag_result = rag_search(
             query,
-            query_vector=query_vector,
+            query_vector=vector_result["data"]["query_vector"] if vector_result["success"] else None,
             filters=filters,
             top_k=top_k,
             collection=collection,
@@ -103,3 +109,21 @@ def _with_request_meta(result: ToolResult, request_meta: dict[str, Any]) -> Tool
     if result["success"]:
         result["data"]["request"] = request_meta
     return result
+
+
+def _ensure_query_vector(
+    query: str,
+    query_vector: list[float] | None,
+    embedding_provider: Any | None,
+) -> ToolResult:
+    if query_vector:
+        return success_result({"query_vector": query_vector})
+    if embedding_provider is not None:
+        try:
+            return success_result({"query_vector": list(embedding_provider(query))})
+        except Exception as exc:
+            return error_result("EMBEDDING_FAILED", str(exc))
+    embedded = embed_text(query)
+    if not embedded["success"]:
+        return embedded
+    return success_result({"query_vector": embedded["data"]["embedding"]})

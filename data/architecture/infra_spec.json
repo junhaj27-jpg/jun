@@ -1,8 +1,0 @@
-{
-  "middleware_stack": "Apache, Tomcat, Oracle, Redis",
-  "firewall_setting": "DMZ-내부망 간 2차 방화벽 구성 및 특정 포트 차단",
-  "security_auth": "한국은행 세션 검증 전용 인증 모듈 연동",
-  "expected_ccu": 5000,
-  "is_cloud": false,
-  "server_hardware_spec": "Web/WAS: 16vCPU, 64GB / DB: 32vCPU, 128GB NVMe SSD Raid-10"
-}

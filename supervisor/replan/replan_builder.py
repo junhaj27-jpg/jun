@@ -13,13 +13,20 @@ def build_replan(
     *,
     current_round: int,
     max_round: int,
+    target_agent: str | None = None,
+    target_scope: list[str] | None = None,
+    failed_checks: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    target_agents = get_failure_agents(failure_type)
+    target_agents, step_metadata = _extract_targets(
+        failure_type,
+        target_agent=target_agent,
+        target_scope=target_scope,
+        failed_checks=failed_checks,
+    )
     if not target_agents:
         target_agents = _infer_agents_from_failure_type(failure_type)
 
-    agents = ["document_merge_agent"]
-    agents.extend(agent for agent in target_agents if agent != "document_merge_agent")
+    agents = list(target_agents)
     agents.append("validation_agent")
     agents = list(dict.fromkeys(agents))
     if agents[-1] != "validation_agent":
@@ -32,7 +39,40 @@ def build_replan(
         max_round=max_round,
         agents=agents,
         replan_reason=failure_type,
+        require_document_merge_first=False,
+        step_metadata=step_metadata,
     )
+
+
+def _extract_targets(
+    failure_type: str,
+    *,
+    target_agent: str | None,
+    target_scope: list[str] | None,
+    failed_checks: list[dict[str, Any]] | None,
+) -> tuple[list[str], dict[str, dict[str, Any]]]:
+    agents: list[str] = []
+    metadata: dict[str, dict[str, Any]] = {}
+
+    checks = failed_checks or []
+    for check in checks:
+        check_target_agent = check.get("target_agent")
+        if check_target_agent:
+            agent_name = str(check_target_agent)
+            agents.append(agent_name)
+            check_scope = check.get("target_scope") or []
+            if check_scope:
+                metadata.setdefault(agent_name, {})["retry_scope"] = list(check_scope)
+
+    if target_agent:
+        agents.append(target_agent)
+        if target_scope:
+            metadata.setdefault(target_agent, {})["retry_scope"] = list(target_scope)
+
+    if not agents:
+        agents = get_failure_agents(failure_type)
+
+    return list(dict.fromkeys(agents)), metadata
 
 
 def _infer_agents_from_failure_type(failure_type: str) -> list[str]:

@@ -1,7 +1,11 @@
 .env
 __pycache__/
+qdrant_storage/
+storage/
+requests/
+tests/
+old/
 node_modules/
 json_temp/
 mmd_temp/
 output/
-qdrant_storage/

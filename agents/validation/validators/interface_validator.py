@@ -7,6 +7,11 @@ from workflow.state import WorkflowState
 
 
 TARGET = "image_analysis_agent"
+REQUIREMENT_MAPPING_REQUIRED_STATUSES = {
+    "MATCHED",
+    "IMAGE_MODIFY_REQUIRED",
+    "IMAGE_ADD_REQUIRED",
+}
 MATCH_STATUSES = {
     "MATCHED",
     "IMAGE_MODIFY_REQUIRED",
@@ -42,7 +47,10 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
             continue
         if missing_fields(screen, ["screen_id", "screen_name", "description", "match_status"]):
             missing.append(scope)
-        if is_empty(screen.get("matched_requirement_ids")):
+        if (
+            screen.get("match_status") in REQUIREMENT_MAPPING_REQUIRED_STATUSES
+            and is_empty(screen.get("matched_requirement_ids"))
+        ):
             mapping_missing.append(scope)
         if is_empty(screen.get("image_path")) and is_empty(screen.get("image_status")):
             image_missing.append(scope)

@@ -14,9 +14,14 @@ def build_plan(
     max_round: int = 3,
     agents: list[str] | None = None,
     replan_reason: str | None = None,
+    require_document_merge_first: bool = True,
+    step_metadata: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     agent_names = agents or get_execution_agents(docs_cd, udt_yn)
-    if not agent_names or agent_names[0] != "document_merge_agent":
+    if (
+        require_document_merge_first
+        and (not agent_names or agent_names[0] != "document_merge_agent")
+    ):
         raise ValueError("document_merge_agent는 항상 첫 번째 step이어야 합니다.")
     if agent_names[-1] != "validation_agent":
         raise ValueError("validation_agent는 항상 마지막 step이어야 합니다.")
@@ -26,18 +31,20 @@ def build_plan(
         "max_round": max_round,
         "docs_cd": docs_cd,
         "udt_yn": udt_yn,
-        "steps": [
-            {
-                "step": index,
-                "agent": agent_name,
-                "status": "PENDING",
-                "required_output_keys": get_required_output_keys(
-                    agent_name, docs_cd, udt_yn
-                ),
-            }
-            for index, agent_name in enumerate(agent_names, start=1)
-        ],
+        "steps": [],
     }
+    for index, agent_name in enumerate(agent_names, start=1):
+        step: dict[str, Any] = {
+            "step": index,
+            "agent": agent_name,
+            "status": "PENDING",
+            "required_output_keys": get_required_output_keys(
+                agent_name, docs_cd, udt_yn
+            ),
+        }
+        if step_metadata and agent_name in step_metadata:
+            step.update(step_metadata[agent_name])
+        plan["steps"].append(step)
     if replan_reason:
         plan["replan_reason"] = replan_reason
     return plan

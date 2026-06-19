@@ -28,14 +28,14 @@ def rag_search(
         )
 
     settings = settings or get_settings()
-    selected_collection = collection or settings.qdrant_collection
+    selected_collection = collection or settings.alpled_reference_collection
 
     try:
-        qdrant = client or _create_qdrant_client(settings.qdrant_url)
+        qdrant = client or _create_qdrant_client(settings)
         response = qdrant.query_points(
             collection_name=selected_collection,
             query=query_vector,
-            query_filter=filters,
+            query_filter=_to_qdrant_filter(filters),
             limit=top_k,
             with_payload=True,
         )
@@ -61,10 +61,37 @@ def rag_search(
         )
 
 
-def _create_qdrant_client(url: str) -> QdrantSearchClient:
+def _create_qdrant_client(settings: Settings) -> QdrantSearchClient:
     from qdrant_client import QdrantClient
 
-    return QdrantClient(url=url)
+    kwargs = {"url": settings.resolved_qdrant_url}
+    if settings.qdrant_api_key:
+        kwargs["api_key"] = settings.qdrant_api_key
+    return QdrantClient(**kwargs)
+
+
+def _to_qdrant_filter(filters: dict[str, Any] | None) -> Any:
+    if not filters:
+        return None
+    try:
+        from qdrant_client.models import FieldCondition, Filter, MatchAny, MatchValue
+
+        conditions = []
+        for key, value in filters.items():
+            if value is None:
+                continue
+            if isinstance(value, str) and not value.strip():
+                continue
+            if isinstance(value, (list, tuple, set)):
+                values = [item for item in value if item is not None and str(item).strip()]
+                if not values:
+                    continue
+                conditions.append(FieldCondition(key=key, match=MatchAny(any=values)))
+            else:
+                conditions.append(FieldCondition(key=key, match=MatchValue(value=value)))
+        return Filter(must=conditions) if conditions else None
+    except Exception:
+        return filters
 
 
 def _to_rag_result(point: Any) -> dict[str, Any]:

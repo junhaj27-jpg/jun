@@ -1,0 +1,13 @@
+torch
+transformers
+peft
+accelerate
+datasets
+huggingface_hub
+sentence-transformers
+json-repair
+python-dotenv
+tqdm
+numpy
+safetensors
+bitsandbytes

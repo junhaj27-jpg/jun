@@ -33,6 +33,27 @@ class AgentRegistry:
     def run(self, agent_name: str, state: WorkflowState) -> dict[str, Any]:
         return self.get(agent_name)(state)
 
+
+def build_default_agent_registry(
+    *,
+    architecture_config_repository: Any | None = None,
+) -> AgentRegistry:
+    return AgentRegistry(
+        {
+            "document_merge_agent": DocumentMergeAgent().execute,
+            "requirement_generation_agent": RequirementGenerationAgent().execute,
+            "image_analysis_agent": ImageAnalysisAgent().execute,
+            "test_scenario_generation_agent": TestScenarioGenerationAgent().execute,
+            "architecture_analysis_agent": ArchitectureAnalysisAgent(
+                architecture_config_repository=architecture_config_repository,
+            ).execute,
+            "data_structure_design_agent": DataStructureDesignAgent().execute,
+            "mermaid_generation_agent": MermaidGenerationAgent().execute,
+            "validation_agent": ValidationAgent().execute,
+        }
+    )
+
+
 default_agent_registry = AgentRegistry(
     {
         "document_merge_agent": DocumentMergeAgent().execute,

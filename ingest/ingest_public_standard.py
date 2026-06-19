@@ -9,7 +9,7 @@ from tqdm import tqdm
 from dotenv import load_dotenv
 from qdrant_client.models import PointStruct
 
-from rag.qdrant_config import get_client, get_embedder, ensure_collection, COLLECTION_NAME
+from rag.qdrant_config import get_client, get_embedder, ensure_named_collection, ALPLED_REFERENCE_COLLECTION
 
 load_dotenv()
 
@@ -149,13 +149,13 @@ def upsert_payloads(payloads: List[Dict[str, Any]], batch_size: int = 32):
             for vector, payload in zip(vectors, batch)
         ]
 
-        client.upsert(collection_name=COLLECTION_NAME, points=points)
+        client.upsert(collection_name=ALPLED_REFERENCE_COLLECTION, points=points)
 
     print(f"[적재 완료] {len(payloads)}개")
 
 
 def main():
-    ensure_collection(recreate=False)
+    ensure_named_collection(ALPLED_REFERENCE_COLLECTION, recreate=False)
     payloads = ingest_common_standard_xlsx(XLSX_PATH)
     print(f"[추출 완료] 공공표준 chunk 수: {len(payloads)}")
     upsert_payloads(payloads)

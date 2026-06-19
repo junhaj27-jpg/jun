@@ -16,7 +16,7 @@ class WorkflowState(TypedDict, total=False):
 
     # 2. FastAPI Input
     file_list: list[FileSn]
-    image_list: list[FileSn]
+    image_list: list[str]
     etc: dict[str, Any]
 
     # 3. Local Resource
@@ -38,6 +38,13 @@ class WorkflowState(TypedDict, total=False):
     current_round: int
     max_round: int
     supervisor_decision: dict[str, Any] | None
+
+    # 6-1. Supervisor Repair Loop
+    repair_history: list[dict[str, Any]]
+    current_repair_instruction: dict[str, Any] | None
+    repair_round: int
+    max_repair_round: int
+    agent_outputs_before_repair: dict[str, Any]
 
     # 7. Validation
     validation_result: dict[str, Any] | None

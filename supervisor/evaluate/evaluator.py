@@ -23,12 +23,17 @@ def evaluate_step(
     ):
         return {**result, "action": "REDUCE"}
 
-    failure_type = _first_failure_type(validation_result.get("checks", []))
+    failed_checks = _failed_checks(validation_result.get("checks", []))
+    first_failed_check = failed_checks[0] if failed_checks else {}
+    failure_type = first_failed_check.get("failure_type")
     return {
         "success": False,
         "failure_type": failure_type or "VALIDATION_FAILED",
         "message": f"validation_status={validation_status}",
         "action": "REPLAN",
+        "target_agent": first_failed_check.get("target_agent"),
+        "target_scope": first_failed_check.get("target_scope", []),
+        "failed_checks": failed_checks,
     }
 
 
@@ -39,8 +44,5 @@ def _has_high_severity_failure(checks: list[dict[str, Any]]) -> bool:
     )
 
 
-def _first_failure_type(checks: list[dict[str, Any]]) -> str | None:
-    for check in checks:
-        if check.get("status") == "FAIL" and check.get("failure_type"):
-            return str(check["failure_type"])
-    return None
+def _failed_checks(checks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [check for check in checks if check.get("status") == "FAIL"]

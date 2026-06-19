@@ -26,6 +26,7 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
     components = first_list(source, "components")
     relations = first_list(source, "relations")
     isolated = _isolated_components(components, relations)
+    invalid_relations = _invalid_relations(components, relations)
     non_functional_missing = [
         category
         for category in ("security", "performance", "operation", "integration", "deployment")
@@ -36,6 +37,7 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
             make_check("ARCH_SCHEMA_001", "아키텍처 필수 필드 검증", not missing, failure_type="ARCH_SCHEMA_ERROR", message="아키텍처 필수 필드가 누락되었습니다.", target_agent=TARGET, target_scope=missing),
             make_check("ARCH_COMPONENT_001", "컴포넌트 ID 중복 검증", not (duplicates := duplicate_values(components, "component_id", "id", "name")), failure_type="ARCH_COMPONENT_DUPLICATED", message="중복된 컴포넌트 ID가 있습니다.", target_agent=TARGET, target_scope=duplicates),
             make_check("ARCH_RELATION_001", "컴포넌트 관계 검증", bool(relations), failure_type="ARCH_RELATION_MISSING", message="컴포넌트 관계가 없습니다.", target_agent=TARGET),
+            make_check("ARCH_RELATION_002", "컴포넌트 관계 참조 정합성 검증", not invalid_relations, failure_type="ARCH_RELATION_MISSING", message="존재하지 않는 컴포넌트를 참조하는 관계가 있습니다.", target_agent=TARGET, target_scope=invalid_relations),
             make_check("ARCH_COMPONENT_002", "고립 컴포넌트 검증", not isolated, failure_type="ARCH_COMPONENT_ISOLATED", message="관계에 포함되지 않은 컴포넌트가 있습니다.", target_agent=TARGET, target_scope=isolated),
             make_check("ARCH_NFR_001", "비기능 관점 반영 검증", not non_functional_missing, failure_type="ARCH_NON_FUNCTIONAL_MISSING", message="보안/성능/운영/연계/배포 관점 일부가 누락되었습니다.", target_agent=TARGET, target_scope=non_functional_missing, severity="MEDIUM", warning=True),
         ]
@@ -57,6 +59,20 @@ def _isolated_components(components: list[Any], relations: list[Any]) -> list[st
         if value
     }
     return sorted(ids - connected) if len(ids) > 1 else []
+
+
+def _invalid_relations(components: list[Any], relations: list[Any]) -> list[str]:
+    ids = {str(item.get("component_id") or item.get("id") or item.get("name")) for item in components if isinstance(item, dict)}
+    invalid = []
+    for index, relation in enumerate(relations):
+        if not isinstance(relation, dict):
+            invalid.append(str(index))
+            continue
+        source = str(relation.get("source") or relation.get("from") or "")
+        target = str(relation.get("target") or relation.get("to") or "")
+        if source not in ids or target not in ids:
+            invalid.append(str(relation.get("relation_id") or index))
+    return invalid
 
 
 def _contains_category(source: dict[str, Any], category: str) -> bool:

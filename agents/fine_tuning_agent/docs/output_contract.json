@@ -1,0 +1,32 @@
+{
+  "output_type": "GOLD_REQUIREMENT_SPECIFICATION",
+  "document_id": "string",
+  "document_name": "string",
+  "input_type": "RFP_FUNCTIONAL_REQUIREMENTS",
+  "gold_requirement_count": "number",
+  "gold_requirement_specification": [
+    {
+      "requirement_id": "GOLD-001",
+      "requirement_type": "기능",
+      "action_type": "조회/등록/관리/연계/분석/...",
+      "requirement_name": "최종 GOLD 요구사항명",
+      "requirement_detail": "최종 GOLD 요구사항 상세문장",
+      "source": ["FUR-001"],
+      "source_text": "FUR-001; FUR-002",
+      "source_task2_ids": ["T2-001"],
+      "source_atomic_ids": ["FUR-001::A-001"],
+      "processing_type": "KEPT/MERGED/ABSORBED",
+      "merge_basis": "병합·보존 판단 근거",
+      "rag_validation": {
+        "status": "NOT_APPLIED",
+        "evidence": [],
+        "notes": "GOLD 생성 후 RAG 검증 모듈에서 갱신"
+      }
+    }
+  ],
+  "quality": {
+    "status": "PASS/REVIEW_REQUIRED",
+    "fallback_count": "number"
+  },
+  "trace": "운영 추적용 요약"
+}

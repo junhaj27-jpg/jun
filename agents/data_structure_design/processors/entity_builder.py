@@ -4,7 +4,6 @@ from typing import Any
 
 
 DATA_NON_FUNCTIONAL_KEYWORDS = {"데이터", "개인정보", "이력", "권한", "보관"}
-FUNCTION_TYPES = {"기능", "기능 요구사항", "functional", "function"}
 
 
 def filter_data_requirements(items: list[Any]) -> list[dict[str, Any]]:
@@ -14,7 +13,7 @@ def filter_data_requirements(items: list[Any]) -> list[dict[str, Any]]:
             continue
         requirement_type = str(item.get("requirement_type") or "").lower()
         text = _text(item)
-        if requirement_type in FUNCTION_TYPES or any(keyword in text for keyword in DATA_NON_FUNCTIONAL_KEYWORDS):
+        if _is_functional_type(requirement_type) or any(keyword in text for keyword in DATA_NON_FUNCTIONAL_KEYWORDS):
             selected.append(item)
     return selected
 
@@ -56,3 +55,8 @@ def _name(item: dict[str, Any]) -> str:
 
 def _text(item: dict[str, Any]) -> str:
     return str(item.get("detail_text") or item.get("description") or item.get("content") or _name(item))
+
+
+def _is_functional_type(value: Any) -> bool:
+    requirement_type = str(value or "").strip().lower()
+    return requirement_type.startswith("기능") or requirement_type.startswith("functional") or requirement_type == "function"
