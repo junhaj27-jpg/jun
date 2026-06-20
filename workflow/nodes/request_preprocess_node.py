@@ -1,11 +1,11 @@
-# FastAPI 요청 검증, DB 조회, 파일 다운로드 및 WorkflowState 초기화를 수행합니다.
-
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any, Protocol, cast
 from urllib.parse import urlparse
 
 from config.constants import DOCS_CODES, FILE_CODE_RFP, UPDATE_YN_VALUES, normalize_docs_cd
+from config.logging_config import get_logger
+from config.logging_context import bind_state_log_extra
 from config.settings import get_settings
 from database.repositories.docs_detail_repository import DocsDetailRepository
 from database.repositories.file_repository import FileRepository
@@ -15,6 +15,9 @@ from schemas.common.common_schema import DocsCode
 from tools.result import ToolResult
 from tools.storage.downloader import download_file
 from workflow.state import WorkflowState
+
+
+logger = get_logger("workflow.nodes.request_preprocess_node")
 
 
 class ProjectRepositoryProtocol(Protocol):
@@ -63,8 +66,6 @@ def request_preprocess_node(
     state: WorkflowState,
     dependencies: RequestPreprocessDependencies | None = None,
 ) -> WorkflowState:
-    """요청을 검증하고 Supervisor 진입 전 WorkflowState를 구성합니다."""
-
     session = None
     if dependencies is None:
         session = SessionLocal()
@@ -77,8 +78,12 @@ def request_preprocess_node(
 
     result = _initialize_state(state)
     try:
+        _log_info(result, "preprocess_start", "Request preprocessing started")
+        _log_info(result, "preprocess_validate_request", "Validating request payload")
         _validate_request(result)
+        _log_info(result, "preprocess_validate_project", "Validating project")
         _validate_project(result, dependencies.project_repository)
+        _log_info(result, "preprocess_download_files", "Resolving input files")
         file_records = _find_file_sn_records(result["file_list"], dependencies)
         _validate_file_list_policy(result, file_records)
         result["input_file_paths"] = _download_file_records(
@@ -87,14 +92,38 @@ def request_preprocess_node(
         result["base_rfp_path"] = _select_downloaded_rfp_path(
             result["file_list"], file_records, result["input_file_paths"]
         )
+        _log_info(result, "preprocess_download_images", "Resolving input images")
         result["input_image_paths"] = _download_image_paths(result["image_list"], dependencies)
+        _log_info(
+            result,
+            "preprocess_resolve_required_documents",
+            "Resolving prerequisite documents",
+        )
         _resolve_required_documents(result, dependencies)
+        _log_info(result, "preprocess_mark_generating", "Marking document as generating")
         _try_mark_docs_generating(result, dependencies.docs_detail_repository)
+        _log_info(
+            result,
+            "preprocess_complete",
+            "Request preprocessing completed files=%s images=%s",
+            len(result["input_file_paths"]),
+            len(result["input_image_paths"]),
+        )
         return result
     except PreprocessError as exc:
+        _log_warning(
+            result,
+            "preprocess_failed",
+            "Request preprocessing failed code=%s",
+            exc.code,
+        )
         return _to_failed_state(result, dependencies.docs_detail_repository, exc)
     except Exception as exc:
-        message = str(exc) or f"{type(exc).__name__}가 발생했습니다."
+        logger.exception(
+            "Request preprocessing raised an unexpected exception",
+            extra=bind_state_log_extra(result, "preprocess_failed"),
+        )
+        message = str(exc) or f"{type(exc).__name__} raised during preprocessing."
         return _to_failed_state(
             result,
             dependencies.docs_detail_repository,
@@ -148,12 +177,12 @@ def _validate_request(state: WorkflowState) -> None:
     if missing:
         raise PreprocessError(
             "MISSING_REQUIRED_FIELD",
-            f"필수 요청값이 없습니다: {', '.join(missing)}",
+            f"Missing required request fields: {', '.join(missing)}",
         )
     if state["docs_cd"] not in DOCS_CODES:
-        raise PreprocessError("INVALID_DOCS_CD", f"허용되지 않은 docs_cd: {state['docs_cd']}")
+        raise PreprocessError("INVALID_DOCS_CD", f"Unsupported docs_cd: {state['docs_cd']}")
     if state["udt_yn"] not in UPDATE_YN_VALUES:
-        raise PreprocessError("INVALID_UDT_YN", f"허용되지 않은 udt_yn: {state['udt_yn']}")
+        raise PreprocessError("INVALID_UDT_YN", f"Unsupported udt_yn: {state['udt_yn']}")
 
 
 def _validate_project(
@@ -161,7 +190,7 @@ def _validate_project(
     repository: ProjectRepositoryProtocol,
 ) -> None:
     if not repository.exists_project(state["project_sn"]):
-        raise PreprocessError("PROJECT_NOT_FOUND", "프로젝트를 찾을 수 없습니다.")
+        raise PreprocessError("PROJECT_NOT_FOUND", "Project could not be found.")
 
 
 def _resolve_required_documents(
@@ -175,7 +204,7 @@ def _resolve_required_documents(
         if not state["file_list"]:
             raise PreprocessError(
                 "MEETING_FILE_REQUIRED",
-                "수정 모드에는 회의록 file_list가 필요합니다.",
+                "Update mode requires meeting files in file_list.",
             )
         active_doc = (
             dependencies.docs_detail_repository.find_active_srs(project_sn)
@@ -186,13 +215,13 @@ def _resolve_required_documents(
             active_doc,
             dependencies,
             missing_code="EXISTING_OUTPUT_NOT_FOUND",
-            missing_message="수정 기준 기존 산출물을 찾을 수 없습니다.",
+            missing_message="Existing generated document could not be found for update mode.",
         )
         return
 
     if docs_cd == "SRS":
         if not state["base_rfp_path"]:
-            raise PreprocessError("RFP_FILE_REQUIRED", "SRS 신규 생성에는 RFP 파일이 필요합니다.")
+            raise PreprocessError("RFP_FILE_REQUIRED", "SRS generation requires an RFP file.")
         return
 
     active_srs = dependencies.docs_detail_repository.find_active_srs(project_sn)
@@ -200,7 +229,7 @@ def _resolve_required_documents(
         active_srs,
         dependencies,
         missing_code="BASE_REQUIREMENT_JSON_NOT_FOUND",
-        missing_message="프로젝트 기준 요구사항 final JSON(FILE_REQ_DOC_JSON)을 찾을 수 없습니다.",
+        missing_message="Latest requirement JSON could not be found for this project.",
     )
 
     if docs_cd == "DB":
@@ -211,7 +240,7 @@ def _resolve_required_documents(
             active_erd,
             dependencies,
             missing_code="ACTIVE_ERD_NOT_FOUND",
-            missing_message="DB 설계서 생성에 필요한 최신 ERD 산출물을 찾을 수 없습니다.",
+            missing_message="Latest ERD document is required before DB generation.",
         )
     elif docs_cd == "TS":
         active_interface = dependencies.docs_detail_repository.find_active_doc(
@@ -221,13 +250,13 @@ def _resolve_required_documents(
             active_interface,
             dependencies,
             missing_code="ACTIVE_INTERFACE_NOT_FOUND",
-            missing_message="통합시험 시나리오 생성에 필요한 최신 INTERFACE 산출물을 찾을 수 없습니다.",
+            missing_message="Latest INTERFACE document is required before TS generation.",
         )
     elif docs_cd == "INTERFACE" and not state["input_image_paths"]:
         state["warnings"].append(
             {
                 "code": "INTERFACE_IMAGE_LIST_EMPTY",
-                "message": "INTERFACE 신규 생성 요청에 image_list가 없습니다. 후속 이미지 분석 단계에서 실패 또는 보완 요청이 발생할 수 있습니다.",
+                "message": "INTERFACE generation can continue, but image_list is empty.",
             }
         )
 
@@ -243,7 +272,7 @@ def _find_file_sn_records(
     records_by_sn = {_read_value(record, "file_sn"): record for record in records}
     missing = [file_sn for file_sn in file_sn_list if file_sn not in records_by_sn]
     if missing:
-        raise PreprocessError("FILE_NOT_FOUND", f"파일 정보를 찾을 수 없습니다: {missing}")
+        raise PreprocessError("FILE_NOT_FOUND", f"File records could not be found: {missing}")
     return records_by_sn
 
 
@@ -260,12 +289,12 @@ def _validate_file_list_policy(
         return
     if state["docs_cd"] == "SRS":
         if not rfp_file_sns:
-            raise PreprocessError("RFP_FILE_REQUIRED", "SRS 신규 생성에는 RFP 파일이 필요합니다.")
+            raise PreprocessError("RFP_FILE_REQUIRED", "SRS generation requires an RFP file.")
         return
     if rfp_file_sns:
         raise PreprocessError(
             "RFP_FILE_NOT_ALLOWED",
-            f"SRS 외 산출물 신규 생성 요청에는 RFP 파일을 file_list로 전달할 수 없습니다: {rfp_file_sns}",
+            f"RFP files are only allowed for SRS generation: {rfp_file_sns}",
         )
 
 
@@ -297,7 +326,7 @@ def _download_image_paths(
     for image_path in image_list:
         source = str(image_path).strip()
         if not source:
-            raise PreprocessError("IMAGE_PATH_EMPTY", "image_list에 빈 이미지 경로가 포함되어 있습니다.")
+            raise PreprocessError("IMAGE_PATH_EMPTY", "image_list contains an empty path.")
         if source.startswith(("s3://", "http://", "https://")):
             record = {"file_path": source}
         else:
@@ -311,7 +340,7 @@ def _download_active_doc(
     dependencies: RequestPreprocessDependencies,
 ) -> str:
     if docs_detail is None:
-        raise PreprocessError("ACTIVE_DOC_NOT_FOUND", "필수 활성 산출물을 찾을 수 없습니다.")
+        raise PreprocessError("ACTIVE_DOC_NOT_FOUND", "Active document could not be found.")
     docs_path = _read_value(docs_detail, "docs_path") or _read_value(docs_detail, "file_path")
     if docs_path:
         return _download_record(
@@ -324,10 +353,13 @@ def _download_active_doc(
         )
     file_sn = _read_value(docs_detail, "file_sn")
     if file_sn is None:
-        raise PreprocessError("ACTIVE_DOC_FILE_MISSING", "활성 산출물에 docs_path 또는 file_sn이 없습니다.")
+        raise PreprocessError(
+            "ACTIVE_DOC_FILE_MISSING",
+            "Active document is missing both docs_path and file_sn.",
+        )
     file_record = dependencies.file_repository.find_file_by_sn(file_sn)
     if file_record is None:
-        raise PreprocessError("FILE_NOT_FOUND", f"파일 정보를 찾을 수 없습니다: {file_sn}")
+        raise PreprocessError("FILE_NOT_FOUND", f"File record could not be found: {file_sn}")
     return _download_record(file_record, dependencies)
 
 
@@ -368,7 +400,7 @@ def _download_record(
         error = download_result["error"] or {}
         raise PreprocessError(
             str(error.get("code", "DOWNLOAD_FAILED")),
-            str(error.get("message", "파일 다운로드에 실패했습니다.")),
+            str(error.get("message", "File download failed.")),
         )
     return str(download_result["data"]["local_file_path"])
 
@@ -392,7 +424,7 @@ def _to_failed_state(
             state["errors"].append(
                 {
                     "code": "DOCS_STATUS_UPDATE_FAILED",
-                    "message": str(exc) or "산출물 상태 업데이트에 실패했습니다.",
+                    "message": str(exc) or "Failed to update docs status.",
                 }
             )
     return state
@@ -414,7 +446,7 @@ def _try_mark_docs_generating(
         state["warnings"].append(
             {
                 "code": "DOCS_STATUS_UPDATE_FAILED",
-                "message": str(exc) or "산출물 상태 업데이트에 실패했습니다.",
+                "message": str(exc) or "Failed to update docs status.",
             }
         )
 
@@ -423,3 +455,11 @@ def _read_value(record: Any, field_name: str) -> Any:
     if isinstance(record, dict):
         return record.get(field_name)
     return getattr(record, field_name, None)
+
+
+def _log_info(state: WorkflowState, phase: str, message: str, *args: Any) -> None:
+    logger.info(message, *args, extra=bind_state_log_extra(state, phase))
+
+
+def _log_warning(state: WorkflowState, phase: str, message: str, *args: Any) -> None:
+    logger.warning(message, *args, extra=bind_state_log_extra(state, phase))

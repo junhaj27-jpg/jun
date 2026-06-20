@@ -133,12 +133,12 @@ def _fill_srs_template(
             _pick(requirement, "requirement_name"),
             _pick(requirement, "requirement_type"),
             _pick(requirement, "description"),
-            _join(_pick(requirement, "source")),
+            _join_source(_pick(requirement, "source")),
             _join(requirement.get("constraints")),
             _join(_pick(requirement, "priority", default=[])),
             _join(_pick(requirement, "solution", "resolution", "mitigation", "handling_plan", default=[])),
             _join(requirement.get("validation_criteria")),
-            _pick(requirement, "note"),
+            _clean_srs_note(_pick(requirement, "note")),
         ]
         for cell, value in zip(row.cells, values):
             _set_cell(cell, value)
@@ -748,6 +748,21 @@ def _join(value: Any) -> str:
     if isinstance(value, list):
         return _xml_safe_text("\n".join(_to_plain_text(item) for item in value))
     return _to_plain_text(value)
+
+
+def _join_source(value: Any) -> str:
+    if isinstance(value, list):
+        items = [_to_plain_text(item) for item in value]
+    else:
+        text = _to_plain_text(value)
+        items = re.findall(r"[A-Z]{2,5}-\d{2,4}", text) or [text]
+    return _xml_safe_text(",\n".join(item for item in items if item))
+
+
+def _clean_srs_note(value: Any) -> str:
+    text = _to_plain_text(value)
+    text = re.sub(r"\s*(반영|참고)\s*근거\s*:\s*(?:[A-Z]{2,5}-\d{2,4}\s*,?\s*)+\.?", "", text)
+    return _xml_safe_text(text.strip(" /;"))
 
 
 def _to_plain_text(value: Any) -> str:

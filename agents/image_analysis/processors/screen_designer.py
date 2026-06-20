@@ -31,7 +31,9 @@ SCREEN_DETAIL_PROMPT = """
       "no": "number",
       "title": "string",
       "description": "string",
-      "requirement_basis": "string"
+      "requirement_basis": "string",
+      "component_id": "string",
+      "component_bbox": {"x1": "number", "y1": "number", "x2": "number", "y2": "number"}
     }
   ],
   "button_markers": [
@@ -48,12 +50,14 @@ SCREEN_DETAIL_PROMPT = """
 - 관련 유스케이스 ID, 관련 시퀀스도 ID는 절대 생성하지 말고 JSON에도 포함하지 마라.
 - 화면명은 이미지 제목, 메뉴, 파일명 맥락 중 가장 구체적인 이름으로 작성하라.
 - 처리내용은 반드시 화면에 실제로 보이는 UI 영역 하나와 사용자 요구사항 하나 이상을 연결해서 작성하라.
+- component_candidates 또는 OCR 좌표가 있는 경우 처리내용은 반드시 해당 후보의 candidate_id와 bbox를 기준으로 작성하라.
 - process_contents는 기능 영역별로 작성하고, title/description/requirement_basis를 서로 다르게 구체화하라.
 - description에는 사용자가 해당 영역을 조회, 선택, 입력, 실행했을 때 시스템이 수행하는 처리를 한두 문장으로 작성하라.
 - requirement_basis에는 근거가 된 requirement_id와 requirement_name을 포함하라.
 - 같은 화면명만 반복하거나, title/description/requirement_basis를 같은 문장으로 채우지 마라.
 - process_contents의 no와 button_markers의 no는 반드시 1:1로 일치시켜라.
 - 번호 버튼은 텍스트를 많이 가리지 않도록 카드 모서리, 영역 외곽, 여백 근처에 배치하라.
+- component_bbox와 button_markers의 x_ratio, y_ratio는 반드시 0~1 상대 좌표로 작성하라.
 - 프로토타입 이미지에 없는 업무를 과도하게 만들지 마라.
 - 처리내용은 화면 복잡도에 따라 4~8개를 목표로 하되, 실제 기능 영역이 적으면 더 적어도 된다.
 
@@ -62,6 +66,9 @@ SCREEN_DETAIL_PROMPT = """
 
 [UI 관찰 결과]
 {ui_observation}
+
+[컴포넌트 후보]
+{component_candidates}
 
 [UIUX Guide RAG Context]
 {ui_reference_context}
@@ -146,7 +153,10 @@ def ensure_screen_design_content(
     if not str(item.get("screen_overview") or "").strip():
         item["screen_overview"] = _build_screen_overview(item, analysis, related_items)
 
-    process_contents = _normalize_process_contents(item.get("process_contents"))
+    process_contents = _attach_component_metadata(
+        _normalize_process_contents(item.get("process_contents")),
+        _component_candidates(analysis),
+    )
     if len(process_contents) < 2:
         process_contents = build_process_from_observation(analysis, related_items)
     item["process_contents"] = _renumber(process_contents)
@@ -191,6 +201,14 @@ def validate_screen_spec_quality(spec: dict[str, Any]) -> list[str]:
     }
     if process_nos != marker_nos:
         issues.append("처리내용 번호와 버튼 번호가 일치하지 않습니다.")
+    if _component_candidates(spec.get("analysis") if isinstance(spec.get("analysis"), dict) else {}):
+        missing_bbox = [
+            str(item.get("no") or index)
+            for index, item in enumerate(process_contents, start=1)
+            if isinstance(item, dict) and not item.get("component_bbox")
+        ]
+        if missing_bbox:
+            issues.append("컴포넌트 좌표가 없는 처리내용이 있습니다.")
     return issues
 
 
@@ -199,6 +217,10 @@ def build_process_from_observation(
     related_items: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     """UI 관찰 결과 기반으로 처리내용을 구체화합니다."""
+
+    components = _component_candidates(analysis)
+    if components:
+        return _build_process_from_components(components, related_items)
 
     areas = analysis.get("functional_areas", []) if isinstance(analysis.get("functional_areas"), list) else []
     visible_texts = [str(value).strip() for value in analysis.get("visible_texts", []) or [] if str(value).strip()]
@@ -220,6 +242,8 @@ def build_process_from_observation(
                 "title": title,
                 "description": description,
                 "requirement_basis": basis,
+                "component_id": str(area.get("candidate_id") or area.get("component_id") or ""),
+                "component_bbox": area.get("bbox") if isinstance(area.get("bbox"), dict) else {},
             }
         )
 
@@ -235,6 +259,8 @@ def build_process_from_observation(
                 "title": title,
                 "description": f"{title} 항목을 기준으로 사용자가 화면 정보를 확인하고 필요한 업무 처리를 수행합니다.",
                 "requirement_basis": basis,
+                "component_id": "",
+                "component_bbox": {},
             }
         )
     return items
@@ -261,14 +287,17 @@ def build_markers_from_observation(
     for index, process in enumerate(process_contents, start=1):
         marker = marker_by_no.get(index)
         area = areas[index - 1] if index - 1 < len(areas) and isinstance(areas[index - 1], dict) else {}
+        process_bbox = process.get("component_bbox") if isinstance(process.get("component_bbox"), dict) else {}
+        area_bbox = area.get("bbox") if isinstance(area.get("bbox"), dict) else {}
+        bbox = process_bbox or area_bbox
         default_x = 0.12 + ((index - 1) % 3) * 0.36
         default_y = 0.18 + min(index - 1, 6) * 0.11
         markers.append(
             {
                 "no": index,
                 "target_area": str((marker or {}).get("target_area") or area.get("name") or process.get("title") or f"기능 영역 {index}"),
-                "x_ratio": _safe_ratio((marker or {}).get("x_ratio", area.get("x_ratio", default_x)), default_x),
-                "y_ratio": _safe_ratio((marker or {}).get("y_ratio", area.get("y_ratio", default_y)), default_y),
+                "x_ratio": _safe_ratio((marker or {}).get("x_ratio", _bbox_marker_x(bbox, area.get("x_ratio", default_x))), default_x),
+                "y_ratio": _safe_ratio((marker or {}).get("y_ratio", _bbox_marker_y(bbox, area.get("y_ratio", default_y))), default_y),
             }
         )
     return markers
@@ -306,6 +335,7 @@ def _generate_detail(
     prompt = (
         SCREEN_DETAIL_PROMPT.replace("{image_name}", image_name)
         .replace("{ui_observation}", json.dumps(analysis, ensure_ascii=False, indent=2)[:5000])
+        .replace("{component_candidates}", json.dumps(_component_candidates(analysis), ensure_ascii=False, indent=2)[:5000])
         .replace("{ui_reference_context}", ui_reference_context[:6000])
         .replace(
             "{related_requirements}",
@@ -509,6 +539,8 @@ def _normalize_process_contents(raw: Any) -> list[dict[str, Any]]:
                 "title": str(item.get("title") or item.get("name") or f"처리 {index}").strip(),
                 "description": str(item.get("description") or item.get("content") or "").strip(),
                 "requirement_basis": str(item.get("requirement_basis") or item.get("basis") or "").strip(),
+                "component_id": str(item.get("component_id") or item.get("candidate_id") or "").strip(),
+                "component_bbox": item.get("component_bbox") if isinstance(item.get("component_bbox"), dict) else {},
             }
         )
     return normalized
@@ -536,5 +568,205 @@ def _analysis_names(analysis: dict[str, Any]) -> list[str]:
 def _safe_ratio(value: Any, default: float) -> float:
     try:
         return max(0.03, min(0.97, float(value)))
+    except Exception:
+        return default
+
+
+def _component_candidates(analysis: dict[str, Any]) -> list[dict[str, Any]]:
+    candidates = analysis.get("component_candidates")
+    if isinstance(candidates, list) and candidates:
+        return [item for item in candidates if isinstance(item, dict)]
+    areas = analysis.get("functional_areas")
+    if not isinstance(areas, list):
+        return []
+    normalized = []
+    for index, area in enumerate(areas, start=1):
+        if not isinstance(area, dict):
+            continue
+        normalized.append(
+            {
+                "candidate_id": str(area.get("candidate_id") or area.get("component_id") or f"AREA-{index:03d}"),
+                "component_name": str(area.get("component_name") or area.get("name") or f"기능 영역 {index}"),
+                "component_type": str(area.get("component_type") or area.get("type") or "unknown"),
+                "texts": area.get("visible_texts") if isinstance(area.get("visible_texts"), list) else [],
+                "bbox": area.get("bbox") if isinstance(area.get("bbox"), dict) else {},
+                "x_ratio": area.get("x_ratio"),
+                "y_ratio": area.get("y_ratio"),
+            }
+        )
+    return normalized
+
+
+def _build_process_from_components(
+    components: list[dict[str, Any]],
+    related_items: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    items = []
+    for index, component in enumerate(_rank_components_for_process(components), start=1):
+        title = _component_title(component, index)
+        basis = _format_requirement_basis(related_items[(index - 1) % len(related_items)]) if related_items else "관련 요구사항"
+        items.append(
+            {
+                "no": index,
+                "title": title,
+                "description": _component_description(component, title),
+                "requirement_basis": basis,
+                "component_id": str(component.get("candidate_id") or ""),
+                "component_bbox": component.get("bbox") if isinstance(component.get("bbox"), dict) else {},
+            }
+        )
+    return items
+
+
+def _attach_component_metadata(
+    process_contents: list[dict[str, Any]],
+    components: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not process_contents or not components:
+        return process_contents
+    by_id = {str(item.get("candidate_id") or ""): item for item in components if isinstance(item, dict)}
+    enriched = []
+    for process in process_contents:
+        item = dict(process)
+        component = by_id.get(str(item.get("component_id") or ""))
+        if component is None:
+            component = _find_component_for_process(item, components)
+        if component is not None:
+            item.setdefault("component_id", str(component.get("candidate_id") or ""))
+            if not item.get("component_bbox") and isinstance(component.get("bbox"), dict):
+                item["component_bbox"] = component["bbox"]
+        enriched.append(item)
+    return enriched
+
+
+def _find_component_for_process(
+    process: dict[str, Any],
+    components: list[dict[str, Any]],
+) -> dict[str, Any] | None:
+    title = _normalize_match_text(process.get("title"))
+    description = _normalize_match_text(process.get("description"))
+    best: tuple[int, dict[str, Any]] | None = None
+    for component in components:
+        component_text = _normalize_match_text(
+            [
+                component.get("component_name"),
+                component.get("texts"),
+                component.get("component_type"),
+            ]
+        )
+        score = 0
+        for token in _match_tokens(title):
+            if token in component_text:
+                score += 3
+        for token in _match_tokens(description):
+            if token in component_text:
+                score += 1
+        if score and (best is None or score > best[0]):
+            best = (score, component)
+    return best[1] if best else None
+
+
+def _rank_components_for_process(components: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    meaningful = []
+    for component in components:
+        texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
+        name = str(component.get("component_name") or "").strip()
+        if not texts and not name:
+            continue
+        meaningful.append(component)
+    meaningful.sort(
+        key=lambda item: (
+            _component_priority(str(item.get("component_type") or "")),
+            float(item.get("y_ratio") or 0.5),
+            float(item.get("x_ratio") or 0.5),
+        )
+    )
+    return meaningful[:8]
+
+
+def _component_priority(component_type: str) -> int:
+    order = {
+        "search_filter": 1,
+        "form": 2,
+        "input": 2,
+        "table": 3,
+        "card": 4,
+        "chart": 4,
+        "button": 5,
+        "menu": 6,
+        "content": 7,
+    }
+    return order.get(component_type, 9)
+
+
+def _normalize_match_text(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, (list, tuple, set)):
+        return " ".join(_normalize_match_text(item) for item in value)
+    if isinstance(value, dict):
+        return " ".join(_normalize_match_text(item) for item in value.values())
+    return str(value).lower()
+
+
+def _match_tokens(value: Any) -> list[str]:
+    stopwords = {
+        "화면",
+        "영역",
+        "사용자",
+        "시스템",
+        "업무",
+        "처리",
+        "정보",
+        "확인",
+        "관련",
+        "요소",
+    }
+    return [
+        token
+        for token in re.findall(r"[가-힣A-Za-z0-9_]{2,}", _normalize_match_text(value))
+        if token not in stopwords
+    ]
+
+
+def _component_title(component: dict[str, Any], index: int) -> str:
+    name = str(component.get("component_name") or "").strip()
+    if name:
+        return name
+    texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
+    return " ".join(texts[:4]) or f"화면 요소 {index}"
+
+
+def _component_description(component: dict[str, Any], title: str) -> str:
+    component_type = str(component.get("component_type") or "unknown")
+    texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
+    text_clause = f" 화면 표시 텍스트: {', '.join(texts[:6])}." if texts else ""
+    base = {
+        "button": f"사용자가 {title} 요소를 선택하면 시스템은 해당 화면의 관련 업무 처리를 실행합니다.",
+        "input": f"사용자가 {title} 항목에 값을 입력하거나 선택하면 시스템은 입력값을 후속 처리 조건으로 활용합니다.",
+        "search_filter": f"사용자가 {title} 영역에서 조건을 입력하고 조회하면 시스템은 조건에 맞는 정보를 선별하여 제공합니다.",
+        "table": f"시스템은 {title} 영역에서 업무 대상 정보를 행과 열 구조로 제공하고 사용자가 항목을 확인하거나 선택할 수 있도록 합니다.",
+        "card": f"시스템은 {title} 영역에서 핵심 현황과 요약 정보를 카드 형태로 제공합니다.",
+        "menu": f"사용자가 {title} 항목을 선택하면 시스템은 관련 업무 화면으로 접근할 수 있도록 내비게이션을 제공합니다.",
+        "form": f"사용자가 {title} 영역에서 업무 정보를 입력하면 시스템은 입력 항목의 완전성과 형식을 확인합니다.",
+        "chart": f"시스템은 {title} 영역에서 업무 현황과 추이를 시각적으로 제공합니다.",
+    }.get(component_type, f"사용자는 {title} 영역에서 화면 정보를 확인하고 관련 업무를 수행합니다.")
+    return base + text_clause
+
+
+def _bbox_marker_x(bbox: dict[str, Any], default: Any) -> Any:
+    try:
+        x1 = float(bbox.get("x1"))
+        x2 = float(bbox.get("x2"))
+        return min(0.97, max(0.03, x2 - 0.015 if x2 > x1 else (x1 + x2) / 2))
+    except Exception:
+        return default
+
+
+def _bbox_marker_y(bbox: dict[str, Any], default: Any) -> Any:
+    try:
+        y1 = float(bbox.get("y1"))
+        y2 = float(bbox.get("y2"))
+        return min(0.97, max(0.03, y1 + 0.015 if y2 > y1 else (y1 + y2) / 2))
     except Exception:
         return default

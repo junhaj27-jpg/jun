@@ -3,10 +3,15 @@
 from collections.abc import Callable
 from dataclasses import dataclass
 
+from config.logging_config import get_logger
+from config.logging_context import bind_state_log_extra
 from config.settings import Settings
 from tools.result import ToolResult
 from tools.storage.cleanup_manager import cleanup_workflow_resources
 from workflow.state import WorkflowState
+
+
+logger = get_logger("workflow.nodes.cleanup_node")
 
 
 @dataclass(frozen=True)
@@ -22,6 +27,10 @@ def cleanup_node(
     """최종 산출물은 보존하고 workflow 임시 파일만 정리합니다."""
 
     dependencies = dependencies or CleanupDependencies()
+    logger.info(
+        "Cleanup started",
+        extra=bind_state_log_extra(state, "cleanup_start"),
+    )
     result = dependencies.cleanup_manager(state, settings=dependencies.settings)
     state["cleanup_result"] = result["data"] if result["success"] else result["error"]
     if not result["success"]:
@@ -33,5 +42,14 @@ def cleanup_node(
                 "message": error.get("message", "임시 파일 정리에 실패했습니다."),
                 "details": error.get("details"),
             }
+        )
+        logger.warning(
+            "Cleanup completed with warnings",
+            extra=bind_state_log_extra(state, "cleanup_failed"),
+        )
+    else:
+        logger.info(
+            "Cleanup completed",
+            extra=bind_state_log_extra(state, "cleanup_complete"),
         )
     return state

@@ -1,7 +1,7 @@
-# 산출물 생성의 계획, 평가, 재계획 및 결과 취합 과정을 총괄합니다.
-
 from typing import Any
 
+from config.logging_config import get_logger
+from config.logging_context import bind_state_log_extra
 from supervisor.evaluate.evaluator import evaluate_step
 from supervisor.plan.plan_builder import build_plan
 from supervisor.reduce.reduce_builder import reduce_outputs
@@ -9,6 +9,9 @@ from supervisor.registry.agent_registry import AgentRegistry, default_agent_regi
 from supervisor.replan.replan_builder import build_replan
 from supervisor.replan.retry_policy import can_replan, can_retry_step, is_terminal_failure
 from workflow.state import WorkflowState
+
+
+logger = get_logger("supervisor.generation_supervisor")
 
 
 class GenerationSupervisor:
@@ -23,16 +26,47 @@ class GenerationSupervisor:
             round_number=1,
             max_round=state["max_round"],
         )
+        logger.info(
+            "Initial supervisor plan built",
+            extra=bind_state_log_extra(state, "supervisor_plan_built", round=1),
+        )
 
         while True:
             state["current_round"] = state["execution_plan"]["round"]
+            logger.info(
+                "Supervisor round started round=%s",
+                state["current_round"],
+                extra=bind_state_log_extra(
+                    state,
+                    "supervisor_round_start",
+                    round=state["current_round"],
+                ),
+            )
             failure = self._execute_plan(state)
             if failure is None:
+                logger.info(
+                    "Supervisor reducing agent outputs",
+                    extra=bind_state_log_extra(
+                        state,
+                        "supervisor_reduce_outputs",
+                        round=state["current_round"],
+                    ),
+                )
                 return reduce_outputs(state)
             if failure.get("action") == "END":
                 return self._mark_failed(state, failure)
             if not can_replan(state["current_round"], state["max_round"]):
                 return self._mark_failed(state, failure)
+            logger.warning(
+                "Supervisor replanning failure_type=%s",
+                failure.get("failure_type"),
+                extra=bind_state_log_extra(
+                    state,
+                    "supervisor_replan",
+                    round=state["current_round"],
+                    agent=failure.get("agent"),
+                ),
+            )
             state["execution_plan"] = build_replan(
                 state["docs_cd"],
                 state["udt_yn"],
@@ -51,6 +85,18 @@ class GenerationSupervisor:
             while True:
                 step["status"] = "RUNNING"
                 step["retry_count"] = retry_count
+                logger.info(
+                    "Supervisor step started agent=%s retry=%s",
+                    agent_name,
+                    retry_count,
+                    extra=bind_state_log_extra(
+                        state,
+                        "supervisor_step_start",
+                        round=state["current_round"],
+                        agent=agent_name,
+                        step=step.get("step"),
+                    ),
+                )
                 try:
                     output = self.agent_registry.run(agent_name, state)
                 except Exception as exc:
@@ -72,6 +118,17 @@ class GenerationSupervisor:
                 )
                 if evaluation["success"]:
                     step["status"] = "DONE"
+                    logger.info(
+                        "Supervisor step completed agent=%s",
+                        agent_name,
+                        extra=bind_state_log_extra(
+                            state,
+                            "supervisor_step_done",
+                            round=state["current_round"],
+                            agent=agent_name,
+                            step=step.get("step"),
+                        ),
+                    )
                     break
 
                 evaluation = {
@@ -89,6 +146,18 @@ class GenerationSupervisor:
                     retry_count += 1
                     step["status"] = "RETRY"
                     step["retry_count"] = retry_count
+                    logger.warning(
+                        "Supervisor step retry agent=%s retry=%s",
+                        agent_name,
+                        retry_count,
+                        extra=bind_state_log_extra(
+                            state,
+                            "supervisor_step_retry",
+                            round=state["current_round"],
+                            agent=agent_name,
+                            step=step.get("step"),
+                        ),
+                    )
                     continue
                 step["status"] = "FAILED"
                 return evaluation
@@ -109,10 +178,21 @@ class GenerationSupervisor:
     def _mark_failed(state: WorkflowState, failure: dict[str, Any]) -> WorkflowState:
         state["status"] = "FAILED"
         state["next_action"] = "END"
+        logger.error(
+            "Supervisor failed failure_type=%s",
+            failure.get("failure_type") or "SUPERVISOR_FAILED",
+            extra=bind_state_log_extra(
+                state,
+                "supervisor_failed",
+                round=state.get("current_round"),
+                agent=failure.get("agent"),
+                step=failure.get("step"),
+            ),
+        )
         state["errors"].append(
             {
                 "code": failure.get("failure_type") or "SUPERVISOR_FAILED",
-                "message": failure.get("message") or "Supervisor 실행에 실패했습니다.",
+                "message": failure.get("message") or "Supervisor execution failed.",
             }
         )
         return state

@@ -114,15 +114,16 @@ def enrich_gold_requirements_parallel(
                 {
                     "role": "system",
                     "content": (
-                        "GOLD 요구사항은 그대로 유지하고 RAG 근거에서 supplemental SRS columns만 작성하세요. "
+                        "GOLD 요구사항은 그대로 유지하고 관련 근거에서 supplemental SRS columns만 작성하세요. "
                         "CBD 기준에서 제약사항은 요구사항이 수행되기 위하여 필요로 하는 법적 또는 기술적인 조건입니다. "
                         "검수기준은 요구사항을 구현한 후 구현에 대한 품질을 정량적 또는 정성적으로 측정할 수 있는 기준입니다. "
-                        "rag_results.constraints 근거는 constraints 작성에 우선 사용하고, "
-                        "rag_results.validation_criteria 근거는 validation_criteria 작성에 우선 사용하세요. "
+                        "입력 근거의 constraints 항목은 constraints 작성에 우선 사용하고, "
+                        "입력 근거의 validation_criteria 항목은 validation_criteria 작성에 우선 사용하세요. "
                         "검수기준은 제약사항에서만 파생하지 말고 검수/인수/품질측정 근거가 있으면 그 내용을 직접 반영하세요. "
-                        "note에는 제약사항과 검수기준을 그렇게 작성한 이유를 한 문장으로 간단히 작성하세요. "
+                        "constraints와 validation_criteria는 자연스러운 한국어 문장으로 작성하고, 명사형 라벨이나 문장 중간에서 끝내지 마세요. "
+                        "note에는 제약사항과 검수기준에 반영한 비기능 요구사항 근거의 종류만 한 문장으로 간단히 작성하고, 요구사항 ID는 쓰지 마세요. "
                         "단, 기존 note 또는 merge_basis를 대체하지 말고 추가 설명만 작성하세요. "
-                        "RAG 원문을 그대로 복사하지 말고 기능 요구사항에 직접 적용되는 문장으로 정제하세요. "
+                        "검색 근거 원문을 그대로 복사하지 말고 기능 요구사항에 직접 적용되는 문장으로 정제하세요. "
                         "계약, 하도급, 대금, 제안서 작성, 사업관리 일반사항은 제외하세요. "
                         "requirement_id, requirement_name, requirement_type, description, source, note는 수정하지 마세요. "
                         "반환 JSON 키는 constraints, validation_criteria, note, rag_validation만 허용합니다."
@@ -302,6 +303,9 @@ def _constraint_sentence(text: str) -> str:
     sentence = _pick_constraint_clause(cleaned)
     if not sentence:
         return ""
+    sentence = _strip_evidence_label(sentence)
+    if not sentence or _is_only_evidence_label(sentence):
+        return ""
     if _is_mostly_ascii(sentence):
         return sentence if sentence.endswith((".", "!", "?")) else f"{sentence}."
     sentence = _ensure_requirement_style(sentence)
@@ -342,21 +346,48 @@ def _build_rag_note(
         return ""
     reasons: list[str] = []
     if constraints:
-        reasons.append("관련 비기능/RAG 근거에서 법적 또는 기술적 조건이 확인되어 제약사항에 반영함")
+        reasons.append("관련 비기능 요구사항의 법적·기술적 조건을 제약사항에 반영함")
     if validation_criteria:
         if validation_results:
-            reasons.append("검수/품질측정 근거가 확인되어 검수기준에 반영함")
+            reasons.append("관련 비기능 요구사항의 품질 측정 기준을 검수기준에 반영함")
         else:
-            reasons.append("제약사항을 구현 후 확인 가능한 품질 기준으로 변환하여 검수기준에 반영함")
-    source_ids = _evidence_source_ids(_merge_result_lists(constraint_results, validation_results))
-    suffix = f" 참고 근거: {', '.join(source_ids[:3])}." if source_ids else ""
-    return f"RAG 보강 근거: {'; '.join(reasons)}.{suffix}"
+            reasons.append("제약사항을 구현 후 확인 가능한 기준으로 정리하여 검수기준에 반영함")
+    return f"{'; '.join(reasons)}."
 
 
 def _clean_evidence_text(text: str) -> str:
     text = re.sub(r"\s+", " ", str(text or "")).strip()
+    text = re.sub(r"^\[[A-Z]{2,5}-\d{2,4}\]\s*", "", text)
     text = re.sub(r"^[A-Z]{2,5}-\d{2,4}\s*[-:]\s*", "", text)
     return text
+
+
+def _strip_evidence_label(text: str) -> str:
+    text = re.sub(r"^\[[A-Z]{2,5}-\d{2,4}\]\s*", "", str(text or "").strip())
+    text = re.sub(r"^[A-Z]{2,5}-\d{2,4}\s*[-:]\s*", "", text)
+    text = re.sub(r"^[^:：]{1,30}\s*유형\s*[:：]\s*", "", text)
+    return text.strip(" .")
+
+
+def _is_only_evidence_label(text: str) -> bool:
+    return bool(
+        re.fullmatch(
+            r"(일반사항|제약사항|검수기준|성능|품질|보안)(을|를)?\s*(준수)?(해야 한다|하여야 한다|한다)?",
+            str(text or "").strip().rstrip("."),
+        )
+    )
+
+
+def _is_metadata_clause(text: str) -> bool:
+    value = str(text or "").strip().rstrip(".")
+    if _is_only_evidence_label(value):
+        return True
+    metadata_patterns = [
+        r"^(일반사항|제약사항|검수기준|성능|품질|보안)\s*유형\s*[:：]?\s*(일반사항|제약사항|검수기준|성능|품질|보안)?(해야 한다|하여야 한다|한다)?$",
+        r"^(요구사항\s*)?(분류|유형|구분|출처|명칭|ID|아이디)\s*[:：]",
+        r"^\[[A-Z]{2,5}-\d{2,4}\]\s*(요구사항\s*)?(분류|유형|구분|출처|명칭|ID|아이디)",
+    ]
+    return any(re.search(pattern, value) for pattern in metadata_patterns)
 
 
 def _pick_constraint_clause(text: str) -> str:
@@ -383,7 +414,13 @@ def _pick_constraint_clause(text: str) -> str:
         "호환",
         "검수",
     ]
-    candidates = [clause.strip(" .") for clause in clauses if len(clause.strip()) >= 12]
+    candidates = [
+        cleaned
+        for clause in clauses
+        if (cleaned := _strip_evidence_label(clause))
+        and len(cleaned) >= 12
+        and not _is_metadata_clause(cleaned)
+    ]
     for clause in candidates:
         if any(keyword.lower() in clause.lower() for keyword in priority_keywords):
             return clause
@@ -394,9 +431,52 @@ def _ensure_requirement_style(text: str) -> str:
     text = text.strip().rstrip(".")
     if _is_mostly_ascii(text):
         return text if text.endswith((".", "!", "?")) else f"{text}."
-    if re.search(r"(해야 한다|하여야 한다|되어야 한다|한다|함)$", text):
+    if re.search(r"(해야 한다|하여야 한다|되어야 한다|한다|함|않아야 한다|금지한다)$", text):
         return f"{text}."
-    return f"{text}해야 한다."
+    if _looks_like_requirement_noun_phrase(text):
+        return f"{text} 기준을 준수해야 한다."
+    return f"{text} 관련 기준을 준수해야 한다."
+
+
+def _looks_like_requirement_noun_phrase(text: str) -> bool:
+    text = text.strip()
+    noun_endings = (
+        "현행화",
+        "표준화",
+        "고도화",
+        "최적화",
+        "자동화",
+        "관리",
+        "운영",
+        "처리",
+        "연계",
+        "통합",
+        "구축",
+        "지원",
+        "제공",
+        "확보",
+        "보장",
+        "보호",
+        "보안",
+        "품질",
+        "성능",
+        "정책",
+        "기준",
+        "요건",
+        "요구사항",
+        "절차",
+        "체계",
+        "방안",
+        "구성",
+        "설정",
+        "설계",
+        "준수",
+        "호환성",
+        "접근성",
+        "연속성",
+        "메타데이터",
+    )
+    return text.endswith(noun_endings)
 
 
 def _normalize_constraints(value: Any) -> list[str]:
@@ -429,6 +509,9 @@ def _clean_validation_text(text: str) -> str:
     text = _clean_evidence_text(text).rstrip(".")
     if not text:
         return ""
+    text = _pick_validation_clause(text)
+    if not text:
+        return ""
     if len(text) > 180:
         text = text[:177].rstrip() + "..."
     if _is_mostly_ascii(text):
@@ -436,6 +519,22 @@ def _clean_validation_text(text: str) -> str:
     if not re.search(r"(확인한다|점검한다|검증한다|측정한다|테스트한다)$", text):
         text = f"{text} 여부를 점검한다"
     return text
+
+
+def _pick_validation_clause(text: str) -> str:
+    clauses = re.split(r"(?<=[.!?。])\s+|[•ㅇ○]\s*|\n+| - ", text)
+    candidates = [
+        cleaned
+        for clause in clauses
+        if (cleaned := _strip_evidence_label(clause))
+        and len(cleaned) >= 12
+        and not _is_metadata_clause(cleaned)
+    ]
+    validation_keywords = ["검수", "검증", "확인", "점검", "측정", "테스트", "품질", "성능", "응답", "정량", "정성"]
+    for clause in candidates:
+        if any(keyword in clause for keyword in validation_keywords):
+            return clause
+    return candidates[0] if candidates else ""
 
 
 def _clean_note_text(value: Any) -> str:

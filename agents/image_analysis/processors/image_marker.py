@@ -134,6 +134,8 @@ def _normalize_process_contents(
                 "title": str(item.get("title") or item.get("name") or f"처리 {index}"),
                 "description": str(item.get("description") or item.get("content") or ""),
                 "requirement_basis": str(item.get("requirement_basis") or item.get("basis") or _basis(screen)),
+                "component_id": str(item.get("component_id") or item.get("candidate_id") or ""),
+                "component_bbox": item.get("component_bbox") if isinstance(item.get("component_bbox"), dict) else {},
             }
             for index, item in enumerate(raw_process, start=1)
             if isinstance(item, dict)
@@ -197,6 +199,9 @@ def _normalize_button_markers(
         marker = marker_by_no.get(index)
         area = areas[index - 1] if index - 1 < len(areas) else {}
         fallback_x, fallback_y = FALLBACK_POSITIONS[(index - 1) % len(FALLBACK_POSITIONS)]
+        process_bbox = process.get("component_bbox") if isinstance(process.get("component_bbox"), dict) else {}
+        area_bbox = area.get("bbox") if isinstance(area.get("bbox"), dict) else {}
+        bbox = process_bbox or area_bbox
         normalized.append(
             {
                 "no": index,
@@ -206,14 +211,29 @@ def _normalize_button_markers(
                     or process.get("title")
                     or f"기능 영역 {index}"
                 ),
-                "x_ratio": _ratio((marker or {}).get("x_ratio", area.get("x_ratio", fallback_x)), fallback_x),
-                "y_ratio": _ratio((marker or {}).get("y_ratio", area.get("y_ratio", fallback_y)), fallback_y),
+                "x_ratio": _ratio((marker or {}).get("x_ratio", _bbox_marker_x(bbox, area.get("x_ratio", fallback_x))), fallback_x),
+                "y_ratio": _ratio((marker or {}).get("y_ratio", _bbox_marker_y(bbox, area.get("y_ratio", fallback_y))), fallback_y),
             }
         )
     return normalized
 
 
 def _functional_areas(analysis: dict[str, Any]) -> list[dict[str, Any]]:
+    components = analysis.get("component_candidates")
+    if isinstance(components, list) and components:
+        return [
+            {
+                "name": str(item.get("component_name") or item.get("name") or f"컴포넌트 {index}"),
+                "visible_texts": item.get("texts") if isinstance(item.get("texts"), list) else [],
+                "area_role": str(item.get("reason") or ""),
+                "component_type": str(item.get("component_type") or "unknown"),
+                "bbox": item.get("bbox") if isinstance(item.get("bbox"), dict) else {},
+                "x_ratio": item.get("x_ratio"),
+                "y_ratio": item.get("y_ratio"),
+            }
+            for index, item in enumerate(components, start=1)
+            if isinstance(item, dict)
+        ]
     value = analysis.get("functional_areas")
     if isinstance(value, list):
         return [item for item in value if isinstance(item, dict)]
@@ -327,3 +347,21 @@ def _draw_number_marker(draw: Any, x: int, y: int, radius: int, no: int, font: A
     text_w = bbox[2] - bbox[0]
     text_h = bbox[3] - bbox[1]
     draw.text((x - text_w / 2, y - text_h / 2 - radius * 0.04), label, fill=(255, 255, 255, 255), font=font)
+
+
+def _bbox_marker_x(bbox: dict[str, Any], default: Any) -> Any:
+    try:
+        x1 = float(bbox.get("x1"))
+        x2 = float(bbox.get("x2"))
+        return _clamp(x2 - 0.015 if x2 > x1 else (x1 + x2) / 2, 0.03, 0.97)
+    except Exception:
+        return default
+
+
+def _bbox_marker_y(bbox: dict[str, Any], default: Any) -> Any:
+    try:
+        y1 = float(bbox.get("y1"))
+        y2 = float(bbox.get("y2"))
+        return _clamp(y1 + 0.015 if y2 > y1 else (y1 + y2) / 2, 0.03, 0.97)
+    except Exception:
+        return default

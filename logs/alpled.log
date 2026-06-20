@@ -1,0 +1,307 @@
+2026-06-20 19:38:05,330 | INFO | main | request_id=f8e3e911-43a0-41d1-bed9-797df934ff4b | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:05,343 | INFO | api.generation_router | request_id=f8e3e911-43a0-41d1-bed9-797df934ff4b | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[101,102],"image_list":["201"],"etc":{"debug":true,"trace":"qa-run","request_id":"f8e3e911-43a0-41d1-bed9-797df934ff4b"}}
+2026-06-20 19:38:05,356 | INFO | api.generation_router | request_id=f8e3e911-43a0-41d1-bed9-797df934ff4b | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:05,358 | INFO | api.generation_router | request_id=f8e3e911-43a0-41d1-bed9-797df934ff4b | phase=generate_workflow_invoke_complete | Generation workflow invocation completed status=DONE
+2026-06-20 19:38:05,360 | INFO | main | request_id=f8e3e911-43a0-41d1-bed9-797df934ff4b | phase=http_request_complete | HTTP request completed status=202
+2026-06-20 19:38:05,365 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 202 Accepted"
+2026-06-20 19:38:05,390 | INFO | main | request_id=1c19964a-96f5-4998-992e-bf532a1bb7d3 | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:05,392 | INFO | api.generation_router | request_id=1c19964a-96f5-4998-992e-bf532a1bb7d3 | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[],"image_list":[],"etc":{"request_id":"1c19964a-96f5-4998-992e-bf532a1bb7d3"}}
+2026-06-20 19:38:05,394 | INFO | api.generation_router | request_id=1c19964a-96f5-4998-992e-bf532a1bb7d3 | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:05,398 | ERROR | api.generation_router | request_id=1c19964a-96f5-4998-992e-bf532a1bb7d3 | phase=generate_workflow_invoke_failed | Generation workflow invocation failed
+Traceback (most recent call last):
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:05,406 | ERROR | main | request_id=1c19964a-96f5-4998-992e-bf532a1bb7d3 | phase=http_request_unhandled_exception | HTTP request raised an unhandled exception
+Traceback (most recent call last):
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\main.py", line 46, in request_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1574, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 2012, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1594, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1183, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 143, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 129, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 683, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 337, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:05,421 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 500 Internal Server Error"
+2026-06-20 19:38:05,434 | INFO | main | request_id=9744a81c-610e-49da-9ce4-ddd7edd4ba82 | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:05,437 | WARNING | main | request_id=9744a81c-610e-49da-9ce4-ddd7edd4ba82 | phase=http_request_validation_failed | HTTP request validation failed
+2026-06-20 19:38:05,437 | INFO | main | request_id=9744a81c-610e-49da-9ce4-ddd7edd4ba82 | phase=http_request_complete | HTTP request completed status=422
+2026-06-20 19:38:05,439 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 422 Unprocessable Entity"
+2026-06-20 19:38:27,954 | INFO | main | request_id=2c8e4690-3f79-41a3-b78c-1ba081fbc14c | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:27,967 | INFO | api.generation_router | request_id=2c8e4690-3f79-41a3-b78c-1ba081fbc14c | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[101,102],"image_list":["201"],"etc":{"debug":true,"trace":"qa-run","request_id":"2c8e4690-3f79-41a3-b78c-1ba081fbc14c"}}
+2026-06-20 19:38:27,969 | INFO | api.generation_router | request_id=2c8e4690-3f79-41a3-b78c-1ba081fbc14c | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:27,971 | INFO | api.generation_router | request_id=2c8e4690-3f79-41a3-b78c-1ba081fbc14c | phase=generate_workflow_invoke_complete | Generation workflow invocation completed status=DONE
+2026-06-20 19:38:27,973 | INFO | main | request_id=2c8e4690-3f79-41a3-b78c-1ba081fbc14c | phase=http_request_complete | HTTP request completed status=202
+2026-06-20 19:38:27,975 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 202 Accepted"
+2026-06-20 19:38:27,989 | INFO | main | request_id=59e77ad4-f0d4-4294-9805-8b8e903ededb | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:27,993 | INFO | api.generation_router | request_id=59e77ad4-f0d4-4294-9805-8b8e903ededb | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[],"image_list":[],"etc":{"request_id":"59e77ad4-f0d4-4294-9805-8b8e903ededb"}}
+2026-06-20 19:38:27,993 | INFO | api.generation_router | request_id=59e77ad4-f0d4-4294-9805-8b8e903ededb | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:27,995 | ERROR | api.generation_router | request_id=59e77ad4-f0d4-4294-9805-8b8e903ededb | phase=generate_workflow_invoke_failed | Generation workflow invocation failed
+Traceback (most recent call last):
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:28,002 | ERROR | main | request_id=59e77ad4-f0d4-4294-9805-8b8e903ededb | phase=http_request_unhandled_exception | HTTP request raised an unhandled exception
+Traceback (most recent call last):
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\main.py", line 46, in request_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1574, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 2012, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1594, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1183, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 143, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 129, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 683, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 337, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:28,010 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 500 Internal Server Error"
+2026-06-20 19:38:28,026 | INFO | main | request_id=86af7b1c-6173-4e7d-9b08-8c8248d073a0 | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:28,028 | WARNING | main | request_id=86af7b1c-6173-4e7d-9b08-8c8248d073a0 | phase=http_request_validation_failed | HTTP request validation failed
+2026-06-20 19:38:28,029 | INFO | main | request_id=86af7b1c-6173-4e7d-9b08-8c8248d073a0 | phase=http_request_complete | HTTP request completed status=422
+2026-06-20 19:38:28,030 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 422 Unprocessable Entity"
+2026-06-20 19:38:28,040 | INFO | workflow.nodes.export_node | request_id=req-export | phase=export_validate_state | Export validation started
+2026-06-20 19:38:28,056 | INFO | workflow.nodes.export_node | request_id=req-export | phase=export_upload | Uploading exported document
+2026-06-20 19:38:28,058 | INFO | workflow.nodes.export_node | request_id=req-export | phase=export_complete | Export completed storage_file_path=s3://bucket/SRS_10_20260620193828044378.docx
+2026-06-20 19:38:51,996 | INFO | main | request_id=00e11115-81d8-4cea-8741-f9569c0bea27 | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:52,012 | INFO | api.generation_router | request_id=00e11115-81d8-4cea-8741-f9569c0bea27 | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[101,102],"image_list":["201"],"etc":{"debug":true,"trace":"qa-run","request_id":"00e11115-81d8-4cea-8741-f9569c0bea27"}}
+2026-06-20 19:38:52,016 | INFO | api.generation_router | request_id=00e11115-81d8-4cea-8741-f9569c0bea27 | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:52,019 | INFO | api.generation_router | request_id=00e11115-81d8-4cea-8741-f9569c0bea27 | phase=generate_workflow_invoke_complete | Generation workflow invocation completed status=DONE
+2026-06-20 19:38:52,021 | INFO | main | request_id=00e11115-81d8-4cea-8741-f9569c0bea27 | phase=http_request_complete | HTTP request completed status=202
+2026-06-20 19:38:52,025 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 202 Accepted"
+2026-06-20 19:38:52,042 | INFO | main | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:52,046 | INFO | api.generation_router | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=generate_request_received | Generate request received payload={"project_sn":7,"docs_cd":"SRS","udt_yn":"N","file_list":[],"image_list":[],"etc":{"request_id":"0f2f0c53-4482-4ab2-8762-3b5d699f6fea"}}
+2026-06-20 19:38:52,048 | INFO | api.generation_router | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=generate_workflow_invoke_start | Invoking generation workflow
+2026-06-20 19:38:52,050 | ERROR | api.generation_router | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=generate_workflow_invoke_failed | Generation workflow invocation failed
+Traceback (most recent call last):
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:52,058 | INFO | main | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=http_request_complete | HTTP request completed status=500
+2026-06-20 19:38:52,058 | ERROR | main | request_id=0f2f0c53-4482-4ab2-8762-3b5d699f6fea | phase=http_request_unhandled_exception | HTTP request raised an unhandled exception
+Traceback (most recent call last):
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\main.py", line 46, in request_logging_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1574, in handle
+    await self.original_router.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 2012, in handle
+    await included_router._handle_selected(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1594, in _handle_selected
+    await original_route.handle(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 1183, in handle
+    await app(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 143, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 129, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 683, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\fastapi\routing.py", line 337, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\api\generation_router.py", line 53, in generate
+    result_state = await run_in_threadpool(workflow.invoke, state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 2592, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\miniconda3\envs\a_core\Lib\site-packages\anyio\_backends\_asyncio.py", line 1029, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\parksay\team_project\ALPLED-CORE\tests\api\test_generate_api_logging.py", line 29, in invoke
+    raise self.exc
+RuntimeError: workflow boom
+2026-06-20 19:38:52,077 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 500 Internal Server Error"
+2026-06-20 19:38:52,093 | INFO | main | request_id=e595e6b6-88bd-460f-b45d-5d10fd2899ae | phase=http_request_start | HTTP request started POST /generate
+2026-06-20 19:38:52,098 | WARNING | main | request_id=e595e6b6-88bd-460f-b45d-5d10fd2899ae | phase=http_request_validation_failed | HTTP request validation failed
+2026-06-20 19:38:52,100 | INFO | main | request_id=e595e6b6-88bd-460f-b45d-5d10fd2899ae | phase=http_request_complete | HTTP request completed status=422
+2026-06-20 19:38:52,102 | INFO | httpx | request_id=- | phase=- | HTTP Request: POST http://testserver/generate "HTTP/1.1 422 Unprocessable Entity"

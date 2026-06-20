@@ -9,6 +9,8 @@ from pathlib import Path
 from typing import Any, Protocol
 
 from config.constants import DOCS_CODES, FILE_CODE_REQUIREMENT_JSON
+from config.logging_config import get_logger
+from config.logging_context import bind_state_log_extra
 from config.settings import Settings, get_settings
 from database.repositories.docs_detail_repository import DocsDetailRepository
 from database.repositories.docs_repository import DocsRepository
@@ -21,6 +23,9 @@ from tools.docx.template_mapper import map_document_to_template
 from tools.result import ToolResult
 from tools.storage.uploader import upload_file
 from workflow.state import WorkflowState
+
+
+logger = get_logger("workflow.nodes.export_node")
 
 
 class FileRepositoryProtocol(Protocol):
@@ -105,6 +110,10 @@ def export_node(
 
     settings = dependencies.settings or get_settings()
     try:
+        logger.info(
+            "Export validation started",
+            extra=bind_state_log_extra(state, "export_validate_state"),
+        )
         project_sn, docs_cd, final_document_json = _validate_state(state)
         requirement_json_record = _export_requirement_json_if_needed(
             state=state,
@@ -141,6 +150,15 @@ def export_node(
             upload_kwargs["s3_key"] = f"project/{project_sn}/{docs_cd}/{generated_file_name}"
         else:
             upload_kwargs["storage_path"] = generated_local_file_path
+        logger.info(
+            "Uploading exported document",
+            extra=bind_state_log_extra(
+                state,
+                "export_upload",
+                project_sn=project_sn,
+                docs_cd=docs_cd,
+            ),
+        )
         uploaded = dependencies.uploader(generated_local_file_path, **upload_kwargs)
         uploaded_data = _unwrap_tool_result(uploaded, "UPLOAD_FAILED")
         storage_file_path = str(uploaded_data["storage_file_path"])
@@ -173,12 +191,27 @@ def export_node(
             "warnings": [],
             "errors": [],
         }
+        logger.info(
+            "Export completed storage_file_path=%s",
+            storage_file_path,
+            extra=bind_state_log_extra(
+                state,
+                "export_complete",
+                project_sn=project_sn,
+                docs_cd=docs_cd,
+            ),
+        )
         return state
     except Exception as exc:
         if session is not None:
             session.rollback()
         error = exc if isinstance(exc, ExportError) else ExportError("EXPORT_FAILED", str(exc))
         _mark_failed(state, dependencies.docs_detail_repository, error)
+        logger.exception(
+            "Export failed code=%s",
+            error.code,
+            extra=bind_state_log_extra(state, "export_failed"),
+        )
         return state
     finally:
         if session is not None:

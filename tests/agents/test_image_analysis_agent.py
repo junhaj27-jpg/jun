@@ -3,7 +3,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from agents.image_analysis.agent import ImageAnalysisAgent
-from agents.image_analysis.processors.image_analyzer import analyze_images
+from agents.image_analysis.processors.image_analyzer import analyze_images, build_component_candidates_from_ocr
+from agents.image_analysis.processors.screen_designer import ensure_screen_design_content
 from tools.result import success_result
 
 
@@ -464,6 +465,32 @@ class ImageAnalysisAgentTest(unittest.TestCase):
             self.assertEqual(len(screen["button_markers"]), 3)
             self.assertEqual(len(screen["process_contents"]), len(screen["button_markers"]))
             self.assertTrue(result["ui_structure"])
+
+    def test_ocr_component_candidates_drive_process_and_marker_coordinates(self) -> None:
+        ocr_texts = [
+            {"text": "문서명", "x1": 100, "y1": 80, "x2": 150, "y2": 105, "image_width": 1000, "image_height": 600},
+            {"text": "승인상태", "x1": 180, "y1": 80, "x2": 250, "y2": 105, "image_width": 1000, "image_height": 600},
+            {"text": "검색", "x1": 820, "y1": 80, "x2": 880, "y2": 110, "image_width": 1000, "image_height": 600},
+            {"text": "문서명", "x1": 100, "y1": 180, "x2": 160, "y2": 205, "image_width": 1000, "image_height": 600},
+            {"text": "등록일", "x1": 260, "y1": 180, "x2": 320, "y2": 205, "image_width": 1000, "image_height": 600},
+            {"text": "승인상태", "x1": 420, "y1": 180, "x2": 500, "y2": 205, "image_width": 1000, "image_height": 600},
+        ]
+        candidates = build_component_candidates_from_ocr(ocr_texts)
+
+        screen = ensure_screen_design_content(
+            {
+                "screen_id": "SCR-001",
+                "screen_name": "문서 승인",
+                "analysis": {"component_candidates": candidates},
+            },
+            [{"requirement_id": "SFR-001", "requirement_name": "문서 승인 관리"}],
+        )
+
+        self.assertTrue(screen["process_contents"])
+        self.assertTrue(all(item.get("component_bbox") for item in screen["process_contents"]))
+        self.assertEqual(len(screen["process_contents"]), len(screen["button_markers"]))
+        self.assertTrue(all(0.03 <= marker["x_ratio"] <= 0.97 for marker in screen["button_markers"]))
+        self.assertNotIn("검색 조건 영역", {item["title"] for item in screen["process_contents"]})
 
 
 if __name__ == "__main__":

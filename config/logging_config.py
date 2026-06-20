@@ -2,7 +2,15 @@ import logging
 from logging.config import dictConfig
 from pathlib import Path
 
+from config.logging_context import get_request_id
 from config.settings import Settings, get_settings
+
+
+class RequestContextFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.request_id = getattr(record, "request_id", get_request_id())
+        record.phase = getattr(record, "phase", "-")
+        return True
 
 
 def configure_logging(settings: Settings | None = None) -> None:
@@ -16,7 +24,12 @@ def configure_logging(settings: Settings | None = None) -> None:
             "disable_existing_loggers": False,
             "formatters": {
                 "default": {
-                    "format": "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+                    "format": "%(asctime)s | %(levelname)s | %(name)s | request_id=%(request_id)s | phase=%(phase)s | %(message)s",
+                }
+            },
+            "filters": {
+                "request_context": {
+                    "()": RequestContextFilter,
                 }
             },
             "handlers": {
@@ -24,6 +37,7 @@ def configure_logging(settings: Settings | None = None) -> None:
                     "class": "logging.StreamHandler",
                     "formatter": "default",
                     "level": config.log_level.upper(),
+                    "filters": ["request_context"],
                 },
                 "file": {
                     "class": "logging.handlers.RotatingFileHandler",
@@ -33,6 +47,7 @@ def configure_logging(settings: Settings | None = None) -> None:
                     "maxBytes": 10 * 1024 * 1024,
                     "backupCount": 5,
                     "encoding": "utf-8",
+                    "filters": ["request_context"],
                 },
             },
             "root": {
