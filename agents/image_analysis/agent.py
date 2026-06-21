@@ -2,6 +2,7 @@
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections.abc import Callable
+import re
 from typing import Any
 
 from agents.image_analysis.processors import (
@@ -437,12 +438,12 @@ class ImageAnalysisAgent:
             if not isinstance(item, dict):
                 continue
             normalized.append(
-                {
+                _normalize_ui_structure_levels({
                     "level1": str(item.get("level1") or ""),
                     "level2": str(item.get("level2") or ""),
                     "level3": str(item.get("level3") or ""),
                     "level4": str(item.get("level4") or ""),
-                }
+                })
             )
         return normalized or fallback
 
@@ -459,6 +460,39 @@ class ImageAnalysisAgent:
             "warnings": [],
             "errors": [{"code": code, "message": message}],
         }
+
+
+def _normalize_ui_structure_levels(row: dict[str, str]) -> dict[str, str]:
+    if row.get("level1") == "업무 화면" and row.get("level2") and not row.get("level3") and not row.get("level4"):
+        module_name, detail_name = _screen_menu_levels(row["level2"])
+        row = {
+            "level1": "AI 통합 플랫폼",
+            "level2": module_name,
+            "level3": "업무 화면",
+            "level4": detail_name,
+        }
+    return _dedupe_ui_structure_levels(row)
+
+
+def _dedupe_ui_structure_levels(row: dict[str, str]) -> dict[str, str]:
+    seen: set[str] = set()
+    cleaned = {}
+    for key in ("level1", "level2", "level3", "level4"):
+        value = str(row.get(key) or "").strip()
+        if value and value in seen:
+            value = ""
+        if value:
+            seen.add(value)
+        cleaned[key] = value
+    return cleaned
+
+
+def _screen_menu_levels(screen_name: str) -> tuple[str, str]:
+    name = re.sub(r"^\d{1,3}_", "", str(screen_name or "").strip())
+    parts = [part for part in name.split("_") if part]
+    if len(parts) >= 2:
+        return " ".join(parts[:-1]), parts[-1]
+    return name or "업무", name or "화면"
 
 
 def _screen_keywords(screen: dict[str, Any]) -> list[str]:

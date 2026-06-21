@@ -29,7 +29,7 @@ class WorkflowState(TypedDict, total=False):
     erd_file_path: str | None
     interface_file_path: str | None
     existing_output_path: str | None
-
+    existing_output_raw_json: dict[str, Any] | None
     # 5. Agent Output
     agent_outputs: dict[str, Any]
 
@@ -38,13 +38,10 @@ class WorkflowState(TypedDict, total=False):
     current_round: int
     max_round: int
     supervisor_decision: dict[str, Any] | None
-
-    # 6-1. Supervisor Repair Loop
-    repair_history: list[dict[str, Any]]
     current_repair_instruction: dict[str, Any] | None
+    repair_history: list[dict[str, Any]]
     repair_round: int
     max_repair_round: int
-    agent_outputs_before_repair: dict[str, Any]
 
     # 7. Validation
     validation_result: dict[str, Any] | None

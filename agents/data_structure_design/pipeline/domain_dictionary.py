@@ -6,7 +6,6 @@ from typing import Any
 DOMAIN_OBJECT_RULES: dict[str, tuple[tuple[str, str, str, str], ...]] = {
     "AI_PLATFORM": (
         ("AI 모델", "MASTER", "AI 모델 설정 관리 대상"),
-        ("모델", "MASTER", "AI 모델 설정 관리 대상"),
         ("프롬프트", "MASTER", "프롬프트 템플릿 관리 대상"),
         ("Agent", "MASTER", "Agent 설정 및 실행 관리 대상"),
         ("에이전트", "MASTER", "Agent 설정 및 실행 관리 대상"),
@@ -80,7 +79,6 @@ def apply_domain_dictionary(
 
 def _canonical_name(keyword: str) -> str:
     aliases = {
-        "모델": "AI 모델",
         "에이전트": "Agent",
         "청킹": "청크",
         "chunking": "청크",

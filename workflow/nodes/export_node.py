@@ -50,6 +50,7 @@ class DocsDetailRepositoryProtocol(Protocol):
         docs_cd: DocsCode,
         docs_path: str,
         file_sn: int | None = None,
+        docs_dtl_cn: bytes | None = None,
         use_yn: str = "Y",
         status: str = "DONE",
     ) -> Any: ...
@@ -115,6 +116,7 @@ def export_node(
             extra=bind_state_log_extra(state, "export_validate_state"),
         )
         project_sn, docs_cd, final_document_json = _validate_state(state)
+
         requirement_json_record = _export_requirement_json_if_needed(
             state=state,
             project_sn=project_sn,
@@ -123,18 +125,21 @@ def export_node(
             dependencies=dependencies,
             settings=settings,
         )
+
         export_document_json = _enrich_final_document_json_for_export(
             final_document_json=final_document_json,
             project_sn=project_sn,
             docs_cd=docs_cd,
             dependencies=dependencies,
         )
+
         mapped = dependencies.template_mapper(export_document_json, docs_cd)
         export_payload = _unwrap_tool_result(mapped, "EXPORT_MAPPING_FAILED")
 
         file_name = _build_file_name(project_sn, docs_cd)
         local_file_path = str((settings.output_dir / file_name).resolve())
         template_path = str((Path("templates") / f"{docs_cd.lower()}_template.docx").resolve())
+
         generated = dependencies.docx_exporter(
             export_payload,
             local_file_path,
@@ -142,7 +147,9 @@ def export_node(
         )
         generated_data = _unwrap_tool_result(generated, "DOCX_EXPORT_FAILED")
         generated_local_file_path = str(generated_data.get("local_file_path") or local_file_path)
-        generated_file_name = str(generated_data.get("file_name") or Path(generated_local_file_path).name)
+        generated_file_name = str(
+            generated_data.get("file_name") or Path(generated_local_file_path).name
+        )
         generated_file_size = int(generated_data["file_size"])
 
         upload_kwargs: dict[str, Any] = {"settings": settings}
@@ -150,6 +157,7 @@ def export_node(
             upload_kwargs["s3_key"] = f"project/{project_sn}/{docs_cd}/{generated_file_name}"
         else:
             upload_kwargs["storage_path"] = generated_local_file_path
+
         logger.info(
             "Uploading exported document",
             extra=bind_state_log_extra(
@@ -159,19 +167,30 @@ def export_node(
                 docs_cd=docs_cd,
             ),
         )
+
         uploaded = dependencies.uploader(generated_local_file_path, **upload_kwargs)
         uploaded_data = _unwrap_tool_result(uploaded, "UPLOAD_FAILED")
         storage_file_path = str(uploaded_data["storage_file_path"])
+
+        # ARCH 산출물만 수정 모드에서 기존 구조 JSON을 재사용할 수 있도록 docs_dtl_cn에 저장합니다.
+        # 다른 산출물은 기존 동작과 동일하게 docs_dtl_cn=None으로 유지합니다.
+        docs_dtl_cn = (
+            _serialize_docs_detail_content(export_document_json)
+            if docs_cd == "ARCH"
+            else None
+        )
 
         dependencies.docs_detail_repository.insert_docs_detail(
             project_sn=project_sn,
             docs_cd=docs_cd,
             docs_path=storage_file_path,
             file_sn=None,
+            docs_dtl_cn=docs_dtl_cn,
             use_yn="Y",
             status="DONE",
         )
         dependencies.docs_detail_repository.update_docs_status_done(project_sn, docs_cd)
+
         if session is not None:
             session.commit()
 
@@ -182,8 +201,12 @@ def export_node(
             "project_sn": project_sn,
             "docs_cd": docs_cd,
             "file_sn": None,
-            "requirement_json_file_sn": requirement_json_record.get("file_sn") if requirement_json_record else None,
-            "requirement_json_file_path": requirement_json_record.get("storage_file_path") if requirement_json_record else "",
+            "requirement_json_file_sn": (
+                requirement_json_record.get("file_sn") if requirement_json_record else None
+            ),
+            "requirement_json_file_path": (
+                requirement_json_record.get("storage_file_path") if requirement_json_record else ""
+            ),
             "local_file_path": generated_local_file_path,
             "storage_file_path": storage_file_path,
             "file_name": generated_file_name,
@@ -191,6 +214,7 @@ def export_node(
             "warnings": [],
             "errors": [],
         }
+
         logger.info(
             "Export completed storage_file_path=%s",
             storage_file_path,
@@ -202,17 +226,21 @@ def export_node(
             ),
         )
         return state
+
     except Exception as exc:
         if session is not None:
             session.rollback()
+
         error = exc if isinstance(exc, ExportError) else ExportError("EXPORT_FAILED", str(exc))
         _mark_failed(state, dependencies.docs_detail_repository, error)
+
         logger.exception(
             "Export failed code=%s",
             error.code,
             extra=bind_state_log_extra(state, "export_failed"),
         )
         return state
+
     finally:
         if session is not None:
             session.close()
@@ -222,12 +250,16 @@ def _validate_state(state: WorkflowState) -> tuple[int, DocsCode, dict[str, Any]
     project_sn = state.get("project_sn")
     docs_cd = state.get("docs_cd")
     final_document_json = state.get("final_document_json")
+
     if not isinstance(project_sn, int):
         raise ExportError("EXPORT_PROJECT_SN_MISSING", "project_sn이 필요합니다.")
+
     if docs_cd not in DOCS_CODES:
         raise ExportError("EXPORT_DOCS_CD_INVALID", "유효한 docs_cd가 필요합니다.")
+
     if not isinstance(final_document_json, dict):
         raise ExportError("FINAL_DOCUMENT_JSON_MISSING", "final_document_json이 필요합니다.")
+
     return project_sn, docs_cd, final_document_json
 
 
@@ -256,6 +288,7 @@ def _export_requirement_json_if_needed(
         upload_kwargs["s3_key"] = f"project/{project_sn}/{docs_cd}/{file_name}"
     else:
         upload_kwargs["storage_path"] = str(local_file_path)
+
     uploaded = dependencies.uploader(str(local_file_path), **upload_kwargs)
     uploaded_data = _unwrap_tool_result(uploaded, "REQUIREMENT_JSON_UPLOAD_FAILED")
     storage_file_path = str(uploaded_data["storage_file_path"])
@@ -268,6 +301,7 @@ def _export_requirement_json_if_needed(
         file_size=local_file_path.stat().st_size,
         file_ext="json",
     )
+
     return {
         "file_sn": _read_file_sn(file_record),
         "local_file_path": str(local_file_path),
@@ -286,6 +320,7 @@ def _enrich_final_document_json_for_export(
 ) -> dict[str, Any]:
     export_document_json = deepcopy(final_document_json)
     metadata = _read_export_metadata(project_sn, docs_cd, dependencies)
+
     if not metadata:
         return export_document_json
 
@@ -303,9 +338,11 @@ def _enrich_final_document_json_for_export(
     }
     content_key = content_key_by_docs.get(docs_cd)
     content = export_document_json.get(content_key) if content_key else None
+
     if isinstance(content, dict):
         for key, value in metadata.items():
             content[key] = value
+
     return export_document_json
 
 
@@ -315,6 +352,7 @@ def _read_export_metadata(
     dependencies: ExportDependencies,
 ) -> dict[str, str]:
     metadata: dict[str, str] = {}
+
     if dependencies.project_repository is not None:
         project = dependencies.project_repository.find_project_by_sn(project_sn)
         project_name = _pick_first(project, "prj_nm", "project_nm", "project_name", "system_name")
@@ -327,24 +365,31 @@ def _read_export_metadata(
         docs_version = _pick_first(docs, "docs_ver", "version")
         if docs_version is not None:
             metadata["version"] = docs_version
+
     return metadata
 
 
 def _pick_first(source: Any, *keys: str) -> str | None:
     if source is None:
         return None
+
     for key in keys:
         value = source.get(key) if isinstance(source, dict) else getattr(source, key, None)
         if value is not None:
             return str(value)
+
     return None
 
 
 def _unwrap_tool_result(result: ToolResult, default_code: str) -> Any:
     if result["success"]:
         return result["data"]
+
     error = result.get("error") or {}
-    raise ExportError(str(error.get("code", default_code)), str(error.get("message", default_code)))
+    raise ExportError(
+        str(error.get("code", default_code)),
+        str(error.get("message", default_code)),
+    )
 
 
 def _build_file_name(project_sn: int, docs_cd: str) -> str:
@@ -357,10 +402,20 @@ def _build_json_file_name(project_sn: int, docs_cd: str) -> str:
     return f"{docs_cd}_{project_sn}_{timestamp}.json"
 
 
+def _serialize_docs_detail_content(document_json: dict[str, Any]) -> bytes:
+    return json.dumps(
+        document_json,
+        ensure_ascii=False,
+        default=str,
+    ).encode("utf-8")
+
+
 def _read_file_sn(record: Any) -> int:
     value = record.get("file_sn") if isinstance(record, dict) else getattr(record, "file_sn", record)
+
     if not isinstance(value, int):
         raise ExportError("FILE_SN_MISSING", "tbl_file 등록 결과에 file_sn이 없습니다.")
+
     return value
 
 
@@ -385,10 +440,13 @@ def _mark_failed(
         "warnings": [],
         "errors": [{"code": error.code, "message": error.message}],
     }
+
     if isinstance(state.get("project_sn"), int) and state.get("docs_cd") in DOCS_CODES:
         try:
             repository.update_docs_status_failed(
-                state["project_sn"], state["docs_cd"], error.message
+                state["project_sn"],
+                state["docs_cd"],
+                error.message,
             )
         except Exception as exc:
             state["errors"].append(

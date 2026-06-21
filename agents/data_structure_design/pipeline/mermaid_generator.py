@@ -7,6 +7,7 @@ def build_mermaid_structure(erd_schema: dict[str, Any]) -> dict[str, Any]:
     tables = erd_schema.get("tables") if isinstance(erd_schema.get("tables"), list) else []
     mermaid_tables = [
         {
+            "entity_name": table.get("entity_name") or table.get("logical_name") or table.get("table_korean_name"),
             "table_name": table.get("table_name"),
             "physical_name": table.get("table_name"),
             "name": table.get("table_name"),
@@ -16,6 +17,7 @@ def build_mermaid_structure(erd_schema: dict[str, Any]) -> dict[str, Any]:
             "relation_count": table.get("relation_count", 0),
             "columns": [
                 {
+                    "attribute_name": column.get("attribute_name") or column.get("logical_name"),
                     "column_name": column.get("column_name"),
                     "physical_name": column.get("column_name"),
                     "data_type": column.get("data_type"),

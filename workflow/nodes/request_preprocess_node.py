@@ -1,3 +1,4 @@
+import json
 from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any, Protocol, cast
@@ -67,6 +68,7 @@ def request_preprocess_node(
     dependencies: RequestPreprocessDependencies | None = None,
 ) -> WorkflowState:
     session = None
+
     if dependencies is None:
         session = SessionLocal()
         dependencies = RequestPreprocessDependencies(
@@ -77,31 +79,42 @@ def request_preprocess_node(
         )
 
     result = _initialize_state(state)
+
     try:
         _log_info(result, "preprocess_start", "Request preprocessing started")
         _log_info(result, "preprocess_validate_request", "Validating request payload")
         _validate_request(result)
+
         _log_info(result, "preprocess_validate_project", "Validating project")
         _validate_project(result, dependencies.project_repository)
+
         _log_info(result, "preprocess_download_files", "Resolving input files")
         file_records = _find_file_sn_records(result["file_list"], dependencies)
         _validate_file_list_policy(result, file_records)
         result["input_file_paths"] = _download_file_records(
-            result["file_list"], file_records, dependencies
+            result["file_list"],
+            file_records,
+            dependencies,
         )
         result["base_rfp_path"] = _select_downloaded_rfp_path(
-            result["file_list"], file_records, result["input_file_paths"]
+            result["file_list"],
+            file_records,
+            result["input_file_paths"],
         )
+
         _log_info(result, "preprocess_download_images", "Resolving input images")
         result["input_image_paths"] = _download_image_paths(result["image_list"], dependencies)
+
         _log_info(
             result,
             "preprocess_resolve_required_documents",
             "Resolving prerequisite documents",
         )
         _resolve_required_documents(result, dependencies)
+
         _log_info(result, "preprocess_mark_generating", "Marking document as generating")
         _try_mark_docs_generating(result, dependencies.docs_detail_repository)
+
         _log_info(
             result,
             "preprocess_complete",
@@ -110,6 +123,7 @@ def request_preprocess_node(
             len(result["input_image_paths"]),
         )
         return result
+
     except PreprocessError as exc:
         _log_warning(
             result,
@@ -118,6 +132,7 @@ def request_preprocess_node(
             exc.code,
         )
         return _to_failed_state(result, dependencies.docs_detail_repository, exc)
+
     except Exception as exc:
         logger.exception(
             "Request preprocessing raised an unexpected exception",
@@ -129,6 +144,7 @@ def request_preprocess_node(
             dependencies.docs_detail_repository,
             PreprocessError("PREPROCESS_FAILED", message),
         )
+
     finally:
         if session is not None:
             session.close()
@@ -151,6 +167,9 @@ def _initialize_state(state: WorkflowState) -> WorkflowState:
         "erd_file_path": None,
         "interface_file_path": None,
         "existing_output_path": None,
+        # ARCH 수정 모드에서만 기존 산출물 JSON을 적재합니다.
+        # 다른 산출물은 기존처럼 existing_output_path 기반 흐름을 유지합니다.
+        "existing_output_raw_json": None,
         "agent_outputs": {},
         "execution_plan": {},
         "current_round": 0,
@@ -159,8 +178,7 @@ def _initialize_state(state: WorkflowState) -> WorkflowState:
         "repair_history": [],
         "current_repair_instruction": None,
         "repair_round": 0,
-        "max_repair_round": 2,
-        "agent_outputs_before_repair": {},
+        "max_repair_round": get_settings().max_round,
         "validation_result": None,
         "final_document_json": None,
         "export_result": None,
@@ -179,8 +197,10 @@ def _validate_request(state: WorkflowState) -> None:
             "MISSING_REQUIRED_FIELD",
             f"Missing required request fields: {', '.join(missing)}",
         )
+
     if state["docs_cd"] not in DOCS_CODES:
         raise PreprocessError("INVALID_DOCS_CD", f"Unsupported docs_cd: {state['docs_cd']}")
+
     if state["udt_yn"] not in UPDATE_YN_VALUES:
         raise PreprocessError("INVALID_UDT_YN", f"Unsupported udt_yn: {state['udt_yn']}")
 
@@ -206,11 +226,43 @@ def _resolve_required_documents(
                 "MEETING_FILE_REQUIRED",
                 "Update mode requires meeting files in file_list.",
             )
+
         active_doc = (
             dependencies.docs_detail_repository.find_active_srs(project_sn)
             if docs_cd == "SRS"
             else dependencies.docs_detail_repository.find_active_doc(project_sn, docs_cd)
         )
+
+        # ARCH 수정 모드에서만 docs_dtl_cn에 저장된 기존 산출물 JSON을 state에 싣습니다.
+        # 다른 산출물 수정 흐름에는 영향이 없도록 docs_cd == "ARCH" 조건으로 제한합니다.
+        if docs_cd == "ARCH":
+            raw_value = _read_value(active_doc, "docs_dtl_cn")
+            print("[ARCH_PREPROCESS_DEBUG] docs_dtl_cn type =", type(raw_value))
+            print("[ARCH_PREPROCESS_DEBUG] docs_dtl_cn length =", len(raw_value) if raw_value else None)
+
+            existing_output_raw_json = _read_docs_detail_json(active_doc)
+
+            print("[ARCH_PREPROCESS_DEBUG] existing_output_raw_json loaded =", bool(existing_output_raw_json))
+            print(
+                "[ARCH_PREPROCESS_DEBUG] existing_output_raw_json keys =",
+                list(existing_output_raw_json.keys()) if isinstance(existing_output_raw_json, dict) else None,
+            )
+
+            if existing_output_raw_json:
+                state["existing_output_raw_json"] = existing_output_raw_json
+                _log_info(
+                    state,
+                    "preprocess_existing_output_raw_json",
+                    "Existing ARCH output JSON loaded from docs_dtl_cn",
+                )
+            else:
+                state["warnings"].append(
+                    {
+                        "code": "EXISTING_ARCH_OUTPUT_JSON_EMPTY",
+                        "message": "Existing ARCH document JSON was not found in docs_dtl_cn. Falling back to existing output file path.",
+                    }
+                )
+
         state["existing_output_path"] = _download_required_document(
             active_doc,
             dependencies,
@@ -234,7 +286,8 @@ def _resolve_required_documents(
 
     if docs_cd == "DB":
         active_erd = dependencies.docs_detail_repository.find_active_doc(
-            project_sn, cast(DocsCode, "ERD")
+            project_sn,
+            cast(DocsCode, "ERD"),
         )
         state["erd_file_path"] = _download_required_document(
             active_erd,
@@ -242,9 +295,11 @@ def _resolve_required_documents(
             missing_code="ACTIVE_ERD_NOT_FOUND",
             missing_message="Latest ERD document is required before DB generation.",
         )
+
     elif docs_cd == "TS":
         active_interface = dependencies.docs_detail_repository.find_active_doc(
-            project_sn, cast(DocsCode, "INTERFACE")
+            project_sn,
+            cast(DocsCode, "INTERFACE"),
         )
         state["interface_file_path"] = _download_required_document(
             active_interface,
@@ -252,6 +307,7 @@ def _resolve_required_documents(
             missing_code="ACTIVE_INTERFACE_NOT_FOUND",
             missing_message="Latest INTERFACE document is required before TS generation.",
         )
+
     elif docs_cd == "INTERFACE" and not state["input_image_paths"]:
         state["warnings"].append(
             {
@@ -271,8 +327,10 @@ def _find_file_sn_records(
     records = dependencies.file_repository.find_files_by_sn_list(file_sn_list)
     records_by_sn = {_read_value(record, "file_sn"): record for record in records}
     missing = [file_sn for file_sn in file_sn_list if file_sn not in records_by_sn]
+
     if missing:
         raise PreprocessError("FILE_NOT_FOUND", f"File records could not be found: {missing}")
+
     return records_by_sn
 
 
@@ -285,12 +343,15 @@ def _validate_file_list_policy(
         for file_sn, record in file_records.items()
         if str(_read_value(record, "file_cd") or "").upper() == FILE_CODE_RFP
     ]
+
     if state["udt_yn"] != "N":
         return
+
     if state["docs_cd"] == "SRS":
         if not rfp_file_sns:
             raise PreprocessError("RFP_FILE_REQUIRED", "SRS generation requires an RFP file.")
         return
+
     if rfp_file_sns:
         raise PreprocessError(
             "RFP_FILE_NOT_ALLOWED",
@@ -307,6 +368,7 @@ def _select_downloaded_rfp_path(
         record = file_records.get(file_sn)
         if str(_read_value(record, "file_cd") or "").upper() == FILE_CODE_RFP:
             return downloaded_paths[index]
+
     return None
 
 
@@ -323,15 +385,19 @@ def _download_image_paths(
     dependencies: RequestPreprocessDependencies,
 ) -> list[str]:
     downloaded_paths: list[str] = []
+
     for image_path in image_list:
         source = str(image_path).strip()
         if not source:
             raise PreprocessError("IMAGE_PATH_EMPTY", "image_list contains an empty path.")
+
         if source.startswith(("s3://", "http://", "https://")):
             record = {"file_path": source}
         else:
             record = {"s3_key": source}
+
         downloaded_paths.append(_download_record(record, dependencies))
+
     return downloaded_paths
 
 
@@ -341,7 +407,9 @@ def _download_active_doc(
 ) -> str:
     if docs_detail is None:
         raise PreprocessError("ACTIVE_DOC_NOT_FOUND", "Active document could not be found.")
+
     docs_path = _read_value(docs_detail, "docs_path") or _read_value(docs_detail, "file_path")
+
     if docs_path:
         return _download_record(
             {
@@ -351,15 +419,18 @@ def _download_active_doc(
             },
             dependencies,
         )
+
     file_sn = _read_value(docs_detail, "file_sn")
     if file_sn is None:
         raise PreprocessError(
             "ACTIVE_DOC_FILE_MISSING",
             "Active document is missing both docs_path and file_sn.",
         )
+
     file_record = dependencies.file_repository.find_file_by_sn(file_sn)
     if file_record is None:
         raise PreprocessError("FILE_NOT_FOUND", f"File record could not be found: {file_sn}")
+
     return _download_record(file_record, dependencies)
 
 
@@ -372,7 +443,36 @@ def _download_required_document(
 ) -> str:
     if record is None:
         raise PreprocessError(missing_code, missing_message)
+
     return _download_active_doc(record, dependencies)
+
+
+def _read_docs_detail_json(docs_detail: Any | None) -> dict[str, Any] | None:
+    if docs_detail is None:
+        return None
+
+    value = _read_value(docs_detail, "docs_dtl_cn")
+    if not value:
+        return None
+
+    try:
+        if isinstance(value, memoryview):
+            text_value = value.tobytes().decode("utf-8")
+        elif isinstance(value, bytearray):
+            text_value = bytes(value).decode("utf-8")
+        elif isinstance(value, bytes):
+            text_value = value.decode("utf-8")
+        elif isinstance(value, dict):
+            return value
+        else:
+            text_value = str(value)
+
+        parsed = json.loads(text_value)
+        return parsed if isinstance(parsed, dict) else None
+
+    except Exception as exc:
+        logger.warning("Failed to parse docs_dtl_cn as JSON: %s", exc)
+        return None
 
 
 def _download_record(
@@ -396,12 +496,14 @@ def _download_record(
         s3_bucket=s3_bucket,
         file_name=file_name,
     )
+
     if not download_result["success"]:
         error = download_result["error"] or {}
         raise PreprocessError(
             str(error.get("code", "DOWNLOAD_FAILED")),
             str(error.get("message", "File download failed.")),
         )
+
     return str(download_result["data"]["local_file_path"])
 
 
@@ -413,6 +515,7 @@ def _to_failed_state(
     state["status"] = "FAILED"
     state["next_action"] = "END"
     state["errors"].append({"code": error.code, "message": error.message})
+
     if state.get("project_sn") is not None and state.get("docs_cd") in DOCS_CODES:
         try:
             repository.update_docs_status_failed(
@@ -427,6 +530,7 @@ def _to_failed_state(
                     "message": str(exc) or "Failed to update docs status.",
                 }
             )
+
     return state
 
 
@@ -442,6 +546,7 @@ def _try_mark_docs_generating(
                 state["project_sn"],
                 state["docs_cd"],
             )
+
     except Exception as exc:
         state["warnings"].append(
             {
@@ -454,6 +559,7 @@ def _try_mark_docs_generating(
 def _read_value(record: Any, field_name: str) -> Any:
     if isinstance(record, dict):
         return record.get(field_name)
+
     return getattr(record, field_name, None)
 
 

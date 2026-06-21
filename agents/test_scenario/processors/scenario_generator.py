@@ -144,7 +144,7 @@ def _normalize_scenario(item: dict[str, Any], index: int) -> dict[str, Any]:
         "scenario_id": f"SCN-{index + 1:03d}",
         "scenario_name": name,
         "source_requirement_ids": item.get("source_requirement_ids") or [requirement_id],
-        "description": item.get("description") or item.get("detail_text") or f"{name} 기능을 검증합니다.",
+        "description": item.get("description") or item.get("scenario_description") or item.get("detail_text") or f"{name} 기능을 검증합니다.",
     }
 
 

@@ -22,12 +22,12 @@ def check_agent_result(
     if output.get("status") not in allowed_statuses:
         return _failure(
             str(output.get("failure_type") or f"{agent_name.upper()}_STATUS_FAILED"),
-            "Agent status가 SUCCESS가 아닙니다.",
+            _extract_failure_message(output, "Agent status가 SUCCESS가 아닙니다."),
         )
     if output.get("errors"):
         return _failure(
             str(output.get("failure_type") or f"{agent_name.upper()}_ERRORS_PRESENT"),
-            "Agent output에 errors가 존재합니다.",
+            _extract_failure_message(output, "Agent output에 errors가 존재합니다."),
         )
 
     missing = [key for key in required_output_keys if key not in output or is_empty(output[key])]
@@ -41,3 +41,15 @@ def check_agent_result(
 
 def _failure(failure_type: str, message: str) -> dict[str, Any]:
     return {"success": False, "failure_type": failure_type, "message": message}
+
+
+def _extract_failure_message(output: dict[str, Any], fallback: str) -> str:
+    errors = output.get("errors")
+    if isinstance(errors, list):
+        for error in errors:
+            if not isinstance(error, dict):
+                continue
+            message = error.get("message")
+            if message not in (None, ""):
+                return str(message)
+    return fallback

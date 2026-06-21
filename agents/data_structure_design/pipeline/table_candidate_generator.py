@@ -21,6 +21,12 @@ GENERIC_TABLES = {
     "이력": ("tbl_status_hist", "상태이력", "HISTORY", "상태 변경 이력 관리"),
     "작업": ("tbl_job", "작업", "JOB", "비동기 처리 작업 관리"),
     "단계": ("tbl_job_step", "작업단계", "JOB_STEP", "작업 단계별 상태 관리"),
+    "청크": ("tbl_document_chunk", "문서청크", "DETAIL", "문서 분할 내용 관리"),
+    "임베딩": ("tbl_embedding_index", "임베딩색인", "INDEX", "임베딩 벡터 색인 관리"),
+    "RAG": ("tbl_rag_job", "RAG작업", "JOB", "RAG 처리 작업 관리"),
+    "AI 모델": ("tbl_ai_model", "AI모델", "MASTER", "AI 모델 설정 관리"),
+    "Agent": ("tbl_agent", "Agent", "MASTER", "Agent 설정 관리"),
+    "프롬프트": ("tbl_prompt_template", "프롬프트템플릿", "MASTER", "프롬프트 템플릿 관리"),
 }
 
 def generate_table_candidates(
@@ -32,6 +38,15 @@ def generate_table_candidates(
     for obj in objects:
         table_name_value, korean_name, table_type, reason = _table_for_object(obj)
         _merge_candidate(candidates, table_name_value, korean_name, table_type, reason, [obj["requirement_id"]])
+        if obj["name"] == "RAG":
+            _merge_candidate(
+                candidates,
+                "tbl_rag_job_step",
+                "RAG작업단계",
+                "JOB_STEP",
+                "RAG 작업 단계별 처리 상태 관리",
+                [obj["requirement_id"]],
+            )
         if obj["name"] == "문서":
             _merge_candidate(
                 candidates,

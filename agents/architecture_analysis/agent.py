@@ -1,9 +1,13 @@
 # 아키텍처 설계서 생성 및 수정 Agent의 실행 진입점입니다.
 
+from __future__ import annotations
+
+import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections.abc import Callable
 from typing import Any
 
+from agents.architecture_analysis import prompts
 from agents.architecture_analysis.processors import (
     apply_architecture_changes,
     build_architecture_document,
@@ -16,7 +20,9 @@ from agents.architecture_analysis.processors import (
     build_layers,
     extract_existing_structure,
     filter_architecture_requirements,
+    normalize_architecture_config,
     normalize_components,
+    merge_components_with_stack_fallback,
     normalize_relations,
 )
 from config.settings import get_settings
@@ -50,6 +56,8 @@ class ArchitectureAnalysisAgent:
 
         document_merge = state.get("agent_outputs", {}).get("document_merge_agent", {})
         config, config_warnings = self._load_architecture_config(state)
+        config = normalize_architecture_config(config)
+
         if mode == "N":
             output = self._create(document_merge, state, config, config_warnings)
         elif mode == "Y":
@@ -89,6 +97,7 @@ class ArchitectureAnalysisAgent:
                 "rag_query_specs": query_specs,
                 "rag_results": rag_results,
                 "selected_requirements": selected_requirements,
+                "architecture_config": architecture_config,
             },
         )
 
@@ -114,7 +123,7 @@ class ArchitectureAnalysisAgent:
         components = apply_architecture_changes(components, changes)
         relations = normalize_relations(existing_structure.get("relations") or existing_structure.get("edges") or [], components)
         if not relations:
-            relations = build_component_relations(components)
+            relations = build_component_relations(components, architecture_config=architecture_config)
         relations = self._build_relations(components, architecture_config, warnings, fallback=relations)
         layers = self._build_layers(components, relations, warnings)
         drivers = build_architecture_drivers([], architecture_config, [])
@@ -131,6 +140,7 @@ class ArchitectureAnalysisAgent:
             debug={
                 "existing_output_raw_json": existing,
                 "meeting_change_items": changes,
+                "architecture_config": architecture_config,
             },
         )
 
@@ -138,17 +148,17 @@ class ArchitectureAnalysisAgent:
         self,
         state: WorkflowState,
     ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        # 1) 멀티에이전트 state에서 전달된 사용자 입력/설정 우선
         config = state.get("etc", {}).get("architecture_config")
-        if isinstance(config, dict) and config:
-            return config, []
+        if config:
+            return _to_plain_config(config), []
 
+        # 2) 운영 DB Repository에서 프로젝트별 아키텍처 설정 로드
         if self.architecture_config_repository is not None:
             try:
                 loaded = self.architecture_config_repository.find_by_project_sn(int(state.get("project_sn") or 0))
-                if isinstance(loaded, dict):
-                    return loaded, []
-                if loaded is not None and hasattr(loaded, "__dict__"):
-                    return {key: value for key, value in vars(loaded).items() if not key.startswith("_")}, []
+                if loaded:
+                    return _to_plain_config(loaded), []
             except NotImplementedError:
                 return {}, [{"code": "ARCH_CONFIG_REPOSITORY_TODO", "message": "architecture_config Repository가 아직 구현되지 않았습니다."}]
             except Exception as exc:
@@ -169,10 +179,7 @@ class ArchitectureAnalysisAgent:
             [
                 {
                     "messages": [
-                        {
-                            "role": "system",
-                            "content": "아키텍처 설계에 필요한 비기능 요구사항 RAG 검색 Query를 JSON으로 생성하세요.",
-                        },
+                        {"role": "system", "content": prompts.RAG_QUERY_SYSTEM},
                         {"role": "user", "content": str(spec)},
                     ]
                 }
@@ -252,7 +259,7 @@ class ArchitectureAnalysisAgent:
     ) -> list[dict[str, Any]]:
         fallback = build_architecture_drivers(requirements, architecture_config, rag_results)
         value = self._llm_dict(
-            "요구사항, architecture_config, 비기능 RAG 결과를 분석하여 아키텍처 설계 Driver를 JSON으로 반환하세요.",
+            prompts.DRIVERS_SYSTEM,
             {"requirements": requirements, "architecture_config": architecture_config, "rag_results": rag_results},
             warnings,
             "ARCH_DRIVER_LLM_FAILED",
@@ -269,13 +276,15 @@ class ArchitectureAnalysisAgent:
     ) -> list[dict[str, Any]]:
         fallback = build_component_candidates(requirements, architecture_config, drivers)
         value = self._llm_dict(
-            "아키텍처 컴포넌트 후보를 생성하세요. JSON으로 components를 반환하세요.",
+            prompts.COMPONENTS_SYSTEM,
             {"requirements": requirements, "architecture_config": architecture_config, "drivers": drivers},
             warnings,
             "ARCH_COMPONENT_LLM_FAILED",
         )
         components = value.get("components") if isinstance(value, dict) else None
-        return normalize_components(components if isinstance(components, list) and components else fallback)
+        if isinstance(components, list) and components:
+            return merge_components_with_stack_fallback(components, fallback)
+        return normalize_components(fallback)
 
     def _build_relations(
         self,
@@ -284,9 +293,9 @@ class ArchitectureAnalysisAgent:
         warnings: list[dict[str, Any]],
         fallback: list[dict[str, Any]] | None = None,
     ) -> list[dict[str, Any]]:
-        fallback = fallback or build_component_relations(components)
+        fallback = fallback or build_component_relations(components, architecture_config=architecture_config)
         value = self._llm_dict(
-            "컴포넌트 간 관계를 설계하세요. JSON으로 relations를 반환하세요.",
+            prompts.RELATIONS_SYSTEM,
             {"components": components, "architecture_config": architecture_config, "fallback_relations": fallback},
             warnings,
             "ARCH_RELATION_LLM_FAILED",
@@ -302,7 +311,7 @@ class ArchitectureAnalysisAgent:
     ) -> list[dict[str, Any]]:
         fallback = build_layers(components)
         value = self._llm_dict(
-            "아키텍처 계층 구조를 설계하세요. JSON으로 layers를 반환하세요.",
+            prompts.LAYERS_SYSTEM,
             {"components": components, "relations": relations, "fallback_layers": fallback},
             warnings,
             "ARCH_LAYER_LLM_FAILED",
@@ -321,7 +330,7 @@ class ArchitectureAnalysisAgent:
             [
                 {
                     "messages": [
-                        {"role": "system", "content": "회의록 변경사항별 아키텍처 영향 분석 결과를 JSON으로 반환하세요."},
+                        {"role": "system", "content": prompts.CHANGE_IMPACT_SYSTEM},
                         {"role": "user", "content": str(change)},
                     ]
                 }
@@ -342,10 +351,14 @@ class ArchitectureAnalysisAgent:
     ) -> dict[str, Any]:
         if self.llm_client is None:
             return {}
+        try:
+            user_content = json.dumps(payload, ensure_ascii=False, default=str)
+        except Exception:
+            user_content = str(payload)
         result = self.llm_client.chat(
             [
                 {"role": "system", "content": instruction},
-                {"role": "user", "content": str(payload)},
+                {"role": "user", "content": user_content},
             ]
         )
         if not result["success"]:
@@ -411,6 +424,18 @@ class ArchitectureAnalysisAgent:
         }
 
 
+def _to_plain_config(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return {key: item for key, item in value.items() if not str(key).startswith("_")}
+    if isinstance(value, list):
+        return {"networks": [_to_plain_config(item) for item in value]}
+    if isinstance(value, tuple):
+        return {"raw_row": list(value)}
+    if value is not None and hasattr(value, "__dict__"):
+        return {key: item for key, item in vars(value).items() if not key.startswith("_")}
+    return {}
+
+
 def _dedupe_results(results: list[Any]) -> list[dict[str, Any]]:
     deduped: list[dict[str, Any]] = []
     seen: set[str] = set()
@@ -420,7 +445,14 @@ def _dedupe_results(results: list[Any]) -> list[dict[str, Any]]:
         score = float(result.get("score") or 0.0)
         if score and score < 0.2:
             continue
-        key = str(result.get("citation") or result.get("content") or result)
+        metadata = result.get("metadata") if isinstance(result.get("metadata"), dict) else {}
+        key = str(
+            result.get("requirement_id")
+            or metadata.get("requirement_id")
+            or result.get("citation")
+            or result.get("content")
+            or result
+        )
         if key in seen:
             continue
         seen.add(key)

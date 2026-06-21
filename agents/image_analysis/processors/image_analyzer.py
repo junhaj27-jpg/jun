@@ -2,6 +2,7 @@
 
 import base64
 import mimetypes
+import re
 import statistics
 from pathlib import Path
 from typing import Any
@@ -60,8 +61,9 @@ UI_ELEMENT_ANALYSIS_PROMPT = """
 
 작성 규칙:
 - 이미지에 실제로 보이는 메뉴명, 제목, 버튼명, 카드명, 표 제목, 차트명, 상태값을 최대한 분리해서 적어라.
-- OCR 텍스트 좌표와 이미지에서 보이는 배치를 대조하여 서로 같은 UI 컴포넌트에 속하는 텍스트를 component_candidates로 묶어라.
+- OCR 텍스트 좌표는 위치 힌트로만 사용하고, 이미지에서 실제 컴포넌트라고 판단되는 경우에만 component_candidates로 묶어라.
 - component_candidates는 번호 배지를 붙일 수 있는 업무 의미 단위로 만들고, 단순 장식/중복 텍스트는 제외하라.
+- 깨진 OCR 조각, 단일 문자, 의미 없는 숫자/기호 조합, 오인식된 영문 조각은 visible_texts와 component_candidates에서 제외하라.
 - functional_areas는 component_candidates를 바탕으로 화면설계서 처리내용에 들어갈 기능 영역 단위로 나누어라.
 - bbox, x_ratio, y_ratio는 반드시 이미지 왼쪽 위 기준 0~1 상대 좌표로 적어라. 픽셀 좌표를 쓰지 마라.
 - 화면에 보이지 않는 업무, 요구사항, 기능은 만들지 마라.
@@ -169,6 +171,7 @@ def build_vision_content(
             "text": (
                 "다음 화면 이미지와 OCR 좌표 후보를 함께 보고 실제 UI 컴포넌트 단위로 묶어 JSON으로 추출하세요.\n"
                 f"OCR_TEXTS={ocr_texts[:120]}\n"
+                "COMPONENT_CANDIDATES는 OCR 줄/좌표 기반 힌트입니다. 그대로 쓰지 말고 이미지와 대조해 의미 있는 UI 컴포넌트만 최종 후보로 선택하세요.\n"
                 f"COMPONENT_CANDIDATES={component_candidates[:40]}"
             ),
         }
@@ -196,36 +199,65 @@ def extract_ocr_texts(path: str) -> list[dict[str, Any]]:
         return []
     try:
         import pytesseract  # type: ignore
-        from PIL import Image
+        from PIL import Image, ImageFilter, ImageOps
     except Exception:
         return []
 
+    collected: list[dict[str, Any]] = []
     try:
         with Image.open(image_path) as image:
-            width, height = image.size
-            raw = pytesseract.image_to_data(
-                image,
-                lang="kor+eng",
-                output_type=pytesseract.Output.DICT,
-            )
+            base = image.convert("RGB")
+            width, height = base.size
+            for variant, scale, config in _ocr_image_variants(base, ImageFilter, ImageOps):
+                try:
+                    raw = pytesseract.image_to_data(
+                        variant,
+                        lang="kor+eng",
+                        config=config,
+                        output_type=pytesseract.Output.DICT,
+                    )
+                except Exception:
+                    continue
+                collected.extend(_ocr_raw_to_items(raw, width, height, scale))
     except Exception:
         return []
 
+    return _dedupe_ocr_items(collected)
+
+
+def _ocr_image_variants(image: Any, image_filter: Any, image_ops: Any) -> list[tuple[Any, float, str]]:
+    variants: list[tuple[Any, float, str]] = []
+    variants.append((image, 1.0, "--psm 6"))
+
+    upscaled = image.resize((image.width * 2, image.height * 2))
+    variants.append((upscaled, 2.0, "--psm 6"))
+    variants.append((upscaled.filter(image_filter.SHARPEN), 2.0, "--psm 6"))
+
+    gray = image_ops.grayscale(upscaled)
+    variants.append((gray, 2.0, "--psm 6"))
+    variants.append((gray.filter(image_filter.SHARPEN), 2.0, "--psm 6"))
+
+    threshold = gray.point(lambda value: 255 if value > 175 else 0)
+    variants.append((threshold, 2.0, "--psm 6"))
+    return variants
+
+
+def _ocr_raw_to_items(raw: dict[str, Any], image_width: int, image_height: int, scale: float) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
     for index, text in enumerate(raw.get("text", [])):
         value = str(text or "").strip()
-        if not value:
+        if not value or not _is_usable_ocr_text(value):
             continue
         try:
             confidence = float(raw.get("conf", [])[index])
         except Exception:
             confidence = 0.0
-        if confidence < 35:
+        if confidence < 50:
             continue
-        left = float(raw["left"][index])
-        top = float(raw["top"][index])
-        box_width = float(raw["width"][index])
-        box_height = float(raw["height"][index])
+        left = float(raw["left"][index]) / scale
+        top = float(raw["top"][index]) / scale
+        box_width = float(raw["width"][index]) / scale
+        box_height = float(raw["height"][index]) / scale
         items.append(
             {
                 "text": value,
@@ -233,20 +265,47 @@ def extract_ocr_texts(path: str) -> list[dict[str, Any]]:
                 "y1": top,
                 "x2": left + box_width,
                 "y2": top + box_height,
-                "image_width": width,
-                "image_height": height,
-                "x_ratio": _safe_ratio((left + box_width / 2) / max(1, width), 0.5),
-                "y_ratio": _safe_ratio((top + box_height / 2) / max(1, height), 0.5),
+                "image_width": image_width,
+                "image_height": image_height,
+                "x_ratio": _safe_ratio((left + box_width / 2) / max(1, image_width), 0.5),
+                "y_ratio": _safe_ratio((top + box_height / 2) / max(1, image_height), 0.5),
                 "confidence": confidence,
             }
         )
     return items
 
 
+def _dedupe_ocr_items(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, int, int], list[dict[str, Any]]] = {}
+    for item in items:
+        text = _clean_text(item.get("text"))
+        if not text or _looks_like_ocr_noise(text):
+            continue
+        key = (
+            text,
+            round(float(item.get("x_ratio") or 0.0) * 100),
+            round(float(item.get("y_ratio") or 0.0) * 100),
+        )
+        grouped.setdefault(key, []).append({**item, "text": text})
+    deduped = []
+    for values in grouped.values():
+        best = max(values, key=lambda item: float(item.get("confidence") or 0.0))
+        max_confidence = float(best.get("confidence") or 0.0)
+        # Single-pass low-confidence OCR is where most of the garbage tokens come from.
+        if max_confidence < 70 and len(values) < 2:
+            continue
+        deduped.append(best)
+    return sorted(deduped, key=lambda item: (float(item.get("y1") or 0.0), float(item.get("x1") or 0.0)))
+
+
 def build_component_candidates_from_ocr(ocr_texts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """OCR bounding box를 줄/인접성 기준으로 묶어 컴포넌트 후보를 만듭니다."""
 
-    items = [_normalize_ocr_item(item) for item in ocr_texts if _normalize_ocr_item(item)]
+    items = [
+        normalized
+        for item in ocr_texts
+        if (normalized := _normalize_ocr_item(item)) and _is_usable_ocr_text(normalized["text"])
+    ]
     if not items:
         return []
 
@@ -273,6 +332,8 @@ def build_component_candidates_from_ocr(ocr_texts: list[dict[str, Any]]) -> list
                 continue
             bbox = _bbox_for_items(group)
             component_type = _component_type_hint(texts, bbox)
+            if not _is_meaningful_candidate_text(texts, component_type):
+                continue
             candidates.append(
                 {
                     "candidate_id": f"OCR-{line_index:02d}-{group_index:02d}",
@@ -285,7 +346,7 @@ def build_component_candidates_from_ocr(ocr_texts: list[dict[str, Any]]) -> list
                     "layout_hint": "same_line_nearby_text",
                 }
             )
-    return _merge_related_candidates(candidates)
+    return _high_quality_ocr_candidates(_merge_related_candidates(candidates))
 
 
 def _image_data_url(path: str) -> str | None:
@@ -307,17 +368,19 @@ def _normalize_analysis(
 ) -> dict[str, Any]:
     screen_names = _string_list(data.get("screen_name_candidates"))
     menu_paths = _string_list(data.get("menu_path_candidates"))
-    visible_texts = _string_list(data.get("visible_texts"))
+    visible_texts = _clean_visible_texts(_string_list(data.get("visible_texts")))
     ocr_items = _normalize_ocr_items(data.get("ocr_texts")) or _normalize_ocr_items(ocr_texts)
     input_fields = _string_list(data.get("input_fields"))
     buttons = _string_list(data.get("buttons"))
     user_actions = _string_list(data.get("user_actions"))
     content_areas = data.get("content_areas") or []
     raw_candidates = data.get("component_candidates")
-    candidates = _normalize_component_candidates(raw_candidates) or _normalize_component_candidates(component_candidates)
-    if not candidates and ocr_items:
-        candidates = build_component_candidates_from_ocr(ocr_items)
-    functional_areas = _normalize_functional_areas(data.get("functional_areas") or content_areas or [])
+    candidates = _merge_candidate_sources(
+        _semantic_component_candidates(_normalize_component_candidates(raw_candidates)),
+        _high_quality_ocr_candidates(_normalize_component_candidates(component_candidates)),
+        _high_quality_ocr_candidates(build_component_candidates_from_ocr(ocr_items)) if ocr_items else [],
+    )
+    functional_areas = _semantic_functional_areas(_normalize_functional_areas(data.get("functional_areas") or content_areas or []))
     if not functional_areas and candidates:
         functional_areas = _functional_areas_from_candidates(candidates)
     screen_name = (
@@ -334,7 +397,7 @@ def _normalize_analysis(
         "screen_name_candidates": screen_names or [str(screen_name)],
         "screen_type": str(data.get("screen_type") or ""),
         "menu_path_candidates": menu_paths,
-        "visible_texts": visible_texts or [item["text"] for item in ocr_items],
+        "visible_texts": visible_texts or _clean_visible_texts([item["text"] for item in ocr_items])[:30],
         "ocr_texts": ocr_items,
         "component_candidates": candidates,
         "purpose": data.get("purpose") or "",
@@ -355,15 +418,16 @@ def _fallback_analysis(
     component_candidates: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     name = Path(path).stem
-    candidates = _normalize_component_candidates(component_candidates)
-    if not candidates:
-        candidates = build_component_candidates_from_ocr(_normalize_ocr_items(ocr_texts))
+    candidates = _merge_candidate_sources(
+        _high_quality_ocr_candidates(_normalize_component_candidates(component_candidates)),
+        _high_quality_ocr_candidates(build_component_candidates_from_ocr(_normalize_ocr_items(ocr_texts))),
+    )
     functional_areas = _functional_areas_from_candidates(candidates)
     if not functional_areas:
         functional_areas = [
             {
-                "name": name,
-                "visible_texts": [name],
+                "name": "화면 정보 확인",
+                "visible_texts": [],
                 "area_role": "이미지에서 식별된 화면 전체 영역입니다.",
                 "component_type": "content",
                 "bbox": {"x1": 0.08, "y1": 0.08, "x2": 0.92, "y2": 0.92},
@@ -376,7 +440,7 @@ def _fallback_analysis(
             "screen_name_candidates": [name],
             "screen_type": "업무 화면",
             "menu_path_candidates": [name],
-            "visible_texts": [item["text"] for item in _normalize_ocr_items(ocr_texts)] or [name],
+            "visible_texts": _clean_visible_texts([item["text"] for item in _normalize_ocr_items(ocr_texts)])[:30] or [name],
             "ocr_texts": ocr_texts or [],
             "component_candidates": candidates,
             "functional_areas": functional_areas,
@@ -431,6 +495,68 @@ def _string_list(value: Any) -> list[str]:
     return [str(item).strip() for item in value if str(item).strip()]
 
 
+def _clean_visible_texts(values: list[str]) -> list[str]:
+    cleaned: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        text = _clean_text(value)
+        if not text or text in seen or not _is_usable_ocr_text(text):
+            continue
+        seen.add(text)
+        cleaned.append(text)
+    return cleaned
+
+
+def _clean_text(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "").strip())
+    text = text.replace("아시 Platform", "AI Platform")
+    text = re.sub(r"\bSaori\b", "AI", text, flags=re.IGNORECASE)
+    text = re.sub(r"SQL[- ]?Pytho\b", "SQL-Python", text, flags=re.IGNORECASE)
+    return text.strip(" \t\r\n.,;:|/\\[]{}()<>")
+
+
+def _is_usable_ocr_text(text: str) -> bool:
+    text = _clean_text(text)
+    if not text:
+        return False
+    if _looks_like_file_stem(text):
+        return False
+    if len(text) == 1 and text not in {"홈"}:
+        return False
+    if re.fullmatch(r"[\W_]+", text):
+        return False
+    if re.fullmatch(r"[\d\s%.,:-]+", text):
+        return False
+    if not re.search(r"[가-힣A-Za-z]", text):
+        return False
+    if len(text) <= 3 and re.fullmatch(r"[A-Za-z]{1,3}", text):
+        return text.lower() in {"ai", "id", "api", "sql"}
+    if _is_generic_ui_word(text):
+        return False
+    return True
+
+
+def _looks_like_ocr_noise(text: str) -> bool:
+    text = _clean_text(text)
+    if not text:
+        return True
+    if re.search(r"[=~^`]", text):
+        return True
+    if re.fullmatch(r"[A-Za-z]{1,2}[-_=]*", text):
+        return True
+    if re.search(r"[A-Za-z]", text) and re.search(r"[가-힣]", text):
+        known_mixed = ("SQL-Python", "AI", "RAG", "OCR", "MLOps", "Agent", "Builder", "Embedding")
+        if not any(token.lower() in text.lower() for token in known_mixed):
+            return True
+    if len(text) <= 4 and re.search(r"[A-Za-z]", text) and not re.fullmatch(r"(AI|RAG|OCR|API|SQL|MLOps)", text, re.IGNORECASE):
+        return True
+    return False
+
+
+def _looks_like_file_stem(text: str) -> bool:
+    return bool(re.match(r"^\d{1,3}[_-][가-힣A-Za-z0-9_ -]+$", _clean_text(text)))
+
+
 def _normalize_ocr_items(value: Any) -> list[dict[str, Any]]:
     if not isinstance(value, list):
         return []
@@ -446,7 +572,7 @@ def _normalize_ocr_item(item: Any) -> dict[str, Any] | None:
     if not isinstance(item, dict):
         return None
     text = str(item.get("text") or "").strip()
-    if not text:
+    if not text or not _is_usable_ocr_text(text):
         return None
     try:
         x1 = float(item.get("x1"))
@@ -511,18 +637,60 @@ def _bbox_for_items(items: list[dict[str, Any]]) -> dict[str, float]:
 
 
 def _component_type_hint(texts: list[str], bbox: dict[str, float]) -> str:
-    joined = " ".join(texts).lower()
+    cleaned = _clean_visible_texts(texts)
+    joined = " ".join(cleaned).lower()
+    if any(
+        token in joined
+        for token in (
+            "접근제어",
+            "ip접근",
+            "비밀번호",
+            "계정잠금",
+            "민감정보",
+            "탐지",
+            "차단",
+            "보안",
+            "감사",
+            "로그",
+        )
+    ):
+        return "card" if len(cleaned) <= 4 else "content"
     if any(token in joined for token in ("검색", "조회", "초기화", "search", "filter")) and len(texts) >= 2:
         return "search_filter"
     if any(token in joined for token in ("저장", "등록", "삭제", "수정", "승인", "실행", "업로드", "다운로드", "로그인", "버튼", "button")) and len(texts) <= 4:
         return "button"
     if any(token in joined for token in ("명", "일자", "상태", "구분", "번호", "담당", "제목")) and len(texts) >= 3:
         return "table"
-    if any(token in joined for token in ("메뉴", "대시보드", "관리", "설정")) and bbox["x1"] < 0.25:
+    if bbox["x1"] < 0.25 and any(token in joined for token in ("홈", "채팅", "문서", "rag", "agent", "ocr", "분석", "모델", "관리자", "메뉴", "관리", "설정")):
         return "menu"
+    if any(token in joined for token in ("차트", "추이", "현황", "사용량", "통계")):
+        return "chart"
+    if any(token in joined for token in ("대시보드", "플랫폼", "포털", "알림", "로그", "정책", "문서", "상담", "서비스", "바로가기", "요약", "목록")):
+        return "card" if bbox["x1"] > 0.18 else "content"
+    if cleaned and any(re.search(r"[가-힣]{2,}", text) for text in cleaned):
+        return "content"
     if len(texts) >= 4:
         return "content"
     return "unknown"
+
+
+def _is_meaningful_candidate_text(texts: list[str], component_type: str) -> bool:
+    cleaned = _clean_visible_texts(texts)
+    if not cleaned or component_type == "unknown":
+        return False
+    joined = " ".join(cleaned)
+    if _looks_like_file_stem(joined):
+        return False
+    if len(cleaned) == 1 and len(joined) < 3 and component_type not in {"button", "menu"}:
+        return False
+    return _noise_ratio(joined) <= 0.35
+
+
+def _noise_ratio(text: str) -> float:
+    if not text:
+        return 1.0
+    noisy = len(re.findall(r"[^가-힣A-Za-z0-9\s]", text))
+    return noisy / max(1, len(text))
 
 
 def _component_name_from_texts(texts: list[str], component_type: str) -> str:
@@ -592,6 +760,168 @@ def _normalize_component_candidates(value: Any) -> list[dict[str, Any]]:
     return candidates
 
 
+def _semantic_component_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    semantic = []
+    for candidate in candidates:
+        if not _candidate_is_semantic(candidate):
+            continue
+        semantic.append(_clean_candidate(candidate))
+    return _dedupe_candidates(semantic)[:12]
+
+
+def _high_quality_ocr_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    quality = []
+    for candidate in candidates:
+        if not _candidate_is_semantic(candidate, allow_ocr=True):
+            continue
+        quality.append(_clean_candidate(candidate))
+    return _dedupe_candidates(quality)[:12]
+
+
+def _merge_candidate_sources(*sources: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    merged: list[dict[str, Any]] = []
+    for source in sources:
+        merged.extend(candidate for candidate in source if isinstance(candidate, dict))
+    return _sort_candidates(_dedupe_candidates(merged))[:16]
+
+
+def _sort_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return sorted(
+        candidates,
+        key=lambda item: (
+            _component_priority(str(item.get("component_type") or "")),
+            float(item.get("y_ratio") or _bbox_center(item.get("bbox"), "y") or 0.5),
+            float(item.get("x_ratio") or _bbox_center(item.get("bbox"), "x") or 0.5),
+        ),
+    )
+
+
+def _component_priority(component_type: str) -> int:
+    order = {
+        "search_filter": 1,
+        "form": 2,
+        "input": 2,
+        "table": 3,
+        "card": 4,
+        "chart": 4,
+        "button": 5,
+        "menu": 6,
+        "content": 7,
+    }
+    return order.get(component_type.strip().lower(), 9)
+
+
+def _bbox_center(value: Any, axis: str) -> float | None:
+    bbox = _normalize_bbox(value)
+    if not bbox:
+        return None
+    if axis == "x":
+        return (bbox["x1"] + bbox["x2"]) / 2
+    return (bbox["y1"] + bbox["y2"]) / 2
+
+
+def _candidate_is_semantic(candidate: dict[str, Any], *, allow_ocr: bool = False) -> bool:
+    component_type = str(candidate.get("component_type") or "unknown").strip().lower()
+    if component_type == "unknown":
+        return False
+    if allow_ocr and component_type not in {"button", "search_filter", "table", "menu", "card", "chart", "form", "input", "content"}:
+        return False
+    texts = _clean_visible_texts(_string_list(candidate.get("texts")))
+    name = _clean_text(candidate.get("component_name"))
+    if _is_brand_candidate(candidate, name, texts) or _is_global_header_candidate(candidate, name, texts) or _is_generic_ui_word(name):
+        return False
+    joined = " ".join([name, *texts]).strip()
+    if not joined or _looks_like_file_stem(joined) or _noise_ratio(joined) > 0.35:
+        return False
+    if component_type == "content" and len(texts) < 2 and len(name) < 3:
+        return False
+    return bool(_normalize_bbox(candidate.get("bbox")))
+
+
+def _clean_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
+    return {
+        **candidate,
+        "component_name": _clean_text(candidate.get("component_name")),
+        "texts": _clean_visible_texts(_string_list(candidate.get("texts"))),
+    }
+
+
+def _semantic_functional_areas(areas: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    semantic = []
+    for area in areas:
+        name = _clean_text(area.get("name"))
+        texts = _clean_visible_texts(_string_list(area.get("visible_texts")))
+        component_type = str(area.get("component_type") or "").strip().lower()
+        if _is_brand_candidate(area, name, texts) or _is_global_header_candidate(area, name, texts) or _is_generic_ui_word(name):
+            continue
+        if component_type == "unknown":
+            continue
+        if not name or _looks_like_file_stem(name) or (not texts and len(name) < 3):
+            continue
+        if _noise_ratio(" ".join([name, *texts])) > 0.35:
+            continue
+        semantic.append({**area, "name": name, "visible_texts": texts})
+    return semantic[:12]
+
+
+def _dedupe_candidates(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    deduped = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        bbox = candidate.get("bbox") if isinstance(candidate.get("bbox"), dict) else {}
+        x1 = _safe_ratio(bbox.get("x1"), 0.0)
+        y1 = _safe_ratio(bbox.get("y1"), 0.0)
+        key = (
+            _clean_text(candidate.get("component_name")).lower(),
+            str(candidate.get("component_type") or "").lower(),
+            round(x1, 2),
+            round(y1, 2),
+        )
+        if str(key) in seen:
+            continue
+        seen.add(str(key))
+        deduped.append(candidate)
+    return deduped
+
+
+def _is_brand_candidate(candidate: dict[str, Any], name: str, texts: list[str]) -> bool:
+    joined = " ".join([name, *texts]).strip().lower()
+    bbox = candidate.get("bbox") if isinstance(candidate.get("bbox"), dict) else {}
+    x1 = float(bbox.get("x1", 1.0) or 1.0)
+    y1 = float(bbox.get("y1", 1.0) or 1.0)
+    brand_tokens = ("sf ai platform", "ai platform", "on-premise genai portal")
+    if any(token in joined for token in brand_tokens) and x1 < 0.25 and y1 < 0.2:
+        return True
+    return joined in {"ai platform", "sf ai platform"}
+
+
+def _is_global_header_candidate(candidate: dict[str, Any], name: str, texts: list[str]) -> bool:
+    bbox = candidate.get("bbox") if isinstance(candidate.get("bbox"), dict) else {}
+    try:
+        x1 = float(bbox.get("x1", 1.0) or 1.0)
+        y1 = float(bbox.get("y1", 1.0) or 1.0)
+    except Exception:
+        return False
+    joined = " ".join([name, *texts]).lower()
+    header_tokens = ("통합 검색", "검색", "권한", "kms", "전략부", "부서", "로그인")
+    return y1 < 0.14 and x1 > 0.58 and any(token in joined for token in header_tokens)
+
+
+def _is_generic_ui_word(text: str) -> bool:
+    normalized = _clean_text(text).lower()
+    return normalized in {
+        "서비스",
+        "부서별",
+        "문서",
+        "사용자",
+        "관리",
+        "정보",
+        "상태",
+        "플랫폼",
+        "platform",
+    }
+
+
 def _normalize_bbox(value: Any) -> dict[str, float]:
     if not isinstance(value, dict):
         return {}
@@ -648,6 +978,6 @@ def _screen_name_from_candidates(candidates: list[dict[str, Any]]) -> str:
     for candidate in candidates:
         texts = _string_list(candidate.get("texts"))
         for text in texts:
-            if 3 <= len(text) <= 40:
+            if 3 <= len(text) <= 40 and not _looks_like_file_stem(text):
                 return text
     return ""

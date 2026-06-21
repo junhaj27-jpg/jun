@@ -1,6 +1,7 @@
 """인터페이스 화면 이미지에 처리내용 번호 배지를 합성합니다."""
 
 from pathlib import Path
+import re
 from typing import Any
 
 
@@ -70,12 +71,17 @@ def build_ui_structure(screens: list[dict[str, Any]]) -> list[dict[str, str]]:
     for screen in screens:
         menu_path = str(screen.get("menu_path") or screen.get("screen_name") or "")
         parts = [part.strip() for part in menu_path.replace("/", ">").split(">") if part.strip()]
+        screen_type = str(screen.get("screen_type") or "업무 화면")
+        screen_name = str(screen.get("screen_name") or screen.get("screen_id") or "")
+        if len(parts) <= 1 and (not parts or parts[0] == screen_name):
+            module_name, detail_name = _screen_menu_levels(screen_name)
+            parts = ["AI 통합 플랫폼", module_name, screen_type, detail_name]
         rows.append(
             {
-                "level1": parts[0] if len(parts) > 0 else str(screen.get("screen_type") or "업무 화면"),
+                "level1": parts[0] if len(parts) > 0 else screen_type,
                 "level2": parts[1] if len(parts) > 1 else "",
-                "level3": parts[2] if len(parts) > 2 else str(screen.get("screen_type") or ""),
-                "level4": parts[3] if len(parts) > 3 else str(screen.get("screen_name") or screen.get("screen_id") or ""),
+                "level3": parts[2] if len(parts) > 2 else "",
+                "level4": parts[3] if len(parts) > 3 else "",
             }
         )
     return rows
@@ -92,17 +98,19 @@ def create_numbered_prototype_image(image_path: Path, screen_spec: dict[str, Any
         width, height = image.size
         overlay = Image.new("RGBA", image.size, (0, 0, 0, 0))
         draw = ImageDraw.Draw(overlay)
-        radius = int(_clamp(min(width, height) * 0.025, 18, 34))
-        font = _get_marker_font(ImageFont, int(radius * 1.15))
+        radius = int(_clamp(min(width, height) * 0.022, 18, 32))
+        font = _get_marker_font(ImageFont, int(radius * 1.25))
 
-        for marker in _normalize_button_markers(
+        markers = _normalize_button_markers(
             screen_spec.get("button_markers"),
             screen_spec.get("process_contents") or [],
             screen_spec.get("analysis") if isinstance(screen_spec.get("analysis"), dict) else {},
-        ):
-            x = int(_clamp(marker["x_ratio"], radius / width, 1 - radius / width) * width)
-            y = int(_clamp(marker["y_ratio"], radius / height, 1 - radius / height) * height)
+        )
+        placed_rects: list[tuple[int, int, int, int]] = []
+        for marker in markers:
+            x, y = _resolve_marker_position(marker, width, height, radius, placed_rects)
             _draw_number_marker(draw, x, y, radius, int(marker["no"]), font)
+            placed_rects.append((x - radius, y - radius, x + radius, y + radius))
 
         output_path = out_dir / f"{image_path.stem}_numbered.png"
         Image.alpha_composite(image, overlay).convert("RGB").save(output_path, optimize=True)
@@ -156,6 +164,8 @@ def _normalize_process_contents(
                 "title": title,
                 "description": detail,
                 "requirement_basis": _basis(screen),
+                "component_id": str(area.get("candidate_id") or area.get("component_id") or ""),
+                "component_bbox": area.get("bbox") if isinstance(area.get("bbox"), dict) else {},
             }
         )
     if not process_contents:
@@ -211,8 +221,9 @@ def _normalize_button_markers(
                     or process.get("title")
                     or f"기능 영역 {index}"
                 ),
-                "x_ratio": _ratio((marker or {}).get("x_ratio", _bbox_marker_x(bbox, area.get("x_ratio", fallback_x))), fallback_x),
-                "y_ratio": _ratio((marker or {}).get("y_ratio", _bbox_marker_y(bbox, area.get("y_ratio", fallback_y))), fallback_y),
+                "x_ratio": _ratio(_bbox_marker_x(bbox, (marker or {}).get("x_ratio", area.get("x_ratio", fallback_x))), fallback_x),
+                "y_ratio": _ratio(_bbox_marker_y(bbox, (marker or {}).get("y_ratio", area.get("y_ratio", fallback_y))), fallback_y),
+                "target_bbox": bbox,
             }
         )
     return normalized
@@ -232,7 +243,7 @@ def _functional_areas(analysis: dict[str, Any]) -> list[dict[str, Any]]:
                 "y_ratio": item.get("y_ratio"),
             }
             for index, item in enumerate(components, start=1)
-            if isinstance(item, dict)
+            if isinstance(item, dict) and _is_marker_candidate(item)
         ]
     value = analysis.get("functional_areas")
     if isinstance(value, list):
@@ -255,7 +266,7 @@ def _candidate_areas(analysis: dict[str, Any]) -> list[dict[str, Any]]:
     seen: set[str] = set()
     for index, area in enumerate(candidates, start=1):
         name = str(area.get("name") or area.get("title") or f"기능 영역 {index}").strip()
-        if not name or name in seen:
+        if not name or name in seen or not _is_marker_candidate({**area, "name": name}):
             continue
         seen.add(name)
         deduped.append({**area, "name": name})
@@ -319,6 +330,9 @@ def _get_marker_font(image_font: Any, size: int) -> Any:
         "C:/Windows/Fonts/arialbd.ttf",
         "C:/Windows/Fonts/malgunbd.ttf",
         "C:/Windows/Fonts/Arial.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc",
+        "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
     ):
         if Path(font_path).exists():
             return image_font.truetype(font_path, size=size)
@@ -349,11 +363,87 @@ def _draw_number_marker(draw: Any, x: int, y: int, radius: int, no: int, font: A
     draw.text((x - text_w / 2, y - text_h / 2 - radius * 0.04), label, fill=(255, 255, 255, 255), font=font)
 
 
+def _resolve_marker_position(
+    marker: dict[str, Any],
+    width: int,
+    height: int,
+    radius: int,
+    placed_rects: list[tuple[int, int, int, int]],
+) -> tuple[int, int]:
+    bbox = marker.get("target_bbox") if isinstance(marker.get("target_bbox"), dict) else {}
+    candidates = _marker_position_candidates(bbox, marker.get("x_ratio"), marker.get("y_ratio"))
+    for x_ratio, y_ratio in candidates:
+        x = int(_clamp(float(x_ratio), radius / width, 1 - radius / width) * width)
+        y = int(_clamp(float(y_ratio), radius / height, 1 - radius / height) * height)
+        marker_rect = (x - radius, y - radius, x + radius, y + radius)
+        if _overlaps_any(marker_rect, placed_rects, padding=max(2, radius // 4)):
+            continue
+        return x, y
+    x = int(_clamp(float(marker.get("x_ratio") or 0.5), radius / width, 1 - radius / width) * width)
+    y = int(_clamp(float(marker.get("y_ratio") or 0.5), radius / height, 1 - radius / height) * height)
+    return x, y
+
+
+def _marker_position_candidates(bbox: dict[str, Any], default_x: Any, default_y: Any) -> list[tuple[float, float]]:
+    try:
+        x1 = float(bbox.get("x1"))
+        y1 = float(bbox.get("y1"))
+        x2 = float(bbox.get("x2"))
+        y2 = float(bbox.get("y2"))
+    except Exception:
+        return [(float(default_x or 0.5), float(default_y or 0.5))]
+    if x2 <= x1 or y2 <= y1:
+        return [(float(default_x or 0.5), float(default_y or 0.5))]
+    cx = (x1 + x2) / 2
+    cy = (y1 + y2) / 2
+    gap = 0.024
+    return [
+        (x1 + gap, y1 + gap),
+        (x1 - gap, y1 + gap),
+        (x1 + gap, cy),
+        (x2 - gap, y1 + gap),
+        (x2 + gap, y1 + gap),
+        (cx, y1 + gap),
+        (float(default_x or x1 + gap), float(default_y or y1 + gap)),
+    ]
+
+
+def _bbox_to_pixels(bbox: Any, width: int, height: int) -> tuple[int, int, int, int] | None:
+    if not isinstance(bbox, dict):
+        return None
+    try:
+        x1 = int(_clamp(float(bbox.get("x1")), 0.0, 1.0) * width)
+        y1 = int(_clamp(float(bbox.get("y1")), 0.0, 1.0) * height)
+        x2 = int(_clamp(float(bbox.get("x2")), 0.0, 1.0) * width)
+        y2 = int(_clamp(float(bbox.get("y2")), 0.0, 1.0) * height)
+    except Exception:
+        return None
+    if x2 <= x1 or y2 <= y1:
+        return None
+    return (x1, y1, x2, y2)
+
+
+def _overlaps_any(
+    rect: tuple[int, int, int, int],
+    others: list[tuple[int, int, int, int]],
+    *,
+    padding: int = 0,
+) -> bool:
+    left, top, right, bottom = rect
+    for other_left, other_top, other_right, other_bottom in others:
+        if right + padding <= other_left or other_right + padding <= left:
+            continue
+        if bottom + padding <= other_top or other_bottom + padding <= top:
+            continue
+        return True
+    return False
+
+
 def _bbox_marker_x(bbox: dict[str, Any], default: Any) -> Any:
     try:
         x1 = float(bbox.get("x1"))
         x2 = float(bbox.get("x2"))
-        return _clamp(x2 - 0.015 if x2 > x1 else (x1 + x2) / 2, 0.03, 0.97)
+        return _clamp((x1 + 0.024) if x2 > x1 else (x1 + x2) / 2, 0.03, 0.97)
     except Exception:
         return default
 
@@ -362,6 +452,103 @@ def _bbox_marker_y(bbox: dict[str, Any], default: Any) -> Any:
     try:
         y1 = float(bbox.get("y1"))
         y2 = float(bbox.get("y2"))
-        return _clamp(y1 + 0.015 if y2 > y1 else (y1 + y2) / 2, 0.03, 0.97)
+        return _clamp((y1 + 0.024) if y2 > y1 else (y1 + y2) / 2, 0.03, 0.97)
     except Exception:
         return default
+
+
+def _is_marker_candidate(area: dict[str, Any]) -> bool:
+    component_type = str(area.get("component_type") or area.get("type") or "unknown").strip().lower()
+    if component_type == "unknown":
+        return False
+    name = _clean_text(area.get("name") or area.get("component_name") or area.get("title"))
+    texts = [_clean_text(value) for value in area.get("visible_texts", []) or area.get("texts", []) or []]
+    texts = [text for text in texts if _is_usable_text(text)]
+    if _is_brand_component(area, name, texts) or _is_global_header_component(area, name, texts) or _is_generic_ui_word(name):
+        return False
+    joined = " ".join([name, *texts]).strip()
+    if not joined or _looks_like_file_stem(joined) or _noise_ratio(joined) > 0.35:
+        return False
+    if component_type == "content" and len(texts) < 2 and len(name) < 3:
+        return False
+    return True
+
+
+def _clean_text(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "").strip())
+    text = text.replace("아시 Platform", "AI Platform")
+    text = re.sub(r"\bSaori\b", "AI", text, flags=re.IGNORECASE)
+    text = re.sub(r"SQL[- ]?Pytho\b", "SQL-Python", text, flags=re.IGNORECASE)
+    return text.strip(" \t\r\n.,;:|/\\[]{}()<>")
+
+
+def _is_usable_text(text: str) -> bool:
+    text = _clean_text(text)
+    if _looks_like_file_stem(text):
+        return False
+    if len(text) == 1 and text not in {"홈"}:
+        return False
+    if re.fullmatch(r"[\W_]+", text) or re.fullmatch(r"[\d\s%.,:-]+", text):
+        return False
+    if not re.search(r"[가-힣A-Za-z]", text):
+        return False
+    if len(text) <= 3 and re.fullmatch(r"[A-Za-z]{1,3}", text):
+        return text.lower() in {"ai", "id", "api", "sql"}
+    if _is_generic_ui_word(text):
+        return False
+    return True
+
+
+def _looks_like_file_stem(text: str) -> bool:
+    return bool(re.match(r"^\d{1,3}[_-][가-힣A-Za-z0-9_ -]+$", _clean_text(text)))
+
+
+def _noise_ratio(text: str) -> float:
+    if not text:
+        return 1.0
+    noisy = len(re.findall(r"[^가-힣A-Za-z0-9\s]", text))
+    return noisy / max(1, len(text))
+
+
+def _is_brand_component(area: dict[str, Any], name: str, texts: list[str]) -> bool:
+    joined = " ".join([name, *texts]).strip().lower()
+    bbox = area.get("bbox") if isinstance(area.get("bbox"), dict) else {}
+    x1 = float(bbox.get("x1", 1.0) or 1.0)
+    y1 = float(bbox.get("y1", 1.0) or 1.0)
+    if any(token in joined for token in ("sf ai platform", "ai platform", "on-premise genai portal")) and x1 < 0.25 and y1 < 0.2:
+        return True
+    return joined in {"ai platform", "sf ai platform"}
+
+
+def _is_global_header_component(area: dict[str, Any], name: str, texts: list[str]) -> bool:
+    bbox = area.get("bbox") if isinstance(area.get("bbox"), dict) else {}
+    try:
+        x1 = float(bbox.get("x1", 1.0) or 1.0)
+        y1 = float(bbox.get("y1", 1.0) or 1.0)
+    except Exception:
+        return False
+    joined = " ".join([name, *texts]).lower()
+    header_tokens = ("통합 검색", "검색", "권한", "kms", "전략부", "부서", "로그인")
+    return y1 < 0.14 and x1 > 0.58 and any(token in joined for token in header_tokens)
+
+
+def _is_generic_ui_word(text: str) -> bool:
+    return _clean_text(text).lower() in {
+        "서비스",
+        "부서별",
+        "문서",
+        "사용자",
+        "관리",
+        "정보",
+        "상태",
+        "플랫폼",
+        "platform",
+    }
+
+
+def _screen_menu_levels(screen_name: str) -> tuple[str, str]:
+    name = re.sub(r"^\d{1,3}_", "", str(screen_name or "").strip())
+    parts = [part for part in name.split("_") if part]
+    if len(parts) >= 2:
+        return " ".join(parts[:-1]), parts[-1]
+    return name or "업무", name or "화면"

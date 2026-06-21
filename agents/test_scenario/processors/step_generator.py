@@ -219,7 +219,9 @@ def _find_interface(case: dict[str, Any], interfaces: list[dict[str, Any]]) -> d
 
 
 def _input_for_type(case_type: str) -> str:
-    return "유효하지 않은 시험 데이터" if case_type in {"EXCEPTION", "INPUT_VALIDATION"} else "유효한 시험 데이터"
+    # LLM이 구체적인 입력값을 채우지 못한 경우(주로 액션 위주 시나리오)의 최종 fallback.
+    # "유효한 시험 데이터" 같은 모호한 문구 대신 입력값 없음을 명확히 표시합니다.
+    return "-"
 
 
 def _parse_step_list(response: Any) -> list[dict[str, Any]]:
@@ -230,12 +232,32 @@ def _parse_step_list(response: Any) -> list[dict[str, Any]]:
         return []
     value = parsed["data"]
     if isinstance(value, dict):
-        value = value.get("step_json_list") or value.get("steps") or value.get("step_detail_json") or value.get("step")
+        value = (
+            value.get("step_json_list")
+            or value.get("steps")
+            or value.get("step_detail_json")
+            or value.get("step")
+            or _extract_steps_from_cases(value)
+        )
     if isinstance(value, list):
         return [_sanitize_step(item) for item in value if isinstance(item, dict)]
     if isinstance(value, dict):
         return [_sanitize_step(value)]
     return []
+
+
+def _extract_steps_from_cases(value: dict) -> list[dict] | None:
+    """test_case_json_list 안의 test_procedure에서 step을 추출합니다."""
+    cases = value.get("test_case_json_list") or []
+    steps = []
+    for case in cases:
+        if not isinstance(case, dict):
+            continue
+        for proc in (case.get("test_procedure") or []):
+            if isinstance(proc, dict):
+                proc.setdefault("test_case_id", case.get("test_case_id"))
+                steps.append(proc)
+    return steps or None
 
 
 def _parse_step(response: Any) -> dict[str, Any] | None:
@@ -257,9 +279,12 @@ def _ensure_steps_for_procedure(steps: list[dict[str, Any]], case: dict[str, Any
     filled = []
     for index, procedure in enumerate(procedures, start=1):
         step = dict(by_no.get(index) or {})
-        step.setdefault("step_no", index)
-        step.setdefault("처리내용", str(procedure))
-        step.setdefault("process", str(procedure))
+        proc_text = procedure.get("처리내용") or procedure.get("process") or procedure.get("action") or str(procedure) if isinstance(procedure, dict) else str(procedure)
+        # LLM 스켈레톤이 procedure별로 다른 내용을 만들지 못하고 동일/엉뚱한 값을
+        # 채워올 수 있으므로, 처리내용은 항상 원본 test_procedure의 값으로 강제합니다.
+        step["step_no"] = index
+        step["처리내용"] = proc_text
+        step["process"] = proc_text
         step.setdefault("test_case_id", case.get("test_case_id"))
         step.setdefault("test_result", None)
         filled.append(step)
@@ -311,7 +336,29 @@ def _normalize_step(
 def _sanitize_step(step: dict[str, Any]) -> dict[str, Any]:
     sanitized = dict(step)
     sanitized["test_result"] = None
+
+    # 입력값 계열: list/dict → 문자열 변환
     for key in ("입력값", "input", "input_value", "input_data"):
         if key in sanitized and not isinstance(sanitized[key], str):
             sanitized[key] = " ".join(str(item) for item in sanitized[key]) if isinstance(sanitized[key], list) else str(sanitized[key])
+
+    # 예상결과가 dict인 경우: expected_result 키 우선 추출, 없으면 문자열 변환
+    for key in ("예상결과", "expected_result"):
+        if key in sanitized and isinstance(sanitized[key], dict):
+            sanitized[key] = (
+                sanitized[key].get("expected_result")
+                or sanitized[key].get("예상결과")
+                or ", ".join(f"{k}: {v}" for k, v in sanitized[key].items())
+            )
+
+    # 처리내용이 dict인 경우: 내부 처리내용 키 우선 추출, 없으면 문자열 변환
+    if "처리내용" in sanitized and isinstance(sanitized["처리내용"], dict):
+        inner = sanitized["처리내용"]
+        sanitized["처리내용"] = (
+            inner.get("처리내용")
+            or inner.get("process")
+            or inner.get("action")
+            or ", ".join(f"{k}: {v}" for k, v in inner.items())
+        )
+
     return sanitized

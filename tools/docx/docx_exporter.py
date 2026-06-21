@@ -15,10 +15,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.shared import Inches, Pt
 from docx.table import Table
 
-from agents.data_structure_design.processors.table_builder import (
-    display_column_name,
-    format_type_and_length,
-)
+from agents.data_structure_design.processors.table_builder import format_type_and_length
 from tools.result import ToolResult, error_result, success_result
 
 
@@ -842,12 +839,7 @@ def _erd_column_to_row(column: dict[str, Any]) -> list[Any]:
     data_type, length = _split_data_type(_pick(column, "type", "data_type"))
     physical_name = _pick(column, "physical_name", "column_name", "name")
     return [
-        display_column_name(
-            _pick(column, "logical_name", "column_logical_name", "description", "comment"),
-            physical_name,
-            "",
-            bool(column.get("is_pk")) or "PK" in [str(item).upper() for item in constraints or []],
-        ),
+        _pick(column, "attribute_name", "logical_name", "column_logical_name"),
         _short_text(_clean_optional_text(_pick(column, "synonym", default="")), 30),
         data_type,
         _pick(column, "length", default=length),
@@ -865,14 +857,7 @@ def _entity_display_name(table: dict[str, Any]) -> str:
         value = _pick(table, key)
         if value and not _looks_like_physical_name(value):
             return _short_text(value, 40)
-    return _short_text(_humanize_physical_name(_pick(table, "physical_name", "table_name")), 40)
-
-
-def _column_display_name(column: dict[str, Any]) -> str:
-    physical = _pick(column, "physical_name", "column_name", "name")
-    if physical:
-        return str(physical).upper()
-    return _short_text(_pick(column, "logical_name"), 40).upper()
+    return ""
 
 
 def _looks_like_physical_name(value: Any) -> bool:
@@ -880,14 +865,6 @@ def _looks_like_physical_name(value: Any) -> bool:
     if not text:
         return False
     return bool(re.fullmatch(r"(tbl_)?[A-Za-z][A-Za-z0-9_]*", text) or re.fullmatch(r"TABLE-\d+", text, re.IGNORECASE))
-
-
-def _humanize_physical_name(value: Any) -> str:
-    text = str(value or "").strip().removeprefix("tbl_")
-    if not text:
-        return "엔티티"
-    tokens = [token for token in re.split(r"[_\s]+", text) if token]
-    return " ".join(token.upper() if len(token) <= 3 else token for token in tokens) or "엔티티"
 
 
 def _split_data_type(value: Any) -> tuple[str, str]:

@@ -56,23 +56,50 @@ def _extract_targets(
 
     checks = failed_checks or []
     for check in checks:
+        check_failure_type = str(check.get("failure_type") or "")
+        check_scope = _scope_values(check.get("target_scope"))
+        for mapped_agent in get_failure_agents(check_failure_type):
+            _add_target(agents, metadata, mapped_agent, check_scope)
         check_target_agent = check.get("target_agent")
         if check_target_agent:
-            agent_name = str(check_target_agent)
-            agents.append(agent_name)
-            check_scope = check.get("target_scope") or []
-            if check_scope:
-                metadata.setdefault(agent_name, {})["retry_scope"] = list(check_scope)
+            _add_target(
+                agents,
+                metadata,
+                str(check_target_agent),
+                check_scope,
+            )
 
+    # failed_checks가 없거나 일부 check에 target 정보가 없어도 대표 실패 유형의
+    # 하네스 매핑은 항상 반영합니다.
+    for mapped_agent in get_failure_agents(failure_type):
+        _add_target(agents, metadata, mapped_agent, _scope_values(target_scope))
     if target_agent:
-        agents.append(target_agent)
-        if target_scope:
-            metadata.setdefault(target_agent, {})["retry_scope"] = list(target_scope)
-
-    if not agents:
-        agents = get_failure_agents(failure_type)
+        _add_target(agents, metadata, target_agent, _scope_values(target_scope))
 
     return list(dict.fromkeys(agents)), metadata
+
+
+def _add_target(
+    agents: list[str],
+    metadata: dict[str, dict[str, Any]],
+    agent_name: str,
+    scope: list[str],
+) -> None:
+    if not agent_name:
+        return
+    agents.append(agent_name)
+    if not scope:
+        return
+    current = metadata.setdefault(agent_name, {}).setdefault("retry_scope", [])
+    current.extend(value for value in scope if value not in current)
+
+
+def _scope_values(value: Any) -> list[str]:
+    if isinstance(value, list):
+        return [str(item) for item in value if str(item)]
+    if value in (None, ""):
+        return []
+    return [str(value)]
 
 
 def _infer_agents_from_failure_type(failure_type: str) -> list[str]:

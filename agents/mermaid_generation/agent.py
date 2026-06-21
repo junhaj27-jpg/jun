@@ -29,7 +29,8 @@ class MermaidGenerationAgent:
             structure = state.get("agent_outputs", {}).get("data_structure_design_agent", {}).get("erd_mermaid_json")
             if not _valid_erd_structure(structure):
                 return self._store(state, self._failed("ERD_MERMAID_INPUT_INVALID", "erd_mermaid_json에 엔티티/테이블 구조가 필요합니다."))
-            return self._store(state, self._execute_erd(state, structure))
+            output = self._execute_erd(state, structure)
+            return self._store(state, output)
         elif docs_cd == "ARCH":
             structure = state.get("agent_outputs", {}).get("architecture_analysis_agent", {}).get("architecture_structure_json")
             if not _valid_arch_structure(structure):
@@ -92,6 +93,11 @@ class MermaidGenerationAgent:
         if not groups:
             return self._failed("ERD_MERMAID_INPUT_INVALID", "ERD 그룹을 생성할 수 없습니다.")
         coverage_result = _coverage_result(structure, groups)
+        if coverage_result["missing_table_count"]:
+            return self._failed(
+                "ERD_MERMAID_COVERAGE_MISSING",
+                f"ERD 그룹에서 누락된 엔티티가 있습니다: {coverage_result['missing_tables']}",
+            )
 
         mermaid_codes: list[str] = []
         mermaid_file_paths: list[str] = []

@@ -53,11 +53,17 @@ def build_final_document_json(state: WorkflowState) -> dict[str, Any]:
             "data_structure_design_agent", {}
         ).get("db_design_json", {})
     elif docs_cd == "ARCH":
-        final_document_json["architecture_document_json"] = agent_outputs.get(
-            "architecture_analysis_agent", {}
-        ).get("architecture_document_json", {})
-        final_document_json["mermaid_image_path"] = agent_outputs.get(
-            "mermaid_generation_agent", {}
-        ).get("mermaid_image_path", "")
+        arch_output = agent_outputs.get("architecture_analysis_agent", {})
+        mermaid_output = agent_outputs.get("mermaid_generation_agent", {})
+
+        final_document_json["architecture_structure_json"] = arch_output.get(
+            "architecture_structure_json", {}
+        )
+        final_document_json["architecture_document_json"] = arch_output.get(
+            "architecture_document_json", {}
+        )
+        final_document_json["mermaid_image_path"] = mermaid_output.get(
+            "mermaid_image_path", ""
+        )
 
     return final_document_json

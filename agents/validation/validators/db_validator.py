@@ -300,8 +300,27 @@ def _normalize_scalar(value: Any) -> str:
 
 
 def _meeting_check(state: WorkflowState) -> dict[str, Any]:
-    artifact = state.get("agent_outputs", {}).get("document_merge_agent", {}).get("integrated_artifact_json_list")
-    return make_check("DB_MEETING_001", "수정 회의록 반영 검증", state.get("udt_yn") != "Y" or bool(artifact), failure_type="DB_MEETING_CHANGE_MISSING", message="회의록이 반영된 DB 통합 산출물을 확인할 수 없습니다.", target_agent="document_merge_agent")
+    if state.get("udt_yn") != "Y":
+        passed = True
+    else:
+        outputs = state.get("agent_outputs", {})
+        document_merge = outputs.get("document_merge_agent", {})
+        db_design = outputs.get(TARGET, {}).get("db_design_json", {})
+        passed = bool(
+            document_merge.get("integrated_artifact_json_list")
+            or (
+                document_merge.get("existing_output_raw_json")
+                and first_list(db_design, "tables", "table_json_list")
+            )
+        )
+    return make_check(
+        "DB_MEETING_001",
+        "수정 회의록 반영 검증",
+        passed,
+        failure_type="DB_MEETING_CHANGE_MISSING",
+        message="회의록 반영 대상 DB 산출물 구조를 확인할 수 없습니다.",
+        target_agent="data_structure_design_agent",
+    )
 
 
 def _invalid_column_refs(items: list[Any], column_names: set[str], key: str) -> bool:

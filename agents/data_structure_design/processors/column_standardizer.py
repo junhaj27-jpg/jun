@@ -1,6 +1,7 @@
 # 데이터베이스 컬럼명을 표준 명명 규칙으로 변환합니다.
 
 import re
+from hashlib import sha1
 
 
 TERM_MAP = {
@@ -31,6 +32,15 @@ TERM_MAP = {
     "메시지": "message",
     "화면": "screen",
     "데이터": "data",
+    "조직": "org",
+    "부서": "dept",
+    "태그": "tag",
+    "청크": "chunk",
+    "임베딩": "embedding",
+    "에이전트": "agent",
+    "프롬프트": "prompt",
+    "모델": "model",
+    "컬렉션": "collection",
     "번호": "sn",
     "일련번호": "sn",
     "아이디": "id",
@@ -62,6 +72,9 @@ def standardize_name(value: str, *, fallback: str = "item") -> str:
 
 def table_name(entity_name: str) -> str:
     name = standardize_name(entity_name, fallback="entity")
+    if name == "entity" and str(entity_name or "").strip():
+        digest = sha1(str(entity_name).encode("utf-8")).hexdigest()[:8]
+        name = f"unresolved_{digest}"
     if name == "tbl":
         name = "entity"
     return name if name.startswith("tbl_") else f"tbl_{name}"

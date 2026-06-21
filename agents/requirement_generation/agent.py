@@ -5,15 +5,23 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Protocol
 
+from agents.fine_tuning_agent.requirements_gold_error_utils import (
+    get_requirement_gold_error_code,
+)
 from agents.requirement_generation.processors import (
     build_rag_query_sets_parallel,
     enrich_gold_requirements_parallel,
     filter_function_requirements,
 )
+from config.logging_config import get_logger
+from config.logging_context import bind_state_log_extra
 from tools.llm.llm_client import LLMClient
 from tools.result import ToolResult
 from tools.search.search_router import search
 from workflow.state import WorkflowState
+
+
+logger = get_logger("agents.requirement_generation.agent")
 
 
 class GoldRequirementService(Protocol):
@@ -74,9 +82,21 @@ class RequirementGenerationAgent:
         try:
             gold_output = self._generate_gold_requirements(gold_input, state)
         except Exception as exc:
+            error_code = get_requirement_gold_error_code(exc)
+            logger.exception(
+                "Requirement gold generation failed error_code=%s project_sn=%s document_id=%s",
+                error_code,
+                state.get("project_sn"),
+                gold_input.get("document_id"),
+                extra=bind_state_log_extra(
+                    state,
+                    "requirement_gold_generation_failed",
+                    error_code=error_code,
+                ),
+            )
             return self._store(
                 state,
-                self._failed("REQUIREMENT_GOLD_GENERATION_FAILED", str(exc)),
+                self._failed(error_code, str(exc)),
             )
 
         gold_items = _extract_gold_items(gold_output)

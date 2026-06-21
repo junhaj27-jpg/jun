@@ -43,6 +43,7 @@ huggingface_hub==1.19.0
 json-repair==0.61.0
 tqdm==4.68.2
 numpy==2.3.5
+networkx==3.5
 
 
 # PyTorch for CUDA 12.4 on RunPod

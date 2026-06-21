@@ -7,6 +7,7 @@ SELECT
     d.docs_prgrs_stts_cd,
     d.mdfcn_cn,
     dd.docs_dtl_sn,
+    dd.docs_dtl_cn,
     dd.docs_path,
     dd.del_yn
 FROM tbl_docs d

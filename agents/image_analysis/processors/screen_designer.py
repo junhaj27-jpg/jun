@@ -50,13 +50,14 @@ SCREEN_DETAIL_PROMPT = """
 - 관련 유스케이스 ID, 관련 시퀀스도 ID는 절대 생성하지 말고 JSON에도 포함하지 마라.
 - 화면명은 이미지 제목, 메뉴, 파일명 맥락 중 가장 구체적인 이름으로 작성하라.
 - 처리내용은 반드시 화면에 실제로 보이는 UI 영역 하나와 사용자 요구사항 하나 이상을 연결해서 작성하라.
-- component_candidates 또는 OCR 좌표가 있는 경우 처리내용은 반드시 해당 후보의 candidate_id와 bbox를 기준으로 작성하라.
+- component_candidates는 이미 의미 검증된 UI 후보만 제공된다. OCR 원문 조각을 처리내용 제목으로 사용하지 마라.
+- 처리내용은 component_type이 unknown인 후보, 단일 문자 후보, 깨진 OCR 조각, 숫자/기호 중심 후보를 제외하고 작성하라.
 - process_contents는 기능 영역별로 작성하고, title/description/requirement_basis를 서로 다르게 구체화하라.
 - description에는 사용자가 해당 영역을 조회, 선택, 입력, 실행했을 때 시스템이 수행하는 처리를 한두 문장으로 작성하라.
 - requirement_basis에는 근거가 된 requirement_id와 requirement_name을 포함하라.
 - 같은 화면명만 반복하거나, title/description/requirement_basis를 같은 문장으로 채우지 마라.
 - process_contents의 no와 button_markers의 no는 반드시 1:1로 일치시켜라.
-- 번호 버튼은 텍스트를 많이 가리지 않도록 카드 모서리, 영역 외곽, 여백 근처에 배치하라.
+- 번호 버튼은 대상 component_bbox의 좌측 상단 기준으로 배치하라.
 - component_bbox와 button_markers의 x_ratio, y_ratio는 반드시 0~1 상대 좌표로 작성하라.
 - 프로토타입 이미지에 없는 업무를 과도하게 만들지 마라.
 - 처리내용은 화면 복잡도에 따라 4~8개를 목표로 하되, 실제 기능 영역이 적으면 더 적어도 된다.
@@ -159,7 +160,12 @@ def ensure_screen_design_content(
     )
     if len(process_contents) < 2:
         process_contents = build_process_from_observation(analysis, related_items)
-    item["process_contents"] = _renumber(process_contents)
+    item["process_contents"] = _enhance_process_contents(
+        _renumber(process_contents),
+        related_items,
+        _component_candidates(analysis),
+    )
+    item["process_contents"] = _ensure_minimum_process_contents(item["process_contents"], related_items, minimum=2)
     item["button_markers"] = build_markers_from_observation(item["process_contents"], analysis, item.get("button_markers"))
 
     issues = validate_screen_spec_quality(item)
@@ -222,8 +228,8 @@ def build_process_from_observation(
     if components:
         return _build_process_from_components(components, related_items)
 
-    areas = analysis.get("functional_areas", []) if isinstance(analysis.get("functional_areas"), list) else []
-    visible_texts = [str(value).strip() for value in analysis.get("visible_texts", []) or [] if str(value).strip()]
+    areas = _semantic_areas(analysis.get("functional_areas", []) if isinstance(analysis.get("functional_areas"), list) else [])
+    visible_texts = _clean_visible_texts([str(value).strip() for value in analysis.get("visible_texts", []) or [] if str(value).strip()])
     items = []
 
     for index, area in enumerate(areas, start=1):
@@ -250,7 +256,11 @@ def build_process_from_observation(
     if items:
         return items
 
-    fallback_names = visible_texts[:6] or _analysis_names(analysis) or ["화면 정보 확인"]
+    requirement_processes = _build_process_from_requirements(related_items)
+    if requirement_processes:
+        return requirement_processes
+
+    fallback_names = visible_texts[:4] or _analysis_names(analysis) or ["화면 정보 확인"]
     for index, title in enumerate(fallback_names, start=1):
         basis = _format_requirement_basis(related_items[(index - 1) % len(related_items)]) if related_items else "관련 요구사항"
         items.append(
@@ -290,14 +300,16 @@ def build_markers_from_observation(
         process_bbox = process.get("component_bbox") if isinstance(process.get("component_bbox"), dict) else {}
         area_bbox = area.get("bbox") if isinstance(area.get("bbox"), dict) else {}
         bbox = process_bbox or area_bbox
+        if not bbox:
+            continue
         default_x = 0.12 + ((index - 1) % 3) * 0.36
         default_y = 0.18 + min(index - 1, 6) * 0.11
         markers.append(
             {
                 "no": index,
                 "target_area": str((marker or {}).get("target_area") or area.get("name") or process.get("title") or f"기능 영역 {index}"),
-                "x_ratio": _safe_ratio((marker or {}).get("x_ratio", _bbox_marker_x(bbox, area.get("x_ratio", default_x))), default_x),
-                "y_ratio": _safe_ratio((marker or {}).get("y_ratio", _bbox_marker_y(bbox, area.get("y_ratio", default_y))), default_y),
+                "x_ratio": _safe_ratio(_bbox_marker_x(bbox, (marker or {}).get("x_ratio", area.get("x_ratio", default_x))), default_x),
+                "y_ratio": _safe_ratio(_bbox_marker_y(bbox, (marker or {}).get("y_ratio", area.get("y_ratio", default_y))), default_y),
             }
         )
     return markers
@@ -405,9 +417,12 @@ def _build_screen_overview(
     purpose = str(analysis.get("purpose") or "").strip()
     areas = [
         str(area.get("name") or "").strip()
-        for area in analysis.get("functional_areas", []) or []
-        if isinstance(area, dict) and str(area.get("name") or "").strip()
+        for area in _semantic_areas(analysis.get("functional_areas", []) or [])
+        if str(area.get("name") or "").strip()
     ]
+    if not areas:
+        areas = [str(component.get("component_name") or "").strip() for component in _component_candidates(analysis)[:4]]
+    areas = _dedupe_texts([area for area in areas if area])
     req_names = [
         str(item.get("requirement_name") or item.get("req_name") or item.get("screen_name") or "").strip()
         for item in related_items[:3]
@@ -550,6 +565,32 @@ def _renumber(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [{**item, "no": index} for index, item in enumerate(items, start=1)]
 
 
+def _requirement_process_title(item: dict[str, Any], index: int) -> str:
+    text = _normalize_match_text(
+        [
+            item.get("requirement_name"),
+            item.get("req_name"),
+            item.get("screen_name"),
+            item.get("description"),
+            item.get("detail_text"),
+        ]
+    )
+    rules = (
+        (("보안", "권한", "인증", "비밀번호", "접근", "잠금", "감사", "로그"), "보안 정책 적용"),
+        (("대시보드", "시각화", "추이", "현황", "통계", "리포트"), "운영 현황 제공"),
+        (("검색", "조회", "필터", "qa", "질의"), "검색 및 조회 지원"),
+        (("문서", "rag", "drm", "업로드", "파일"), "문서 처리 지원"),
+        (("agent", "워크플로", "builder", "캔버스"), "Agent 업무 구성"),
+        (("모델", "llm", "mlops", "학습", "서빙", "프롬프트"), "모델 운영 관리"),
+        (("연계", "api", "sso", "erp", "인터페이스"), "연계 정보 제공"),
+        (("채팅", "상담", "대화", "챗봇"), "대화형 업무 지원"),
+    )
+    for tokens, title in rules:
+        if any(token in text for token in tokens):
+            return title
+    return f"요구사항 기반 처리 {index}"
+
+
 def _format_requirement_basis(item: dict[str, Any]) -> str:
     req_id = str(item.get("requirement_id") or item.get("req_id") or item.get("screen_id") or "").strip()
     req_name = str(item.get("requirement_name") or item.get("req_name") or item.get("screen_name") or "").strip()
@@ -575,7 +616,7 @@ def _safe_ratio(value: Any, default: float) -> float:
 def _component_candidates(analysis: dict[str, Any]) -> list[dict[str, Any]]:
     candidates = analysis.get("component_candidates")
     if isinstance(candidates, list) and candidates:
-        return [item for item in candidates if isinstance(item, dict)]
+        return [_clean_component(item) for item in candidates if isinstance(item, dict) and _is_process_component(item)]
     areas = analysis.get("functional_areas")
     if not isinstance(areas, list):
         return []
@@ -583,17 +624,17 @@ def _component_candidates(analysis: dict[str, Any]) -> list[dict[str, Any]]:
     for index, area in enumerate(areas, start=1):
         if not isinstance(area, dict):
             continue
-        normalized.append(
-            {
-                "candidate_id": str(area.get("candidate_id") or area.get("component_id") or f"AREA-{index:03d}"),
-                "component_name": str(area.get("component_name") or area.get("name") or f"기능 영역 {index}"),
-                "component_type": str(area.get("component_type") or area.get("type") or "unknown"),
-                "texts": area.get("visible_texts") if isinstance(area.get("visible_texts"), list) else [],
-                "bbox": area.get("bbox") if isinstance(area.get("bbox"), dict) else {},
-                "x_ratio": area.get("x_ratio"),
-                "y_ratio": area.get("y_ratio"),
-            }
-        )
+        candidate = {
+            "candidate_id": str(area.get("candidate_id") or area.get("component_id") or f"AREA-{index:03d}"),
+            "component_name": str(area.get("component_name") or area.get("name") or f"기능 영역 {index}"),
+            "component_type": str(area.get("component_type") or area.get("type") or "unknown"),
+            "texts": area.get("visible_texts") if isinstance(area.get("visible_texts"), list) else [],
+            "bbox": area.get("bbox") if isinstance(area.get("bbox"), dict) else {},
+            "x_ratio": area.get("x_ratio"),
+            "y_ratio": area.get("y_ratio"),
+        }
+        if _is_process_component(candidate):
+            normalized.append(_clean_component(candidate))
     return normalized
 
 
@@ -602,20 +643,97 @@ def _build_process_from_components(
     related_items: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     items = []
-    for index, component in enumerate(_rank_components_for_process(components), start=1):
+    ranked_components = _rank_components_for_process(components)
+    for index, component in enumerate(ranked_components, start=1):
         title = _component_title(component, index)
-        basis = _format_requirement_basis(related_items[(index - 1) % len(related_items)]) if related_items else "관련 요구사항"
+        related_item = _select_requirement_for_component(component, related_items, index)
+        basis = _format_requirement_basis(related_item) if related_item else "관련 요구사항"
         items.append(
             {
                 "no": index,
                 "title": title,
-                "description": _component_description(component, title),
+                "description": _component_description(component, title, related_item),
                 "requirement_basis": basis,
                 "component_id": str(component.get("candidate_id") or ""),
                 "component_bbox": component.get("bbox") if isinstance(component.get("bbox"), dict) else {},
             }
         )
     return items
+
+
+def _build_process_from_requirements(related_items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    items = []
+    for index, requirement in enumerate(related_items[:3], start=1):
+        title = _requirement_process_title(requirement, index)
+        if not title:
+            continue
+        items.append(
+            {
+                "no": index,
+                "title": title,
+                "description": _requirement_context_sentence(requirement) or f"{title} 요구사항을 기준으로 화면에서 필요한 정보를 제공하고 업무 처리를 지원합니다.",
+                "requirement_basis": _format_requirement_basis(requirement),
+                "component_id": "",
+                "component_bbox": {},
+                "marker_excluded": True,
+            }
+        )
+    return items
+
+
+def _enhance_process_contents(
+    process_contents: list[dict[str, Any]],
+    related_items: list[dict[str, Any]],
+    components: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    if not process_contents:
+        return process_contents
+    enhanced = []
+    for index, process in enumerate(process_contents, start=1):
+        item = dict(process)
+        component = _find_component_for_process(item, components) if components else None
+        related_item = _select_requirement_for_component(component or item, related_items, index)
+        current = str(item.get("description") or "").strip()
+        if _description_needs_enrichment(current):
+            title = str(item.get("title") or "").strip()
+            item["description"] = _component_description(component or item, title, related_item)
+        elif related_item and not _mentions_requirement_context(current, related_item):
+            item["description"] = current + " " + _requirement_context_sentence(related_item)
+        if not str(item.get("requirement_basis") or "").strip() and related_item:
+            item["requirement_basis"] = _format_requirement_basis(related_item)
+        enhanced.append(item)
+    return enhanced
+
+
+def _ensure_minimum_process_contents(
+    process_contents: list[dict[str, Any]],
+    related_items: list[dict[str, Any]],
+    *,
+    minimum: int,
+) -> list[dict[str, Any]]:
+    if len(process_contents) >= minimum or not related_items:
+        return process_contents
+    existing_titles = {str(item.get("title") or "").strip() for item in process_contents}
+    output = [dict(item) for item in process_contents]
+    for requirement in related_items:
+        if len(output) >= minimum:
+            break
+        title = _requirement_process_title(requirement, len(output) + 1)
+        if not title or title in existing_titles:
+            continue
+        output.append(
+            {
+                "no": len(output) + 1,
+                "title": title,
+                "description": _requirement_context_sentence(requirement) or f"{title} 요구사항을 기준으로 화면에서 필요한 정보를 제공하고 업무 처리를 지원합니다.",
+                "requirement_basis": _format_requirement_basis(requirement),
+                "component_id": "",
+                "component_bbox": {},
+                "marker_excluded": True,
+            }
+        )
+        existing_titles.add(title)
+    return _renumber(output)
 
 
 def _attach_component_metadata(
@@ -669,11 +787,9 @@ def _find_component_for_process(
 def _rank_components_for_process(components: list[dict[str, Any]]) -> list[dict[str, Any]]:
     meaningful = []
     for component in components:
-        texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
-        name = str(component.get("component_name") or "").strip()
-        if not texts and not name:
+        if not _is_process_component(component):
             continue
-        meaningful.append(component)
+        meaningful.append(_clean_component(component))
     meaningful.sort(
         key=lambda item: (
             _component_priority(str(item.get("component_type") or "")),
@@ -697,6 +813,101 @@ def _component_priority(component_type: str) -> int:
         "content": 7,
     }
     return order.get(component_type, 9)
+
+
+def _select_requirement_for_component(
+    component: dict[str, Any] | None,
+    related_items: list[dict[str, Any]],
+    index: int,
+) -> dict[str, Any] | None:
+    if not related_items:
+        return None
+    if not component:
+        return related_items[(index - 1) % len(related_items)]
+    component_terms = set(_match_tokens([
+        component.get("component_name"),
+        component.get("title"),
+        component.get("texts"),
+        component.get("description"),
+    ]))
+    best: tuple[int, int, dict[str, Any]] | None = None
+    for order, item in enumerate(related_items):
+        item_terms = set(_match_tokens(_compact_source_item(item)))
+        score = len(component_terms & item_terms) * 4
+        compact = _normalize_match_text(_compact_source_item(item))
+        for term in component_terms:
+            if term and term in compact:
+                score += 1
+        if best is None or score > best[0]:
+            best = (score, -order, item)
+    if best and best[0] > 0:
+        return best[2]
+    return related_items[(index - 1) % len(related_items)]
+
+
+def _description_needs_enrichment(description: str) -> bool:
+    if len(description) < 80:
+        return True
+    generic_phrases = (
+        "화면 정보를 확인하고 관련 업무를 수행",
+        "관련 업무 처리를 실행",
+        "카드 형태로 제공합니다",
+        "시각적으로 제공합니다",
+    )
+    return any(phrase in description for phrase in generic_phrases) and "요구사항" not in description
+
+
+def _mentions_requirement_context(description: str, related_item: dict[str, Any]) -> bool:
+    req_name = str(related_item.get("requirement_name") or related_item.get("req_name") or "").strip()
+    return bool(req_name and req_name in description)
+
+
+def _requirement_context_sentence(related_item: dict[str, Any] | None) -> str:
+    if not related_item:
+        return ""
+    req_name = str(related_item.get("requirement_name") or related_item.get("req_name") or "").strip()
+    detail = _first_meaningful_text(
+        related_item.get("description"),
+        related_item.get("detail_text"),
+        *((related_item.get("constraints") or [])[:2] if isinstance(related_item.get("constraints"), list) else []),
+        *((related_item.get("validation_criteria") or [])[:2] if isinstance(related_item.get("validation_criteria"), list) else []),
+    )
+    if req_name and detail:
+        return f"이는 '{req_name}' 요구사항에 따라 {detail}"
+    if req_name:
+        return f"이는 '{req_name}' 요구사항을 지원하기 위한 처리입니다."
+    if detail:
+        return detail
+    return ""
+
+
+def _first_meaningful_text(*values: Any) -> str:
+    for value in values:
+        text = _clean_sentence(value)
+        if text:
+            return text
+    return ""
+
+
+def _clean_sentence(value: Any) -> str:
+    text = _clean_text(value)
+    if not text:
+        return ""
+    text = re.sub(r"\s+", " ", text)
+    text = _trim_sentence(text, max_length=150)
+    if text[-1] not in ".다요":
+        text += "."
+    return text
+
+
+def _trim_sentence(text: str, *, max_length: int) -> str:
+    if len(text) <= max_length:
+        return text
+    for marker in ("다.", "요.", ". ", ", ", "·", "; "):
+        pos = text.rfind(marker, 0, max_length)
+        if pos >= max_length * 0.55:
+            return text[: pos + len(marker)].rstrip(" ,;·")
+    return text[:max_length].rstrip(" ,;·")
 
 
 def _normalize_match_text(value: Any) -> str:
@@ -730,35 +941,40 @@ def _match_tokens(value: Any) -> list[str]:
 
 
 def _component_title(component: dict[str, Any], index: int) -> str:
-    name = str(component.get("component_name") or "").strip()
+    name = _clean_text(component.get("component_name"))
     if name:
         return name
-    texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
+    texts = _clean_visible_texts([str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()])
     return " ".join(texts[:4]) or f"화면 요소 {index}"
 
 
-def _component_description(component: dict[str, Any], title: str) -> str:
+def _component_description(
+    component: dict[str, Any],
+    title: str,
+    related_item: dict[str, Any] | None = None,
+) -> str:
     component_type = str(component.get("component_type") or "unknown")
-    texts = [str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()]
-    text_clause = f" 화면 표시 텍스트: {', '.join(texts[:6])}." if texts else ""
+    texts = _clean_visible_texts([str(value).strip() for value in component.get("texts", []) or [] if str(value).strip()])
+    text_clause = f" 화면에는 {', '.join(texts[:8])} 항목이 표시됩니다." if texts else ""
     base = {
-        "button": f"사용자가 {title} 요소를 선택하면 시스템은 해당 화면의 관련 업무 처리를 실행합니다.",
-        "input": f"사용자가 {title} 항목에 값을 입력하거나 선택하면 시스템은 입력값을 후속 처리 조건으로 활용합니다.",
-        "search_filter": f"사용자가 {title} 영역에서 조건을 입력하고 조회하면 시스템은 조건에 맞는 정보를 선별하여 제공합니다.",
-        "table": f"시스템은 {title} 영역에서 업무 대상 정보를 행과 열 구조로 제공하고 사용자가 항목을 확인하거나 선택할 수 있도록 합니다.",
-        "card": f"시스템은 {title} 영역에서 핵심 현황과 요약 정보를 카드 형태로 제공합니다.",
-        "menu": f"사용자가 {title} 항목을 선택하면 시스템은 관련 업무 화면으로 접근할 수 있도록 내비게이션을 제공합니다.",
-        "form": f"사용자가 {title} 영역에서 업무 정보를 입력하면 시스템은 입력 항목의 완전성과 형식을 확인합니다.",
-        "chart": f"시스템은 {title} 영역에서 업무 현황과 추이를 시각적으로 제공합니다.",
-    }.get(component_type, f"사용자는 {title} 영역에서 화면 정보를 확인하고 관련 업무를 수행합니다.")
-    return base + text_clause
+        "button": f"사용자가 {title} 요소를 선택하면 시스템은 화면 상태와 입력값을 확인한 뒤 해당 업무 처리를 실행합니다.",
+        "input": f"사용자가 {title} 항목에 값을 입력하거나 선택하면 시스템은 입력값을 후속 조회, 검증, 처리 조건으로 활용합니다.",
+        "search_filter": f"사용자가 {title} 영역에서 조건을 입력하고 조회하면 시스템은 조건에 맞는 대상 정보를 선별하여 결과 영역에 반영합니다.",
+        "table": f"시스템은 {title} 영역에서 업무 대상 정보를 행과 열 구조로 제공하고, 사용자가 항목의 상태와 세부 내용을 비교해 선택할 수 있도록 합니다.",
+        "card": f"시스템은 {title} 영역에서 핵심 현황과 요약 지표를 카드 형태로 제공하고, 사용자가 현재 상태를 빠르게 판단할 수 있도록 합니다.",
+        "menu": f"사용자가 {title} 항목을 선택하면 시스템은 관련 업무 화면으로 이동하거나 해당 기능 영역을 활성화합니다.",
+        "form": f"사용자가 {title} 영역에서 업무 정보를 입력하면 시스템은 필수값, 형식, 처리 가능 여부를 확인해 다음 단계로 전달합니다.",
+        "chart": f"시스템은 {title} 영역에서 업무 현황과 추이를 시각화하고, 사용자가 기간별 변화와 이상 징후를 파악할 수 있도록 합니다.",
+    }.get(component_type, f"사용자는 {title} 영역에서 화면 정보를 확인하고 관련 업무를 수행하며, 시스템은 선택된 항목에 맞는 후속 처리를 지원합니다.")
+    requirement_clause = _requirement_context_sentence(related_item) if related_item else ""
+    return " ".join(part for part in (base, text_clause, requirement_clause) if part).strip()
 
 
 def _bbox_marker_x(bbox: dict[str, Any], default: Any) -> Any:
     try:
         x1 = float(bbox.get("x1"))
         x2 = float(bbox.get("x2"))
-        return min(0.97, max(0.03, x2 - 0.015 if x2 > x1 else (x1 + x2) / 2))
+        return min(0.97, max(0.03, (x1 + 0.024) if x2 > x1 else (x1 + x2) / 2))
     except Exception:
         return default
 
@@ -767,6 +983,156 @@ def _bbox_marker_y(bbox: dict[str, Any], default: Any) -> Any:
     try:
         y1 = float(bbox.get("y1"))
         y2 = float(bbox.get("y2"))
-        return min(0.97, max(0.03, y1 + 0.015 if y2 > y1 else (y1 + y2) / 2))
+        return min(0.97, max(0.03, (y1 + 0.024) if y2 > y1 else (y1 + y2) / 2))
     except Exception:
         return default
+
+
+def _semantic_areas(areas: list[Any]) -> list[dict[str, Any]]:
+    semantic = []
+    for area in areas:
+        if not isinstance(area, dict):
+            continue
+        name = _clean_text(area.get("name") or area.get("title"))
+        component_type = str(area.get("component_type") or area.get("type") or "unknown").lower()
+        texts = _clean_visible_texts([str(value) for value in area.get("visible_texts", []) or []])
+        if component_type == "unknown" or not name or _looks_like_file_stem(name):
+            continue
+        if _is_brand_component(area, name, texts) or _is_generic_ui_word(name):
+            continue
+        if _noise_ratio(" ".join([name, *texts])) > 0.35:
+            continue
+        semantic.append({**area, "name": name, "visible_texts": texts})
+    return semantic
+
+
+def _is_process_component(component: dict[str, Any]) -> bool:
+    component_type = str(component.get("component_type") or "unknown").strip().lower()
+    if component_type in {"unknown", "menu"}:
+        return False
+    name = _clean_text(component.get("component_name") or component.get("name"))
+    texts = _clean_visible_texts([str(value) for value in component.get("texts", []) or []])
+    if _is_brand_component(component, name, texts) or _is_global_header_component(component, name, texts) or _is_generic_ui_word(name):
+        return False
+    bbox = component.get("bbox") if isinstance(component.get("bbox"), dict) else {}
+    try:
+        y1 = float(bbox.get("y1", 1.0) or 1.0)
+        x1 = float(bbox.get("x1", 1.0) or 1.0)
+    except Exception:
+        y1 = 1.0
+        x1 = 1.0
+    if y1 < 0.17 and component_type not in {"search_filter", "button", "input"}:
+        return False
+    if x1 < 0.2 and component_type not in {"search_filter", "button", "input", "card"}:
+        return False
+    joined = " ".join([name, *texts]).strip()
+    if not joined or _looks_like_file_stem(joined) or _noise_ratio(joined) > 0.35:
+        return False
+    if component_type == "content" and len(texts) < 2 and len(name) < 3:
+        return False
+    return True
+
+
+def _clean_component(component: dict[str, Any]) -> dict[str, Any]:
+    return {
+        **component,
+        "component_name": _clean_text(component.get("component_name") or component.get("name")),
+        "texts": _clean_visible_texts([str(value) for value in component.get("texts", []) or []]),
+    }
+
+
+def _is_global_header_component(component: dict[str, Any], name: str, texts: list[str]) -> bool:
+    bbox = component.get("bbox") if isinstance(component.get("bbox"), dict) else {}
+    try:
+        x1 = float(bbox.get("x1", 1.0) or 1.0)
+        y1 = float(bbox.get("y1", 1.0) or 1.0)
+        x2 = float(bbox.get("x2", 0.0) or 0.0)
+    except Exception:
+        return False
+    joined = " ".join([name, *texts]).lower()
+    header_tokens = ("통합 검색", "검색", "권한", "kms", "전략부", "부서", "로그인")
+    return y1 < 0.14 and x1 > 0.58 and any(token in joined for token in header_tokens)
+
+
+def _clean_visible_texts(values: list[str]) -> list[str]:
+    cleaned = []
+    seen: set[str] = set()
+    for value in values:
+        text = _clean_text(value)
+        if not text or text in seen or not _is_usable_text(text):
+            continue
+        seen.add(text)
+        cleaned.append(text)
+    return cleaned
+
+
+def _dedupe_texts(values: list[str]) -> list[str]:
+    deduped = []
+    seen: set[str] = set()
+    for value in values:
+        text = _clean_text(value)
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        deduped.append(text)
+    return deduped
+
+
+def _clean_text(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "").strip())
+    text = text.replace("아시 Platform", "AI Platform")
+    text = re.sub(r"\bSaori\b", "AI", text, flags=re.IGNORECASE)
+    text = re.sub(r"SQL[- ]?Pytho\b", "SQL-Python", text, flags=re.IGNORECASE)
+    return text.strip(" \t\r\n.,;:|/\\[]{}()<>")
+
+
+def _is_usable_text(text: str) -> bool:
+    text = _clean_text(text)
+    if _looks_like_file_stem(text):
+        return False
+    if len(text) == 1 and text not in {"홈"}:
+        return False
+    if re.fullmatch(r"[\W_]+", text) or re.fullmatch(r"[\d\s%.,:-]+", text):
+        return False
+    if not re.search(r"[가-힣A-Za-z]", text):
+        return False
+    if len(text) <= 3 and re.fullmatch(r"[A-Za-z]{1,3}", text):
+        return text.lower() in {"ai", "id", "api", "sql"}
+    if _is_generic_ui_word(text):
+        return False
+    return True
+
+
+def _looks_like_file_stem(text: str) -> bool:
+    return bool(re.match(r"^\d{1,3}[_-][가-힣A-Za-z0-9_ -]+$", _clean_text(text)))
+
+
+def _noise_ratio(text: str) -> float:
+    if not text:
+        return 1.0
+    noisy = len(re.findall(r"[^가-힣A-Za-z0-9\s]", text))
+    return noisy / max(1, len(text))
+
+
+def _is_brand_component(component: dict[str, Any], name: str, texts: list[str]) -> bool:
+    joined = " ".join([name, *texts]).strip().lower()
+    bbox = component.get("bbox") if isinstance(component.get("bbox"), dict) else {}
+    x1 = float(bbox.get("x1", 1.0) or 1.0)
+    y1 = float(bbox.get("y1", 1.0) or 1.0)
+    if any(token in joined for token in ("sf ai platform", "ai platform", "on-premise genai portal")) and x1 < 0.25 and y1 < 0.2:
+        return True
+    return joined in {"ai platform", "sf ai platform"}
+
+
+def _is_generic_ui_word(text: str) -> bool:
+    return _clean_text(text).lower() in {
+        "서비스",
+        "부서별",
+        "문서",
+        "사용자",
+        "관리",
+        "정보",
+        "상태",
+        "플랫폼",
+        "platform",
+    }

@@ -12,6 +12,7 @@ REDUCE_HARNESS: dict[str, dict[str, Any]] = {
     "DB": {"docs_cd": "DB", "db_design_json": {}},
     "ARCH": {
         "docs_cd": "ARCH",
+        "architecture_structure_json": {},
         "architecture_document_json": {},
         "mermaid_image_path": "",
     },

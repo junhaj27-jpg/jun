@@ -8,6 +8,7 @@ from agents.document_merge.processors import analyze_meetings, artifact_items, m
 from tools.llm.llm_client import LLMClient
 from tools.llm.response_parser import parse_json_response
 from tools.llm.send_api import send_parallel
+from tools.parser.db_design_docx_parser import parse_db_design_docx
 from tools.parser.erd_docx_parser import parse_erd_docx
 from tools.parser.image_extractor import extract_images
 from tools.parser.rfp_rule_parser import parse_rfp_requirements
@@ -140,6 +141,10 @@ class DocumentMergeAgent:
             parsed_erd = parse_erd_docx(str(existing_path))
             if parsed_erd["success"]:
                 return parsed_erd
+        if docs_cd == "DB" and str(existing_path).lower().endswith(".docx"):
+            parsed_db = parse_db_design_docx(str(existing_path))
+            if parsed_db["success"] and parsed_db["data"].get("tables"):
+                return parsed_db
         return parse_artifact(existing_path)
 
     def _meeting_changes(self, state: WorkflowState) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:

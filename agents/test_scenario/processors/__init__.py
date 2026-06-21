@@ -11,15 +11,15 @@ from agents.test_scenario.processors.step_generator import (
     refine_steps,
 )
 from agents.test_scenario.processors.testcase_generator import (
+    generate_scenario_descriptions,
     generate_test_cases,
     refine_test_cases,
 )
-
-
 __all__ = [
     "apply_scenario_rules",
     "build_step_detail_list",
     "filter_function_requirements",
+    "generate_scenario_descriptions",
     "generate_scenarios",
     "generate_steps",
     "generate_steps_with_llm",

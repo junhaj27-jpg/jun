@@ -23,7 +23,7 @@ async def generate(
     request_body: GenerationRequest,
     http_request: Request,
 ) -> GenerationResponse:
-    """?곗텧臾??앹꽦 ?뚰겕?뚮줈?곕? ?ㅽ뻾?⑸땲??"""
+    """산출물 생성 워크플로우를 실행합니다."""
 
     request_id = getattr(http_request.state, "request_id", "-")
     state = request_body.model_dump(mode="json")
@@ -72,7 +72,6 @@ async def generate(
             docs_cd=result_state.get("docs_cd"),
         ),
     )
-
     response_result = {
         "next_action": result_state.get("next_action"),
         "final_document_json": result_state.get("final_document_json"),
@@ -84,6 +83,7 @@ async def generate(
     }
     if request_body.etc.get("debug"):
         response_result["agent_outputs"] = result_state.get("agent_outputs", {})
+        response_result["repair_history"] = result_state.get("repair_history", [])
 
     return GenerationResponse(
         project_sn=result_state["project_sn"],

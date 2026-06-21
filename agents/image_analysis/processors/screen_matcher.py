@@ -42,6 +42,8 @@ def match_creation_screens(
         requirement_id = _requirement_id(requirement)
         if requirement_id in matched_ids:
             continue
+        if not _should_create_missing_screen(requirement):
+            continue
         screens.append(
             {
                 "screen_id": f"SCR-{len(screens) + 1:03d}",
@@ -126,3 +128,33 @@ def _requirement_id(item: dict[str, Any]) -> str:
 
 def _requirement_name(item: dict[str, Any]) -> str:
     return str(item.get("req_name") or item.get("requirement_name") or item.get("screen_name") or "신규 화면")
+
+
+def _should_create_missing_screen(requirement: dict[str, Any]) -> bool:
+    """생성 모드에서 실제 화면 산출물이 필요한 요구사항만 이미지 추가 대상으로 둡니다."""
+
+    requirement_type = str(requirement.get("requirement_type") or requirement.get("type") or "").strip()
+    if "비기능" in requirement_type:
+        return False
+    text = " ".join(
+        str(requirement.get(key) or "")
+        for key in ("req_name", "requirement_name", "screen_name", "name", "detail_text", "description")
+    ).lower()
+    screen_keywords = (
+        "화면",
+        "페이지",
+        "메뉴",
+        "버튼",
+        "입력",
+        "조회",
+        "등록",
+        "수정",
+        "삭제",
+        "대시보드",
+        "ui",
+        "ux",
+        "screen",
+        "page",
+        "menu",
+    )
+    return any(keyword in text for keyword in screen_keywords)

@@ -222,7 +222,7 @@ def _to_db_status(status: str) -> str:
 
 def _normalize_docs_ver(docs_ver: str | None) -> str:
     value = str(docs_ver or "").strip()
-    return value or "v1.0"
+    return value or "0"
 
 
 def _normalize_docs_row(row: Any | None) -> dict[str, Any] | None:

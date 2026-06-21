@@ -157,20 +157,27 @@ def _orphan_groups(
 
     groups: list[dict[str, Any]] = []
     group_no = start_index
-    names = _sort_names(orphan_names, [entity_by_name[name] for name in orphan_names])
-    for chunk_index, chunk in enumerate(_chunks(names, ORPHAN_TABLES_PER_GROUP), start=1):
-        groups.append(
-            _build_group(
-                group_no,
-                chunk,
-                entity_by_name,
-                relationships,
-                group_id=f"ERD-ORPHAN-{group_no:03d}",
-                group_name=f"단독 엔티티 {chunk_index}",
-                group_type="orphan",
-            )
+    by_domain: dict[str, list[str]] = defaultdict(list)
+    for name in orphan_names:
+        by_domain[_group_key(entity_by_name[name])].append(name)
+    for domain in sorted(by_domain):
+        names = _sort_names(
+            by_domain[domain],
+            [entity_by_name[name] for name in by_domain[domain]],
         )
-        group_no += 1
+        for chunk_index, chunk in enumerate(_chunks(names, ORPHAN_TABLES_PER_GROUP), start=1):
+            groups.append(
+                _build_group(
+                    group_no,
+                    chunk,
+                    entity_by_name,
+                    relationships,
+                    group_id=f"ERD-ORPHAN-{group_no:03d}",
+                    group_name=f"{domain} 단독 엔티티 {chunk_index}",
+                    group_type="orphan",
+                )
+            )
+            group_no += 1
     return groups
 
 
