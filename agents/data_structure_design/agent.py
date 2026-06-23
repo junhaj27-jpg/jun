@@ -13,7 +13,7 @@ from agents.data_structure_design.processors import (
     build_domain_groups,
     build_entity_candidates,
     build_erd_tables,
-    display_column_name,
+    db_column_logical_name,
     filter_data_requirements,
     format_type_and_length,
     normalize_db_design,
@@ -26,15 +26,34 @@ from tools.llm.send_api import send_parallel
 from tools.result import ToolResult
 from tools.search.search_router import search
 from workflow.state import WorkflowState
-from agents.data_structure_design.processors.column_standardizer import table_name
+from agents.data_structure_design.processors.column_standardizer import (
+    primary_key_name,
+    table_name,
+)
 from agents.data_structure_design.pipeline import build_erd_from_requirements
 from agents.data_structure_design.pipeline.metadata_enricher import enrich_table_metadata
-from agents.data_structure_design.pipeline.relationship_inferer import infer_relationships
+from agents.data_structure_design.pipeline.relationship_inferer import (
+    infer_relationships,
+    rank_parent_candidates,
+)
 from agents.data_structure_design.pipeline.validator import validate_erd
 from agents.data_structure_design.meeting_erd_requirements import (
     apply_meeting_erd_requirements,
+    build_change_requirements_json,
+    build_erd_diff,
+    build_requirement_coverage,
     evaluate_meeting_erd_requirements,
     extract_meeting_erd_requirements,
+)
+from agents.data_structure_design.erd_quality import (
+    entity_name_needs_llm_review,
+    inspect_erd_quality,
+    prepare_erd_quality,
+)
+from agents.data_structure_design.db_quality import (
+    prepare_db_quality,
+    tablespace_name,
+    valid_table_identifier,
 )
 from agents.document_merge.processors.artifact_parser import artifact_items
 
@@ -52,6 +71,7 @@ class DataStructureDesignAgent:
         self.max_parallel_workers = max(1, max_parallel_workers)
 
     def execute(self, state: WorkflowState) -> dict[str, Any]:
+        self._entity_name_resolution_trace: list[dict[str, Any]] = []
         repair_instruction = state.get("current_repair_instruction")
         if (
             isinstance(repair_instruction, dict)
@@ -108,7 +128,41 @@ class DataStructureDesignAgent:
         warnings.extend(stage_warnings)
         erd_entity_json, stage_warnings = self._build_final_erd_json(tables, relationships)
         warnings.extend(stage_warnings)
+        erd_entity_json, naming_warnings = self._resolve_entity_names(
+            erd_entity_json,
+            selected,
+            rag_results,
+        )
+        warnings.extend(naming_warnings)
+        erd_entity_json, catalog_warnings = self._review_entity_catalog(
+            erd_entity_json,
+            selected,
+            rag_results,
+        )
+        warnings.extend(catalog_warnings)
+        erd_entity_json, final_naming_warnings = self._resolve_entity_names(
+            erd_entity_json,
+            selected,
+            rag_results,
+        )
+        warnings.extend(final_naming_warnings)
+        unresolved_names = _unresolved_entity_name_scopes(erd_entity_json)
+        if unresolved_names:
+            return self._failed(
+                "ERD_ENTITY_NAME_RESOLUTION_FAILED",
+                "논리 엔티티명을 확정하지 못했습니다: " + ", ".join(unresolved_names),
+            )
         erd_entity_json = _ensure_erd_contract(erd_entity_json)
+        erd_entity_json, relation_resolution_warnings = self._resolve_unmapped_fk_relationships(
+            erd_entity_json
+        )
+        warnings.extend(relation_resolution_warnings)
+        erd_entity_json, quality_result = prepare_erd_quality(erd_entity_json)
+        erd_entity_json["tables"] = enrich_table_metadata(
+            erd_entity_json.get("tables", []),
+            erd_entity_json.get("relationships", []),
+        )
+        warnings.extend(_quality_warnings(quality_result))
         erd_mermaid_json, stage_warnings = self._build_erd_mermaid_json(erd_entity_json)
         warnings.extend(stage_warnings)
         validation_result = validate_erd(
@@ -129,8 +183,10 @@ class DataStructureDesignAgent:
                 "erd_schema": erd_entity_json,
                 "erd_mermaid_json": erd_mermaid_json,
                 "validation_result": validation_result,
+                "erd_quality_result": quality_result,
                 "domain_group_list": domain_groups,
                 "entity_candidate_list": entity_candidates,
+                "entity_name_resolution_trace": self._entity_name_resolution_trace,
                 "table_candidate_list": tables,
                 "rag_results": rag_results,
                 "standardized_tables": tables,
@@ -139,13 +195,20 @@ class DataStructureDesignAgent:
 
     def _update_erd(self, document_merge: dict[str, Any], state: WorkflowState) -> dict[str, Any]:
         existing = document_merge.get("existing_output_raw_json")
+        requested = document_merge.get("requested_output_raw_json")
         changes = document_merge.get("meeting_change_items")
         if not isinstance(existing, dict) or not existing:
             return self._failed("ERD_EXISTING_OUTPUT_MISSING", "existing_output_raw_json이 필요합니다.")
         if not isinstance(changes, list):
             return self._failed("ERD_MEETING_CHANGE_MISSING", "meeting_change_items가 필요합니다.")
         existing_analysis = self._llm_dict("기존 ERD 구조를 분석하세요.", {"existing_output_raw_json": existing}, "ERD_EXISTING_ANALYSIS_LLM_FAILED")
-        tables = normalize_erd_tables(_extract_tables(existing_analysis or existing))
+        existing_tables = normalize_erd_tables(_extract_tables(existing_analysis or existing))
+        requested_tables = (
+            normalize_erd_tables(_extract_tables(requested))
+            if isinstance(requested, dict) and requested
+            else []
+        )
+        tables = deepcopy(requested_tables or existing_tables)
         llm_analysis, warnings = self._parallel_llm_analysis(changes, "회의록 변경사항의 ERD 엔티티, 컬럼, 관계 영향을 분석하세요.")
         tables = _apply_table_changes(tables, changes)
         redesign = self._llm_dict(
@@ -153,8 +216,24 @@ class DataStructureDesignAgent:
             {"tables": tables, "meeting_change_items": changes, "llm_analysis": llm_analysis},
             "ERD_REDESIGN_LLM_FAILED",
         )
-        tables = normalize_erd_tables(_extract_tables(redesign) or tables)
+        redesigned_tables = normalize_erd_tables(_extract_tables(redesign) or tables)
+        preservation_source = requested_tables or existing_tables
+        tables = _repair_update_table_contracts(
+            redesigned_tables,
+            preservation_source,
+        )
+        requested_relationships = (
+            requested.get("relationships", [])
+            if isinstance(requested, dict)
+            and isinstance(requested.get("relationships"), list)
+            else []
+        )
         relationships, relationship_warnings = self._build_relationships(tables)
+        if requested_relationships:
+            relationships = _merge_relationship_lists(
+                requested_relationships,
+                relationships,
+            )
         meeting_requirements = extract_meeting_erd_requirements(changes)
         if meeting_requirements:
             tables, relationships, meeting_report = apply_meeting_erd_requirements(
@@ -170,14 +249,108 @@ class DataStructureDesignAgent:
                 "added_relationships": [],
             }
         erd_entity_json, erd_warnings = self._build_final_erd_json(tables, relationships)
+        warnings.extend(erd_warnings)
+        naming_search_warnings, naming_rag_results = self._standard_search(
+            erd_entity_json.get("tables", []),
+            state,
+        )
+        warnings.extend(naming_search_warnings)
+        erd_entity_json, naming_warnings = self._resolve_entity_names(
+            erd_entity_json,
+            changes,
+            naming_rag_results,
+        )
+        warnings.extend(naming_warnings)
+        erd_entity_json, catalog_warnings = self._review_entity_catalog(
+            erd_entity_json,
+            changes,
+            naming_rag_results,
+        )
+        warnings.extend(catalog_warnings)
+        erd_entity_json, final_naming_warnings = self._resolve_entity_names(
+            erd_entity_json,
+            changes,
+            naming_rag_results,
+        )
+        warnings.extend(final_naming_warnings)
+        unresolved_names = _unresolved_entity_name_scopes(erd_entity_json)
+        if unresolved_names:
+            return self._failed(
+                "ERD_ENTITY_NAME_RESOLUTION_FAILED",
+                "논리 엔티티명을 확정하지 못했습니다: " + ", ".join(unresolved_names),
+            )
         erd_entity_json = _ensure_erd_contract(erd_entity_json)
+        erd_entity_json, relation_resolution_warnings = self._resolve_unmapped_fk_relationships(
+            erd_entity_json
+        )
+        warnings.extend(relation_resolution_warnings)
+        if meeting_requirements:
+            repaired_tables, repaired_relationships, final_meeting_report = (
+                apply_meeting_erd_requirements(
+                    erd_entity_json.get("tables", []),
+                    erd_entity_json.get("relationships", []),
+                    meeting_requirements,
+                )
+            )
+            erd_entity_json["tables"] = normalize_erd_tables(repaired_tables)
+            erd_entity_json["relationships"] = repaired_relationships
+            meeting_report = _merge_meeting_apply_reports(
+                meeting_report,
+                final_meeting_report,
+            )
+        erd_entity_json, quality_result = prepare_erd_quality(erd_entity_json)
+        erd_entity_json["tables"] = enrich_table_metadata(
+            erd_entity_json.get("tables", []),
+            erd_entity_json.get("relationships", []),
+        )
+        warnings.extend(_quality_warnings(quality_result))
         meeting_validation = evaluate_meeting_erd_requirements(
             erd_entity_json.get("tables", []),
             erd_entity_json.get("relationships", []),
             meeting_requirements,
         )
+        diff_summary = build_erd_diff(
+            existing_tables,
+            existing.get("relationships", [])
+            if isinstance(existing.get("relationships"), list)
+            else [],
+            erd_entity_json.get("tables", []),
+            erd_entity_json.get("relationships", []),
+        )
+        requirement_coverage = build_requirement_coverage(
+            erd_entity_json.get("tables", []),
+            erd_entity_json.get("relationships", []),
+            meeting_requirements,
+        )
+        impact_analysis = {
+            "before_docs_detail_sn": state.get("before_docs_detail_sn"),
+            "after_docs_detail_sn": state.get("request_docs_detail_sn"),
+            "meeting_minutes_file_sn": (
+                state.get("file_list", [None])[0]
+                if state.get("file_list")
+                else None
+            ),
+            "change_requirements": build_change_requirements_json(
+                meeting_requirements
+            ),
+            "diff_summary": diff_summary,
+            "requirement_coverage": {
+                key: requirement_coverage[key]
+                for key in ("total", "applied", "partial", "missing")
+            },
+            "requirement_validation_results": requirement_coverage[
+                "requirement_validation_results"
+            ],
+            "final_erd_json": erd_entity_json,
+        }
         erd_mermaid_json, mermaid_warnings = self._build_erd_mermaid_json(erd_entity_json)
-        warnings.extend([*relationship_warnings, *erd_warnings, *mermaid_warnings])
+        warnings.extend([
+            *relationship_warnings,
+            *erd_warnings,
+            *naming_search_warnings,
+            *naming_warnings,
+            *mermaid_warnings,
+        ])
         return self._erd_success(
             state,
             erd_entity_json,
@@ -189,6 +362,9 @@ class DataStructureDesignAgent:
                 "meeting_change_requirements": meeting_requirements,
                 "meeting_change_reflection": meeting_validation,
                 "meeting_change_apply_report": meeting_report,
+                "erd_quality_result": quality_result,
+                "entity_name_resolution_trace": self._entity_name_resolution_trace,
+                "impact_analysis": impact_analysis,
             },
         )
 
@@ -198,6 +374,11 @@ class DataStructureDesignAgent:
             return self._failed("DB_REFERENCE_ERD_MISSING", "reference_erd_json_list가 필요합니다.")
         tables = normalize_erd_tables(reference)
         search_warnings, project_results = self._standard_search(tables, state)
+        tables, table_name_warnings, table_name_mapping = self._resolve_db_table_identifiers(
+            tables,
+            project_results,
+        )
+        document_merge["reference_erd_json_list"] = tables
         column_standard_warnings, column_standard_results = [], []
         standardized_tables = deepcopy(tables)
         if state.get("project_sn") is not None:
@@ -216,7 +397,14 @@ class DataStructureDesignAgent:
         erd_analysis = self._llm_dict("ERD 구조를 분석하세요. 테이블, 컬럼, PK, FK, 관계를 JSON으로 반환하세요.", {"tables": standardized_tables}, "DB_ERD_ANALYSIS_LLM_FAILED")
         design, warnings = self._build_db_specifications(standardized_tables)
         final_design, final_warnings = self._finalize_db_design(design)
-        warnings.extend([*search_warnings, *column_standard_warnings, *final_warnings])
+        final_design, db_quality_result = prepare_db_quality(final_design)
+        warnings.extend([
+            *search_warnings,
+            *table_name_warnings,
+            *column_standard_warnings,
+            *final_warnings,
+            *_quality_warnings(db_quality_result),
+        ])
         return self._db_success(
             state,
             final_design,
@@ -226,6 +414,8 @@ class DataStructureDesignAgent:
                 "standardized_tables": standardized_tables,
                 "column_standard_results": column_standard_results,
                 "llm_analysis": erd_analysis,
+                "table_name_mapping": table_name_mapping,
+                "db_quality_result": db_quality_result,
             },
         )
 
@@ -258,8 +448,21 @@ class DataStructureDesignAgent:
             design = _normalize_existing_db_design(analyzed_tables)
         else:
             design = normalize_db_design(analyzed_tables or _flatten_tables(artifacts))
+        design_tables = design.get("tables") if isinstance(design.get("tables"), list) else []
+        name_search_warnings, name_rag_results = self._standard_search(design_tables, state)
+        resolved_tables, table_name_warnings, table_name_mapping = self._resolve_db_table_identifiers(
+            design_tables,
+            name_rag_results,
+        )
+        design["tables"] = resolved_tables
         final_design, final_warnings = self._finalize_db_design(design)
-        warnings.extend(final_warnings)
+        final_design, db_quality_result = prepare_db_quality(final_design)
+        warnings.extend([
+            *name_search_warnings,
+            *table_name_warnings,
+            *final_warnings,
+            *_quality_warnings(db_quality_result),
+        ])
         return self._db_success(
             state,
             final_design,
@@ -269,6 +472,8 @@ class DataStructureDesignAgent:
                 "existing_output_raw_json": existing_raw,
                 "meeting_change_items": changes if isinstance(changes, list) else [],
                 "llm_analysis": llm_analysis,
+                "table_name_mapping": table_name_mapping,
+                "db_quality_result": db_quality_result,
             },
         )
 
@@ -404,6 +609,8 @@ class DataStructureDesignAgent:
             (
                 "테이블 목록을 기준으로 PK/FK 관계를 설계하세요. 단순히 첫 번째 테이블을 모든 테이블의 부모로 만들지 말고 "
                 "마스터-상세, 원본-이력, 업무객체-파일, 사용자-권한처럼 입력으로 설명 가능한 관계만 생성하세요. "
+                "각 관계에는 parent_table, parent_column, child_table, child_column을 반드시 포함하고, "
+                "parent_column은 실제 PK, child_column은 실제 FK 컬럼이어야 합니다. "
                 "JSON으로 relationship_list 또는 relationships를 반환하세요."
             ),
             {"tables": tables, "fallback_relationships": fallback},
@@ -411,6 +618,249 @@ class DataStructureDesignAgent:
         )
         relationships = value.get("relationship_list") or value.get("relationships") if isinstance(value, dict) else None
         return relationships if isinstance(relationships, list) and relationships else fallback, []
+
+    def _resolve_unmapped_fk_relationships(
+        self,
+        document: dict[str, Any],
+    ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        """규칙으로 확정하지 못한 FK를 기존 PK 후보 중에서만 LLM으로 선택합니다."""
+
+        result = deepcopy(document)
+        # 물리 키 완전일치처럼 확실한 관계는 먼저 Rule로 보완합니다.
+        result, _ = prepare_erd_quality(result)
+        tables = [table for table in result.get("tables", []) if isinstance(table, dict)]
+        relationships = [
+            relation for relation in result.get("relationships", []) if isinstance(relation, dict)
+        ]
+        mapped = {
+            (
+                str(relation.get("child_table") or relation.get("from_table") or ""),
+                str(relation.get("child_column") or relation.get("from_column") or ""),
+            )
+            for relation in relationships
+        }
+        unresolved: list[tuple[dict[str, Any], dict[str, Any], list[dict[str, Any]]]] = []
+        warnings: list[dict[str, Any]] = []
+        for table in tables:
+            child_table = str(table.get("table_name") or table.get("physical_name") or "")
+            for column in table.get("columns", []):
+                if not isinstance(column, dict) or not _column_is_fk(column):
+                    continue
+                child_column = str(column.get("column_name") or column.get("physical_name") or "")
+                if not child_table or not child_column or (child_table, child_column) in mapped:
+                    continue
+                candidates = rank_parent_candidates(tables, child_table, column)
+                if not candidates or int(candidates[0]["score"]) < 50:
+                    _clear_unsubstantiated_fk(column)
+                    warnings.append(
+                        {
+                            "code": "ERD_FK_FLAG_CLEARED_NO_PARENT",
+                            "message": (
+                                "참조 가능한 부모 PK 근거가 없어 FK 표시를 해제했습니다."
+                            ),
+                            "target_scope": [f"{child_table}.{child_column}"],
+                        }
+                    )
+                    continue
+                unresolved.append((table, column, candidates[:5]))
+
+        if not unresolved:
+            result["relationships"] = relationships
+            return result, warnings
+        if self.llm_client is None:
+            return result, warnings + [
+                {
+                    "code": "ERD_FK_RELATION_LLM_UNAVAILABLE",
+                    "message": "모호한 FK 관계를 확정할 LLM이 설정되지 않았습니다.",
+                    "target_scope": [
+                        f"{_physical_table_name(table)}.{_physical_column_name(column)}"
+                        for table, column, _ in unresolved
+                    ],
+                }
+            ]
+
+        requests = []
+        for table, column, candidates in unresolved:
+            requests.append(
+                {
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "너는 범용 논리/물리 데이터 모델 관계 검토자입니다. 주어진 FK 컬럼이 참조할 부모를 "
+                                "candidate_parents 중에서만 선택하세요. 컬럼 논리명, 물리명, 타입, 부모 엔티티명과 PK를 "
+                                "함께 비교하세요. 후보가 모호하거나 근거가 부족하면 no_relation=true를 반환하세요. "
+                                "새 테이블, 새 컬럼, 후보 밖 관계는 만들지 마세요. JSON으로 parent_table, "
+                                "parent_column, confidence, no_relation을 반환하세요."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "child_table": _physical_table_name(table),
+                                    "child_entity_name": table.get("entity_name")
+                                    or table.get("logical_name"),
+                                    "fk_column": {
+                                        "column_name": _physical_column_name(column),
+                                        "logical_name": column.get("attribute_name")
+                                        or column.get("logical_name")
+                                        or column.get("column_logical_name"),
+                                        "data_type": column.get("data_type"),
+                                    },
+                                    "candidate_parents": candidates,
+                                },
+                                ensure_ascii=False,
+                            ),
+                        },
+                    ],
+                    "temperature": 0.0,
+                    "max_tokens": 256,
+                    "extra_body": {"response_format": {"type": "json_object"}},
+                }
+            )
+        responses = send_parallel(
+            requests,
+            client=self.llm_client,
+            max_workers=self.max_parallel_workers,
+        )
+        if not responses["success"]:
+            return result, [
+                {
+                    "code": "ERD_FK_RELATION_LLM_FAILED",
+                    "message": responses["error"]["message"],
+                }
+            ]
+
+        for (table, column, candidates), response in zip(unresolved, responses["data"]):
+            parsed_value = (
+                _parse_repair_response(response["data"])
+                if response and response["success"]
+                else None
+            )
+            value = parsed_value if isinstance(parsed_value, dict) else {}
+            selection = _extract_relationship_selection(value)
+            child_table = _physical_table_name(table)
+            child_column = _physical_column_name(column)
+            parent_table = str(
+                selection.get("parent_table")
+                or selection.get("to_table")
+                or selection.get("referenced_table")
+                or ""
+            )
+            parent_column = str(
+                selection.get("parent_column")
+                or selection.get("to_column")
+                or selection.get("referenced_column")
+                or ""
+            )
+            if parent_table and not parent_column:
+                matching_columns = {
+                    str(candidate["parent_column"])
+                    for candidate in candidates
+                    if str(candidate["parent_table"]) == parent_table
+                }
+                if len(matching_columns) == 1:
+                    parent_column = next(iter(matching_columns))
+            candidate_table_names = {
+                str(candidate["parent_table"]) for candidate in candidates
+            }
+            if parent_table and parent_table not in candidate_table_names:
+                logical_matches = {
+                    str(candidate["parent_table"])
+                    for candidate in candidates
+                    if str(candidate.get("parent_entity_name") or "").strip().lower()
+                    == parent_table.strip().lower()
+                }
+                if len(logical_matches) == 1:
+                    parent_table = next(iter(logical_matches))
+                    matching_columns = {
+                        str(candidate["parent_column"])
+                        for candidate in candidates
+                        if str(candidate["parent_table"]) == parent_table
+                    }
+                    if len(matching_columns) == 1:
+                        parent_column = next(iter(matching_columns))
+            allowed = {
+                (str(candidate["parent_table"]), str(candidate["parent_column"]))
+                for candidate in candidates
+            }
+            if (parent_table, parent_column) not in allowed:
+                warnings.append(
+                    {
+                        "code": "ERD_FK_RELATION_LLM_INVALID",
+                        "message": "LLM이 허용된 부모 후보 밖의 관계를 반환했습니다.",
+                        "target_scope": [f"{child_table}.{child_column}"],
+                    }
+                )
+                continue
+            confidence_value = selection.get("confidence")
+            confidence = _float_value(confidence_value)
+            selected_candidate = next(
+                candidate
+                for candidate in candidates
+                if (
+                    str(candidate["parent_table"]),
+                    str(candidate["parent_column"]),
+                )
+                == (parent_table, parent_column)
+            )
+            top_score = int(candidates[0]["score"])
+            next_score = int(candidates[1]["score"]) if len(candidates) > 1 else 0
+            safe_without_confidence = (
+                selected_candidate is candidates[0]
+                and top_score >= 50
+                and (len(candidates) == 1 or top_score - next_score >= 15)
+            )
+            if (
+                selection.get("no_relation")
+                or (
+                    confidence_value not in (None, "")
+                    and confidence < 0.75
+                )
+                or (
+                    confidence_value in (None, "")
+                    and not safe_without_confidence
+                )
+            ):
+                warnings.append(
+                    {
+                        "code": "ERD_FK_RELATION_UNRESOLVED",
+                        "message": "FK 부모 후보의 근거가 부족하여 관계를 자동 생성하지 않았습니다.",
+                        "target_scope": [f"{child_table}.{child_column}"],
+                    }
+                )
+                continue
+            key = (parent_table, parent_column, child_table, child_column)
+            if any(
+                (
+                    str(item.get("parent_table") or item.get("to_table") or ""),
+                    str(item.get("parent_column") or item.get("to_column") or ""),
+                    str(item.get("child_table") or item.get("from_table") or ""),
+                    str(item.get("child_column") or item.get("from_column") or ""),
+                )
+                == key
+                for item in relationships
+            ):
+                continue
+            relationships.append(
+                {
+                    "relationship_id": f"REL-{len(relationships) + 1:03d}",
+                    "parent_table": parent_table,
+                    "parent_column": parent_column,
+                    "child_table": child_table,
+                    "child_column": child_column,
+                    "to_table": parent_table,
+                    "to_column": parent_column,
+                    "from_table": child_table,
+                    "from_column": child_column,
+                    "relationship_type": "N:1",
+                    "description": "references",
+                    "resolution_source": "LLM_CANDIDATE_SELECTION",
+                }
+            )
+        result["relationships"] = relationships
+        return result, warnings
 
     def _build_final_erd_json(
         self,
@@ -422,6 +872,7 @@ class DataStructureDesignAgent:
             (
                 "전체 데이터 구조를 병합하여 ERD JSON을 생성하세요. "
                 "테이블/컬럼 물리명은 소문자 snake_case, entity_id는 ENT-001 형식, table_id는 TABLE-001 형식을 유지하세요. "
+                "entity_name은 요구사항 문장이 아닌 24자 이내의 짧은 업무 객체 명사형으로 통일하고, 동일 개념은 중복 생성하지 마세요. "
                 "description/table_description은 DOCX 엔티티 설명 칸에 들어갈 80자 이내 요약문이어야 합니다. "
                 "엔티티당 컬럼은 최소 6개 이상을 유지하고, 중복 테이블은 병합하세요. JSON 객체만 반환하세요."
             ),
@@ -483,32 +934,65 @@ class DataStructureDesignAgent:
             for table in current.get("tables", [])
             if isinstance(table, dict) and str(table.get("entity_id")) in target_ids
         ]
-        if not scoped_tables:
+        failure_types = set(
+            instruction.get("failure_types") or [instruction.get("failure_type")]
+        )
+        relationship_scopes = set(
+            instruction.get("target_scope", {}).get("relationship_scopes") or []
+        )
+        if not scoped_tables and "FK_RELATION_MISSING" not in failure_types:
             return self._failed("REPAIR_SCOPE_INVALID", "repair_instruction의 대상 엔티티를 찾을 수 없습니다.")
 
-        prompt = (
-            "너는 ERD 논리 모델 품질 수정자다. repair_instruction의 대상 엔티티만 수정한다. "
-            "must_fix만 수행하고 must_preserve와 forbidden_changes를 반드시 지킨다. "
-            "generic 이름(엔티티, 테이블, 데이터, 정보, 객체, 항목, 관리, 업무)은 금지한다. "
-            "논리명은 entity_name/attribute_name, 물리명은 table_name/column_name으로 분리한다. "
-            "응답은 {\"tables\": [수정된 대상 엔티티의 완전한 객체]} JSON 객체만 반환한다."
-        )
-        payload = {
-            "repair_instruction": instruction,
-            "target_tables": scoped_tables,
-        }
-        candidate = self._repair_llm_dict(prompt, payload)
-        candidate_tables = _extract_tables(candidate)
-        if not candidate_tables:
-            return self._repair_failed(
-                previous,
-                "ERD_REPAIR_LLM_FAILED",
-                "LLM이 유효한 제한 수정 ERD JSON을 반환하지 않았습니다.",
+        repaired = deepcopy(current)
+        candidate_tables: list[dict[str, Any]] = []
+        repair_warnings: list[dict[str, Any]] = []
+        if scoped_tables:
+            candidate_tables, repair_errors = self._repair_erd_candidates_parallel(
+                instruction,
+                scoped_tables,
             )
-
-        repaired, error = _merge_scoped_erd_repair(current, candidate_tables, instruction)
-        if error:
-            return self._repair_failed(previous, "ERD_REPAIR_CONSTRAINT_VIOLATION", error)
+            if repair_errors:
+                repair_warnings.append(
+                    {
+                        "code": "ERD_REPAIR_PARTIAL",
+                        "message": "일부 엔티티 Repair 응답을 적용하지 못했습니다: "
+                        + "; ".join(repair_errors),
+                    }
+                )
+            if candidate_tables:
+                partial_instruction = deepcopy(instruction)
+                partial_instruction.setdefault("target_scope", {})["entity_ids"] = [
+                    str(table.get("entity_id"))
+                    for table in candidate_tables
+                    if table.get("entity_id")
+                ]
+                repaired, error = _merge_scoped_erd_repair(
+                    repaired, candidate_tables, partial_instruction
+                )
+                if error:
+                    return self._repair_failed(
+                        previous, "ERD_REPAIR_CONSTRAINT_VIOLATION", error
+                    )
+        if "FK_RELATION_MISSING" in failure_types:
+            repaired, relation_warnings = self._resolve_unmapped_fk_relationships(
+                repaired
+            )
+            repair_warnings.extend(relation_warnings)
+            unresolved = _unresolved_fk_scopes(repaired)
+            remaining_targets = sorted(
+                scope for scope in relationship_scopes if scope in unresolved
+            )
+            if remaining_targets:
+                return self._repair_failed(
+                    previous,
+                    "ERD_REPAIR_RELATION_UNRESOLVED",
+                    "FK 관계를 확정하지 못했습니다: "
+                    + ", ".join(remaining_targets),
+                )
+        if "FK_RELATION_MISSING" in failure_types:
+            repaired, quality_result = prepare_erd_quality(repaired)
+        else:
+            quality_result = inspect_erd_quality(repaired)
         mermaid_json = {
             "entities": [_mermaid_entity_from_table(table) for table in repaired.get("tables", [])],
             "relationships": repaired.get("relationships", []),
@@ -517,23 +1001,226 @@ class DataStructureDesignAgent:
             state,
             repaired,
             mermaid_json,
-            [],
-            {"repair_instruction": instruction, "repair_candidate": candidate},
+            [*repair_warnings, *_quality_warnings(quality_result)],
+            {
+                "repair_instruction": instruction,
+                "repair_candidates": candidate_tables,
+                "erd_quality_result": quality_result,
+                "entity_name_resolution_trace": self._entity_name_resolution_trace,
+            },
         )
 
-    def _repair_llm_dict(self, instruction: str, payload: Any) -> dict[str, Any]:
-        client = self.llm_client or LLMClient()
-        result = client.chat(
-            [
-                {"role": "system", "content": instruction},
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
-            ],
-            temperature=0.0,
+    def _repair_erd_candidates_parallel(
+        self,
+        instruction: dict[str, Any],
+        scoped_tables: list[dict[str, Any]],
+    ) -> tuple[list[dict[str, Any]], list[str]]:
+        """수정 대상별 작은 JSON patch를 병렬 요청하여 응답 잘림을 방지합니다."""
+
+        requests = []
+        for table in scoped_tables:
+            entity_id = str(table.get("entity_id") or "")
+            target_columns = {
+                scope.split(".", 1)[1]
+                for scope in instruction.get("target_scope", {}).get("column_scopes", [])
+                if str(scope).startswith(f"{entity_id}.") and "." in str(scope)
+            }
+            compact_columns = [
+                {
+                    "column_id": column.get("column_id"),
+                    "attribute_name": column.get("attribute_name")
+                    or column.get("logical_name"),
+                    "column_name": column.get("column_name")
+                    or column.get("physical_name"),
+                    "data_type": column.get("data_type"),
+                }
+                for column in table.get("columns", [])
+                if isinstance(column, dict)
+                and (
+                    not target_columns
+                    or str(column.get("column_id") or column.get("physical_name")) in target_columns
+                )
+            ]
+            requests.append(
+                {
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "너는 범용 ERD 논리 모델 품질 수정자입니다. 입력된 엔티티 한 개만 수정하세요. "
+                                "repair_instruction의 must_fix만 수행하고 must_preserve와 forbidden_changes를 지키세요. "
+                                "entity_name은 24자 이하의 짧은 업무 객체 명사형이어야 하며 요구사항 문장, 카테고리명, "
+                                "화면명, generic 이름은 금지합니다. 물리 테이블명과 물리 컬럼명은 변경하지 마세요. "
+                                "응답은 설명 없이 JSON 객체 하나만 반환하세요. 형식: "
+                                "{\"entity_id\":\"\", \"entity_name\":\"\", "
+                                "\"entity_description\":\"\", "
+                                "\"columns\":[{\"column_id\":\"\", \"attribute_name\":\"\"}]}. "
+                                "수정하지 않는 필드는 생략할 수 있습니다."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "repair_instruction": {
+                                        "failure_types": instruction.get("failure_types"),
+                                        "must_fix": instruction.get("must_fix"),
+                                        "must_preserve": instruction.get("must_preserve"),
+                                        "forbidden_changes": instruction.get("forbidden_changes"),
+                                    },
+                                    "target_table": {
+                                        "entity_id": entity_id,
+                                        "entity_name": table.get("entity_name")
+                                        or table.get("logical_name"),
+                                        "entity_description": table.get("entity_description")
+                                        or table.get("description"),
+                                        "table_name": _physical_table_name(table),
+                                        "columns": compact_columns,
+                                    },
+                                },
+                                ensure_ascii=False,
+                            ),
+                        },
+                    ],
+                    "temperature": 0.0,
+                    "max_tokens": 1024,
+                    "extra_body": {"response_format": {"type": "json_object"}},
+                }
+            )
+        result = send_parallel(
+            requests,
+            client=self.llm_client or LLMClient(),
+            max_workers=self.max_parallel_workers,
         )
         if not result["success"]:
+            return [], [str(result["error"]["message"])]
+
+        candidates: list[dict[str, Any]] = []
+        errors: list[str] = []
+        for source, response in zip(scoped_tables, result["data"]):
+            entity_id = str(source.get("entity_id") or "")
+            if not response or not response["success"]:
+                message = response["error"]["message"] if response else "empty response"
+                patch = self._retry_minimal_entity_name_repair(instruction, source)
+                if patch:
+                    candidates.append(_apply_repair_patch(source, patch))
+                    continue
+                errors.append(f"{entity_id}: {message}")
+                continue
+            parsed_value = _parse_repair_response(response["data"])
+            if parsed_value is None:
+                patch = self._retry_minimal_entity_name_repair(instruction, source)
+                if patch:
+                    candidates.append(_apply_repair_patch(source, patch))
+                    continue
+                errors.append(f"{entity_id}: JSON parse failed")
+                continue
+            patch = _extract_repair_patch(parsed_value, entity_id)
+            if not patch:
+                patch = self._retry_minimal_entity_name_repair(instruction, source)
+                if patch:
+                    candidates.append(_apply_repair_patch(source, patch))
+                    continue
+                errors.append(f"{entity_id}: repair patch missing")
+                continue
+            candidates.append(_apply_repair_patch(source, patch))
+        return candidates, errors
+
+    def _retry_minimal_entity_name_repair(
+        self,
+        instruction: dict[str, Any],
+        source: dict[str, Any],
+        rag_evidence: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        """구조 근거 후보를 만들고 LLM은 후보 선택만 수행합니다."""
+
+        failure_types = set(instruction.get("failure_types") or [instruction.get("failure_type")])
+        if not failure_types & {
+            "ENTITY_GENERIC_NAME",
+            "ENTITY_NAME_MISMATCH",
+            "ENTITY_NAME_OVERLONG",
+            "ENTITY_NAME_SENTENCE",
+        }:
             return {}
-        parsed = parse_json_response(result["data"])
-        return parsed["data"] if parsed["success"] and isinstance(parsed["data"], dict) else {}
+        entity_id = str(source.get("entity_id") or "")
+        compact_evidence = _compact_entity_name_evidence(source, rag_evidence or [])
+        scored_candidates = _scored_grounded_entity_name_candidates(
+            source,
+            compact_evidence,
+        )
+        if not scored_candidates:
+            self._record_entity_name_resolution(
+                entity_id,
+                source,
+                [],
+                "",
+                "NO_CANDIDATE",
+            )
+            return {}
+        grounded_candidates = [item["name"] for item in scored_candidates]
+        selection_result = (self.llm_client or LLMClient()).chat(
+            [
+                {
+                    "role": "system",
+                    "content": (
+                        "논리 ERD 엔티티명 선택 작업입니다. candidate_names 중 저장 대상 업무 객체를 "
+                        "가장 정확히 나타내는 하나만 선택하세요. 후보를 수정하거나 새 이름을 만들지 마세요. "
+                        "요구사항 제목이 아니라 테이블과 속성의 공통 개념을 우선하세요. JSON 한 줄만 "
+                        "반환하세요: {\"entity_id\":\"...\",\"entity_name\":\"후보 중 하나\"}"
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        {
+                            "entity_id": entity_id,
+                            "candidate_names": grounded_candidates,
+                            **compact_evidence,
+                        },
+                        ensure_ascii=False,
+                    ),
+                },
+            ],
+            temperature=0.0,
+            max_tokens=128,
+            extra_body={"response_format": {"type": "json_object"}},
+        )
+        selected_name = _entity_name_from_llm_result(selection_result, entity_id)
+        selection_source = "LLM_CANDIDATE_SELECTION"
+        if selected_name not in grounded_candidates:
+            selected_name = grounded_candidates[0]
+            selection_source = "TOP_SCORED_CANDIDATE"
+        self._record_entity_name_resolution(
+            entity_id,
+            source,
+            scored_candidates,
+            selected_name,
+            selection_source,
+        )
+        return {"entity_id": entity_id, "entity_name": selected_name}
+
+    def _record_entity_name_resolution(
+        self,
+        entity_id: str,
+        source: dict[str, Any],
+        candidates: list[dict[str, Any]],
+        selected_name: str,
+        selection_source: str,
+    ) -> None:
+        trace = getattr(self, "_entity_name_resolution_trace", None)
+        if not isinstance(trace, list):
+            return
+        trace.append(
+            {
+                "entity_id": entity_id,
+                "original_name": source.get("entity_name")
+                or source.get("logical_name"),
+                "table_name": _physical_table_name(source),
+                "candidates": candidates,
+                "selected_name": selected_name,
+                "selection_source": selection_source,
+            }
+        )
 
     def _build_db_specifications(
         self,
@@ -595,8 +1282,11 @@ class DataStructureDesignAgent:
         output: list[dict[str, Any]] = []
         warnings = []
         for index, response in enumerate(result["data"]):
-            parsed = parse_json_response(response["data"]) if response and response["success"] else None
-            value = parsed["data"] if parsed and parsed["success"] else None
+            value = (
+                _parse_repair_response(response["data"])
+                if response and response["success"]
+                else None
+            )
             extracted = _extract_llm_items(value, item_key, list_key)
             if extracted:
                 output.extend(extracted)
@@ -620,8 +1310,8 @@ class DataStructureDesignAgent:
         )
         if not result["success"]:
             return {}
-        parsed = parse_json_response(result["data"])
-        return parsed["data"] if parsed["success"] and isinstance(parsed["data"], dict) else {}
+        parsed_value = _parse_repair_response(result["data"])
+        return parsed_value if isinstance(parsed_value, dict) else {}
 
     def _parallel_llm_analysis(
         self,
@@ -648,12 +1338,221 @@ class DataStructureDesignAgent:
         analyses = []
         warnings = []
         for index, response in enumerate(result["data"]):
-            parsed = parse_json_response(response["data"]) if response and response["success"] else None
-            if parsed and parsed["success"]:
-                analyses.append(parsed["data"])
+            parsed_value = (
+                _parse_repair_response(response["data"])
+                if response and response["success"]
+                else None
+            )
+            if parsed_value is not None:
+                analyses.append(parsed_value)
             else:
                 warnings.append({"code": "DATA_STRUCTURE_LLM_ITEM_FAILED", "message": f"LLM 분석 항목 {index + 1} 처리에 실패했습니다."})
         return analyses, warnings
+
+    def _resolve_entity_names(
+        self,
+        document: dict[str, Any],
+        source_items: list[Any],
+        rag_results: list[dict[str, Any]],
+    ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        result = deepcopy(document)
+        tables = result.get("tables") if isinstance(result.get("tables"), list) else []
+        targets = [table for table in tables if isinstance(table, dict) and _entity_name_needs_resolution(table)]
+        if not targets:
+            return result, []
+        if self.llm_client is None:
+            return result, [
+                {
+                    "code": "ERD_ENTITY_NAME_LLM_UNAVAILABLE",
+                    "message": "논리 엔티티명이 없는 테이블을 LLM으로 확정할 수 없습니다.",
+                    "target_scope": [str(table.get("entity_id") or table.get("table_id")) for table in targets],
+                }
+            ]
+
+        rag_by_table = {
+            str(item.get("table_id")): item.get("normalized_results", [])
+            for item in rag_results
+            if isinstance(item, dict)
+        }
+        requests = []
+        for table in targets:
+            requests.append(
+                {
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "너는 공공 SI 논리 데이터 모델러입니다. 요구사항, 컬럼, 설명, RAG 용어 근거를 종합해 "
+                                "저장 대상의 논리 엔티티명을 확정하세요. 화면명·기능명·물리 테이블명은 엔티티명으로 쓰지 말고, "
+                                "엔티티/데이터/정보/객체/항목/관리 같은 일반명도 금지합니다. 근거에 없는 업종이나 객체를 만들지 마세요. "
+                                "요구사항 문장을 복사하지 말고 24자 이내, 가능하면 2~4개 단어의 짧은 업무 객체 "
+                                "명사형으로 작성하세요. '기본사항', '요구사항', '개발 및 운영', '정보를 관리' "
+                                "같은 문구는 엔티티명에 포함하지 마세요. "
+                                "RAG/LLMOps/AgentOps 같은 기술어는 실제로 독립 저장되는 업무 객체일 때만 엔티티명에 사용하세요. "
+                                "JSON으로 entity_name과 entity_description만 반환하세요."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "table": table,
+                                    "source_items": _source_items_for_table(table, source_items),
+                                    "rag_results": rag_by_table.get(str(table.get("table_id")), [])[:10],
+                                },
+                                ensure_ascii=False,
+                            ),
+                        },
+                    ],
+                    "temperature": 0.0,
+                    "max_tokens": 512,
+                    "extra_body": {"response_format": {"type": "json_object"}},
+                }
+            )
+        responses = send_parallel(
+            requests,
+            client=self.llm_client,
+            max_workers=self.max_parallel_workers,
+        )
+        warnings: list[dict[str, Any]] = []
+        if not responses["success"]:
+            return result, [{"code": "ERD_ENTITY_NAME_LLM_FAILED", "message": responses["error"]["message"]}]
+
+        for table, response in zip(targets, responses["data"]):
+            scope = str(table.get("entity_id") or table.get("table_id") or table.get("table_name") or "")
+            parsed_value = (
+                _parse_repair_response(response["data"])
+                if response and response["success"]
+                else None
+            )
+            candidate = _extract_repair_patch(parsed_value, scope)
+            entity_name = str(
+                candidate.get("entity_name")
+                or candidate.get("logical_name")
+                or candidate.get("name")
+                or ""
+            ).strip()
+            if _invalid_resolved_entity_name(entity_name):
+                retry_patch = self._retry_minimal_entity_name_repair(
+                    {
+                        "failure_type": "ENTITY_NAME_SENTENCE",
+                        "failure_types": [
+                            "ENTITY_NAME_OVERLONG",
+                            "ENTITY_NAME_SENTENCE",
+                        ],
+                    },
+                    table,
+                    rag_by_table.get(str(table.get("table_id")), [])[:10],
+                )
+                entity_name = str(retry_patch.get("entity_name") or "").strip()
+                if entity_name:
+                    candidate = {**candidate, **retry_patch}
+            if _invalid_resolved_entity_name(entity_name):
+                warnings.append(
+                    {
+                        "code": "ERD_ENTITY_NAME_RESOLUTION_FAILED",
+                        "message": (
+                            "이름 전용 LLM 재시도에서도 유효한 논리 엔티티명을 확정하지 못했습니다."
+                        ),
+                        "target_scope": [scope],
+                    }
+                )
+                table["entity_name"] = ""
+                table["logical_name"] = ""
+                continue
+            table["entity_name"] = entity_name
+            table["logical_name"] = entity_name
+            description = str(candidate.get("entity_description") or candidate.get("description") or "").strip()
+            if description:
+                table["entity_description"] = description
+                table["description"] = description
+                table["table_description"] = description
+        return result, warnings
+
+    def _review_entity_catalog(
+        self,
+        document: dict[str, Any],
+        source_items: list[Any],
+        rag_results: list[dict[str, Any]],
+    ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+        if self.llm_client is None:
+            return document, []
+        result = deepcopy(document)
+        tables = [table for table in result.get("tables", []) if isinstance(table, dict)]
+        if not tables:
+            return result, []
+        rag_by_table = {
+            str(item.get("table_id")): item.get("normalized_results", [])
+            for item in rag_results
+            if isinstance(item, dict)
+        }
+        catalog = []
+        for table in tables:
+            catalog.append(
+                {
+                    "table_id": table.get("table_id"),
+                    "table_name": table.get("table_name") or table.get("physical_name"),
+                    "entity_name": table.get("entity_name") or table.get("logical_name"),
+                    "description": table.get("entity_description") or table.get("description"),
+                    "attributes": [
+                        column.get("attribute_name") or column.get("logical_name")
+                        for column in table.get("columns", [])[:8]
+                        if isinstance(column, dict)
+                    ],
+                    "source_requirement_ids": table.get("source_requirement_ids", []),
+                    "rag_evidence": [
+                        str(item.get("content") or item.get("title") or "")[:300]
+                        for item in rag_by_table.get(str(table.get("table_id")), [])[:3]
+                        if isinstance(item, dict)
+                    ],
+                }
+            )
+        response = self._llm_dict(
+            (
+                "너는 범용 SI 논리 데이터 모델 품질 검토자입니다. 전체 엔티티 카탈로그를 함께 검토하여 entity_name을 통일하세요. "
+                "이름은 24자 이내의 짧은 업무 객체 명사형이어야 하며 요구사항 문장, 카테고리명, 화면명은 금지합니다. "
+                "RAG/LLMOps/AgentOps 같은 기술어는 독립적으로 저장·식별·관리되는 객체일 때만 유지하세요. "
+                "동일 의미 엔티티는 같은 canonical entity_name을 제시하고 duplicate_of에 대표 table_id를 표시하세요. "
+                "물리 테이블명, 컬럼, 관계는 변경하지 마세요. JSON으로 entity_reviews 배열을 반환하세요."
+            ),
+            {
+                "entity_catalog": catalog,
+                "source_items": source_items[:20],
+            },
+            "ERD_ENTITY_CATALOG_LLM_FAILED",
+        )
+        reviews = response.get("entity_reviews") if isinstance(response, dict) else None
+        if not isinstance(reviews, list):
+            return result, []
+        table_by_id = {str(table.get("table_id") or ""): table for table in tables}
+        warnings = []
+        for review in reviews:
+            if not isinstance(review, dict):
+                continue
+            table = table_by_id.get(str(review.get("table_id") or ""))
+            if table is None:
+                continue
+            name = str(review.get("entity_name") or "").strip()
+            if entity_name_needs_llm_review(name):
+                warnings.append(
+                    {
+                        "code": "ERD_ENTITY_CATALOG_NAME_INVALID",
+                        "message": "카탈로그 검토 LLM이 유효하지 않은 엔티티명을 반환했습니다.",
+                        "target_scope": [str(table.get("entity_id") or table.get("table_id"))],
+                    }
+                )
+                continue
+            table["entity_name"] = name
+            table["logical_name"] = name
+            description = str(review.get("entity_description") or "").strip()
+            if description:
+                table["entity_description"] = description
+                table["description"] = description
+                table["table_description"] = description
+            duplicate_of = str(review.get("duplicate_of") or "").strip()
+            if duplicate_of and duplicate_of != str(table.get("table_id") or ""):
+                table["semantic_duplicate_of"] = duplicate_of
+        return result, warnings
 
     def _standard_search(
         self,
@@ -666,10 +1565,11 @@ class DataStructureDesignAgent:
         with ThreadPoolExecutor(max_workers=self.max_parallel_workers) as executor:
             future_map = {}
             for table in tables:
+                search_context = _table_rag_search_context(table)
                 future_map[
                     executor.submit(
                         self.search_tool,
-                        f"{table['logical_name']} 공공데이터 컬럼 표준명 용어사전",
+                        f"{search_context} 공공데이터 컬럼 표준명 용어사전",
                         search_targets="RAG",
                         filters={
                             "domain": "public_data",
@@ -681,7 +1581,7 @@ class DataStructureDesignAgent:
                 future_map[
                     executor.submit(
                         self.search_tool,
-                        f"{table['logical_name']} 데이터 개인정보 보안 보관 성능 제약조건",
+                        f"{search_context} 데이터 개인정보 보안 보관 성능 제약조건",
                         search_targets="RAG",
                         filters={
                             "project_sn": state.get("project_sn"),
@@ -759,6 +1659,163 @@ class DataStructureDesignAgent:
             for table_id, items in results_by_table.items()
         ]
 
+    def _resolve_db_table_identifiers(
+        self,
+        tables: list[dict[str, Any]],
+        rag_results: list[dict[str, Any]],
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+        """ERD 근거와 LLM/RAG로 DB 물리 테이블명을 확정합니다."""
+
+        result = deepcopy(tables)
+        warnings: list[dict[str, Any]] = []
+        mappings: list[dict[str, Any]] = []
+        targets: list[dict[str, Any]] = []
+        rag_by_table = {
+            str(item.get("table_id") or ""): item.get("normalized_results", [])
+            for item in rag_results
+            if isinstance(item, dict)
+        }
+
+        for table in result:
+            if not isinstance(table, dict):
+                continue
+            before = str(
+                table.get("physical_name")
+                or table.get("table_name")
+                or table.get("table_id")
+                or ""
+            ).strip()
+            candidate = next(
+                (
+                    str(value).strip()
+                    for value in (
+                        table.get("table_id"),
+                        table.get("table_name"),
+                        table.get("physical_name"),
+                    )
+                    if valid_table_identifier(value)
+                ),
+                "",
+            )
+            if candidate:
+                table["table_name"] = candidate
+                table["physical_name"] = candidate
+                mappings.append({"before": before, "after": candidate, "source": "ERD_JSON"})
+            else:
+                targets.append(table)
+
+        if not targets:
+            return result, warnings, mappings
+        if self.llm_client is None:
+            for table in targets:
+                fallback = _best_db_table_identifier(table)
+                if fallback:
+                    before = str(
+                        table.get("physical_name")
+                        or table.get("table_name")
+                        or table.get("table_id")
+                        or ""
+                    )
+                    table["table_name"] = fallback
+                    table["physical_name"] = fallback
+                    mappings.append(
+                        {
+                            "before": before,
+                            "after": fallback,
+                            "source": "ERD_LOGICAL_EVIDENCE",
+                        }
+                    )
+                else:
+                    warnings.append(
+                        {
+                            "code": "DB_TABLE_ID_LLM_UNAVAILABLE",
+                            "message": "의미 있는 물리 테이블명을 확정할 LLM이 설정되지 않았습니다.",
+                            "target_scope": [_db_table_scope(table)],
+                        }
+                    )
+            return result, warnings, mappings
+
+        requests = []
+        for table in targets:
+            table_key = str(table.get("table_id") or "")
+            requests.append(
+                {
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "너는 공공 SI 데이터 표준 전문가입니다. ERD의 논리 엔티티와 표준용어 RAG 근거를 바탕으로 "
+                                "물리 테이블 ID 하나를 결정하세요. 반드시 tbl_로 시작하는 의미 있는 영문 소문자 snake_case를 "
+                                "사용하세요. 업무 객체의 짧은 명사를 사용하고 요구사항 문장을 그대로 번역하지 마세요. "
+                                "unresolved, unknown, temp, hash, UUID, 임의 숫자·난수는 금지합니다. 근거에 없는 산업 용어를 "
+                                "만들지 마세요. JSON으로 table_name만 반환하세요."
+                            ),
+                        },
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "entity_name": table.get("entity_name")
+                                    or table.get("table_logical_name")
+                                    or table.get("logical_name"),
+                                    "entity_description": table.get("entity_description")
+                                    or table.get("table_description")
+                                    or table.get("description"),
+                                    "columns": [
+                                        {
+                                            "logical_name": column.get("attribute_name")
+                                            or column.get("logical_name")
+                                            or column.get("column_logical_name"),
+                                            "physical_name": column.get("physical_name")
+                                            or column.get("column_name"),
+                                        }
+                                        for column in table.get("columns", [])[:12]
+                                        if isinstance(column, dict)
+                                    ],
+                                    "rag_results": rag_by_table.get(table_key, [])[:10],
+                                },
+                                ensure_ascii=False,
+                            ),
+                        },
+                    ]
+                }
+            )
+
+        responses = send_parallel(
+            requests,
+            client=self.llm_client,
+            max_workers=self.max_parallel_workers,
+        )
+        if not responses["success"]:
+            warnings.append({"code": "DB_TABLE_ID_LLM_FAILED", "message": responses["error"]["message"]})
+            return result, warnings, mappings
+
+        for table, response in zip(targets, responses["data"]):
+            parsed = parse_json_response(response["data"]) if response and response["success"] else None
+            value = parsed["data"] if parsed and parsed["success"] and isinstance(parsed["data"], dict) else {}
+            candidate = value.get("table_identifier") if isinstance(value.get("table_identifier"), dict) else value
+            resolved = str(candidate.get("table_name") or candidate.get("table_id") or "").strip()
+            scope = _db_table_scope(table)
+            if not valid_table_identifier(resolved):
+                resolved = _best_db_table_identifier(table)
+                if not resolved:
+                    warnings.append(
+                        {
+                            "code": "DB_TABLE_ID_LLM_INVALID",
+                            "message": "LLM과 구조 근거에서 유효한 tbl_ snake_case 테이블명을 확정하지 못했습니다.",
+                            "target_scope": [scope],
+                        }
+                    )
+                    continue
+                resolution_source = "ERD_LOGICAL_EVIDENCE"
+            else:
+                resolution_source = "LLM_RAG"
+            before = str(table.get("physical_name") or table.get("table_name") or table.get("table_id") or "")
+            table["table_name"] = resolved
+            table["physical_name"] = resolved
+            mappings.append({"before": before, "after": resolved, "source": resolution_source})
+        return result, warnings, mappings
+
     @staticmethod
     def _erd_success(state, erd_entity_json, erd_mermaid_json, warnings, debug):
         output = {
@@ -768,7 +1825,12 @@ class DataStructureDesignAgent:
             "warnings": warnings,
             "errors": [],
         }
-        for key in ("meeting_change_requirements", "meeting_change_reflection", "meeting_change_apply_report"):
+        for key in (
+            "meeting_change_requirements",
+            "meeting_change_reflection",
+            "meeting_change_apply_report",
+            "impact_analysis",
+        ):
             if key in debug:
                 output[key] = debug[key]
         if bool(state.get("etc", {}).get("debug")):
@@ -889,8 +1951,19 @@ def _logical_table_key(table: dict[str, Any]) -> str:
         or table.get("logical_name")
         or table.get("table_korean_name")
         or ""
-    )
-    return re.sub(r"[\s_-]+", "", value).lower()
+    ).lower()
+    normalized = re.sub(r"[\s_·()/.-]+", "", value)
+    for phrase in (
+        "개발및운영",
+        "운영관리",
+        "기본사항",
+        "요구사항",
+        "정보관리",
+        "관리",
+        "정보",
+    ):
+        normalized = normalized.replace(phrase, "")
+    return normalized
 
 
 def _merge_scoped_erd_repair(
@@ -927,7 +2000,12 @@ def _merge_scoped_erd_repair(
             return current, f"보존 대상 물리 테이블명이 변경되었습니다: {entity_id}"
         repaired_ids.add(entity_id)
 
-        if failure_types & {"ENTITY_GENERIC_NAME", "ENTITY_NAME_MISMATCH"}:
+        if failure_types & {
+            "ENTITY_GENERIC_NAME",
+            "ENTITY_NAME_MISMATCH",
+            "ENTITY_NAME_OVERLONG",
+            "ENTITY_NAME_SENTENCE",
+        }:
             name = str(candidate.get("entity_name") or candidate.get("logical_name") or "").strip()
             if _is_generic_repair_name(name):
                 return current, f"유효한 entity_name을 생성하지 못했습니다: {entity_id}"
@@ -956,6 +2034,105 @@ def _merge_scoped_erd_repair(
     if missing:
         return current, f"ERD에서 수정 대상 엔티티를 찾지 못했습니다: {sorted(missing)}"
     return result, None
+
+
+def _extract_repair_patch(value: Any, entity_id: str) -> dict[str, Any]:
+    if isinstance(value, list):
+        return next(
+            (
+                item
+                for item in value
+                if isinstance(item, dict)
+                and str(item.get("entity_id") or "") == entity_id
+            ),
+            value[0] if len(value) == 1 and isinstance(value[0], dict) else {},
+        )
+    if not isinstance(value, dict):
+        return {}
+    for key in (
+        "table",
+        "entity",
+        "repair_result",
+        "entity_name_resolution",
+        "result",
+        "output",
+        "response",
+        "data",
+    ):
+        nested = value.get(key)
+        if isinstance(nested, dict):
+            return _extract_repair_patch(nested, entity_id)
+    for key in ("tables", "entities", "entity_reviews"):
+        nested = value.get(key)
+        if isinstance(nested, list):
+            return _extract_repair_patch(nested, entity_id)
+    return value
+
+
+def _parse_repair_response(response: Any) -> Any | None:
+    parsed = parse_json_response(response)
+    if parsed["success"]:
+        return parsed["data"]
+    text = ""
+    if isinstance(response, dict):
+        try:
+            text = str(response["choices"][0]["message"]["content"])
+        except (KeyError, IndexError, TypeError):
+            text = str(response.get("content") or "")
+    else:
+        text = str(response or "")
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.IGNORECASE | re.DOTALL).strip()
+    candidates = []
+    if "{" in text and "}" in text:
+        candidates.append(text[text.find("{") : text.rfind("}") + 1])
+    if "[" in text and "]" in text:
+        candidates.append(text[text.find("[") : text.rfind("]") + 1])
+    for candidate in candidates:
+        repaired = parse_json_response(candidate)
+        if repaired["success"]:
+            return repaired["data"]
+    return None
+
+
+def _apply_repair_patch(
+    source: dict[str, Any],
+    patch: dict[str, Any],
+) -> dict[str, Any]:
+    candidate = deepcopy(source)
+    for key in ("entity_name", "logical_name", "entity_description", "description", "table_description"):
+        value = patch.get(key)
+        if value not in (None, ""):
+            candidate[key] = value
+    patch_name = patch.get("entity_name") or patch.get("logical_name") or patch.get("name")
+    if patch_name:
+        candidate["entity_name"] = patch_name
+        candidate["logical_name"] = patch_name
+    if patch.get("entity_description"):
+        candidate["description"] = patch["entity_description"]
+        candidate["table_description"] = patch["entity_description"]
+
+    patch_columns = patch.get("columns") if isinstance(patch.get("columns"), list) else []
+    patch_by_id = {
+        str(column.get("column_id") or column.get("column_name") or ""): column
+        for column in patch_columns
+        if isinstance(column, dict)
+    }
+    for column in candidate.get("columns", []):
+        if not isinstance(column, dict):
+            continue
+        key = str(column.get("column_id") or column.get("column_name") or column.get("physical_name") or "")
+        column_patch = patch_by_id.get(key)
+        if not column_patch:
+            continue
+        attribute_name = str(
+            column_patch.get("attribute_name")
+            or column_patch.get("logical_name")
+            or ""
+        ).strip()
+        if attribute_name:
+            column["attribute_name"] = attribute_name
+            column["logical_name"] = attribute_name
+    return candidate
 
 
 def _merge_repaired_attributes(
@@ -998,12 +2175,558 @@ def _physical_table_name(table: dict[str, Any]) -> str:
 
 
 def _is_generic_repair_name(value: Any) -> bool:
-    text = str(value or "").strip().lower()
-    return not text or bool(
-        re.fullmatch(
-            r"(?:엔티티|entity|table|테이블|데이터|정보|객체|항목|관리|업무)(?:\s*\d+)?",
-            text,
+    return entity_name_needs_llm_review(value)
+
+
+def _column_is_fk(column: dict[str, Any]) -> bool:
+    value = column.get("fk") or column.get("is_fk")
+    if isinstance(value, str):
+        flag = value.strip().upper() in {"Y", "YES", "TRUE", "1", "FK"}
+    else:
+        flag = bool(value)
+    constraints = {str(item).upper() for item in column.get("constraints", [])}
+    return flag or bool(constraints & {"FK", "FOREIGN KEY"})
+
+
+def _clear_unsubstantiated_fk(column: dict[str, Any]) -> None:
+    """부모 PK 근거가 없는 FK 표식만 제거하고 컬럼 자체는 보존합니다."""
+
+    column["fk"] = ""
+    column["is_fk"] = False
+    column["constraints"] = [
+        item
+        for item in column.get("constraints", [])
+        if str(item).strip().upper() not in {"FK", "FOREIGN KEY"}
+    ]
+
+
+def _physical_column_name(column: dict[str, Any]) -> str:
+    return str(column.get("column_name") or column.get("physical_name") or "")
+
+
+def _extract_relationship_selection(value: dict[str, Any]) -> dict[str, Any]:
+    current: Any = value
+    for _ in range(4):
+        if not isinstance(current, dict):
+            return {}
+        nested = next(
+            (
+                current.get(key)
+                for key in (
+                    "relationship",
+                    "relation",
+                    "selection",
+                    "result",
+                    "output",
+                    "data",
+                )
+                if isinstance(current.get(key), dict)
+            ),
+            None,
         )
+        if nested is None:
+            return current
+        current = nested
+    return current if isinstance(current, dict) else {}
+
+
+def _unresolved_fk_scopes(document: dict[str, Any]) -> set[str]:
+    relationships = [
+        relation
+        for relation in document.get("relationships", [])
+        if isinstance(relation, dict)
+    ]
+    mapped = {
+        (
+            str(relation.get("child_table") or relation.get("from_table") or ""),
+            str(relation.get("child_column") or relation.get("from_column") or ""),
+        )
+        for relation in relationships
+    }
+    unresolved = set()
+    for table in document.get("tables", []):
+        if not isinstance(table, dict):
+            continue
+        table_name = _physical_table_name(table)
+        for column in table.get("columns", []):
+            if not isinstance(column, dict) or not _column_is_fk(column):
+                continue
+            column_name = _physical_column_name(column)
+            if (table_name, column_name) not in mapped:
+                unresolved.add(f"{table_name}.{column_name}")
+    return unresolved
+
+
+def _float_value(value: Any) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _compact_entity_name_evidence(
+    table: dict[str, Any],
+    rag_evidence: list[dict[str, Any]],
+) -> dict[str, Any]:
+    attributes: list[str] = []
+    for column in table.get("columns", []):
+        if not isinstance(column, dict):
+            continue
+        if _is_common_entity_name_column(column):
+            continue
+        value = str(
+            column.get("attribute_name")
+            or column.get("logical_name")
+            or column.get("column_logical_name")
+            or ""
+        ).strip()
+        if value and value not in attributes:
+            attributes.append(value)
+    table_name_value = _physical_table_name(table).removeprefix("tbl_")
+    physical_tokens = [
+        token
+        for token in re.findall(r"[a-z0-9]+", table_name_value.lower())
+        if token not in {"tbl", "table"}
+    ]
+    standard_terms: list[str] = []
+    for item in rag_evidence[:10]:
+        if not isinstance(item, dict):
+            continue
+        value = str(item.get("title") or item.get("content") or "").strip()
+        if value:
+            standard_terms.append(value[:200])
+    return {
+        "physical_table_tokens": physical_tokens,
+        "representative_attributes": attributes[:12],
+        "entity_description": str(
+            table.get("entity_description")
+            or table.get("description")
+            or table.get("table_description")
+            or ""
+        )[:300],
+        "standard_term_evidence": standard_terms[:5],
+    }
+
+
+def _is_common_entity_name_column(column: dict[str, Any]) -> bool:
+    physical = str(
+        column.get("column_name") or column.get("physical_name") or ""
+    ).lower()
+    logical = re.sub(
+        r"\s+",
+        "",
+        str(
+            column.get("attribute_name")
+            or column.get("logical_name")
+            or column.get("column_logical_name")
+            or ""
+        ),
+    )
+    if re.search(
+        r"(?:reg|crt|create|created|mdfcn|udt|upd|update|modified|del|use)"
+        r"_(?:dt|at|yn|sn)$",
+        physical,
+    ):
+        return True
+    return logical in {
+        "등록일시",
+        "수정일시",
+        "생성일시",
+        "삭제일시",
+        "사용여부",
+        "활성여부",
+        "등록자일련번호",
+        "수정자일련번호",
+        "생성자일련번호",
+        "삭제자일련번호",
+    }
+
+
+_ENTITY_ATTRIBUTE_SUFFIXES = (
+    "일련번호",
+    "식별번호",
+    "식별자",
+    "아이디",
+    "ID",
+    "Id",
+    "id",
+    "상태코드",
+    "유형코드",
+    "구분코드",
+    "코드",
+    "등록일시",
+    "수정일시",
+    "생성일시",
+    "일시",
+    "이름",
+    "명칭",
+    "설명",
+    "내용",
+    "여부",
+    "번호",
+    "순번",
+    "버전",
+    "명",
+)
+_GENERIC_PHYSICAL_NAME_TOKENS = {
+    "management",
+    "manage",
+    "create",
+    "created",
+    "base",
+    "basic",
+    "default",
+    "information",
+    "info",
+    "data",
+    "entity",
+    "table",
+}
+_COMMON_ENTITY_ATTRIBUTE_BASES = {
+    "등록",
+    "수정",
+    "생성",
+    "삭제",
+    "사용",
+    "활성",
+    "처리",
+    "최초",
+    "최종",
+    "생성자",
+    "수정자",
+    "등록자",
+    "삭제자",
+}
+_STRUCTURAL_PHYSICAL_NAME_TOKENS = {
+    "version",
+    "ver",
+    "history",
+    "hist",
+    "log",
+    "detail",
+    "mapping",
+    "map",
+    "config",
+    "setting",
+    "step",
+}
+
+
+def _scored_grounded_entity_name_candidates(
+    table: dict[str, Any],
+    compact_evidence: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """물리명과 대표 속성에 실제로 등장하는 짧은 이름 후보만 구성합니다."""
+
+    candidates: list[str] = []
+    support: dict[str, int] = {}
+    evidence: dict[str, list[str]] = {}
+
+    def add(value: Any, *, weight: int = 1, source: str) -> None:
+        name = re.sub(r"\s+", " ", str(value or "")).strip(" _-/()")
+        if not name or entity_name_needs_llm_review(name) or len(name) > 16:
+            return
+        support[name] = support.get(name, 0) + weight
+        if source not in evidence.setdefault(name, []):
+            evidence[name].append(source)
+        if name not in candidates:
+            candidates.append(name)
+
+    for attribute in compact_evidence.get("representative_attributes", []):
+        text = re.sub(r"\s+", " ", str(attribute or "")).strip()
+        stripped = text
+        for suffix in _ENTITY_ATTRIBUTE_SUFFIXES:
+            if stripped.endswith(suffix) and len(stripped) > len(suffix):
+                stripped = stripped[: -len(suffix)].strip()
+                break
+        if stripped and stripped != text:
+            compact_stripped = re.sub(r"\s+", "", stripped)
+            if compact_stripped in _COMMON_ENTITY_ATTRIBUTE_BASES:
+                continue
+            add(stripped, weight=3, source=f"attribute:{text}")
+
+    description = str(compact_evidence.get("entity_description") or "")
+    for pattern in (
+        r"^\s*([A-Za-z0-9가-힣][A-Za-z0-9가-힣\s·/-]{0,20}?)\s*정보를\s*관리",
+        r"^\s*([A-Za-z0-9가-힣][A-Za-z0-9가-힣\s·/-]{0,20}?)\s*(?:을|를)\s*(?:저장|관리|기록)",
+    ):
+        match = re.search(pattern, description)
+        if match:
+            add(match.group(1), weight=2, source="description")
+
+    physical_tokens = [
+        str(token).strip()
+        for token in compact_evidence.get("physical_table_tokens", [])
+        if str(token).strip()
+        and str(token).lower() not in _GENERIC_PHYSICAL_NAME_TOKENS
+    ]
+    structural_label = _entity_structural_role_label(table, physical_tokens)
+    base_physical_tokens = [
+        token
+        for token in physical_tokens
+        if token.lower() not in _STRUCTURAL_PHYSICAL_NAME_TOKENS
+    ]
+    for token in base_physical_tokens:
+        add(
+            _display_physical_token(token),
+            weight=_physical_entity_token_weight(token),
+            source=f"physical_token:{token}",
+        )
+    if 1 < len(base_physical_tokens) <= 3:
+        add(
+            " ".join(
+                _display_physical_token(token)
+                for token in base_physical_tokens
+            ),
+            weight=5,
+            source="physical_token_combination",
+        )
+    if structural_label:
+        add(
+            structural_label,
+            weight=4,
+            source=f"structural_role:{structural_label}",
+        )
+        base_names = [
+            name
+            for name in list(candidates)
+            if name != structural_label and structural_label not in name
+        ]
+        for base_name in base_names[:5]:
+            add(
+                f"{base_name} {structural_label}",
+                weight=support.get(base_name, 1) + 10,
+                source=f"structural_role:{structural_label}",
+            )
+
+    ordered = sorted(
+        candidates,
+        key=lambda item: (-support.get(item, 0), len(item), item.lower()),
+    )[:12]
+    return [
+        {
+            "name": name,
+            "score": support.get(name, 0),
+            "evidence": evidence.get(name, []),
+        }
+        for name in ordered
+    ]
+
+
+def _physical_entity_token_weight(value: str) -> int:
+    token = value.lower()
+    if token in {"ai", "ml"}:
+        return 1
+    if token.endswith("ops"):
+        return 9
+    if token in {"agent", "llm", "rag", "model", "document", "user"}:
+        return 7
+    return 5
+
+
+def _entity_structural_role_label(
+    table: dict[str, Any],
+    physical_tokens: list[str],
+) -> str:
+    explicit = str(table.get("table_type") or "").strip().upper()
+    tokens = {token.lower() for token in physical_tokens}
+    role_labels = {
+        "VERSION": "버전",
+        "HISTORY": "이력",
+        "LOG": "로그",
+        "DETAIL": "상세",
+        "MAPPING": "매핑",
+        "JOB": "작업",
+        "JOB_STEP": "작업 단계",
+        "CONFIG": "설정",
+        "FILE": "파일",
+        "APPROVAL": "승인",
+        "CODE": "코드",
+    }
+    if explicit in role_labels:
+        return role_labels[explicit]
+    token_roles = (
+        ("작업 단계", {"job_step", "jobstep"}),
+        ("버전", {"version", "ver"}),
+        ("이력", {"history", "hist"}),
+        ("로그", {"log"}),
+        ("상세", {"detail"}),
+        ("매핑", {"mapping", "map"}),
+        ("설정", {"config", "setting"}),
+        ("파일", {"file"}),
+        ("승인", {"approval", "approve"}),
+        ("작업", {"job", "task"}),
+        ("코드", {"code"}),
+    )
+    joined = "_".join(tokens)
+    for label, markers in token_roles:
+        if tokens & markers or any(marker in joined for marker in markers):
+            return label
+    return ""
+
+
+def _display_physical_token(value: str) -> str:
+    logical_tokens = {
+        "agent": "Agent",
+        "agentops": "AgentOps",
+        "appops": "AppOps",
+        "approval": "승인",
+        "code": "코드",
+        "config": "설정",
+        "counsel": "상담",
+        "dept": "부서",
+        "department": "부서",
+        "document": "문서",
+        "embedding": "임베딩",
+        "file": "파일",
+        "index": "색인",
+        "job": "작업",
+        "menu": "메뉴",
+        "llmops": "LLMOps",
+        "mlops": "MLOps",
+        "model": "모델",
+        "notification": "알림",
+        "product": "상품",
+        "prompt": "프롬프트",
+        "role": "권한",
+        "ragops": "RAGOps",
+        "status": "상태",
+        "tag": "태그",
+        "template": "템플릿",
+        "user": "사용자",
+    }
+    if value.lower() in logical_tokens:
+        return logical_tokens[value.lower()]
+    upper_tokens = {
+        "ai",
+        "api",
+        "db",
+        "erp",
+        "fk",
+        "id",
+        "llm",
+        "llmops",
+        "ml",
+        "mlops",
+        "ocr",
+        "pk",
+        "rag",
+        "ui",
+        "ux",
+    }
+    return value.upper() if value.lower() in upper_tokens else value
+
+
+def _entity_name_from_llm_result(result: dict[str, Any], entity_id: str) -> str:
+    if not result.get("success"):
+        return ""
+    parsed_value = _parse_repair_response(result.get("data"))
+    patch = (
+        _extract_repair_patch(parsed_value, entity_id)
+        if parsed_value is not None
+        else {}
+    )
+    name = str(
+        patch.get("entity_name")
+        or patch.get("logical_name")
+        or patch.get("name")
+        or ""
+    ).strip()
+    return "" if entity_name_needs_llm_review(name) else name
+
+
+def _unresolved_entity_name_scopes(document: dict[str, Any]) -> list[str]:
+    return [
+        str(
+            table.get("entity_id")
+            or table.get("table_id")
+            or table.get("table_name")
+            or "unknown"
+        )
+        for table in document.get("tables", [])
+        if isinstance(table, dict)
+        and entity_name_needs_llm_review(
+            table.get("entity_name") or table.get("logical_name")
+        )
+    ]
+
+
+def _entity_name_needs_resolution(table: dict[str, Any]) -> bool:
+    value = str(table.get("entity_name") or table.get("logical_name") or "").strip()
+    return entity_name_needs_llm_review(value)
+
+
+def _invalid_resolved_entity_name(value: Any) -> bool:
+    return entity_name_needs_llm_review(value)
+
+
+def _quality_warnings(report: dict[str, Any]) -> list[dict[str, Any]]:
+    values = []
+    for severity, items in (("ERROR", report.get("errors", [])), ("WARNING", report.get("warnings", []))):
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            values.append(
+                {
+                    "code": str(item.get("code") or "ERD_QUALITY_CHECK"),
+                    "message": str(item.get("message") or "ERD 품질 검토가 필요합니다."),
+                    "severity": severity,
+                    "target_scope": list(item.get("target_scope") or []),
+                }
+            )
+    return values
+
+
+def _source_items_for_table(table: dict[str, Any], source_items: list[Any]) -> list[Any]:
+    source_ids = {
+        str(value)
+        for value in (table.get("source_requirement_ids") or table.get("source_req_ids") or [])
+        if str(value)
+    }
+    if not source_ids:
+        return source_items[:10]
+    matched = []
+    for item in source_items:
+        if not isinstance(item, dict):
+            continue
+        item_id = str(
+            item.get("requirement_id")
+            or item.get("req_id")
+            or item.get("source_requirement_id")
+            or item.get("change_id")
+            or ""
+        )
+        if item_id in source_ids:
+            matched.append(item)
+    return matched or source_items[:10]
+
+
+def _table_rag_search_context(table: dict[str, Any]) -> str:
+    values = [
+        table.get("entity_name"),
+        table.get("table_logical_name"),
+        table.get("logical_name"),
+        table.get("table_description"),
+        table.get("description"),
+        table.get("table_name"),
+        table.get("physical_name"),
+    ]
+    values.extend(
+        column.get("attribute_name") or column.get("logical_name") or column.get("column_name")
+        for column in table.get("columns", [])[:8]
+        if isinstance(column, dict)
+    )
+    return " ".join(dict.fromkeys(str(value).strip() for value in values if str(value or "").strip()))
+
+
+def _db_table_scope(table: dict[str, Any]) -> str:
+    return str(
+        table.get("table_id")
+        or table.get("entity_id")
+        or table.get("entity_name")
+        or table.get("table_logical_name")
+        or table.get("logical_name")
+        or "table"
     )
 
 
@@ -1027,6 +2750,82 @@ def _extract_tables(document: dict[str, Any]) -> list[Any]:
             if nested:
                 return nested
     return []
+
+
+def _merge_relationship_lists(
+    primary: list[Any],
+    secondary: list[Any],
+) -> list[dict[str, Any]]:
+    merged: list[dict[str, Any]] = []
+    seen: set[tuple[str, str, str, str]] = set()
+    for relation in [*primary, *secondary]:
+        if not isinstance(relation, dict):
+            continue
+        parent_table = str(
+            relation.get("parent_table")
+            or relation.get("to_table")
+            or relation.get("source")
+            or ""
+        )
+        child_table = str(
+            relation.get("child_table")
+            or relation.get("from_table")
+            or relation.get("target")
+            or ""
+        )
+        parent_column = str(
+            relation.get("parent_column")
+            or relation.get("to_column")
+            or ""
+        )
+        child_column = str(
+            relation.get("child_column")
+            or relation.get("from_column")
+            or ""
+        )
+        key = (parent_table, parent_column, child_table, child_column)
+        if not parent_table or not child_table or key in seen:
+            continue
+        seen.add(key)
+        merged.append(deepcopy(relation))
+    return merged
+
+
+def _merge_meeting_apply_reports(
+    first: dict[str, Any],
+    second: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "meeting_change_requirements": list(
+            second.get("meeting_change_requirements")
+            or first.get("meeting_change_requirements")
+            or []
+        ),
+        "added_tables": list(
+            dict.fromkeys(
+                [
+                    *first.get("added_tables", []),
+                    *second.get("added_tables", []),
+                ]
+            )
+        ),
+        "added_columns": list(
+            dict.fromkeys(
+                [
+                    *first.get("added_columns", []),
+                    *second.get("added_columns", []),
+                ]
+            )
+        ),
+        "added_relationships": list(
+            dict.fromkeys(
+                [
+                    *first.get("added_relationships", []),
+                    *second.get("added_relationships", []),
+                ]
+            )
+        ),
+    }
 
 
 def _extract_db_design_tables(value: Any) -> list[dict[str, Any]]:
@@ -1124,6 +2923,167 @@ def _apply_table_changes(tables: list[dict[str, Any]], changes: list[dict[str, A
     return normalize_erd_tables(updated)
 
 
+def _repair_update_table_contracts(
+    redesigned_tables: list[dict[str, Any]],
+    existing_tables: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """수정 LLM이 누락한 기존 물리명과 PK를 보존하고 식별자를 복구합니다."""
+
+    existing_by_entity = {
+        str(table.get("entity_id") or ""): table
+        for table in existing_tables
+        if isinstance(table, dict) and table.get("entity_id")
+    }
+    existing_by_logical = {
+        _logical_table_key(table): table
+        for table in existing_tables
+        if isinstance(table, dict) and _logical_table_key(table)
+    }
+    repaired = deepcopy(redesigned_tables)
+    for table in repaired:
+        if not isinstance(table, dict):
+            continue
+        source = existing_by_entity.get(str(table.get("entity_id") or ""))
+        if source is None:
+            source = existing_by_logical.get(_logical_table_key(table))
+        logical_name = str(
+            table.get("entity_name") or table.get("logical_name") or ""
+        ).strip()
+        physical_name = _physical_table_name(table)
+        if physical_name in {
+            "",
+            "tbl_entity",
+            "tbl_table",
+            "tbl_data",
+            "tbl_info",
+            "tbl_object",
+            "tbl_item",
+        }:
+            source_name = _physical_table_name(source or {})
+            resolved = source_name if source_name not in {"", "tbl_entity"} else table_name(logical_name)
+            if resolved:
+                table["table_name"] = resolved
+                table["physical_name"] = resolved
+
+        if not any(
+            isinstance(column, dict)
+            and (
+                _column_is_pk(column)
+                or "PK"
+                in {
+                    str(item).upper()
+                    for item in column.get("constraints", [])
+                }
+            )
+            for column in table.get("columns", [])
+        ):
+            source_pk = next(
+                (
+                    deepcopy(column)
+                    for column in (source or {}).get("columns", [])
+                    if isinstance(column, dict)
+                    and (
+                        _column_is_pk(column)
+                        or "PK"
+                        in {
+                            str(item).upper()
+                            for item in column.get("constraints", [])
+                        }
+                    )
+                ),
+                None,
+            )
+            if source_pk is None:
+                pk_name = primary_key_name(logical_name) or (
+                    _physical_table_name(table).removeprefix("tbl_") + "_sn"
+                )
+                source_pk = {
+                    "attribute_name": f"{logical_name} 일련번호",
+                    "logical_name": f"{logical_name} 일련번호",
+                    "column_name": pk_name,
+                    "physical_name": pk_name,
+                    "data_type": "BIGINT",
+                    "nullable": False,
+                    "pk": "Y",
+                    "idx": "Y",
+                    "constraints": ["PK", "AUTO_INCREMENT"],
+                    "description": f"{logical_name} 일련번호",
+                }
+            source_pk["pk"] = "Y"
+            source_pk["idx"] = "Y"
+            constraints = [
+                str(item) for item in source_pk.get("constraints", []) if str(item)
+            ]
+            if "PK" not in {item.upper() for item in constraints}:
+                constraints.append("PK")
+            source_pk["constraints"] = constraints
+            table.setdefault("columns", []).insert(0, source_pk)
+    return normalize_erd_tables(repaired)
+
+
+def _best_db_table_identifier(table: dict[str, Any]) -> str:
+    """논리명과 대표 컬럼에서 근거가 있는 DB 테이블 ID를 결정합니다."""
+
+    logical_name = str(
+        table.get("entity_name")
+        or table.get("table_logical_name")
+        or table.get("logical_name")
+        or ""
+    ).strip()
+    normalized_logical = logical_name
+    for phrase in (
+        "기본사항",
+        "요구사항",
+        "정보 관리",
+        "정보관리",
+        "고도화",
+    ):
+        normalized_logical = normalized_logical.replace(phrase, " ")
+    normalized_logical = re.sub(r"\s+", " ", normalized_logical).strip()
+
+    candidates: list[tuple[int, str]] = []
+
+    def add(score: int, value: str) -> None:
+        if valid_table_identifier(value):
+            candidates.append((score, value))
+
+    add(100, table_name(normalized_logical))
+    add(80, table_name(logical_name))
+
+    for column in table.get("columns", []):
+        if not isinstance(column, dict):
+            continue
+        constraints = {str(item).upper() for item in column.get("constraints", [])}
+        physical = _physical_column_name(column)
+        logical = str(
+            column.get("attribute_name")
+            or column.get("logical_name")
+            or column.get("column_logical_name")
+            or ""
+        )
+        if _column_is_pk(column) or "PK" in constraints:
+            stem = re.sub(r"_(?:sn|id)$", "", physical.lower())
+            if stem not in {"", "data", "entity", "item", "info"}:
+                add(95, f"tbl_{stem}")
+            pk_logical = re.sub(
+                r"(?:일련번호|식별번호|식별자|번호|ID|아이디)$",
+                "",
+                logical,
+            ).strip()
+            add(90, table_name(pk_logical))
+
+    if not candidates:
+        return ""
+    return sorted(candidates, key=lambda item: (-item[0], len(item[1]), item[1]))[0][1]
+
+
+def _column_is_pk(column: dict[str, Any]) -> bool:
+    value = column.get("pk") or column.get("is_pk")
+    if isinstance(value, str):
+        return value.strip().upper() in {"Y", "YES", "TRUE", "1", "PK"}
+    return bool(value)
+
+
 def _extract_llm_items(value: Any, item_key: str, list_key: str) -> list[dict[str, Any]]:
     if isinstance(value, dict):
         if isinstance(value.get(list_key), list):
@@ -1200,8 +3160,10 @@ def _normalize_db_table(item: dict[str, Any], index: int) -> dict[str, Any]:
                 **column,
                 "column_name": column_name,
                 "column_id": column_id,
-                "column_logical_name": display_column_name(
-                    column.get("column_logical_name") or column.get("logical_name") or column.get("description"),
+                "column_logical_name": db_column_logical_name(
+                    column.get("column_logical_name")
+                    or column.get("attribute_name")
+                    or column.get("logical_name"),
                     column_name,
                     table_name,
                     pk == "Y",
@@ -1247,7 +3209,7 @@ def _normalize_db_table(item: dict[str, Any], index: int) -> dict[str, Any]:
         "table_name": table_name,
         "table_logical_name": table_logical_name,
         "database_name": str(item.get("database_name") or "업무 DB"),
-        "tablespace_name": str(item.get("tablespace_name") or f"TS_{table_name.removeprefix('tbl_').upper()}"[:30]),
+        "tablespace_name": str(item.get("tablespace_name") or tablespace_name(table_name)),
         "trigger_config": str(item.get("trigger_config") or "해당 없음"),
         "table_description": str(item.get("table_description") or item.get("description") or item.get("logical_name") or table_name),
         "initial_count": str(item.get("initial_count") or "0"),

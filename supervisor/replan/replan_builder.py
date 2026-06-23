@@ -27,6 +27,10 @@ def build_replan(
         target_agents = _infer_agents_from_failure_type(failure_type)
 
     agents = list(target_agents)
+    if docs_cd == "ERD" and "data_structure_design_agent" in agents:
+        data_index = agents.index("data_structure_design_agent")
+        if "mermaid_generation_agent" not in agents:
+            agents.insert(data_index + 1, "mermaid_generation_agent")
     agents.append("validation_agent")
     agents = list(dict.fromkeys(agents))
     if agents[-1] != "validation_agent":

@@ -16,7 +16,11 @@
       "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "PYTHONPATH": "${workspaceFolder}"
+        "PYTHONPATH": "${workspaceFolder}",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "LLM_BASE_URL": "http://localhost:11434/v1",
+        "LLM_MODEL_NAME": "qwen3-vl:8b-instruct",
+        "LLM_API_KEY": "dummy"
       },
       "console": "integratedTerminal",
       "justMyCode": false

@@ -3,10 +3,11 @@
 from typing import Any
 
 from agents.data_structure_design.processors.table_builder import (
-    display_column_name,
+    db_column_logical_name,
     format_type_and_length,
     normalize_erd_tables,
 )
+from agents.data_structure_design.db_quality import inspect_db_quality
 from agents.validation.schemas import first_list, is_empty, make_check, missing_fields, missing_keys
 from workflow.state import WorkflowState
 
@@ -87,6 +88,35 @@ def validate(state: WorkflowState) -> list[dict[str, Any]]:
             _meeting_check(state),
         ]
     )
+    quality_result = inspect_db_quality({"tables": tables})
+    quality_names = {
+        "DB_TABLE_ID_UNRESOLVED": "DB 테이블 ID 확정 검증",
+        "DB_TABLE_ID_MAPPING_INVALID": "테이블 ID/테이블명 매핑 검증",
+        "DB_TABLESPACE_ID_INVALID": "TS ID 형식 검증",
+        "DB_TABLESPACE_MAPPING_INVALID": "TS ID/테이블 ID 매핑 검증",
+        "DB_TABLE_ENTITY_MAPPING_INVALID": "테이블/엔티티명 매핑 검증",
+        "DB_TABLE_NAME_DUPLICATED": "테이블명 중복 검증",
+        "DB_TABLE_SEMANTIC_DUPLICATED": "유사 논리 테이블 중복 검증",
+    }
+    issues_by_code: dict[str, list[str]] = {}
+    for issue in quality_result.get("errors", []):
+        if not isinstance(issue, dict):
+            continue
+        code = str(issue.get("code") or "DB_TABLE_ID_UNRESOLVED")
+        issues_by_code.setdefault(code, []).extend(str(item) for item in issue.get("target_scope", []))
+    for code, check_name in quality_names.items():
+        scopes = sorted(set(issues_by_code.get(code, [])))
+        checks.append(
+            make_check(
+                f"{code}_001",
+                check_name,
+                not scopes,
+                failure_type=code,
+                message="DB 물리 식별자 품질 기준을 만족하지 않습니다.",
+                target_agent=TARGET,
+                target_scope=scopes,
+            )
+        )
     return checks
 
 
@@ -126,8 +156,10 @@ def _reference_column_specs(state: WorkflowState) -> dict[tuple[str, str], dict[
                 or is_fk
             )
             specs[(table_name, column_name)] = {
-                "column_logical_name": display_column_name(
-                    column.get("logical_name") or column.get("column_logical_name"),
+                "column_logical_name": db_column_logical_name(
+                    column.get("attribute_name")
+                    or column.get("logical_name")
+                    or column.get("column_logical_name"),
                     column_name,
                     table_name,
                     is_pk,
@@ -218,8 +250,10 @@ def _design_column_specs(tables: list[Any]) -> dict[tuple[str, str], dict[str, s
             is_fk = _truthy(column.get("fk") or column.get("is_fk")) or _contains_constraint(column.get("constraints"), "FK")
             is_idx = _truthy(column.get("idx") or column.get("inx") or column.get("is_idx")) or _contains_constraint(column.get("constraints"), "PK", "FK", "INDEX", "IDX")
             specs[(table_name, column_name)] = {
-                "column_logical_name": display_column_name(
-                    column.get("column_logical_name") or column.get("logical_name") or column.get("description"),
+                "column_logical_name": db_column_logical_name(
+                    column.get("column_logical_name")
+                    or column.get("attribute_name")
+                    or column.get("logical_name"),
                     column_name,
                     table_name,
                     is_pk,

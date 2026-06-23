@@ -11,7 +11,7 @@ def build_plan(
     udt_yn: str,
     *,
     round_number: int = 1,
-    max_round: int = 3,
+    max_round: int = 2,
     agents: list[str] | None = None,
     replan_reason: str | None = None,
     require_document_merge_first: bool = True,

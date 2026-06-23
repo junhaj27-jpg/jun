@@ -71,9 +71,6 @@ class GenerationSupervisor:
                 print("[ARCH_TRACE][supervisor.run] failure:", failure)
             if failure.get("action") == "END":
                 return self._mark_failed(state, failure)
-            if str(failure.get("failure_type") or "").startswith("ERD_REPAIR_"):
-                self._finish_repair(state, "FAILED")
-                return self._mark_failed(state, failure)
             if not can_replan(state["current_round"], state["max_round"]):
                 self._finish_repair(state, "FAILED")
                 return self._mark_failed(state, failure)
@@ -219,20 +216,20 @@ class GenerationSupervisor:
         state.setdefault("agent_outputs", {})
         state.setdefault("execution_plan", {})
         state.setdefault("current_round", 0)
-        state.setdefault("max_round", 3)
+        state.setdefault("max_round", 2)
         state.setdefault("warnings", [])
         state.setdefault("errors", [])
         state.setdefault("current_repair_instruction", None)
         state.setdefault("repair_history", [])
         state.setdefault("repair_round", 0)
-        state.setdefault("max_repair_round", state.get("max_round", 3))
+        state.setdefault("max_repair_round", state.get("max_round", 2))
         state["status"] = "RUNNING"
         state["next_action"] = "CONTINUE"
 
     @staticmethod
     def _prepare_repair(state: WorkflowState, failure: dict[str, Any]) -> None:
         next_round = int(state.get("repair_round", 0)) + 1
-        if next_round > int(state.get("max_repair_round", state.get("max_round", 3))):
+        if next_round > int(state.get("max_repair_round", state.get("max_round", 2))):
             state["current_repair_instruction"] = None
             return
         instruction = build_repair_instruction(failure, repair_round=next_round)

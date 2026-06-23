@@ -11,6 +11,9 @@ class WorkflowState(TypedDict, total=False):
     project_sn: int
     docs_cd: DocsCode
     udt_yn: UpdateYn
+    docs_sn: int | None
+    request_docs_detail_sn: int | None
+    before_docs_detail_sn: int | None
     status: WorkflowStatus
     next_action: NextAction | None
 
@@ -29,7 +32,9 @@ class WorkflowState(TypedDict, total=False):
     erd_file_path: str | None
     interface_file_path: str | None
     existing_output_path: str | None
+    requested_output_path: str | None
     existing_output_raw_json: dict[str, Any] | None
+    requested_output_raw_json: dict[str, Any] | None
     # 5. Agent Output
     agent_outputs: dict[str, Any]
 
@@ -51,6 +56,7 @@ class WorkflowState(TypedDict, total=False):
 
     # 9. Export
     export_result: dict[str, Any] | None
+    export_validation_result: dict[str, Any] | None
 
     # 10. Cleanup
     cleanup_result: dict[str, Any] | None

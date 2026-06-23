@@ -15,6 +15,8 @@ class GenerationRequest(BaseModel):
     project_sn: int
     docs_cd: DocsCode
     udt_yn: UpdateYn
+    request_docs_detail_sn: int | None = Field(default=None, gt=0)
+    docs_sn: int | None = Field(default=None, gt=0)
     file_list: list[FileSn] = Field(default_factory=list)
     image_list: list[str] = Field(default_factory=list)
     etc: dict[str, Any] = Field(default_factory=dict)

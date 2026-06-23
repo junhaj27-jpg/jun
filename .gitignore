@@ -1,11 +1,14 @@
-.env
+﻿.env
 __pycache__/
 qdrant_storage/
-storage/
+/storage/
 requests/
 tests/
 old/
+logs/alpled.log
+requests/generate.http
 node_modules/
+**/node_modules/
 json_temp/
 mmd_temp/
 output/

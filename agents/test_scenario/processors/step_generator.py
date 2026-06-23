@@ -211,11 +211,12 @@ def _generate_step_details(
 
 def _find_interface(case: dict[str, Any], interfaces: list[dict[str, Any]]) -> dict[str, Any] | None:
     requirement_ids = set(map(str, case.get("source_requirement_ids", [])))
-    for interface in interfaces:
+    dict_interfaces = [item for item in interfaces if isinstance(item, dict)]  # ← 문자열 등 dict 아닌 항목 방어
+    for interface in dict_interfaces:
         matched = interface.get("matched_requirement_ids") or interface.get("requirement_ids") or []
         if requirement_ids.intersection(map(str, matched)):
             return interface
-    return interfaces[0] if interfaces else None
+    return dict_interfaces[0] if dict_interfaces else None
 
 
 def _input_for_type(case_type: str) -> str:

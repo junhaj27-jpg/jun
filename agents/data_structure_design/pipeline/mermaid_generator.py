@@ -11,7 +11,7 @@ def build_mermaid_structure(erd_schema: dict[str, Any]) -> dict[str, Any]:
             "table_name": table.get("table_name"),
             "physical_name": table.get("table_name"),
             "name": table.get("table_name"),
-            "logical_name": table.get("table_korean_name"),
+            "logical_name": table.get("entity_name") or table.get("logical_name"),
             "domain_group": table.get("domain_group", ""),
             "importance_score": table.get("importance_score", 0),
             "relation_count": table.get("relation_count", 0),

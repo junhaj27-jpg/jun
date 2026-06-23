@@ -9,6 +9,7 @@ from agents.data_structure_design.processors.column_standardizer import (
     standardize_name,
     table_name,
 )
+from agents.data_structure_design.db_quality import tablespace_name
 
 
 def build_erd_tables(entities: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -156,24 +157,17 @@ def normalize_erd_tables(items: list[Any]) -> list[dict[str, Any]]:
 def _normalize_entity_logical_name(item: dict[str, Any], index: int, raw_physical_name: str) -> str:
     for key in ("entity_name", "logical_name", "table_logical_name", "table_korean_name"):
         value = str(item.get(key) or "").strip()
-        if value and not _looks_like_physical_name(value) and not _is_generic_entity_name(value):
+        if value and not _looks_like_table_identifier(value) and not _is_generic_entity_name(value):
             return _short_text(value, 40)
-    inferred_from_columns = _infer_entity_name_from_columns(item.get("columns"))
-    if inferred_from_columns:
-        return inferred_from_columns
-    for key in ("table_description", "description"):
-        inferred = _infer_entity_name_from_description(item.get(key))
-        if inferred:
-            return inferred
-        value = _description_subject(item.get(key))
-        if value and not _looks_like_physical_name(value) and not _is_generic_entity_name(value):
-            return _short_text(value, 40)
-    return _humanize_physical_name(raw_physical_name)
+    return ""
 
 
 def _raw_table_physical_name(item: dict[str, Any]) -> str:
+    table_id = str(item.get("table_id") or "").strip()
     physical = str(item.get("physical_name") or "").strip()
     table = str(item.get("table_name") or "").strip()
+    if table_id.lower().startswith("tbl_") and _looks_like_physical_name(table_id):
+        return table_id
     if physical in {"tbl_entity", "tbl_table", "tbl_data", "tbl_info", "tbl_object", "tbl_item"} and _looks_like_physical_name(table):
         return table
     if _looks_like_physical_name(physical):
@@ -194,7 +188,7 @@ def build_db_design(tables: list[dict[str, Any]]) -> dict[str, Any]:
                 "table_name": physical_table_name,
                 "table_logical_name": logical_table_name,
                 "database_name": "업무 DB",
-                "tablespace_name": f"TS_{physical_table_name.removeprefix('tbl_').upper()}"[:30],
+                "tablespace_name": tablespace_name(physical_table_name),
                 "trigger_config": "해당 없음",
                 "table_description": table.get("description") or table["logical_name"],
                 "initial_count": "0",
@@ -207,8 +201,10 @@ def build_db_design(tables: list[dict[str, Any]]) -> dict[str, Any]:
                     {
                         "column_name": column["physical_name"],
                         "column_id": column.get("standard_column_id") or column["physical_name"],
-                        "column_logical_name": display_column_name(
-                            column.get("logical_name"),
+                        "column_logical_name": db_column_logical_name(
+                            column.get("attribute_name")
+                            or column.get("logical_name")
+                            or column.get("column_logical_name"),
                             column["physical_name"],
                             physical_table_name,
                             "PK" in column.get("constraints", []),
@@ -391,56 +387,6 @@ def _is_generic_entity_name(value: Any) -> bool:
     return text in {"엔티티", "entity", "table", "테이블", "데이터", "정보", "객체", "항목", "관리", "업무"}
 
 
-def _infer_entity_name_from_description(value: Any) -> str:
-    text = str(value or "").strip()
-    lower = text.lower()
-    if "agent" in lower or "에이전트" in text:
-        return "에이전트"
-    if "rag" in lower:
-        return "RAG"
-    if "ai 모델" in text or "model" in lower:
-        return "AI 모델"
-    if "사용자" in text:
-        return "사용자"
-    if "문서" in text:
-        return "문서"
-    if "조직" in text:
-        return "조직"
-    if "권한" in text:
-        return "권한"
-    return ""
-
-
-def _infer_entity_name_from_columns(columns: Any) -> str:
-    if not isinstance(columns, list):
-        return ""
-    for column in columns:
-        if not isinstance(column, dict):
-            continue
-        name = str(
-            column.get("attribute_name")
-            or column.get("logical_name")
-            or column.get("column_logical_name")
-            or column.get("description")
-            or ""
-        ).strip()
-        candidate = _entity_from_attribute_name(name)
-        if candidate:
-            return candidate
-    return ""
-
-
-def _entity_from_attribute_name(value: str) -> str:
-    text = str(value or "").strip()
-    if not text:
-        return ""
-    for suffix in ("일련번호", "번호", "ID", "아이디", "명", "이름", "내용", "상태코드", "상태 코드", "코드"):
-        if text.endswith(suffix) and len(text) > len(suffix):
-            candidate = text[: -len(suffix)].strip()
-            return "" if _is_generic_entity_name(candidate) else candidate
-    return ""
-
-
 def _looks_like_physical_name(value: Any) -> bool:
     text = str(value or "").strip()
     if not text:
@@ -448,13 +394,9 @@ def _looks_like_physical_name(value: Any) -> bool:
     return bool(re.fullmatch(r"(tbl_)?[A-Za-z][A-Za-z0-9_]*", text) or re.fullmatch(r"TABLE-\d+", text, re.IGNORECASE))
 
 
-def _humanize_physical_name(value: Any) -> str:
-    text = str(value or "").strip().removeprefix("tbl_")
-    if not text or re.fullmatch(r"TABLE-\d+", text, re.IGNORECASE):
-        return ""
-    tokens = [token for token in re.split(r"[_\s]+", text) if token]
-    candidate = " ".join(token.upper() if len(token) <= 3 else token.capitalize() for token in tokens)
-    return "" if _is_generic_entity_name(candidate) else candidate
+def _looks_like_table_identifier(value: Any) -> bool:
+    text = str(value or "").strip()
+    return bool(text.lower().startswith("tbl_") or re.fullmatch(r"TABLE-\d+", text, re.IGNORECASE))
 
 
 def _merge_duplicate_tables(tables: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -793,6 +735,20 @@ def display_column_name(
             return inferred
         return normalized.upper() if len(normalized) <= 4 else normalized
     return text or "컬럼"
+
+
+def db_column_logical_name(
+    logical_name: Any,
+    physical_name: Any,
+    table_name_value: Any,
+    is_pk: bool = False,
+) -> str:
+    """DB 컬럼명에는 참조 ERD 속성명을 보존하고, 누락된 경우에만 추론합니다."""
+
+    text = re.sub(r"\s+", " ", str(logical_name or "").replace("\n", " ")).strip()
+    if text and text not in {"-", "–", "—", "N/A", "없음"}:
+        return text
+    return display_column_name(logical_name, physical_name, table_name_value, is_pk)
 
 
 def _clean_display_text(value: Any) -> str:

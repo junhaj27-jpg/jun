@@ -36,9 +36,18 @@ def build_final_document_json(state: WorkflowState) -> dict[str, Any]:
             "test_scenario_generation_agent", {}
         ).get("integrated_test_scenario_json", {})
     elif docs_cd == "ERD":
-        final_document_json["erd_entity_json"] = agent_outputs.get(
-            "data_structure_design_agent", {}
-        ).get("erd_entity_json", {})
+        data_output = agent_outputs.get("data_structure_design_agent", {})
+        final_document_json["erd_entity_json"] = data_output.get(
+            "erd_entity_json",
+            {},
+        )
+        if udt_yn == "Y" and isinstance(
+            data_output.get("impact_analysis"),
+            dict,
+        ):
+            final_document_json["impact_analysis"] = data_output[
+                "impact_analysis"
+            ]
         final_document_json["mermaid_image_path"] = agent_outputs.get(
             "mermaid_generation_agent", {}
         ).get("mermaid_image_path", "")

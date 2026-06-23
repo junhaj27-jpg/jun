@@ -29,6 +29,12 @@ class DocsDetailRepositoryProtocol(Protocol):
     def find_active_srs(self, project_sn: int) -> Any | None: ...
 
     def find_active_doc(self, project_sn: int, docs_cd: DocsCode) -> Any | None: ...
+    def find_update_detail_context(
+        self,
+        project_sn: int,
+        docs_cd: DocsCode,
+        request_docs_detail_sn: int,
+    ) -> dict[str, Any] | None: ...
 
     def update_docs_status_generating(self, project_sn: int, docs_cd: DocsCode) -> None: ...
 
@@ -155,6 +161,9 @@ def _initialize_state(state: WorkflowState) -> WorkflowState:
         "project_sn": state.get("project_sn"),  # type: ignore[typeddict-item]
         "docs_cd": normalize_docs_cd(state.get("docs_cd")) if state.get("docs_cd") is not None else None,  # type: ignore[typeddict-item]
         "udt_yn": str(state.get("udt_yn")).upper() if state.get("udt_yn") is not None else None,  # type: ignore[typeddict-item]
+        "docs_sn": state.get("docs_sn"),
+        "request_docs_detail_sn": state.get("request_docs_detail_sn"),
+        "before_docs_detail_sn": None,
         "status": "READY",
         "next_action": "SUPERVISOR",
         "file_list": list(state.get("file_list", [])),
@@ -167,9 +176,11 @@ def _initialize_state(state: WorkflowState) -> WorkflowState:
         "erd_file_path": None,
         "interface_file_path": None,
         "existing_output_path": None,
+        "requested_output_path": None,
         # ARCH 수정 모드에서만 기존 산출물 JSON을 적재합니다.
         # 다른 산출물은 기존처럼 existing_output_path 기반 흐름을 유지합니다.
         "existing_output_raw_json": None,
+        "requested_output_raw_json": None,
         "agent_outputs": {},
         "execution_plan": {},
         "current_round": 0,
@@ -226,6 +237,36 @@ def _resolve_required_documents(
                 "MEETING_FILE_REQUIRED",
                 "Update mode requires meeting files in file_list.",
             )
+
+        request_detail_sn = state.get("request_docs_detail_sn")
+        if request_detail_sn:
+            context = dependencies.docs_detail_repository.find_update_detail_context(
+                project_sn,
+                docs_cd,
+                int(request_detail_sn),
+            )
+            if context is None or context.get("before") is None:
+                raise PreprocessError(
+                    "UPDATE_DETAIL_CONTEXT_NOT_FOUND",
+                    "수정 전/후 docs_detail 문서 쌍을 찾을 수 없습니다.",
+                )
+            state["docs_sn"] = context["docs_sn"]
+            state["before_docs_detail_sn"] = _read_value(
+                context["before"], "docs_detail_sn"
+            )
+            state["existing_output_path"] = _download_required_document(
+                context["before"],
+                dependencies,
+                missing_code="BEFORE_OUTPUT_NOT_FOUND",
+                missing_message="수정 전 ERD 문서를 찾을 수 없습니다.",
+            )
+            state["requested_output_path"] = _download_required_document(
+                context["requested"],
+                dependencies,
+                missing_code="REQUESTED_OUTPUT_NOT_FOUND",
+                missing_message="승인 요청 ERD 문서를 찾을 수 없습니다.",
+            )
+            return
 
         active_doc = (
             dependencies.docs_detail_repository.find_active_srs(project_sn)
@@ -297,10 +338,16 @@ def _resolve_required_documents(
         )
 
     elif docs_cd == "TS":
-        active_interface = dependencies.docs_detail_repository.find_active_doc(
-            project_sn,
-            cast(DocsCode, "INTERFACE"),
-        )
+        active_interface = dependencies.docs_detail_repository.find_active_interface_json(project_sn)
+        if active_interface is None:
+            # 하위호환: INTERFACE JSON export가 도입되기 전에 이미 생성된 프로젝트는
+            # JSON 레코드가 없으므로 기존 docx로 폴백한다.
+            # document_merge_agent의 parse_artifact()는 .docx/.json 둘 다 처리 가능하므로
+            # 다운스트림(TS) 쪽 추가 분기는 필요 없다.
+            active_interface = dependencies.docs_detail_repository.find_active_doc(
+                project_sn,
+                cast(DocsCode, "INTERFACE"),
+            )
         state["interface_file_path"] = _download_required_document(
             active_interface,
             dependencies,

@@ -1,0 +1,63 @@
+@host = http://localhost:8000
+@projectSn = 1
+@rfpFileSn = 3
+@meetingFileSn = 2
+
+### Health check
+GET {{host}}/health
+
+### Generate SRS from RFP
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "SRS",
+  "udt_yn": "N",
+  "file_list": [3, 2],
+  "image_list": [],
+  "etc": {
+    "debug": true
+  }
+}
+
+### Generate INTERFACE from S3 prototype images
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "INTERFACE",
+  "udt_yn": "N",
+  "file_list": [],
+  "image_list": [
+    "s3://alpled-s3/temp/arch.png",
+    "s3://alpled-s3/temp/02_AI.png",
+    "s3://alpled-s3/temp/03_RAG.png",
+    "s3://alpled-s3/temp/04_QA.png",
+    "s3://alpled-s3/temp/05_AI_Agent.png",
+    "s3://alpled-s3/temp/06_AIOCR.png",
+    "s3://alpled-s3/temp/07_.png",
+    "s3://alpled-s3/temp/08MLOps.png",
+    "s3://alpled-s3/temp/09.png",
+    "s3://alpled-s3/temp/10AI.png"
+  ],
+  "etc": {
+    "debug": true
+  }
+}
+
+### Generate ERD from RFP
+POST {{host}}/generate
+Content-Type: application/json
+
+{
+  "project_sn": {{projectSn}},
+  "docs_cd": "ERD",
+  "udt_yn": "N",
+  "file_list": [2],
+  "image_list": [],
+  "etc": {
+    "debug": true
+  }
+}

@@ -40,7 +40,6 @@ def split_erd_structure(
     orphan_group_objects = _orphan_groups(
         entity_by_name,
         relationships,
-        detail_group_objects,
         start_index=len(detail_group_objects) + 1,
     )
     groups = [*detail_group_objects, *orphan_group_objects]
@@ -145,7 +144,6 @@ def _build_group(
 def _orphan_groups(
     entity_by_name: dict[str, dict[str, Any]],
     relationships: list[dict[str, Any]],
-    detail_groups: list[dict[str, Any]],
     *,
     start_index: int,
 ) -> list[dict[str, Any]]:
@@ -155,29 +153,30 @@ def _orphan_groups(
     if not orphan_names:
         return []
 
+    # 단독 엔티티를 도메인별로 먼저 나누면 도메인이 서로 다른 테이블이
+    # 각각 한 장씩 렌더링된다. 도메인은 정렬에만 사용하고 전체를 4개씩 묶는다.
+    ordered_names = sorted(
+        orphan_names,
+        key=lambda name: (
+            _group_key(entity_by_name[name]),
+            -int(entity_by_name[name].get("importance_score") or 0),
+            name,
+        ),
+    )
     groups: list[dict[str, Any]] = []
-    group_no = start_index
-    by_domain: dict[str, list[str]] = defaultdict(list)
-    for name in orphan_names:
-        by_domain[_group_key(entity_by_name[name])].append(name)
-    for domain in sorted(by_domain):
-        names = _sort_names(
-            by_domain[domain],
-            [entity_by_name[name] for name in by_domain[domain]],
+    for chunk_index, chunk in enumerate(_chunks(ordered_names, ORPHAN_TABLES_PER_GROUP), start=1):
+        group_no = start_index + chunk_index - 1
+        group = _build_group(
+            group_no,
+            chunk,
+            entity_by_name,
+            relationships,
+            group_id=f"ERD-ORPHAN-{group_no:03d}",
+            group_name=f"단독 엔티티 {chunk_index}",
+            group_type="orphan",
         )
-        for chunk_index, chunk in enumerate(_chunks(names, ORPHAN_TABLES_PER_GROUP), start=1):
-            groups.append(
-                _build_group(
-                    group_no,
-                    chunk,
-                    entity_by_name,
-                    relationships,
-                    group_id=f"ERD-ORPHAN-{group_no:03d}",
-                    group_name=f"{domain} 단독 엔티티 {chunk_index}",
-                    group_type="orphan",
-                )
-            )
-            group_no += 1
+        group["orphan_index"] = chunk_index
+        groups.append(group)
     return groups
 
 

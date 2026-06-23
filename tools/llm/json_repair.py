@@ -12,6 +12,15 @@ def repair_json_text(text: str) -> ToolResult:
     cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\s*```$", "", cleaned)
     cleaned = re.sub(r",(\s*[}\]])", r"\1", cleaned)
+    if not cleaned.startswith(("{", "[")):
+        object_start = cleaned.find("{")
+        object_end = cleaned.rfind("}")
+        array_start = cleaned.find("[")
+        array_end = cleaned.rfind("]")
+        if object_start >= 0 and object_end > object_start:
+            cleaned = cleaned[object_start : object_end + 1]
+        elif array_start >= 0 and array_end > array_start:
+            cleaned = cleaned[array_start : array_end + 1]
 
     try:
         return success_result({"text": cleaned, "value": json.loads(cleaned)})

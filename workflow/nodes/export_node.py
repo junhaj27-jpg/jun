@@ -8,6 +8,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Protocol
 
+from agents.data_structure_design.db_quality import prepare_db_quality
+from agents.data_structure_design.erd_quality import prepare_erd_quality
 from config.constants import DOCS_CODES, FILE_CODE_REQUIREMENT_JSON
 from config.logging_config import get_logger
 from config.logging_context import bind_state_log_extra
@@ -116,6 +118,16 @@ def export_node(
             extra=bind_state_log_extra(state, "export_validate_state"),
         )
         project_sn, docs_cd, final_document_json = _validate_state(state)
+        if docs_cd == "ERD":
+            final_document_json = _validate_and_prepare_erd_export(
+                state,
+                final_document_json,
+            )
+        elif docs_cd == "DB":
+            final_document_json = _validate_and_prepare_db_export(
+                state,
+                final_document_json,
+            )
 
         requirement_json_record = _export_requirement_json_if_needed(
             state=state,
@@ -201,11 +213,25 @@ def export_node(
             "project_sn": project_sn,
             "docs_cd": docs_cd,
             "file_sn": None,
+            "final_json_file_sn": (
+                requirement_json_record.get("file_sn")
+                if requirement_json_record
+                else None
+            ),
+            "final_json_file_path": (
+                requirement_json_record.get("storage_file_path", "")
+                if requirement_json_record
+                else ""
+            ),
             "requirement_json_file_sn": (
-                requirement_json_record.get("file_sn") if requirement_json_record else None
+                requirement_json_record.get("file_sn")
+                if requirement_json_record
+                else None
             ),
             "requirement_json_file_path": (
-                requirement_json_record.get("storage_file_path") if requirement_json_record else ""
+                requirement_json_record.get("storage_file_path", "")
+                if requirement_json_record
+                else ""
             ),
             "local_file_path": generated_local_file_path,
             "storage_file_path": storage_file_path,
@@ -244,6 +270,77 @@ def export_node(
     finally:
         if session is not None:
             session.close()
+
+
+def _validate_and_prepare_erd_export(
+    state: WorkflowState,
+    final_document_json: dict[str, Any],
+) -> dict[str, Any]:
+    document = final_document_json.get("erd_entity_json")
+    if not isinstance(document, dict):
+        raise ExportError("ERD_EXPORT_VALIDATION_FAILED", "erd_entity_json이 필요합니다.")
+
+    corrected, report = prepare_erd_quality(document)
+    state["export_validation_result"] = report
+    logger.info(
+        "ERD export quality validation status=%s corrections=%s errors=%s warnings=%s",
+        report.get("status"),
+        len(report.get("corrections", [])),
+        len(report.get("errors", [])),
+        len(report.get("warnings", [])),
+        extra=bind_state_log_extra(state, "erd_export_quality_validation"),
+    )
+    if report.get("errors"):
+        raise ExportError(
+            "ERD_EXPORT_VALIDATION_FAILED",
+            json.dumps(report["errors"], ensure_ascii=False),
+        )
+
+    structural_corrections = [
+        item
+        for item in report.get("corrections", [])
+        if str(item.get("type") or "").startswith("RELATION")
+    ]
+    if structural_corrections:
+        raise ExportError(
+            "ERD_EXPORT_REGENERATION_REQUIRED",
+            "관계 구조 보정이 Export 직전에 감지되어 데이터 구조 및 Mermaid 재생성이 필요합니다: "
+            + json.dumps(structural_corrections, ensure_ascii=False),
+        )
+
+    result = deepcopy(final_document_json)
+    result["erd_entity_json"] = corrected
+    state["final_document_json"] = result
+    return result
+
+
+def _validate_and_prepare_db_export(
+    state: WorkflowState,
+    final_document_json: dict[str, Any],
+) -> dict[str, Any]:
+    document = final_document_json.get("db_design_json")
+    if not isinstance(document, dict):
+        raise ExportError("DB_EXPORT_VALIDATION_FAILED", "db_design_json이 필요합니다.")
+
+    corrected, report = prepare_db_quality(document)
+    state["export_validation_result"] = report
+    logger.info(
+        "DB export quality validation status=%s corrections=%s errors=%s",
+        report.get("status"),
+        len(report.get("corrections", [])),
+        len(report.get("errors", [])),
+        extra=bind_state_log_extra(state, "db_export_quality_validation"),
+    )
+    if report.get("errors"):
+        raise ExportError(
+            "DB_EXPORT_VALIDATION_FAILED",
+            json.dumps(report["errors"], ensure_ascii=False),
+        )
+
+    result = deepcopy(final_document_json)
+    result["db_design_json"] = corrected
+    state["final_document_json"] = result
+    return result
 
 
 def _validate_state(state: WorkflowState) -> tuple[int, DocsCode, dict[str, Any]]:

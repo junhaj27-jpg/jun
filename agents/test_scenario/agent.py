@@ -7,6 +7,7 @@ from agents.test_scenario.processors import (
     apply_scenario_rules,
     build_step_detail_list,
     filter_function_requirements,
+    generate_scenario_descriptions,
     generate_scenarios,
     generate_steps,
     generate_steps_with_llm,
@@ -54,11 +55,25 @@ class TestScenarioGenerationAgent:
         steps, step_warnings = generate_steps_with_llm(cases, interfaces, llm_client=self.llm_client)
         warnings.extend(case_warnings)
         warnings.extend(step_warnings)
+
+        # 6단계: step_detail 확정 → 케이스별 시나리오 설명 요약 생성 (run_ts_agent.py와 동일 순서)
+        # step_detail_json_list가 확정된 시점의 데이터를 기준으로 요약해야
+        # test_procedure 초안과 최종 절차가 어긋나는 문제(시나리오 설명 vs 시험 절차 혼동)를 방지함.
+        step_details = build_step_detail_list(steps)
+        steps_by_case: dict[str, list[dict[str, Any]]] = {}
+        for detail in step_details:
+            steps_by_case.setdefault(detail.get("test_case_id"), []).append(detail)
+        cases, description_warnings = generate_scenario_descriptions(
+            cases, steps_by_case, llm_client=self.llm_client
+        )
+        warnings.extend(description_warnings)
+
         return self._success(
             state,
             scenarios,
             cases,
             steps,
+            step_details,
             warnings,
             {
                 "functional_requirements": functional,
@@ -92,11 +107,15 @@ class TestScenarioGenerationAgent:
         warnings.extend(scenario_warnings)
         warnings.extend(case_warnings)
         warnings.extend(step_warnings)
+        # TODO: _update(udt_yn=Y) 경로에는 아직 6단계(시나리오 설명 요약, generate_scenario_descriptions)가
+        # 적용되어 있지 않음. _create와 동일하게 step_detail 확정 후 케이스별 요약을 추가해야 함.
+        step_details = build_step_detail_list(steps)
         return self._success(
             state,
             scenarios,
             cases,
             steps,
+            step_details,
             warnings,
             {
                 "source_artifacts": artifacts,
@@ -110,6 +129,7 @@ class TestScenarioGenerationAgent:
         scenarios: list[dict[str, Any]],
         cases: list[dict[str, Any]],
         steps: list[dict[str, Any]],
+        step_details: list[dict[str, Any]],
         warnings: list[dict[str, Any]],
         debug: dict[str, Any],
     ) -> dict[str, Any]:
@@ -119,7 +139,7 @@ class TestScenarioGenerationAgent:
                 "scenario_json_list": scenarios,
                 "test_case_json_list": cases,
                 "step_json_list": steps,
-                "step_detail_json_list": build_step_detail_list(steps),
+                "step_detail_json_list": step_details,
             },
             "warnings": warnings,
             "errors": [],

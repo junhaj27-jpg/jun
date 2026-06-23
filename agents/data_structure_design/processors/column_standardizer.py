@@ -1,7 +1,6 @@
 # 데이터베이스 컬럼명을 표준 명명 규칙으로 변환합니다.
 
 import re
-from hashlib import sha1
 
 
 TERM_MAP = {
@@ -31,6 +30,10 @@ TERM_MAP = {
     "알림": "notice",
     "메시지": "message",
     "화면": "screen",
+    "메뉴": "menu",
+    "작업": "job",
+    "버전": "version",
+    "마트": "mart",
     "데이터": "data",
     "조직": "org",
     "부서": "dept",
@@ -64,24 +67,25 @@ def standardize_name(value: str, *, fallback: str = "item") -> str:
     normalized = re.sub(r"[^0-9A-Za-z]+", "_", translated).strip("_").lower()
     normalized = re.sub(r"_+", "_", normalized)
     if not normalized:
-        normalized = fallback
+        return fallback
     if normalized[0].isdigit():
         normalized = f"{fallback}_{normalized}"
     return normalized
 
 
 def table_name(entity_name: str) -> str:
-    name = standardize_name(entity_name, fallback="entity")
-    if name == "entity" and str(entity_name or "").strip():
-        digest = sha1(str(entity_name).encode("utf-8")).hexdigest()[:8]
-        name = f"unresolved_{digest}"
+    name = standardize_name(entity_name, fallback="")
+    if not name:
+        return ""
     if name == "tbl":
-        name = "entity"
+        return ""
     return name if name.startswith("tbl_") else f"tbl_{name}"
 
 
 def primary_key_name(entity_name: str) -> str:
-    name = standardize_name(entity_name, fallback="entity")
+    name = standardize_name(entity_name, fallback="")
+    if not name:
+        return ""
     if name.startswith("tbl_"):
         name = name.removeprefix("tbl_")
     return f"{name}_sn"

@@ -193,7 +193,7 @@ def _fill_ts_template(
     scenario: dict[str, Any],
     metadata: dict[str, Any],
 ) -> None:
-    if len(document.tables) < 1:
+    if len(document.tables) < 3:
         _fill_generic_document(
             document,
             {
@@ -205,15 +205,121 @@ def _fill_ts_template(
 
     header = document.tables[0]
     _set_cell_safe(header, 1, 1, _pick(metadata, "system_name", "project_name"))
-    _set_cell_safe(header, 2, 5, str(date.today()))
-    _set_cell_safe(header, 2, 7, _pick(metadata, "version"))
-    _fill_generic_document(
-        document,
-        {
-            "title": "통합시험 시나리오",
-            "content": {"integrated_test_scenario_json": scenario},
-        },
-    )
+    _set_cell_safe(header, 2, 3, str(date.today()))
+    _set_cell_safe(header, 2, 5, _pick(metadata, "version"))
+
+    scenarios = scenario.get("scenario_json_list") or []
+    cases = scenario.get("test_case_json_list") or []
+    step_details = scenario.get("step_detail_json_list") or []
+
+    cases_by_scenario = _group_by(cases, "scenario_id")
+    steps_by_case = _group_by(step_details, "test_case_id")
+
+    scenario_template = document.tables[1]
+    case_template = document.tables[2]
+
+    if not scenarios:
+        _fill_ts_scenario_table(scenario_template, {}, [], {})
+        _fill_ts_case_table(case_template, {}, {}, [])
+        return
+
+    anchor = case_template._tbl
+    for s_index, scn in enumerate(scenarios):
+        scenario_cases = cases_by_scenario.get(scn.get("scenario_id"), [])
+
+        if s_index == 0:
+            scn_table = scenario_template
+            cs_table = case_template
+        else:
+            spacer = _insert_paragraph_after(document, anchor)
+            scn_table = _clone_table_after(spacer._p, scenario_template)
+            anchor = scn_table._tbl
+
+        _fill_ts_scenario_table(scn_table, scn, scenario_cases, steps_by_case)
+
+        for c_index, case in enumerate(scenario_cases):
+            case_steps = steps_by_case.get(case.get("test_case_id"), [])
+            if s_index == 0 and c_index == 0:
+                cs_table = case_template
+            else:
+                spacer = _insert_paragraph_after(document, anchor)
+                cs_table = _clone_table_after(spacer._p, case_template)
+            anchor = cs_table._tbl
+            _fill_ts_case_table(cs_table, scn, case, case_steps)
+
+        if not scenario_cases:
+            # 케이스가 없는 시나리오는 빈 케이스 테이블 1개로 자리만 유지
+            spacer = _insert_paragraph_after(document, anchor)
+            cs_table = _clone_table_after(spacer._p, case_template)
+            anchor = cs_table._tbl
+            _fill_ts_case_table(cs_table, scn, {}, [])
+
+
+def _fill_ts_scenario_table(
+    table: Table,
+    scenario: dict[str, Any],
+    cases: list[dict[str, Any]],
+    steps_by_case: dict[str, list[dict[str, Any]]],
+) -> None:
+    _set_cell_safe(table, 0, 2, _pick(scenario, "scenario_id"))
+    _set_cell_safe(table, 1, 2, _pick(scenario, "scenario_name"))
+    _set_cell_safe(table, 2, 2, _pick(scenario, "description", "scenario_description"))
+
+    base_row_idx = 4
+    if not cases:
+        for cell in table.rows[base_row_idx].cells:
+            _set_cell(cell, "")
+        return
+
+    for index, case in enumerate(cases):
+        row = table.rows[base_row_idx + index] if base_row_idx + index < len(table.rows) else table.add_row()
+        case_steps = steps_by_case.get(case.get("test_case_id"), [])
+        # "시험 절차"는 최종 확정된 step_detail 기준(없으면 test_procedure 초안으로 대체)
+        procedure_source = case_steps if case_steps else case.get("test_procedure")
+        values = [
+            _pick(case, "test_case_id"),
+            _pick(case, "test_case_name"),
+            _procedure_summary(procedure_source),
+            # "시나리오 설명"은 시험 절차의 명사형 요약 (scenario.description과는 별개 필드)
+            _pick(case, "scenario_description_summary", default=_procedure_summary(procedure_source)),
+            _pick(case, "note"),
+        ]
+        for cell, value in zip(row.cells, values):
+            _set_cell(cell, value)
+
+
+def _fill_ts_case_table(
+    table: Table,
+    scenario: dict[str, Any],
+    case: dict[str, Any],
+    steps: list[dict[str, Any]],
+) -> None:
+    _set_cell_safe(table, 0, 2, "")  # 차수: 사용자 직접 입력 영역
+    _set_cell_safe(table, 1, 2, _pick(scenario, "scenario_id"))
+    _set_cell_safe(table, 2, 2, _pick(scenario, "scenario_name"))
+    _set_cell_safe(table, 3, 2, _pick(case, "test_case_id"))
+
+    base_row_idx = 6
+    if not steps:
+        for cell in table.rows[base_row_idx].cells:
+            _set_cell(cell, "")
+        return
+
+    for index, step in enumerate(steps):
+        row = table.rows[base_row_idx + index] if base_row_idx + index < len(table.rows) else table.add_row()
+        values = [
+            _pick(step, "step_no", default=index + 1),
+            _pick(step, "처리내용"),
+            _pick(step, "시험항목"),
+            _pick(step, "사전조건"),
+            _pick(step, "입력값"),
+            _pick(step, "예상결과"),
+            _pick(step, "화면ID", "screen_id"),
+            _pick(step, "test_result", default=""),
+            _pick(step, "note"),
+        ]
+        for cell, value in zip(row.cells, values):
+            _set_cell(cell, value)
 
 
 def _fill_erd_template(
@@ -420,7 +526,7 @@ def _fill_interface_process_table(table: Table, items: list[dict[str, Any]]) -> 
 
 def _fill_erd_entity_table(table: Table, entity: dict[str, Any]) -> None:
     _set_cell_safe(table, 0, 2, _pick(entity, "entity_id", "table_id", default=""))
-    _set_cell_safe(table, 0, 7, _entity_display_name(entity))
+    _set_cell_safe(table, 0, 7, _pick(entity, "entity_name", "logical_name", "table_logical_name"))
     _set_cell_safe(table, 1, 4, _pick(entity, "entity_description", "table_comment", "description"))
     rows = [_erd_column_to_row(column) for column in _entity_columns(entity)]
     _fill_repeating_table(table, rows, base_row_idx=3)
@@ -484,6 +590,27 @@ def _fill_repeating_table(table: Table, rows: list[list[Any]], base_row_idx: int
         row = table.rows[base_row_idx + row_idx] if base_row_idx + row_idx < len(table.rows) else table.add_row()
         for cell, value in zip(row.cells, values):
             _set_cell(cell, value)
+
+
+def _group_by(items: list[dict[str, Any]], key: str) -> dict[str, list[dict[str, Any]]]:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for item in items:
+        grouped.setdefault(item.get(key), []).append(item)
+    return grouped
+
+
+def _procedure_summary(test_procedure: Any) -> str:
+    if not isinstance(test_procedure, list):
+        return _to_plain_text(test_procedure)
+    lines = []
+    for index, proc in enumerate(test_procedure, start=1):
+        if isinstance(proc, dict):
+            text = proc.get("처리내용") or proc.get("process") or proc.get("action") or ""
+        else:
+            text = str(proc)
+        if text:
+            lines.append(f"{index}. {text}")
+    return "\n".join(lines)
 
 
 def _set_cell_safe(table: Table, row_idx: int, col_idx: int, value: Any) -> None:
@@ -719,7 +846,7 @@ def _erd_diagram_caption(
 ) -> str:
     group_type = str(group.get("group_type") or "")
     if group_type == "orphan":
-        suffix = _group_numeric_suffix(group, index)
+        suffix = int(group.get("orphan_index") or _group_numeric_suffix(group, index))
         return f"1.{index} 단독 엔티티 ERD - {suffix}"
     group_name = str(group.get("group_name") or "").strip()
     if group_name:
@@ -807,7 +934,7 @@ def _erd_entities(erd: dict[str, Any]) -> list[dict[str, Any]]:
         entities.append(
             {
                 "entity_id": _pick(table, "entity_id", "table_id", default=f"ENT-{index:03d}"),
-                "entity_name": _entity_display_name(table),
+                "entity_name": _pick(table, "entity_name", "logical_name", "table_logical_name"),
                 "entity_description": _short_text(_pick(table, "entity_description", "description", "table_comment"), 80),
                 "columns": _entity_columns(table),
             }
@@ -846,25 +973,15 @@ def _erd_column_to_row(column: dict[str, Any]) -> list[Any]:
         _yes_no(not bool(column.get("nullable", True))) or _pick(column, "not_null"),
         _erd_key_marker(column, constraints, "PK"),
         _erd_key_marker(column, constraints, "FK"),
-        _yes_no(column.get("is_pk") or column.get("is_fk")) or _pick(column, "inx") or _contains_constraint(constraints, "PK", "FK"),
+        _yes_no(
+            _pick(column, "idx", "inx")
+            or column.get("is_pk")
+            or column.get("is_fk")
+            or _contains_constraint(constraints, "PK", "FK", "INDEX", "IDX")
+        ),
         _pick(column, "default", default=""),
         _short_text(_column_constraint_text(column), 60),
     ]
-
-
-def _entity_display_name(table: dict[str, Any]) -> str:
-    for key in ("entity_name", "logical_name", "table_logical_name"):
-        value = _pick(table, key)
-        if value and not _looks_like_physical_name(value):
-            return _short_text(value, 40)
-    return ""
-
-
-def _looks_like_physical_name(value: Any) -> bool:
-    text = str(value or "").strip()
-    if not text:
-        return False
-    return bool(re.fullmatch(r"(tbl_)?[A-Za-z][A-Za-z0-9_]*", text) or re.fullmatch(r"TABLE-\d+", text, re.IGNORECASE))
 
 
 def _split_data_type(value: Any) -> tuple[str, str]:
@@ -898,9 +1015,9 @@ def _db_column_to_row(column: dict[str, Any]) -> list[Any]:
             _pick(column, "length"),
         ),
         _yes_no(not bool(column.get("nullable", True))) or _pick(column, "not_null"),
-        _pick(column, "pk") or _yes_no(column.get("is_pk")) or _contains_constraint(constraints, "PK"),
-        _pick(column, "fk") or _yes_no(column.get("is_fk")) or _contains_constraint(constraints, "FK"),
-        _pick(column, "idx", "inx") or _yes_no(column.get("is_pk") or column.get("is_fk")) or _contains_constraint(constraints, "PK", "FK", "INDEX", "IDX"),
+        _yes_no(_pick(column, "pk") or column.get("is_pk") or _contains_constraint(constraints, "PK")),
+        _yes_no(_pick(column, "fk") or column.get("is_fk") or _contains_constraint(constraints, "FK")),
+        _yes_no(_pick(column, "idx", "inx") or column.get("is_pk") or column.get("is_fk") or _contains_constraint(constraints, "PK", "FK", "INDEX", "IDX")),
         _pick(column, "default", default=""),
         _column_constraint_text(column),
     ]
@@ -923,12 +1040,12 @@ def _contains_constraint(value: Any, *needles: str) -> str:
 def _erd_key_marker(column: dict[str, Any], constraints: Any, marker: str) -> str:
     explicit = _pick(column, marker.lower())
     if explicit:
-        return marker if str(explicit).upper() == "Y" else str(explicit)
+        return _yes_no(explicit)
     if marker == "PK" and column.get("is_pk"):
-        return "PK"
+        return "Y"
     if marker == "FK" and column.get("is_fk"):
-        return "FK"
-    return marker if _contains_constraint(constraints, marker) else ""
+        return "Y"
+    return _contains_constraint(constraints, marker)
 
 
 def _column_constraint_text(column: dict[str, Any]) -> str:
