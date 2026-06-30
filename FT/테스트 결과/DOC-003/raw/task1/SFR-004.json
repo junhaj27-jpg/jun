@@ -1,0 +1,60 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-004",
+      "requirement_name": "랜딩페이지 제작",
+      "requirement_type": "기능",
+      "requirement_definition": "랜딩페이지 제작",
+      "requirement_detail": "• RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1973,
+      "max_new_tokens": 4096,
+      "generated_tokens": 128,
+      "hit_token_limit": false,
+      "elapsed_seconds": 7.567679123021662,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-004\",\n  \"decomposition_count\": 1,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-004-001\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"RISE사업단·센터 랜딩페이지\",\n      \"source_text\": \"RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-004",
+        "decomposition_count": 1,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-004-001",
+            "action_type": "산출",
+            "output_name": "RISE사업단·센터 랜딩페이지",
+            "source_text": "RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-004",
+    "decomposition_count": 1,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-004-001",
+        "action_type": "산출",
+        "output_name": "RISE사업단·센터 랜딩페이지",
+        "source_text": "RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작"
+      }
+    ]
+  }
+}

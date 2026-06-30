@@ -1,0 +1,323 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-021-EMB-C005-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000010",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "대화 히스토리 삭제·다운로드",
+        "requirement_detail": "사용자가 요청한 경우 대화 데이터를 삭제하고 개인 기록을 다운로드할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000011",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-011"
+        ],
+        "reference_context_ids": [],
+        "action_type": "보안",
+        "requirement_name": "대화 데이터 암호화",
+        "requirement_detail": "개인정보를 보호하기 위해 대화 데이터를 암호화하여 저장하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000012",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-012"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "대화 히스토리 복원",
+        "requirement_detail": "이전 대화를 검색하거나 복원할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000013",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "대화 히스토리 삭제",
+        "requirement_detail": "사용자가 요청한 경우 대화 데이터를 삭제하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000045",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "보안",
+        "requirement_name": "비밀번호 암호화·HTTPS",
+        "requirement_detail": "비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-000048",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-012::SFR-012-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "부적절 계정 삭제",
+        "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-012"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2643,
+      "max_new_tokens": 3964,
+      "generated_tokens": 1312,
+      "hit_token_limit": false,
+      "elapsed_seconds": 77.19742899434641,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000010\",\n        \"T2-000011\",\n        \"T2-000012\",\n        \"T2-000013\"\n      ],\n      \"relation_type\": \"SEMANTIC_DUPLICATE\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함.\",\n      \"preserved_conditions\": \"사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"comparison_ids\": [\n        \"T2-000045\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"comparison_ids\": [\n        \"T2-000048\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement_count\": 3,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"대화 히스토리 관리\",\n      \"requirement_detail\": \"사용자는 대화 히스토리의 삭제와 다운로드를 요청할 수 있어야 하며, 관리자는 대화 히스토리의 복원과 삭제를 관리할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000010\",\n        \"T2-000011\",\n        \"T2-000012\",\n        \"T2-000013\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-010\",\n        \"SFR-001::SFR-001-011\",\n        \"SFR-001::SFR-001-012\",\n        \"SFR-001::SFR-001-013\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"비밀번호 암호화·HTTPS\",\n      \"requirement_detail\": \"비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000045\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-011::SFR-011-003\"\n      ],\n      \"sources\": [\n        \"SFR-011\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"부적절 계정 삭제\",\n      \"requirement_detail\": \"관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000048\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-012::SFR-012-002\"\n      ],\n      \"sources\": [\n        \"SFR-012\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "comparison_ids": [
+              "T2-000010",
+              "T2-000011",
+              "T2-000012",
+              "T2-000013"
+            ],
+            "relation_type": "SEMANTIC_DUPLICATE",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함.",
+            "preserved_conditions": [
+              "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-002",
+            "comparison_ids": [
+              "T2-000045"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-003",
+            "comparison_ids": [
+              "T2-000048"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          }
+        ],
+        "final_requirement_count": 3,
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "관리",
+            "requirement_name": "대화 히스토리 관리",
+            "requirement_detail": "사용자는 대화 히스토리의 삭제와 다운로드를 요청할 수 있어야 하며, 관리자는 대화 히스토리의 복원과 삭제를 관리할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000010",
+              "T2-000011",
+              "T2-000012",
+              "T2-000013"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-010",
+              "SFR-001::SFR-001-011",
+              "SFR-001::SFR-001-012",
+              "SFR-001::SFR-001-013"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "보안",
+            "requirement_name": "비밀번호 암호화·HTTPS",
+            "requirement_detail": "비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.",
+            "source_task2_ids": [
+              "T2-000045"
+            ],
+            "source_atomic_ids": [
+              "SFR-011::SFR-011-003"
+            ],
+            "sources": [
+              "SFR-011"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "관리",
+            "requirement_name": "부적절 계정 삭제",
+            "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000048"
+            ],
+            "source_atomic_ids": [
+              "SFR-012::SFR-012-002"
+            ],
+            "sources": [
+              "SFR-012"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "comparison_ids": [
+          "T2-000010",
+          "T2-000011",
+          "T2-000012",
+          "T2-000013"
+        ],
+        "relation_type": "SEMANTIC_DUPLICATE",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함.",
+        "preserved_conditions": [
+          "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-002",
+        "comparison_ids": [
+          "T2-000045"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-003",
+        "comparison_ids": [
+          "T2-000048"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      }
+    ],
+    "final_requirement_count": 3,
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "관리",
+        "requirement_name": "대화 히스토리 관리",
+        "requirement_detail": "사용자는 대화 히스토리의 삭제와 다운로드를 요청할 수 있어야 하며, 관리자는 대화 히스토리의 복원과 삭제를 관리할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000010",
+          "T2-000011",
+          "T2-000012",
+          "T2-000013"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-010",
+          "SFR-001::SFR-001-011",
+          "SFR-001::SFR-001-012",
+          "SFR-001::SFR-001-013"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "보안",
+        "requirement_name": "비밀번호 암호화·HTTPS",
+        "requirement_detail": "비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.",
+        "source_task2_ids": [
+          "T2-000045"
+        ],
+        "source_atomic_ids": [
+          "SFR-011::SFR-011-003"
+        ],
+        "sources": [
+          "SFR-011"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "관리",
+        "requirement_name": "부적절 계정 삭제",
+        "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000048"
+        ],
+        "source_atomic_ids": [
+          "SFR-012::SFR-012-002"
+        ],
+        "sources": [
+          "SFR-012"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+      }
+    ]
+  }
+}

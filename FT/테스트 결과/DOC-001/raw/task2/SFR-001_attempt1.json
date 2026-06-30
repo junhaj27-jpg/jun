@@ -1,0 +1,116 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-001",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-001::SFR-001-001",
+        "action_type": "관리",
+        "output_name": "CXL 2.0/3.0 메모리 프레임워크 설계",
+        "source_text": "CXL 2.0 또는 3.0 메모리와 호환성 검토",
+        "original_atomic_id": "SFR-001-001",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-002",
+        "action_type": "관리",
+        "output_name": "CXL Type 1~3 디바이스 호환성 검토",
+        "source_text": "CXL Type 1,2,3 디바이스 호환성 검토",
+        "original_atomic_id": "SFR-001-002",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-003",
+        "action_type": "연계",
+        "output_name": "KI Cloud CXL 메모리 프레임워크 설계",
+        "source_text": "KI Cloud 환경에서 CXL 메모리 활용",
+        "original_atomic_id": "SFR-001-003",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-004",
+        "action_type": "연계",
+        "output_name": "Openstack·Kubernetes CXL 메모리 동적 할당",
+        "source_text": "Openstack, Kubernetes에서 CXL 메모리 동적 할당",
+        "original_atomic_id": "SFR-001-004",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-005",
+        "action_type": "관리",
+        "output_name": "다중 노드 CXL 메모리 풀 생성·관리",
+        "source_text": "다중 노드 공유 CXL 메모리 풀 생성·관리",
+        "original_atomic_id": "SFR-001-005",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-006",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 QoS 정책 설계",
+        "source_text": "메모리 대역폭·지연시간 기반 QoS 정책",
+        "original_atomic_id": "SFR-001-006",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-007",
+        "action_type": "분석",
+        "output_name": "CXL 메모리 대역폭·지연 분석",
+        "source_text": "CXL 메모리 대역폭과 지연 분석",
+        "original_atomic_id": "SFR-001-007",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-008",
+        "action_type": "관리",
+        "output_name": "계층적 메모리 관리",
+        "source_text": "기존 DRAM과 계층적 메모리 관리",
+        "original_atomic_id": "SFR-001-008",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-009",
+        "action_type": "관리",
+        "output_name": "VM·Container CXL 메모리 동적 할당",
+        "source_text": "VM, Container 실행 중 CXL 메모리 추가·제거",
+        "original_atomic_id": "SFR-001-009",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-010",
+        "action_type": "조회",
+        "output_name": "노드 CXL 메모리 사용량 모니터링",
+        "source_text": "노드 간 CXL 메모리 사용량 모니터링",
+        "original_atomic_id": "SFR-001-010",
+        "source_fur_id": "SFR-001"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-001::SFR-001-001",
+        "SFR-001::SFR-001-002",
+        "SFR-001::SFR-001-003",
+        "SFR-001::SFR-001-004",
+        "SFR-001::SFR-001-005",
+        "SFR-001::SFR-001-006",
+        "SFR-001::SFR-001-007",
+        "SFR-001::SFR-001-008",
+        "SFR-001::SFR-001-009",
+        "SFR-001::SFR-001-010"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 3138,
+  "max_new_tokens": 6144,
+  "generated_tokens": 1148,
+  "hit_token_limit": false,
+  "elapsed_seconds": 66.75132400915027,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-001\",\n  \"normalized_requirement_count\": 7,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-001\",\n        \"SFR-001::SFR-001-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 2.0/3.0 메모리·디바이스 호환성 설계\",\n      \"requirement_detail\": \"CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"KI Cloud CXL 메모리 프레임워크 설계\",\n      \"requirement_detail\": \"KI Cloud 환경에서 CXL 메모리 프레임워크를 설계하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-004\",\n        \"SFR-001::SFR-001-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"Openstack·Kubernetes·다중 노드 CXL 메모리 동적 할당\",\n      \"requirement_detail\": \"Openstack과 Kubernetes에서 CXL 메모리와 다중 노드 공유 풀을 동적으로 할당·관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-004\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 QoS 정책 설계\",\n      \"requirement_detail\": \"메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-005\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-007\",\n        \"SFR-001::SFR-001-008\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"CXL 메모리 대역폭·지연 분석·계층적 관리\",\n      \"requirement_detail\": \"CXL 메모리의 대역폭과 지연을 분석하고 기존 DRAM과 계층적 메모리 관리를 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-006\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM·Container CXL 메모리 동적 할당\",\n      \"requirement_detail\": \"VM과 Container 실행 중 CXL 메모리의 추가와 제거를 동적으로 할당·관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-007\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"노드 CXL 메모리 사용량 모니터링\",\n      \"requirement_detail\": \"노드 간 CXL 메모리 사용량을 모니터링할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    }\n  ]\n}"
+}

@@ -1,0 +1,454 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-004",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-004::SFR-004-001",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 동적 할당·해제",
+        "source_text": "CXL 메모리 동적 할당 및 해제",
+        "original_atomic_id": "SFR-004-001",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-002",
+        "action_type": "관리",
+        "output_name": "계층적 메모리 관리",
+        "source_text": "기존 DRAM과 CXL 메모리 계층적 관리",
+        "original_atomic_id": "SFR-004-002",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-003",
+        "action_type": "관리",
+        "output_name": "VM CXL 메모리 인식·활용 설정",
+        "source_text": "VM에서 CXL 메모리 인식 및 활용 설정",
+        "original_atomic_id": "SFR-004-003",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-004",
+        "action_type": "관리",
+        "output_name": "VM별 CXL 메모리 할당",
+        "source_text": "CXL 메모리 특정 VM에 직접 할당",
+        "original_atomic_id": "SFR-004-004",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-005",
+        "action_type": "조회",
+        "output_name": "VM별 CXL 메모리 사용량 모니터링",
+        "source_text": "VM별 CXL 메모리 사용량 모니터링",
+        "original_atomic_id": "SFR-004-005",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-006",
+        "action_type": "처리",
+        "output_name": "CXL 메모리 자동 조정",
+        "source_text": "메모리 사용량 자동 조정",
+        "original_atomic_id": "SFR-004-006",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-007",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 CRD",
+        "source_text": "Kubernetes 및 Docker CRD",
+        "original_atomic_id": "SFR-004-007",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-008",
+        "action_type": "관리",
+        "output_name": "컨테이너 CXL 메모리 동적 할당·해제",
+        "source_text": "컨테이너별 CXL 메모리 동적 할당 및 해제",
+        "original_atomic_id": "SFR-004-008",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-009",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 리소스 풀 등록·스케줄링",
+        "source_text": "Kubernetes CXL 메모리 리소스 풀 등록 및 스케줄링",
+        "original_atomic_id": "SFR-004-009",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-010",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 기반 Auto-scaling",
+        "source_text": "CXL 메모리 사용량 기반 Auto-scaling",
+        "original_atomic_id": "SFR-004-010",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-011",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 계층 구성",
+        "source_text": "기존 DRAM과 CXL 메모리 조합",
+        "original_atomic_id": "SFR-004-011",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-012",
+        "action_type": "조회",
+        "output_name": "CXL 메모리 모니터링·성능 분석",
+        "source_text": "CXL 메모리 모니터링 및 성능 분석",
+        "original_atomic_id": "SFR-004-012",
+        "source_fur_id": "SFR-004"
+      },
+      {
+        "atomic_id": "SFR-004::SFR-004-013",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 자동 확장·장애 복구",
+        "source_text": "CXL 메모리 자동 확장 및 장애 감지·복구",
+        "original_atomic_id": "SFR-004-013",
+        "source_fur_id": "SFR-004"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-004::SFR-004-001",
+        "SFR-004::SFR-004-002",
+        "SFR-004::SFR-004-003",
+        "SFR-004::SFR-004-004",
+        "SFR-004::SFR-004-005",
+        "SFR-004::SFR-004-006",
+        "SFR-004::SFR-004-007",
+        "SFR-004::SFR-004-008",
+        "SFR-004::SFR-004-009",
+        "SFR-004::SFR-004-010",
+        "SFR-004::SFR-004-011",
+        "SFR-004::SFR-004-012",
+        "SFR-004::SFR-004-013"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 3475,
+      "max_new_tokens": 6144,
+      "generated_tokens": 1608,
+      "hit_token_limit": false,
+      "elapsed_seconds": 96.01385698514059,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-004\",\n  \"normalized_requirement_count\": 10,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 동적 할당·해제\",\n      \"requirement_detail\": \"CXL 메모리의 동적 할당과 해제를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-002\",\n        \"SFR-004::SFR-004-011\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"계층적 메모리 관리\",\n      \"requirement_detail\": \"기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-003\",\n        \"SFR-004::SFR-004-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM CXL 메모리 인식·활용 설정\",\n      \"requirement_detail\": \"VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-004\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-005\",\n        \"SFR-004::SFR-004-012\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"VM별 CXL 메모리 사용량 모니터링\",\n      \"requirement_detail\": \"VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-005\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-006\",\n        \"SFR-004::SFR-004-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"CXL 메모리 자동 조정·Auto-scaling\",\n      \"requirement_detail\": \"메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-006\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-007\",\n        \"SFR-004::SFR-004-008\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 CRD·컨테이너 동적 할당\",\n      \"requirement_detail\": \"Kubernetes와 Docker의 CXL 메모리 CRD를 지원하고 컨테이너별 CXL 메모리 동적 할당과 해제를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-007\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 리소스 풀 등록·스케줄링\",\n      \"requirement_detail\": \"Kubernetes에서 CXL 메모리 리소스 풀을 등록하고 VM·컨테이너에 자동으로 스케줄링할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-008\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-013\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 자동 확장·장애 복구\",\n      \"requirement_detail\": \"CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-009\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-013\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 자동 확장·장애 복구\",\n      \"requirement_detail\": \"CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-010\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-013\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 자동 확장·장애 복구\",\n      \"requirement_detail\": \"CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-004",
+        "normalized_requirement_count": 10,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-001",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-004::SFR-004-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 동적 할당·해제",
+            "requirement_detail": "CXL 메모리의 동적 할당과 해제를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-002",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-002",
+              "SFR-004::SFR-004-011"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "계층적 메모리 관리",
+            "requirement_detail": "기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-003",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-003",
+              "SFR-004::SFR-004-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "VM CXL 메모리 인식·활용 설정",
+            "requirement_detail": "VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-004",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-005",
+              "SFR-004::SFR-004-012"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "VM별 CXL 메모리 사용량 모니터링",
+            "requirement_detail": "VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-005",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-006",
+              "SFR-004::SFR-004-010"
+            ],
+            "reference_context_ids": [],
+            "action_type": "처리",
+            "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+            "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-006",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-007",
+              "SFR-004::SFR-004-008"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 CRD·컨테이너 동적 할당",
+            "requirement_detail": "Kubernetes와 Docker의 CXL 메모리 CRD를 지원하고 컨테이너별 CXL 메모리 동적 할당과 해제를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-007",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-009"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 리소스 풀 등록·스케줄링",
+            "requirement_detail": "Kubernetes에서 CXL 메모리 리소스 풀을 등록하고 VM·컨테이너에 자동으로 스케줄링할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-008",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-004::SFR-004-013"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+            "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-009",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-004::SFR-004-013"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+            "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          },
+          {
+            "task2_id": "T2-010",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-004::SFR-004-013"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+            "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-004"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-004",
+    "normalized_requirement_count": 10,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-001",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-004::SFR-004-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 동적 할당·해제",
+        "requirement_detail": "CXL 메모리의 동적 할당과 해제를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-002",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-002",
+          "SFR-004::SFR-004-011"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "계층적 메모리 관리",
+        "requirement_detail": "기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-003",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-003",
+          "SFR-004::SFR-004-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "VM CXL 메모리 인식·활용 설정",
+        "requirement_detail": "VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-004",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-005",
+          "SFR-004::SFR-004-012"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "VM별 CXL 메모리 사용량 모니터링",
+        "requirement_detail": "VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-005",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-006",
+          "SFR-004::SFR-004-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+        "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-006",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-007",
+          "SFR-004::SFR-004-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 CRD·컨테이너 동적 할당",
+        "requirement_detail": "Kubernetes와 Docker의 CXL 메모리 CRD를 지원하고 컨테이너별 CXL 메모리 동적 할당과 해제를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-007",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 리소스 풀 등록·스케줄링",
+        "requirement_detail": "Kubernetes에서 CXL 메모리 리소스 풀을 등록하고 VM·컨테이너에 자동으로 스케줄링할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-008",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+        "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-009",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-004::SFR-004-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+        "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-010",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-004::SFR-004-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+        "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      }
+    ]
+  }
+}

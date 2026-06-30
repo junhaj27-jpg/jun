@@ -1,0 +1,280 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-005",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-005::SFR-005-001",
+        "action_type": "입력",
+        "output_name": "프롬프트 손쉬운 수정",
+        "source_text": "프롬프트를 손쉽게 수정 가능",
+        "original_atomic_id": "SFR-005-001",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-002",
+        "action_type": "산출",
+        "output_name": "문서 기반 지식베이스 생성·관리",
+        "source_text": "사용자 제공 문서를 기반으로 챗봇 지식베이스를 생성 및 관리",
+        "original_atomic_id": "SFR-005-002",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-003",
+        "action_type": "관리",
+        "output_name": "LLM 모델 선택·응답 파라미터 조정",
+        "source_text": "적합한 LLM 모델 선택 및 창의성·신뢰성·결과 범위 조정",
+        "original_atomic_id": "SFR-005-003",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-004",
+        "action_type": "관리",
+        "output_name": "챗봇 저장·관리자 승인·퍼블리시",
+        "source_text": "관리자 승인 하에 공용 배포 또는 특정 사용자 그룹 제한 배포",
+        "original_atomic_id": "SFR-005-004",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-005",
+        "action_type": "조회",
+        "output_name": "퍼블리시 전 개인 테스트",
+        "source_text": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 점검",
+        "original_atomic_id": "SFR-005-005",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-006",
+        "action_type": "관리",
+        "output_name": "사용자 그룹별 챗봇 설계",
+        "source_text": "학생, 교수, 교직원 등 사용자 그룹별 요구사항에 맞춘 챗봇 설계",
+        "original_atomic_id": "SFR-005-006",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-007",
+        "action_type": "관리",
+        "output_name": "사용자 그룹 관리·챗봇 매칭",
+        "source_text": "사용자 그룹 생성·수정·삭제와 챗봇 사용자 그룹 매칭",
+        "original_atomic_id": "SFR-005-007",
+        "source_fur_id": "SFR-005"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-005::SFR-005-001",
+        "SFR-005::SFR-005-002",
+        "SFR-005::SFR-005-003",
+        "SFR-005::SFR-005-004",
+        "SFR-005::SFR-005-005",
+        "SFR-005::SFR-005-006",
+        "SFR-005::SFR-005-007"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2767,
+      "max_new_tokens": 6144,
+      "generated_tokens": 970,
+      "hit_token_limit": false,
+      "elapsed_seconds": 60.408241176977754,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-005\",\n  \"normalized_requirement_count\": 6,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-017\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"입력\",\n      \"requirement_name\": \"프롬프트 손쉬운 수정\",\n      \"requirement_detail\": \"사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-018\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"문서 기반 지식베이스 생성·관리\",\n      \"requirement_detail\": \"사용자가 제공한 문서를 기반으로 챗봇 지식베이스를 생성하고 관리할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-019\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"LLM 모델 선택·응답 파라미터 조정\",\n      \"requirement_detail\": \"사용자는 적합한 LLM 모델을 선택하고 창의성, 신뢰성 및 결과 범위를 조정할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-020\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"챗봇 저장·관리자 승인·퍼블리시\",\n      \"requirement_detail\": \"사용자는 챗봇을 저장하고 관리자 승인 후 공용 또는 특정 사용자 그룹에 제한하여 배포할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-021\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"퍼블리시 전 개인 테스트\",\n      \"requirement_detail\": \"퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 사용자 테스트와 점검을 할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-022\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-006\",\n        \"SFR-005::SFR-005-007\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"사용자 그룹별 챗봇 설계·매칭\",\n      \"requirement_detail\": \"사용자 그룹별 요구사항에 맞춘 챗봇을 설계하고 사용자 그룹을 생성·수정·삭제하며 챗봇과 매칭할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-005",
+        "normalized_requirement_count": 6,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-017",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-005::SFR-005-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "입력",
+            "requirement_name": "프롬프트 손쉬운 수정",
+            "requirement_detail": "사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          },
+          {
+            "task2_id": "T2-018",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-005::SFR-005-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "산출",
+            "requirement_name": "문서 기반 지식베이스 생성·관리",
+            "requirement_detail": "사용자가 제공한 문서를 기반으로 챗봇 지식베이스를 생성하고 관리할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          },
+          {
+            "task2_id": "T2-019",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-005::SFR-005-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "LLM 모델 선택·응답 파라미터 조정",
+            "requirement_detail": "사용자는 적합한 LLM 모델을 선택하고 창의성, 신뢰성 및 결과 범위를 조정할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          },
+          {
+            "task2_id": "T2-020",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-005::SFR-005-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "챗봇 저장·관리자 승인·퍼블리시",
+            "requirement_detail": "사용자는 챗봇을 저장하고 관리자 승인 후 공용 또는 특정 사용자 그룹에 제한하여 배포할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          },
+          {
+            "task2_id": "T2-021",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-005::SFR-005-005"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "퍼블리시 전 개인 테스트",
+            "requirement_detail": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 사용자 테스트와 점검을 할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          },
+          {
+            "task2_id": "T2-022",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-005::SFR-005-006",
+              "SFR-005::SFR-005-007"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "사용자 그룹별 챗봇 설계·매칭",
+            "requirement_detail": "사용자 그룹별 요구사항에 맞춘 챗봇을 설계하고 사용자 그룹을 생성·수정·삭제하며 챗봇과 매칭할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-005"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-005",
+    "normalized_requirement_count": 6,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-017",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "입력",
+        "requirement_name": "프롬프트 손쉬운 수정",
+        "requirement_detail": "사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-018",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "문서 기반 지식베이스 생성·관리",
+        "requirement_detail": "사용자가 제공한 문서를 기반으로 챗봇 지식베이스를 생성하고 관리할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-019",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "LLM 모델 선택·응답 파라미터 조정",
+        "requirement_detail": "사용자는 적합한 LLM 모델을 선택하고 창의성, 신뢰성 및 결과 범위를 조정할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-020",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "챗봇 저장·관리자 승인·퍼블리시",
+        "requirement_detail": "사용자는 챗봇을 저장하고 관리자 승인 후 공용 또는 특정 사용자 그룹에 제한하여 배포할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-021",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "퍼블리시 전 개인 테스트",
+        "requirement_detail": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 사용자 테스트와 점검을 할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-022",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-005::SFR-005-006",
+          "SFR-005::SFR-005-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "사용자 그룹별 챗봇 설계·매칭",
+        "requirement_detail": "사용자 그룹별 요구사항에 맞춘 챗봇을 설계하고 사용자 그룹을 생성·수정·삭제하며 챗봇과 매칭할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      }
+    ]
+  }
+}

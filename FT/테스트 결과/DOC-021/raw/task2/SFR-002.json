@@ -1,0 +1,169 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-002",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-002::SFR-002-001",
+        "action_type": "관리",
+        "output_name": "상용 LLM API 통합 관리",
+        "source_text": "GPT-4 및 기타 상용 LLM API 통합 관리",
+        "original_atomic_id": "SFR-002-001",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-002",
+        "action_type": "조회",
+        "output_name": "상용 LLM API 사용량 모니터링",
+        "source_text": "API 사용량 실시간 모니터링 및 통계 확인",
+        "original_atomic_id": "SFR-002-002",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-003",
+        "action_type": "조회",
+        "output_name": "상용 LLM 라이센스 만료 알림",
+        "source_text": "라이센스 만료 시 알림",
+        "original_atomic_id": "SFR-002-003",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-004",
+        "action_type": "처리",
+        "output_name": "API 호출 최적화 및 분산 처리",
+        "source_text": "API 호출 속도 최적화와 대량 요청 분산 처리",
+        "original_atomic_id": "SFR-002-004",
+        "source_fur_id": "SFR-002"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-002::SFR-002-001",
+        "SFR-002::SFR-002-002",
+        "SFR-002::SFR-002-003",
+        "SFR-002::SFR-002-004"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2321,
+      "max_new_tokens": 6144,
+      "generated_tokens": 512,
+      "hit_token_limit": false,
+      "elapsed_seconds": 30.642691153567284,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"normalized_requirement_count\": 3,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-001\",\n        \"SFR-002::SFR-002-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"상용 LLM API 통합 관리 및 사용량 모니터링\",\n      \"requirement_detail\": \"GPT-4 등 상용 LLM API를 등록·연계하고 통합 관리하며 API 사용량을 실시간 모니터링하고 통계를 조회할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"상용 LLM 라이센스 만료 알림\",\n      \"requirement_detail\": \"상용 LLM 라이센스가 만료되기 전에 알림을 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"API 호출 최적화 및 분산 처리\",\n      \"requirement_detail\": \"상용 LLM API 호출 속도를 최적화하고 대량 요청을 분산 처리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-002",
+        "normalized_requirement_count": 3,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-001",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-002::SFR-002-001",
+              "SFR-002::SFR-002-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "상용 LLM API 통합 관리 및 사용량 모니터링",
+            "requirement_detail": "GPT-4 등 상용 LLM API를 등록·연계하고 통합 관리하며 API 사용량을 실시간 모니터링하고 통계를 조회할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-002",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "상용 LLM 라이센스 만료 알림",
+            "requirement_detail": "상용 LLM 라이센스가 만료되기 전에 알림을 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-003",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "처리",
+            "requirement_name": "API 호출 최적화 및 분산 처리",
+            "requirement_detail": "상용 LLM API 호출 속도를 최적화하고 대량 요청을 분산 처리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-002",
+    "normalized_requirement_count": 3,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-001",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-002::SFR-002-001",
+          "SFR-002::SFR-002-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "상용 LLM API 통합 관리 및 사용량 모니터링",
+        "requirement_detail": "GPT-4 등 상용 LLM API를 등록·연계하고 통합 관리하며 API 사용량을 실시간 모니터링하고 통계를 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "상용 LLM 라이센스 만료 알림",
+        "requirement_detail": "상용 LLM 라이센스가 만료되기 전에 알림을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-003",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "API 호출 최적화 및 분산 처리",
+        "requirement_detail": "상용 LLM API 호출 속도를 최적화하고 대량 요청을 분산 처리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      }
+    ]
+  }
+}

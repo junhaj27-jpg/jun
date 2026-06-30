@@ -1,0 +1,60 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C009-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000043",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "스토리지 프록시 상태 모니터링·이상 탐지",
+        "requirement_detail": "스토리지 프록시의 상태를 모니터링하고 이상 상태를 자동으로 탐지하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000044",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성",
+        "requirement_detail": "유지보수 일정에 따라 스토리지 프록시를 자동으로 재구성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000046",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수",
+        "requirement_detail": "데이터 무결성을 유지하기 위해 스냅샷과 복구를 기반으로 유지보수를 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 2,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2348,
+  "max_new_tokens": 5109,
+  "generated_tokens": 377,
+  "hit_token_limit": false,
+  "elapsed_seconds": 22.599936078768224,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000043\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"관리\",\n    \"requirement_name\": \"스토리지 프록시 상태 모니터링·이상 탐지\",\n    \"requirement_detail\": \"스토리지 프록시의 상태를 모니터링하고 이상 상태를 자동으로 탐지하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000043\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-006::SFR-006-001\"\n    ],\n    \"sources\": [\n      \"SFR-006\"\n    ],\n    \"processing_type\": \"유지\",\n    \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n  }\n}"
+}

@@ -1,0 +1,134 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C003-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000005",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-001::SFR-001-007",
+          "SFR-001::SFR-001-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "CXL 메모리 대역폭·지연 분석·계층적 관리",
+        "requirement_detail": "CXL 메모리의 대역폭과 지연을 분석하고 기존 DRAM과 계층적 메모리 관리를 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000007",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "노드 CXL 메모리 사용량 모니터링",
+        "requirement_detail": "노드 간 CXL 메모리 사용량을 모니터링할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000011",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+        "requirement_detail": "CXL 메모리의 실시간 대역폭 사용량을 모니터링할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000015",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+        "requirement_detail": "CXL 링크별 실시간 대역폭 사용량을 측정할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000019",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "CXL 메모리 성능 병목·대역폭·지연 분석",
+        "requirement_detail": "CXL 메모리 적용 시 성능 병목 구간 및 대역폭과 지연시간을 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000029",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-002",
+          "SFR-004::SFR-004-011"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "계층적 메모리 관리",
+        "requirement_detail": "기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-000030",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-003",
+          "SFR-004::SFR-004-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "VM CXL 메모리 인식·활용 설정",
+        "requirement_detail": "VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-000031",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-005",
+          "SFR-004::SFR-004-012"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "VM별 CXL 메모리 사용량 모니터링",
+        "requirement_detail": "VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 3091,
+  "max_new_tokens": 4636,
+  "generated_tokens": 2035,
+  "hit_token_limit": false,
+  "elapsed_seconds": 122.04520753771067,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000005\",\n        \"T2-000019\"\n      ],\n      \"relation_type\": \"SEMANTIC_DUPLICATE\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"comparison_ids\": [\n        \"T2-000007\",\n        \"T2-000011\",\n        \"T2-000015\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"comparison_ids\": [\n        \"T2-000029\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"comparison_ids\": [\n        \"T2-000030\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"comparison_ids\": [\n        \"T2-000031\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement_count\": 5,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"CXL 메모리 대역폭·지연 분석·계층적 관리\",\n      \"requirement_detail\": \"CXL 메모리의 대역폭과 지연을 분석하고 기존 DRAM과 계층적 메모리 관리를 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000005\",\n        \"T2-000019\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-007\",\n        \"SFR-001::SFR-001-008\",\n        \"SFR-003::SFR-003-002\"\n      ],\n      \"sources\": [\n        \"SFR-001\",\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"CXL 메모리 대역폭·지연·링크별 사용량 모니터링\",\n      \"requirement_detail\": \"노드와 VM별 CXL 메모리 사용량을 모니터링하고 CXL 링크별 실시간 대역폭 사용량을 측정하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000007\",\n        \"T2-000011\",\n        \"T2-000015\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-010\",\n        \"SFR-002::SFR-002-004\",\n        \"SFR-002::SFR-002-008\"\n      ],\n      \"sources\": [\n        \"SFR-001\",\n        \"SFR-002\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"계층적 메모리 관리\",\n      \"requirement_detail\": \"기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000029\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-004::SFR-004-002\",\n        \"SFR-004::SFR-004-011\"\n      ],\n      \"sources\": [\n        \"SFR-004\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM CXL 메모리 인식·활용 설정\",\n      \"requirement_detail\": \"VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000030\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-004::SFR-004-003\",\n        \"SFR-004::SFR-004-004\"\n      ],\n      \"sources\": [\n        \"SFR-004\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"VM별 CXL 메모리 사용량 모니터링\",\n      \"requirement_detail\": \"VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000031\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-004::SFR-004-005\",\n        \"SFR-004::SFR-004-012\"\n      ],\n      \"sources\": [\n        \"SFR-004\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.\"\n    }\n  ]\n}"
+}

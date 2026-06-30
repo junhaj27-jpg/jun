@@ -1,0 +1,188 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-021-EMB-C008-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000034",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-008::SFR-008-001",
+          "SFR-008::SFR-008-002",
+          "SFR-008::SFR-008-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "홈페이지·게시판 최신정보 자동 학습",
+        "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-008"
+        ]
+      },
+      {
+        "task2_id": "T2-000036",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-008::SFR-008-005",
+          "SFR-008::SFR-008-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "최신 학사정보·일정·공지사항 질의응답",
+        "requirement_detail": "최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-008"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2200,
+      "max_new_tokens": 3300,
+      "generated_tokens": 547,
+      "hit_token_limit": false,
+      "elapsed_seconds": 32.753941151313484,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000034\",\n        \"T2-000036\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\",\n      \"preserved_conditions\": \"학습자·교수자·관리자 역할, 데이터 범위, 추천 검색·평가·이력·보안 조건과 원문 SFR ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"제공\",\n    \"requirement_name\": \"홈페이지·게시판 최신정보 자동 학습 및 질의응답\",\n    \"requirement_detail\": \"대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000034\",\n      \"T2-000036\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-008::SFR-008-001\",\n      \"SFR-008::SFR-008-002\",\n      \"SFR-008::SFR-008-003\",\n      \"SFR-008::SFR-008-005\",\n      \"SFR-008::SFR-008-006\"\n    ],\n    \"sources\": [\n      \"SFR-008\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\"\n  }\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000034",
+              "T2-000036"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+            "preserved_conditions": [
+              "학습자·교수자·관리자 역할, 데이터 범위, 추천 검색·평가·이력·보안 조건과 원문 SFR ID를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          }
+        ],
+        "final_requirement": {
+          "gold_id": "GOLD-001",
+          "action_type": "제공",
+          "requirement_name": "홈페이지·게시판 최신정보 자동 학습 및 질의응답",
+          "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+          "source_task2_ids": [
+            "T2-000034",
+            "T2-000036"
+          ],
+          "source_atomic_ids": [
+            "SFR-008::SFR-008-001",
+            "SFR-008::SFR-008-002",
+            "SFR-008::SFR-008-003",
+            "SFR-008::SFR-008-005",
+            "SFR-008::SFR-008-006"
+          ],
+          "sources": [
+            "SFR-008"
+          ],
+          "processing_type": "통합",
+          "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+        },
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "제공",
+            "requirement_name": "홈페이지·게시판 최신정보 자동 학습 및 질의응답",
+            "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+            "source_task2_ids": [
+              "T2-000034",
+              "T2-000036"
+            ],
+            "source_atomic_ids": [
+              "SFR-008::SFR-008-001",
+              "SFR-008::SFR-008-002",
+              "SFR-008::SFR-008-003",
+              "SFR-008::SFR-008-005",
+              "SFR-008::SFR-008-006"
+            ],
+            "sources": [
+              "SFR-008"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+          }
+        ],
+        "final_requirement_count": 1
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000034",
+          "T2-000036"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+        "preserved_conditions": [
+          "학습자·교수자·관리자 역할, 데이터 범위, 추천 검색·평가·이력·보안 조건과 원문 SFR ID를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      }
+    ],
+    "final_requirement": {
+      "gold_id": "GOLD-001",
+      "action_type": "제공",
+      "requirement_name": "홈페이지·게시판 최신정보 자동 학습 및 질의응답",
+      "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+      "source_task2_ids": [
+        "T2-000034",
+        "T2-000036"
+      ],
+      "source_atomic_ids": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003",
+        "SFR-008::SFR-008-005",
+        "SFR-008::SFR-008-006"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "제공",
+        "requirement_name": "홈페이지·게시판 최신정보 자동 학습 및 질의응답",
+        "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+        "source_task2_ids": [
+          "T2-000034",
+          "T2-000036"
+        ],
+        "source_atomic_ids": [
+          "SFR-008::SFR-008-001",
+          "SFR-008::SFR-008-002",
+          "SFR-008::SFR-008-003",
+          "SFR-008::SFR-008-005",
+          "SFR-008::SFR-008-006"
+        ],
+        "sources": [
+          "SFR-008"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+      }
+    ],
+    "final_requirement_count": 1
+  }
+}

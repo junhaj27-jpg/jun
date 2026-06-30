@@ -1,0 +1,55 @@
+<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+  <div class="mb-4 flex items-center justify-between gap-3">
+    <p class="text-sm font-semibold text-slate-900">{{ panel_title }}</p>
+    {% if detail_sn %}<span class="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500">상세 SN {{ detail_sn }}</span>{% endif %}
+  </div>
+  {% if data_view.kind == "tables" %}
+    <div class="max-h-[48rem] space-y-4 overflow-auto pr-1">
+      {% for table in data_view.tables %}
+        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <div class="border-b border-slate-200 px-4 py-3">
+            <div class="flex flex-wrap items-baseline gap-2">
+              <p class="font-semibold text-slate-900">{{ table.table_name|default:table.table_id }}</p>
+              <code class="text-xs text-blue-700">{{ table.table_id }}</code>
+            </div>
+            {% if table.description %}<p class="mt-1 text-xs leading-5 text-slate-500">{{ table.description }}</p>{% endif %}
+            {% if table.database_name or table.tablespace_name %}<p class="mt-1 text-xs text-slate-400">{{ table.database_name }}{% if table.database_name and table.tablespace_name %} · {% endif %}{{ table.tablespace_name }}</p>{% endif %}
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-left text-xs">
+              <thead class="bg-slate-50 text-slate-500">
+                <tr>
+                  <th class="px-3 py-2 font-semibold">컬럼</th><th class="px-3 py-2 font-semibold">논리명</th>
+                  <th class="px-3 py-2 font-semibold">타입</th><th class="px-3 py-2 text-center font-semibold">PK</th>
+                  <th class="px-3 py-2 text-center font-semibold">FK</th><th class="px-3 py-2 text-center font-semibold">필수</th>
+                  <th class="px-3 py-2 font-semibold">기본값</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                {% for column in table.columns %}
+                  <tr>
+                    <td class="whitespace-nowrap px-3 py-2 font-mono text-blue-700">{{ column.column_id|default:"-" }}</td>
+                    <td class="min-w-32 px-3 py-2">{{ column.logical_name|default:"-" }}</td>
+                    <td class="whitespace-nowrap px-3 py-2">{{ column.type_and_length|default:"-" }}</td>
+                    <td class="px-3 py-2 text-center">{{ column.pk|default:"-" }}</td>
+                    <td class="px-3 py-2 text-center">{{ column.fk|default:"-" }}</td>
+                    <td class="px-3 py-2 text-center">{{ column.not_null|default:"-" }}</td>
+                    <td class="px-3 py-2">{{ column.default|default:"-" }}</td>
+                  </tr>
+                {% empty %}
+                  <tr><td colspan="7" class="px-3 py-5 text-center text-slate-400">컬럼 정보가 없습니다.</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </article>
+      {% empty %}
+        <div class="rounded-xl border border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm text-slate-500">표시할 데이터가 없습니다.</div>
+      {% endfor %}
+    </div>
+  {% elif data_view.kind == "json" %}
+    <pre class="max-h-[48rem] overflow-auto whitespace-pre-wrap rounded-xl border border-slate-200 bg-white p-4 text-xs leading-6 text-slate-700">{{ data_view.formatted }}</pre>
+  {% else %}
+    <div class="rounded-xl border border-dashed border-slate-300 bg-white px-4 py-10 text-center text-sm text-slate-500">표시할 데이터가 없습니다.</div>
+  {% endif %}
+</div>

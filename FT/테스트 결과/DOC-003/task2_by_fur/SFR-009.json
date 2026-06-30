@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-009",
+  "atomic_input_sha256": "667fdd27df3cbc9a943e1c419ed7e178159c41d940624e0d987d6321d043b270",
+  "normalized_requirement_count": 1,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-013",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-009::SFR-009-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사업단 성과 조회",
+      "requirement_detail": "사업단별 성과를 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009"
+    }
+  ]
+}

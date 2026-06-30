@@ -1,0 +1,71 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-012",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-012::SFR-012-001",
+        "action_type": "분석",
+        "output_name": "HPC I/O 프로파일링 및 분석",
+        "source_text": "HPC 애플리케이션·시스템 수준 I/O 추적·분석",
+        "original_atomic_id": "SFR-012-001",
+        "source_fur_id": "SFR-012"
+      },
+      {
+        "atomic_id": "SFR-012::SFR-012-002",
+        "action_type": "연계",
+        "output_name": "컨테이너 기반 I/O 추적·통합 분석",
+        "source_text": "컨테이너 단위 I/O 분리 수집·멀티노드 통합 분석",
+        "original_atomic_id": "SFR-012-002",
+        "source_fur_id": "SFR-012"
+      },
+      {
+        "atomic_id": "SFR-012::SFR-012-003",
+        "action_type": "연계",
+        "output_name": "HPC 클라우드 어댑터",
+        "source_text": "온프레미스 HPC와 퍼블릭 클라우드 I/O 연계",
+        "original_atomic_id": "SFR-012-003",
+        "source_fur_id": "SFR-012"
+      },
+      {
+        "atomic_id": "SFR-012::SFR-012-004",
+        "action_type": "권한",
+        "output_name": "I/O 프로파일링 기반 접근권한·정책 설정",
+        "source_text": "I/O 프로파일링 결과 기반 접근권한·정책 설정",
+        "original_atomic_id": "SFR-012-004",
+        "source_fur_id": "SFR-012"
+      },
+      {
+        "atomic_id": "SFR-012::SFR-012-005",
+        "action_type": "연계",
+        "output_name": "I/O 특성 기반 자동 리소스 할당·구성",
+        "source_text": "I/O 특성 기반 자동 리소스 할당·구성",
+        "original_atomic_id": "SFR-012-005",
+        "source_fur_id": "SFR-012"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-012::SFR-012-001",
+        "SFR-012::SFR-012-002",
+        "SFR-012::SFR-012-003",
+        "SFR-012::SFR-012-004",
+        "SFR-012::SFR-012-005"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2495,
+  "max_new_tokens": 6144,
+  "generated_tokens": 768,
+  "hit_token_limit": false,
+  "elapsed_seconds": 46.90181866521016,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-012\",\n  \"normalized_requirement_count\": 5,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-031\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-012::SFR-012-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC I/O 프로파일링 및 분석\",\n      \"requirement_detail\": \"HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-012\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-032\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-012::SFR-012-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"컨테이너 기반 I/O 추적·통합 분석\",\n      \"requirement_detail\": \"컨테이너 단위로 I/O를 분리 수집하고 멀티노드에서 통합 분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-012\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-033\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-012::SFR-012-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"HPC 클라우드 어댑터\",\n      \"requirement_detail\": \"온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-012\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-034\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-012::SFR-012-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"권한\",\n      \"requirement_name\": \"I/O 프로파일링 기반 접근권한·정책 설정\",\n      \"requirement_detail\": \"I/O 프로파일링 결과를 기반으로 접근권한과 정책을 설정하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-012\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-035\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-012::SFR-012-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"I/O 특성 기반 자동 리소스 할당·구성\",\n      \"requirement_detail\": \"I/O 특성을 기반으로 자동 리소스를 할당하고 구성하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-012\"\n      ]\n    }\n  ]\n}"
+}

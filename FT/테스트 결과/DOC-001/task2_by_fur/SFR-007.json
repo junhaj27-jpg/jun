@@ -1,0 +1,204 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-007",
+  "atomic_input_sha256": "b7dc2e96c468aa80f70d025b62793194b224b60e531cf9bd89e248b1f057b168",
+  "normalized_requirement_count": 13,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 클러스터 토폴로지 시각화",
+      "requirement_detail": "HPC 클러스터의 토폴로지와 네트워크 구조를 시각화하여 대시보드에 표시하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 주요 리소스 대시보드",
+      "requirement_detail": "HPC의 CPU, 메모리, 네트워크 및 스토리지 리소스 사용률을 대시보드에서 실시간 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-003",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 장애 노드·네트워크 경로 강조",
+      "requirement_detail": "장애가 발생한 HPC 노드와 관련 네트워크 경로를 대시보드에서 강조 표시하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-004",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 사용자별 사용량·작업 현황",
+      "requirement_detail": "사용자별 HPC 사용량과 실행 중인 작업 현황을 대시보드에서 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-005",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "HPC 작업 실행시간·자원 소모율 분석",
+      "requirement_detail": "HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-006",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 사용 로그·과거 작업 내역",
+      "requirement_detail": "HPC 사용 로그와 과거 작업 내역을 대시보드에서 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-007",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 성능 최적화 제안",
+      "requirement_detail": "HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-008",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-008"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 성능 저하·장애 알림",
+      "requirement_detail": "HPC 성능 저하와 장애 발생 시 운영자에게 실시간 알림을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-009",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-009"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 리소스 임계치 초과 알림",
+      "requirement_detail": "HPC 리소스의 임계치를 초과할 경우 운영자에게 알림을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-010",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-010"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "HPC 자동 조치 버튼",
+      "requirement_detail": "리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-011",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-011"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "HPC 자동 스케일링·재시작 정책 설정",
+      "requirement_detail": "사전 정의된 정책에 따라 HPC 자원의 자동 스케일링과 노드 재시작을 설정할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-012",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-012"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "하이브리드 HPC 환경 통합 관리",
+      "requirement_detail": "VM, Container 및 Baremetal 환경을 하나의 대시보드에서 통합 관리할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-013",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-013"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "하이브리드 HPC 자동 배치·이동",
+      "requirement_detail": "VM, 컨테이너 및 Baremetal 간 최적의 리소스 활용을 위해 자동 배치와 컨테이너 이동을 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    }
+  ]
+}

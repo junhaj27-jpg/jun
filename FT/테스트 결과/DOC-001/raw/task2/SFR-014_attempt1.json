@@ -1,0 +1,71 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-014",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-014::SFR-014-001",
+        "action_type": "관리",
+        "output_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+        "source_text": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식 정의",
+        "original_atomic_id": "SFR-014-001",
+        "source_fur_id": "SFR-014"
+      },
+      {
+        "atomic_id": "SFR-014::SFR-014-002",
+        "action_type": "분석",
+        "output_name": "워크로드 실행 로그·이력 기반 자원 사용 패턴 분석",
+        "source_text": "워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴 분석",
+        "original_atomic_id": "SFR-014-002",
+        "source_fur_id": "SFR-014"
+      },
+      {
+        "atomic_id": "SFR-014::SFR-014-003",
+        "action_type": "처리",
+        "output_name": "워크로드 특성·클러스터 자원 상태 기반 최적 실행 계획 계산",
+        "source_text": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획 계산",
+        "original_atomic_id": "SFR-014-003",
+        "source_fur_id": "SFR-014"
+      },
+      {
+        "atomic_id": "SFR-014::SFR-014-004",
+        "action_type": "산출",
+        "output_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+        "source_text": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적",
+        "original_atomic_id": "SFR-014-004",
+        "source_fur_id": "SFR-014"
+      },
+      {
+        "atomic_id": "SFR-014::SFR-014-005",
+        "action_type": "처리",
+        "output_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+        "source_text": "동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용",
+        "original_atomic_id": "SFR-014-005",
+        "source_fur_id": "SFR-014"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-014::SFR-014-001",
+        "SFR-014::SFR-014-002",
+        "SFR-014::SFR-014-003",
+        "SFR-014::SFR-014-004",
+        "SFR-014::SFR-014-005"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2574,
+  "max_new_tokens": 6144,
+  "generated_tokens": 735,
+  "hit_token_limit": false,
+  "elapsed_seconds": 44.683537386823446,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-014\",\n  \"normalized_requirement_count\": 4,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-037\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-014::SFR-014-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의\",\n      \"requirement_detail\": \"이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-014\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-038\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-014::SFR-014-002\",\n        \"SFR-014::SFR-014-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산\",\n      \"requirement_detail\": \"워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-014\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-039\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-014::SFR-014-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적\",\n      \"requirement_detail\": \"생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-014\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-040\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-014::SFR-014-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"동적 자원 변화에 따른 스케줄링 정책 재계산·재적용\",\n      \"requirement_detail\": \"동적 자원 변화에 따라 스케줄링 정책을 재계산하고 재적용하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-014\"\n      ]\n    }\n  ]\n}"
+}

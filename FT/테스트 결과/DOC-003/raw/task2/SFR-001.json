@@ -1,0 +1,343 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-001",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-001::SFR-001-001",
+        "action_type": "준수",
+        "output_name": "최소 요구조건·변경·증감 협의",
+        "source_text": "최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하다.",
+        "original_atomic_id": "SFR-001-001",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-002",
+        "action_type": "준수",
+        "output_name": "타 대학 분석·최적화 홈페이지 구축",
+        "source_text": "타 대학 분석 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.",
+        "original_atomic_id": "SFR-001-002",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-003",
+        "action_type": "준수",
+        "output_name": "전자정부 표준프레임워크·반응형 웹",
+        "source_text": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+        "original_atomic_id": "SFR-001-003",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-004",
+        "action_type": "준수",
+        "output_name": "CMS·웹 접근성·호환성·표준문법",
+        "source_text": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+        "original_atomic_id": "SFR-001-004",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-005",
+        "action_type": "제공",
+        "output_name": "수요기관 콘텐츠 활용 개발",
+        "source_text": "홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+        "original_atomic_id": "SFR-001-005",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-006",
+        "action_type": "준수",
+        "output_name": "홈페이지 이미지 저작권",
+        "source_text": "홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+        "original_atomic_id": "SFR-001-006",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-007",
+        "action_type": "분석",
+        "output_name": "웹 로그 분석·이용률·방문경로·에러",
+        "source_text": "웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여 웹 사이트가 관리될 수 있도록 하여야 한다.",
+        "original_atomic_id": "SFR-001-007",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-008",
+        "action_type": "보안",
+        "output_name": "개인정보 동의·SSL 암호화",
+        "source_text": "개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 한다.(시설 대관, 수강신청 등)\n개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+        "original_atomic_id": "SFR-001-008",
+        "source_fur_id": "SFR-001"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-001::SFR-001-001",
+        "SFR-001::SFR-001-002",
+        "SFR-001::SFR-001-003",
+        "SFR-001::SFR-001-004",
+        "SFR-001::SFR-001-005",
+        "SFR-001::SFR-001-006",
+        "SFR-001::SFR-001-007",
+        "SFR-001::SFR-001-008"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 3073,
+      "max_new_tokens": 6144,
+      "generated_tokens": 1339,
+      "hit_token_limit": false,
+      "elapsed_seconds": 79.3229851522483,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-001\",\n  \"normalized_requirement_count\": 8,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"SFR-001-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"최소 요구조건·변경·증감 협의\",\n      \"requirement_detail\": \"최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"타 대학 분석·최적화 홈페이지 구축\",\n      \"requirement_detail\": \"타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"전자정부 표준프레임워크·반응형 웹\",\n      \"requirement_detail\": \"전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-004\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"CMS·웹 접근성·호환성·표준문법\",\n      \"requirement_detail\": \"구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-005\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"수요기관 콘텐츠 활용 개발\",\n      \"requirement_detail\": \"홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-006\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"홈페이지 이미지 저작권\",\n      \"requirement_detail\": \"홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-007\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-007\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"웹 로그 분석·이용률·방문경로·에러\",\n      \"requirement_detail\": \"웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-001-008\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-008\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"개인정보 동의·SSL 암호화\",\n      \"requirement_detail\": \"개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 하며, 개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-001",
+        "normalized_requirement_count": 8,
+        "normalized_requirements": [
+          {
+            "task2_id": "SFR-001-001",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "준수",
+            "requirement_name": "최소 요구조건·변경·증감 협의",
+            "requirement_detail": "최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-002",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "준수",
+            "requirement_name": "타 대학 분석·최적화 홈페이지 구축",
+            "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-003",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "준수",
+            "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+            "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-004",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "준수",
+            "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+            "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-005",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-005"
+            ],
+            "reference_context_ids": [],
+            "action_type": "제공",
+            "requirement_name": "수요기관 콘텐츠 활용 개발",
+            "requirement_detail": "홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-006",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-006"
+            ],
+            "reference_context_ids": [],
+            "action_type": "준수",
+            "requirement_name": "홈페이지 이미지 저작권",
+            "requirement_detail": "홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-007",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-007"
+            ],
+            "reference_context_ids": [],
+            "action_type": "분석",
+            "requirement_name": "웹 로그 분석·이용률·방문경로·에러",
+            "requirement_detail": "웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          },
+          {
+            "task2_id": "SFR-001-008",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-001::SFR-001-008"
+            ],
+            "reference_context_ids": [],
+            "action_type": "보안",
+            "requirement_name": "개인정보 동의·SSL 암호화",
+            "requirement_detail": "개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 하며, 개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-001"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-001",
+    "normalized_requirement_count": 8,
+    "normalized_requirements": [
+      {
+        "task2_id": "SFR-001-001",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "최소 요구조건·변경·증감 협의",
+        "requirement_detail": "최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "타 대학 분석·최적화 홈페이지 구축",
+        "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-003",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+        "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-004",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+        "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-005",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "수요기관 콘텐츠 활용 개발",
+        "requirement_detail": "홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-006",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "홈페이지 이미지 저작권",
+        "requirement_detail": "홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-007",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "웹 로그 분석·이용률·방문경로·에러",
+        "requirement_detail": "웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "SFR-001-008",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "보안",
+        "requirement_name": "개인정보 동의·SSL 암호화",
+        "requirement_detail": "개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 하며, 개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      }
+    ]
+  }
+}

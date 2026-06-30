@@ -1,0 +1,113 @@
+<form method="get" action="{% url 'project_list' %}" class="space-y-4" data-project-user-search-form>
+  <input type="hidden" name="open_project_user_search" value="1">
+  <input type="hidden" name="project_target_role" value="{{ project_target_role|default:'manager' }}">
+  <input type="hidden" name="q" value="{{ query }}">
+  <input type="hidden" name="field" value="{{ search_field }}">
+  <input type="hidden" name="open_project_form" value="1">
+  <input type="hidden" name="project_form_mode" value="{{ project_form_mode|default:'create' }}">
+  <input type="hidden" name="project_sn" value="{{ project_form_project_sn }}">
+  <input type="hidden" name="project_name" value="{{ project_form_name }}">
+  <input type="hidden" name="manager_user_ids" value="{{ project_form_manager_user_ids }}">
+  <input type="hidden" name="member_user_ids" value="{{ project_form_member_user_ids }}">
+
+  <div class="flex items-center justify-between">
+    <h4 class="text-sm font-semibold text-slate-900">
+      <span data-project-search-target-label>
+        {% if project_target_role == "member" %}담당{% else %}프로젝트 관리자{% endif %}
+      </span>
+      검색
+    </h4>
+  </div>
+
+  <div class="grid gap-3 lg:grid-cols-[auto_auto_minmax(0,1fr)_auto] lg:items-center">
+    <div class="flex items-center gap-3">
+      <label class="text-sm font-semibold text-slate-700" for="user-active">사용 상태</label>
+      <select id="user-active" name="user_active" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+        <option value="all" {% if user_active == "all" %}selected{% endif %}>전체</option>
+        <option value="Y" {% if user_active == "Y" %}selected{% endif %}>사용</option>
+        <option value="N" {% if user_active == "N" %}selected{% endif %}>비사용</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <label class="text-sm font-semibold text-slate-700" for="user-field">사용자 검색</label>
+      <select id="user-field" name="user_field" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+        <option value="all" {% if user_search_field == "all" %}selected{% endif %}>전체</option>
+        <option value="user_id" {% if user_search_field == "user_id" %}selected{% endif %}>사용자번호</option>
+        <option value="name" {% if user_search_field == "name" %}selected{% endif %}>이름</option>
+        <option value="position" {% if user_search_field == "position" %}selected{% endif %}>직위</option>
+        <option value="department" {% if user_search_field == "department" %}selected{% endif %}>부서</option>
+      </select>
+    </div>
+
+    <div>
+      <input
+        type="text"
+        name="user_q"
+        value="{{ user_query }}"
+        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+        placeholder="검색어를 입력하세요.">
+    </div>
+
+    <div class="flex justify-end">
+      <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+        검색
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="mt-6 rounded-2xl border border-slate-200 bg-white">
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-left text-sm">
+      <thead class="border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-600">
+        <tr>
+          <th scope="col" class="w-14 px-4 py-4 text-center font-semibold">
+            <span class="sr-only">선택</span>
+          </th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">사용자번호</th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">이름</th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">직위</th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">부서</th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">사용상태</th>
+          <th scope="col" class="px-4 py-4 text-center font-semibold">등록일자</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200 text-slate-700">
+        {% for user in search_users %}
+          <tr
+            class="bg-white transition hover:bg-slate-50"
+            data-project-user-row
+            data-user-id="{{ user.user_id }}"
+            data-user-name="{{ user.name }}"
+            data-user-position="{{ user.position }}"
+            data-user-department="{{ user.department }}">
+            <td class="px-4 py-4 text-center">
+              <input type="checkbox" class="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-300" data-project-user-checkbox>
+            </td>
+            <td class="px-4 py-4 text-center font-medium text-slate-900">{{ user.user_id }}</td>
+            <td class="px-4 py-4 text-center">{{ user.name }}</td>
+            <td class="px-4 py-4 text-center">{{ user.position|default:"-" }}</td>
+            <td class="px-4 py-4 text-center">{{ user.department|default:"-" }}</td>
+            <td class="px-4 py-4 text-center">{% include "components/badge.html" with kind="success" label="사용" %}</td>
+            <td class="px-4 py-4 text-center">{{ user.created_at }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="7" class="px-6 py-16 text-center text-sm text-slate-500">검색 결과가 없습니다.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-6">
+  {% include "components/pagination.html" with page_obj=user_search_page_obj page_param=user_search_page_param page_querystring=user_search_page_querystring page_range=user_search_page_range page_ellipsis=user_search_page_ellipsis %}
+</div>
+
+<div class="mt-6 flex justify-end">
+  <button type="button" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700" data-project-search-add>
+    추가
+  </button>
+</div>

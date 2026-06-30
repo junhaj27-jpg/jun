@@ -1,0 +1,18 @@
+<div id="{{ modal_id }}" data-modal-root class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full {{ width_class|default:'max-w-4xl' }}">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">{{ title }}</h3>
+          {% if subtitle %}<p class="mt-1 text-sm text-slate-500">{{ subtitle }}</p>{% endif %}
+        </div>
+        <button type="button" data-modal-hide="{{ modal_id }}" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="max-h-[85vh] overflow-y-auto px-6 py-6">
+        {% include body_template %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<aside data-sidebar-panel class="border-b border-slate-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-40 lg:w-64 lg:border-b-0 lg:border-r">
+  <div class="flex h-full flex-col">
+    <a href="{% url 'home' %}" class="flex h-16 items-center gap-3 border-b border-slate-200 px-4 transition hover:bg-slate-50">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-slate-50 text-sm font-bold text-slate-700">
+        A
+      </div>
+      <div>
+        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">ALPLED</p>
+        <p class="text-sm font-semibold text-slate-900">{% if request.user.is_staff %}Admin Console{% else %}User Console{% endif %}</p>
+      </div>
+    </a>
+
+    <div class="border-b border-slate-200 px-3 py-4">
+      <div class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Current Project</p>
+        <form method="post" action="{% url 'set_current_project' %}" data-current-project-form class="mt-2">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <select
+            name="project_sn"
+            data-current-project-select
+            class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+            {% if not available_projects %}disabled{% endif %}
+          >
+            {% if available_projects %}
+              {% for project in available_projects %}
+                <option value="{{ project.sn }}" {% if current_project and current_project.sn == project.sn %}selected{% endif %}>
+                  {{ project.name }}
+                </option>
+              {% endfor %}
+            {% else %}
+              <option value="">선택 가능한 프로젝트가 없습니다</option>
+            {% endif %}
+          </select>
+        </form>
+      </div>
+    </div>
+
+    <nav class="flex-1 space-y-2 px-3 py-4">
+      {% if request.user.is_staff %}
+        <a href="{% url 'user_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'users' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 10.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M4 16.5c0-2.8 2.7-4.5 6-4.5s6 1.7 6 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>사용자 관리</span>
+        </a>
+      {% endif %}
+
+      {% if can_manage_projects %}
+        <a href="{% url 'project_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'projects' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3.5 6.5a2 2 0 0 1 2-2h2l1.8 1.8h7.2a2 2 0 0 1 2 2v6.2a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <span>프로젝트 관리</span>
+        </a>
+      {% endif %}
+
+      <a href="{% url 'file_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'files' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5 3.8h6.8L15 7v9.2A1.8 1.8 0 0 1 13.2 18H5.8A1.8 1.8 0 0 1 4 16.2V5.6A1.8 1.8 0 0 1 5.8 3.8H5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M11.8 3.8V7H15" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <span>파일 관리</span>
+      </a>
+
+      <a href="{% url 'doc_history_list' %}?docs_cd=all" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'all' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 4.5h12M4 9.5h12M4 14.5h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>산출물 버전이력</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_SRS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_SRS' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5.5 3.5h6.2L15 6.8v9.7A1.5 1.5 0 0 1 13.5 18h-7A1.5 1.5 0 0 1 5 16.5V5a1.5 1.5 0 0 1 1.5-1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M11.7 3.5V7H15M7.5 10h5M7.5 13h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>사용자 요구사항 정의서</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ITF&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ITF' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3.5 5.5A1.5 1.5 0 0 1 5 4h10a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 15 14H5a1.5 1.5 0 0 1-1.5-1.5v-7Z" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M7.5 17h5M10 14v3M6.5 7h3M6.5 10h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>사용자 인터페이스 설계서</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ARCH&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ARCH' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M10 4.2v4.2M6.2 13.8 10 10l3.8 3.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="10" cy="3.5" r="1.8" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="5" cy="15" r="1.8" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="15" cy="15" r="1.8" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="10" cy="10" r="1.8" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <span>아키텍처 설계서</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_ERD&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_ERD' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 5.5h4v4H4v-4ZM12 4h4v4h-4V4ZM12 12h4v4h-4v-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M8 7.5h4M8 9.5l4 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span>엔티티 관계 모형 설계서</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_DB&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_DB' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <ellipse cx="10" cy="5" rx="5.5" ry="2.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M4.5 5v5c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V5M4.5 10v5c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-5" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <span>데이터베이스 설계서</span>
+      </a>
+
+      <a href="{% url 'doc_generate' %}?docs_cd=DOC_TS&resume=1" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'doc_history' and selected_document_code == 'DOC_TS' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M6.5 5.5h8M6.5 10h8M6.5 14.5h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="m3.5 5.5.8.8 1.3-1.6M3.5 10l.8.8 1.3-1.6M3.5 14.5l.8.8 1.3-1.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>통합 시험 시나리오</span>
+      </a>
+
+      <a href="{% url 'doc_approval_list' %}" class="flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium transition {% if active_menu == 'approvals' %}border-blue-200 bg-blue-50 text-blue-700{% else %}border-slate-200 bg-white text-slate-700 hover:bg-slate-50{% endif %}">
+        <svg class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M5.5 3.5h6.2L15 6.8v9.7A1.5 1.5 0 0 1 13.5 18h-7A1.5 1.5 0 0 1 5 16.5V5a1.5 1.5 0 0 1 1.5-1.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="m7.5 11 1.8 1.8 3.7-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>산출물 승인요청</span>
+      </a>
+    </nav>
+
+    <div class="border-t border-slate-200 p-4">
+      <div data-profile-url="{% url 'user_profile' %}" class="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:border-blue-200 hover:bg-blue-50 hover:shadow-sm focus-within:border-blue-200 focus-within:bg-blue-50" role="link" tabindex="0">
+        <div>
+          <p class="text-sm font-semibold text-slate-900">{% firstof request.user.name request.user.user_id "admin" %}</p>
+          <p class="text-xs text-slate-500">{% firstof request.user.user_id "" %}</p>
+        </div>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
+            Logout
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</aside>

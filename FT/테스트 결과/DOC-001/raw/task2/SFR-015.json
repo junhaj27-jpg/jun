@@ -1,0 +1,180 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-015",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-015::SFR-015-001",
+        "action_type": "관리",
+        "output_name": "서비스 유형별 자원 요구 특성 정의",
+        "source_text": "어플리케이션 또는 서비스 유형별로 자원 요구 특성을 정의",
+        "original_atomic_id": "SFR-015-001",
+        "source_fur_id": "SFR-015"
+      },
+      {
+        "atomic_id": "SFR-015::SFR-015-002",
+        "action_type": "관리",
+        "output_name": "VM·Container·BM 자원 조합 카탈로그",
+        "source_text": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그",
+        "original_atomic_id": "SFR-015-002",
+        "source_fur_id": "SFR-015"
+      },
+      {
+        "atomic_id": "SFR-015::SFR-015-003",
+        "action_type": "관리",
+        "output_name": "서비스 자원 구성·성능·변경 이력 추적",
+        "source_text": "서비스 실행 시 사용된 자원의 구성, 성능, 변경 이력 등을 추적",
+        "original_atomic_id": "SFR-015-003",
+        "source_fur_id": "SFR-015"
+      },
+      {
+        "atomic_id": "SFR-015::SFR-015-004",
+        "action_type": "처리",
+        "output_name": "서비스 유형별 최적 자원 자동 프로비저닝",
+        "source_text": "어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝",
+        "original_atomic_id": "SFR-015-004",
+        "source_fur_id": "SFR-015"
+      },
+      {
+        "atomic_id": "SFR-015::SFR-015-005",
+        "action_type": "처리",
+        "output_name": "컨테이너 최적 리소스 추천·생성·배포",
+        "source_text": "컨테이너 기반 서비스를 위한 최적화된 리소스를 추천하고, 선택된 환경에서 자동으로 컨테이너를 생성 및 배포",
+        "original_atomic_id": "SFR-015-005",
+        "source_fur_id": "SFR-015"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-015::SFR-015-001",
+        "SFR-015::SFR-015-002",
+        "SFR-015::SFR-015-003",
+        "SFR-015::SFR-015-004",
+        "SFR-015::SFR-015-005"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2523,
+      "max_new_tokens": 6144,
+      "generated_tokens": 585,
+      "hit_token_limit": false,
+      "elapsed_seconds": 34.420052824076265,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-015\",\n  \"normalized_requirement_count\": 3,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-031\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-015::SFR-015-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"서비스 유형별 자원 요구 특성 정의\",\n      \"requirement_detail\": \"서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-015\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-032\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-015::SFR-015-002\",\n        \"SFR-015::SFR-015-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"서비스 자원 조합·성능·변경 이력 관리\",\n      \"requirement_detail\": \"VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-015\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-033\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-015::SFR-015-004\",\n        \"SFR-015::SFR-015-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"서비스 유형별 자원 자동 프로비저닝·컨테이너 배포\",\n      \"requirement_detail\": \"서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-015\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-015",
+        "normalized_requirement_count": 3,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-031",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-015::SFR-015-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+            "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-015"
+            ]
+          },
+          {
+            "task2_id": "T2-032",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-015::SFR-015-002",
+              "SFR-015::SFR-015-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+            "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-015"
+            ]
+          },
+          {
+            "task2_id": "T2-033",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-015::SFR-015-004",
+              "SFR-015::SFR-015-005"
+            ],
+            "reference_context_ids": [],
+            "action_type": "처리",
+            "requirement_name": "서비스 유형별 자원 자동 프로비저닝·컨테이너 배포",
+            "requirement_detail": "서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-015"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-015",
+    "normalized_requirement_count": 3,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-031",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-015::SFR-015-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+        "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      },
+      {
+        "task2_id": "T2-032",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-015::SFR-015-002",
+          "SFR-015::SFR-015-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+        "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      },
+      {
+        "task2_id": "T2-033",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-015::SFR-015-004",
+          "SFR-015::SFR-015-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "서비스 유형별 자원 자동 프로비저닝·컨테이너 배포",
+        "requirement_detail": "서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      }
+    ]
+  }
+}

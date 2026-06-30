@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-011",
+      "requirement_name": "로그인 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자 인증 및 접근 관리를 위한 로그인 기능",
+      "requirement_detail": "▪ 통합인증시스템 로그인 기능\n- 학내 운영중인 통합인증시스템을 활용한 로그인 기능\n▪ 외부 사용자 인증 기능\n- ID와 비밀번호를 기반으로 한 기본 인증 기능\n- 학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 방지\n- 비밀번호 암호화 및 안전한 데이터 전송을 위한 HTTPS 프로토콜 사용\n- 비밀번호 재설정 기능",
+      "source_location": {
+        "table_index": 24,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2088,
+  "max_new_tokens": 4096,
+  "generated_tokens": 346,
+  "hit_token_limit": false,
+  "elapsed_seconds": 21.330794011242688,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-011\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-011-001\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"학내 통합인증 로그인\",\n      \"source_text\": \"학내 운영중인 통합인증시스템을 활용한 로그인 기능\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-002\",\n      \"action_type\": \"권한\",\n      \"output_name\": \"학내 이메일 ID·외부 사용자 차단\",\n      \"source_text\": \"학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 방지\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-003\",\n      \"action_type\": \"보안\",\n      \"output_name\": \"비밀번호 암호화·HTTPS\",\n      \"source_text\": \"비밀번호 암호화 및 안전한 데이터 전송을 위한 HTTPS 프로토콜 사용\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-004\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"비밀번호 재설정\",\n      \"source_text\": \"비밀번호 재설정 기능\"\n    }\n  ]\n}"
+}

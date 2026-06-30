@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-005",
+      "requirement_name": "생성형 AI 서비스 스튜디오",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자가 직접 챗봇을 설계, 편집할 수 있는 AI 서비스 스튜디오 구축",
+      "requirement_detail": "▪ 챗봇 설계 기능\n- 프롬프트를 손쉽게 수정 가능\n- 사용자 제공 문서를 기반으로 챗봇 지식베이스를 생성 및 관리할 수 있는 기능\n▪ 모델 파라미터 조정\n- 프로젝트 요구에 따라 적합한 LLM 모델을 선택하여 활용\n- 사용자 요구에 따라 응답의 창의성, 신뢰성 및 결과 범위를 조정할 수 있도록 지원\n▪ 챗봇 저장 및 퍼블리시 과정\n- 제작 완료 후 관리자의 승인 하에 챗봇을 공용으로 배포하거나 특정 사용자 그룹에만 제한적으로 배포 가능\n- 퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 기능을 점검할 수 있도록 지원\n▪ 사용자 그룹별 서비스 맞춤화\n- 학생, 교수, 교직원 등 사용자 그룹별로 요구사항에 맞춘 챗봇 설계를 지원\n▪ 특정 그룹을 지정한 챗봇 사용 기능\n- 사용자 그룹 관리(생성,수정,삭제) 기능\n- 챗봇에 사용자 그룹 매칭 기능",
+      "source_location": {
+        "table_index": 18,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2266,
+  "max_new_tokens": 4096,
+  "generated_tokens": 583,
+  "hit_token_limit": false,
+  "elapsed_seconds": 35.449009619653225,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-005\",\n  \"decomposition_count\": 7,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-005-001\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"프롬프트 손쉬운 수정\",\n      \"source_text\": \"프롬프트를 손쉽게 수정 가능\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-002\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"문서 기반 지식베이스 생성·관리\",\n      \"source_text\": \"사용자 제공 문서를 기반으로 챗봇 지식베이스를 생성 및 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"LLM 모델 선택·응답 파라미터 조정\",\n      \"source_text\": \"적합한 LLM 모델 선택 및 창의성·신뢰성·결과 범위 조정\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"챗봇 저장·관리자 승인·퍼블리시\",\n      \"source_text\": \"관리자 승인 하에 공용 배포 또는 특정 사용자 그룹 제한 배포\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-005\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"퍼블리시 전 개인 테스트\",\n      \"source_text\": \"퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 점검\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-006\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"사용자 그룹별 챗봇 설계\",\n      \"source_text\": \"학생, 교수, 교직원 등 사용자 그룹별 요구사항에 맞춘 챗봇 설계\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-007\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"사용자 그룹 관리·챗봇 매칭\",\n      \"source_text\": \"사용자 그룹 생성·수정·삭제와 챗봇 사용자 그룹 매칭\"\n    }\n  ]\n}"
+}

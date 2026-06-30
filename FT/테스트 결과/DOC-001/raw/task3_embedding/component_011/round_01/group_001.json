@@ -1,0 +1,182 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C011-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000048",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-006::SFR-006-006",
+          "SFR-006::SFR-006-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HA 노드별 유지보수 이력 관리·성능 변화 분석",
+        "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000086",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-013::SFR-013-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "Lustre 마운트 성능 영향도 분석·비교",
+        "requirement_detail": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-013"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2147,
+      "max_new_tokens": 3220,
+      "generated_tokens": 479,
+      "hit_token_limit": false,
+      "elapsed_seconds": 29.10250690113753,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000048\",\n        \"T2-000086\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"분석\",\n    \"requirement_name\": \"HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석\",\n    \"requirement_detail\": \"HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000048\",\n      \"T2-000086\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-006::SFR-006-006\",\n      \"SFR-006::SFR-006-007\",\n      \"SFR-013::SFR-013-008\"\n    ],\n    \"sources\": [\n      \"SFR-006\",\n      \"SFR-013\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\"\n  }\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000048",
+              "T2-000086"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          }
+        ],
+        "final_requirement": {
+          "gold_id": "GOLD-001",
+          "action_type": "분석",
+          "requirement_name": "HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석",
+          "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.",
+          "source_task2_ids": [
+            "T2-000048",
+            "T2-000086"
+          ],
+          "source_atomic_ids": [
+            "SFR-006::SFR-006-006",
+            "SFR-006::SFR-006-007",
+            "SFR-013::SFR-013-008"
+          ],
+          "sources": [
+            "SFR-006",
+            "SFR-013"
+          ],
+          "processing_type": "통합",
+          "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+        },
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "분석",
+            "requirement_name": "HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석",
+            "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.",
+            "source_task2_ids": [
+              "T2-000048",
+              "T2-000086"
+            ],
+            "source_atomic_ids": [
+              "SFR-006::SFR-006-006",
+              "SFR-006::SFR-006-007",
+              "SFR-013::SFR-013-008"
+            ],
+            "sources": [
+              "SFR-006",
+              "SFR-013"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+          }
+        ],
+        "final_requirement_count": 1
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000048",
+          "T2-000086"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      }
+    ],
+    "final_requirement": {
+      "gold_id": "GOLD-001",
+      "action_type": "분석",
+      "requirement_name": "HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석",
+      "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.",
+      "source_task2_ids": [
+        "T2-000048",
+        "T2-000086"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-006",
+        "SFR-006::SFR-006-007",
+        "SFR-013::SFR-013-008"
+      ],
+      "sources": [
+        "SFR-006",
+        "SFR-013"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "분석",
+        "requirement_name": "HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석",
+        "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.",
+        "source_task2_ids": [
+          "T2-000048",
+          "T2-000086"
+        ],
+        "source_atomic_ids": [
+          "SFR-006::SFR-006-006",
+          "SFR-006::SFR-006-007",
+          "SFR-013::SFR-013-008"
+        ],
+        "sources": [
+          "SFR-006",
+          "SFR-013"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+      }
+    ],
+    "final_requirement_count": 1
+  }
+}

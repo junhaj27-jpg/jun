@@ -1,0 +1,238 @@
+{
+  "SFR-001": [
+    {
+      "atomic_id": "SFR-001::SFR-001-001",
+      "action_type": "준수",
+      "output_name": "최소 요구조건·변경·증감 협의",
+      "source_text": "최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하다.",
+      "original_atomic_id": "SFR-001-001",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-002",
+      "action_type": "준수",
+      "output_name": "타 대학 분석·최적화 홈페이지 구축",
+      "source_text": "타 대학 분석 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.",
+      "original_atomic_id": "SFR-001-002",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-003",
+      "action_type": "준수",
+      "output_name": "전자정부 표준프레임워크·반응형 웹",
+      "source_text": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+      "original_atomic_id": "SFR-001-003",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-004",
+      "action_type": "준수",
+      "output_name": "CMS·웹 접근성·호환성·표준문법",
+      "source_text": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+      "original_atomic_id": "SFR-001-004",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-005",
+      "action_type": "제공",
+      "output_name": "수요기관 콘텐츠 활용 개발",
+      "source_text": "홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+      "original_atomic_id": "SFR-001-005",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-006",
+      "action_type": "준수",
+      "output_name": "홈페이지 이미지 저작권",
+      "source_text": "홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+      "original_atomic_id": "SFR-001-006",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-007",
+      "action_type": "분석",
+      "output_name": "웹 로그 분석·이용률·방문경로·에러",
+      "source_text": "웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여 웹 사이트가 관리될 수 있도록 하여야 한다.",
+      "original_atomic_id": "SFR-001-007",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-008",
+      "action_type": "보안",
+      "output_name": "개인정보 동의·SSL 암호화",
+      "source_text": "개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 한다.(시설 대관, 수강신청 등)\n개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+      "original_atomic_id": "SFR-001-008",
+      "source_fur_id": "SFR-001"
+    }
+  ],
+  "SFR-002": [
+    {
+      "atomic_id": "SFR-002::SFR-002-001",
+      "action_type": "제공",
+      "output_name": "사용자 중심 디자인·기능 설계",
+      "source_text": "사용자의 시각적 요소와 기능적인 요소를 고려한 디자인 제작",
+      "original_atomic_id": "SFR-002-001",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-002",
+      "action_type": "관리",
+      "output_name": "직관적인 메뉴구성·주관부서 추가메뉴",
+      "source_text": "형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴 구성\n현재 제안요청서에서 요청하는 메뉴를 모두 포함하며, ‘주관부서’의 요구에 따라 추가 메뉴를 구성할 수 있음",
+      "original_atomic_id": "SFR-002-002",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-003",
+      "action_type": "제공",
+      "output_name": "웹 스타일 가이드·일관성 유지",
+      "source_text": "가독성 및 사용성을 고려한 레이아웃, 명확한 서체 규정 등 웹 스타일 가이드를 제작하여 일관성 유지",
+      "original_atomic_id": "SFR-002-003",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-004",
+      "action_type": "보안",
+      "output_name": "개인정보·비밀번호 암호화",
+      "source_text": "데이터의 안전한 암호화 처리(개인식별정보/비밀번호 등)",
+      "original_atomic_id": "SFR-002-004",
+      "source_fur_id": "SFR-002"
+    }
+  ],
+  "SFR-003": [
+    {
+      "atomic_id": "SFR-003::SFR-003-001",
+      "action_type": "제공",
+      "output_name": "다중 디바이스·브라우저 반응형 웹",
+      "source_text": "다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용",
+      "original_atomic_id": "SFR-003-001",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-002",
+      "action_type": "제공",
+      "output_name": "모바일 OS·브라우저 호환성",
+      "source_text": "모바일 기기의 OS 및 브라우저와의 호환성 준수",
+      "original_atomic_id": "SFR-003-002",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-003",
+      "action_type": "제공",
+      "output_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+      "source_text": "간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보",
+      "original_atomic_id": "SFR-003-003",
+      "source_fur_id": "SFR-003"
+    }
+  ],
+  "SFR-004": [
+    {
+      "atomic_id": "SFR-004::SFR-004-001",
+      "action_type": "산출",
+      "output_name": "RISE사업단·센터 랜딩페이지",
+      "source_text": "RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작",
+      "original_atomic_id": "SFR-004-001",
+      "source_fur_id": "SFR-004"
+    }
+  ],
+  "SFR-005": [
+    {
+      "atomic_id": "SFR-005::SFR-005-001",
+      "action_type": "준수",
+      "output_name": "현재 운영중인 CMS 호환성",
+      "source_text": "현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다.",
+      "original_atomic_id": "SFR-005-001",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-002",
+      "action_type": "준수",
+      "output_name": "현재 운영중인 CMS 기능 활성화",
+      "source_text": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+      "original_atomic_id": "SFR-005-002",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-003",
+      "action_type": "권한",
+      "output_name": "관리자 시스템 접근 제어",
+      "source_text": "관리자 시스템 접근 제어 기능 제공",
+      "original_atomic_id": "SFR-005-003",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-004",
+      "action_type": "관리",
+      "output_name": "메뉴·콘텐츠·게시판 관리",
+      "source_text": "메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)",
+      "original_atomic_id": "SFR-005-004",
+      "source_fur_id": "SFR-005"
+    }
+  ],
+  "SFR-006": [
+    {
+      "atomic_id": "SFR-006::SFR-006-001",
+      "action_type": "조회",
+      "output_name": "사업단 통합게시판 게시글 조회",
+      "source_text": "사업단 홈페이지에서 모든 공지사항 및 게시글 확인",
+      "original_atomic_id": "SFR-006-001",
+      "source_fur_id": "SFR-006"
+    }
+  ],
+  "SFR-007": [
+    {
+      "atomic_id": "SFR-007::SFR-007-001",
+      "action_type": "입력",
+      "output_name": "온라인 신청·문의 입력",
+      "source_text": "사용자의 온라인 신청 및 문의사항",
+      "original_atomic_id": "SFR-007-001",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-002",
+      "action_type": "조회",
+      "output_name": "온라인 신청·문의 관리자 확인",
+      "source_text": "이메일 혹은 관리자 기능을 통하여 확인",
+      "original_atomic_id": "SFR-007-002",
+      "source_fur_id": "SFR-007"
+    }
+  ],
+  "SFR-008": [
+    {
+      "atomic_id": "SFR-008::SFR-008-001",
+      "action_type": "연계",
+      "output_name": "우리대학 SSO 로그인 연계",
+      "source_text": "우리대학 SSO 연계",
+      "original_atomic_id": "SFR-008-001",
+      "source_fur_id": "SFR-008"
+    }
+  ],
+  "SFR-009": [
+    {
+      "atomic_id": "SFR-009::SFR-009-001",
+      "action_type": "조회",
+      "output_name": "사업단 성과 조회",
+      "source_text": "우리 사업단의 성과를 조회할 수 있는 기능",
+      "original_atomic_id": "SFR-009-001",
+      "source_fur_id": "SFR-009"
+    }
+  ],
+  "SFR-010": [
+    {
+      "atomic_id": "SFR-010::SFR-010-001",
+      "action_type": "제공",
+      "output_name": "포털 검색 최적화",
+      "source_text": "네이버, 구글 등의 포털사이트 검색 최적화",
+      "original_atomic_id": "SFR-010-001",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-002",
+      "action_type": "제공",
+      "output_name": "LLM 검색 최적화",
+      "source_text": "챗GPT 등 LLM의 검색 최적화",
+      "original_atomic_id": "SFR-010-002",
+      "source_fur_id": "SFR-010"
+    }
+  ]
+}

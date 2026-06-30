@@ -1,0 +1,636 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-003-EMB-C002-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000003",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+        "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000004",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+        "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000013",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+        "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000014",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "모바일 OS·브라우저 호환성",
+        "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000017",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 호환성",
+        "requirement_detail": "현재 운영중인 CMS와의 호환성을 확보하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-000018",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 기능 활성화",
+        "requirement_detail": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "error_type": "ValueError",
+      "error_message": "TASK3.relation_decisions[1] 필수 필드 누락=['gold_id']",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 527, in generate_from_messages\n    obj = validate_task_output(task_type, obj)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 442, in validate_task_output\n    raise ValueError(f'TASK3.relation_decisions[{relation_index}] 필수 필드 누락={sorted(missing)}')\nValueError: TASK3.relation_decisions[1] 필수 필드 누락=['gold_id']\n",
+      "hit_token_limit": false
+    },
+    {
+      "attempt": 2,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2829,
+      "max_new_tokens": 6192,
+      "generated_tokens": 2542,
+      "hit_token_limit": false,
+      "elapsed_seconds": 150.21489397902042,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"전자정부 표준프레임워크·반응형 웹\",\n      \"requirement_detail\": \"전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000003\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-003\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"CMS·웹 접근성·호환성·표준문법\",\n      \"requirement_detail\": \"구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000004\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-004\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"다중 디바이스·브라우저 반응형 웹\",\n      \"requirement_detail\": \"다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000013\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-001\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"모바일 OS·브라우저 호환성\",\n      \"requirement_detail\": \"모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000014\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-002\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"현재 운영중인 CMS 호환성\",\n      \"requirement_detail\": \"현재 운영중인 CMS와의 호환성을 확보하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000017\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-001\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"현재 운영중인 CMS 기능 활성화\",\n      \"requirement_detail\": \"현재 운영중인 CMS 기능이 모두 활성화되어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000018\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-002\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    }\n  ],\n  \"final_requirement_count\": 6,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"전자정부 표준프레임워크·반응형 웹\",\n      \"requirement_detail\": \"전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000003\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-003\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"CMS·웹 접근성·호환성·표준문법\",\n      \"requirement_detail\": \"구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000004\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-004\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"다중 디바이스·브라우저 반응형 웹\",\n      \"requirement_detail\": \"다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000013\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-001\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"모바일 OS·브라우저 호환성\",\n      \"requirement_detail\": \"모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000014\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-002\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"현재 운영중인 CMS 호환성\",\n      \"requirement_detail\": \"현재 운영중인 CMS와의 호환성을 확보하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000017\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-001\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"준수\",\n      \"requirement_name\": \"현재 운영중인 CMS 기능 활성화\",\n      \"requirement_detail\": \"현재 운영중인 CMS 기능이 모두 활성화되어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000018\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-002\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "준수",
+            "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+            "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+            "source_task2_ids": [
+              "T2-000003"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-003"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000003"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "준수",
+            "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+            "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+            "source_task2_ids": [
+              "T2-000004"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-004"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000004"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "제공",
+            "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+            "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000013"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-001"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000013"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "제공",
+            "requirement_name": "모바일 OS·브라우저 호환성",
+            "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000014"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-002"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000014"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "준수",
+            "requirement_name": "현재 운영중인 CMS 호환성",
+            "requirement_detail": "현재 운영중인 CMS와의 호환성을 확보하여야 한다.",
+            "source_task2_ids": [
+              "T2-000017"
+            ],
+            "source_atomic_ids": [
+              "SFR-005::SFR-005-001"
+            ],
+            "sources": [
+              "SFR-005"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000017"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "준수",
+            "requirement_name": "현재 운영중인 CMS 기능 활성화",
+            "requirement_detail": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+            "source_task2_ids": [
+              "T2-000018"
+            ],
+            "source_atomic_ids": [
+              "SFR-005::SFR-005-002"
+            ],
+            "sources": [
+              "SFR-005"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+            "comparison_ids": [
+              "T2-000018"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "PARENT_CHILD",
+            "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          }
+        ],
+        "final_requirement_count": 6,
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "준수",
+            "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+            "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+            "source_task2_ids": [
+              "T2-000003"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-003"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "준수",
+            "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+            "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+            "source_task2_ids": [
+              "T2-000004"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-004"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "제공",
+            "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+            "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000013"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-001"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "제공",
+            "requirement_name": "모바일 OS·브라우저 호환성",
+            "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000014"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-002"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "준수",
+            "requirement_name": "현재 운영중인 CMS 호환성",
+            "requirement_detail": "현재 운영중인 CMS와의 호환성을 확보하여야 한다.",
+            "source_task2_ids": [
+              "T2-000017"
+            ],
+            "source_atomic_ids": [
+              "SFR-005::SFR-005-001"
+            ],
+            "sources": [
+              "SFR-005"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "준수",
+            "requirement_name": "현재 운영중인 CMS 기능 활성화",
+            "requirement_detail": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+            "source_task2_ids": [
+              "T2-000018"
+            ],
+            "source_atomic_ids": [
+              "SFR-005::SFR-005-002"
+            ],
+            "sources": [
+              "SFR-005"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "준수",
+        "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+        "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+        "source_task2_ids": [
+          "T2-000003"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-003"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000003"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "준수",
+        "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+        "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+        "source_task2_ids": [
+          "T2-000004"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-004"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000004"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "제공",
+        "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+        "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000013"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-001"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000013"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "제공",
+        "requirement_name": "모바일 OS·브라우저 호환성",
+        "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000014"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-002"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000014"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 호환성",
+        "requirement_detail": "현재 운영중인 CMS와의 호환성을 확보하여야 한다.",
+        "source_task2_ids": [
+          "T2-000017"
+        ],
+        "source_atomic_ids": [
+          "SFR-005::SFR-005-001"
+        ],
+        "sources": [
+          "SFR-005"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000017"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 기능 활성화",
+        "requirement_detail": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+        "source_task2_ids": [
+          "T2-000018"
+        ],
+        "source_atomic_ids": [
+          "SFR-005::SFR-005-002"
+        ],
+        "sources": [
+          "SFR-005"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+        "comparison_ids": [
+          "T2-000018"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "PARENT_CHILD",
+        "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      }
+    ],
+    "final_requirement_count": 6,
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "준수",
+        "requirement_name": "전자정부 표준프레임워크·반응형 웹",
+        "requirement_detail": "전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.",
+        "source_task2_ids": [
+          "T2-000003"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-003"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "준수",
+        "requirement_name": "CMS·웹 접근성·호환성·표준문법",
+        "requirement_detail": "구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+        "source_task2_ids": [
+          "T2-000004"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-004"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "제공",
+        "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+        "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000013"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-001"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "제공",
+        "requirement_name": "모바일 OS·브라우저 호환성",
+        "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000014"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-002"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 호환성",
+        "requirement_detail": "현재 운영중인 CMS와의 호환성을 확보하여야 한다.",
+        "source_task2_ids": [
+          "T2-000017"
+        ],
+        "source_atomic_ids": [
+          "SFR-005::SFR-005-001"
+        ],
+        "sources": [
+          "SFR-005"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "준수",
+        "requirement_name": "현재 운영중인 CMS 기능 활성화",
+        "requirement_detail": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다.",
+        "source_task2_ids": [
+          "T2-000018"
+        ],
+        "source_atomic_ids": [
+          "SFR-005::SFR-005-002"
+        ],
+        "sources": [
+          "SFR-005"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+      }
+    ]
+  }
+}

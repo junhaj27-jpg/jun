@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "fallback_count": 0,
+  "fallback_records": [],
+  "expected_task2_count": 51,
+  "assigned_task2_count": 51,
+  "missing_task2_count": 0,
+  "duplicate_assignment_count": 0,
+  "orphan_relation_count": 0
+}

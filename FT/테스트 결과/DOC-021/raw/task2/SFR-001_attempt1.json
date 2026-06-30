@@ -1,0 +1,143 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-001",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-001::SFR-001-001",
+        "action_type": "관리",
+        "output_name": "모듈화 아키텍처 설계",
+        "source_text": "주요 기능을 모듈화하여 독립 개발·확장과 의존성 최소화",
+        "original_atomic_id": "SFR-001-001",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-002",
+        "action_type": "관리",
+        "output_name": "온프레미스 자원 최적화",
+        "source_text": "온프레미스 서버 자원 효율 활용과 사용량 분석·안정성 기준",
+        "original_atomic_id": "SFR-001-002",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-003",
+        "action_type": "관리",
+        "output_name": "플랫폼 확장성 설계",
+        "source_text": "새 LLM 모델과 외부 API 통합 및 학습데이터·사용자 트래픽 확장성",
+        "original_atomic_id": "SFR-001-003",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-004",
+        "action_type": "연계",
+        "output_name": "온프레미스·상용 LLM 통합",
+        "source_text": "온프레미스 LLM과 상용 LLM API 통합",
+        "original_atomic_id": "SFR-001-004",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-005",
+        "action_type": "관리",
+        "output_name": "다양한 LLM 동시 통합",
+        "source_text": "GPT-4, Llama 등 다양한 LLM 모델 동시 통합",
+        "original_atomic_id": "SFR-001-005",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-006",
+        "action_type": "관리",
+        "output_name": "AI 모델 파라미터 조정",
+        "source_text": "답변 온도와 유사 응답 개수 조정",
+        "original_atomic_id": "SFR-001-006",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-007",
+        "action_type": "관리",
+        "output_name": "프롬프트 템플릿 관리",
+        "source_text": "프롬프트 템플릿 등록·수정·삭제",
+        "original_atomic_id": "SFR-001-007",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-008",
+        "action_type": "입력",
+        "output_name": "프롬프트 템플릿 활용",
+        "source_text": "등록 프롬프트 선택·수정·질의문 입력",
+        "original_atomic_id": "SFR-001-008",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-009",
+        "action_type": "제공",
+        "output_name": "대화형 UX·스레드 대화",
+        "source_text": "ChatGPT 유사 UX와 대화 스레드 저장·검색·복원",
+        "original_atomic_id": "SFR-001-009",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-010",
+        "action_type": "관리",
+        "output_name": "대화 히스토리 삭제·다운로드",
+        "source_text": "대화 데이터 삭제와 개인 기록 다운로드",
+        "original_atomic_id": "SFR-001-010",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-011",
+        "action_type": "보안",
+        "output_name": "대화 데이터 암호화",
+        "source_text": "개인정보 보호를 위한 대화 데이터 암호화 저장",
+        "original_atomic_id": "SFR-001-011",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-012",
+        "action_type": "관리",
+        "output_name": "대화 히스토리 복원",
+        "source_text": "이전 대화를 검색하거나 복원",
+        "original_atomic_id": "SFR-001-012",
+        "source_fur_id": "SFR-001"
+      },
+      {
+        "atomic_id": "SFR-001::SFR-001-013",
+        "action_type": "관리",
+        "output_name": "대화 히스토리 삭제",
+        "source_text": "사용자가 요청한 경우 대화 데이터 삭제",
+        "original_atomic_id": "SFR-001-013",
+        "source_fur_id": "SFR-001"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-001::SFR-001-001",
+        "SFR-001::SFR-001-002",
+        "SFR-001::SFR-001-003",
+        "SFR-001::SFR-001-004",
+        "SFR-001::SFR-001-005",
+        "SFR-001::SFR-001-006",
+        "SFR-001::SFR-001-007",
+        "SFR-001::SFR-001-008",
+        "SFR-001::SFR-001-009",
+        "SFR-001::SFR-001-010",
+        "SFR-001::SFR-001-011",
+        "SFR-001::SFR-001-012",
+        "SFR-001::SFR-001-013"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 3507,
+  "max_new_tokens": 6144,
+  "generated_tokens": 1886,
+  "hit_token_limit": false,
+  "elapsed_seconds": 124.28822617884725,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-001\",\n  \"normalized_requirement_count\": 13,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"모듈화 아키텍처 설계\",\n      \"requirement_detail\": \"주요 기능을 독립 개발과 확장에 유리하게 모듈화하고 모듈 간 의존성을 최소화하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"온프레미스 자원 최적화\",\n      \"requirement_detail\": \"온프레미스 서버 자원을 효율적으로 활용하고 사용량을 분석하여 안정성 기준을 설정하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"플랫폼 확장성 설계\",\n      \"requirement_detail\": \"새 LLM 모델과 외부 API를 통합하고 학습데이터와 사용자 트래픽의 확장성을 고려하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-004\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"온프레미스·상용 LLM 통합\",\n      \"requirement_detail\": \"온프레미스 LLM과 상용 LLM API를 통합하여 사용자에게 일관된 서비스를 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-005\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"다양한 LLM 동시 통합\",\n      \"requirement_detail\": \"GPT-4, Llama 등 다양한 LLM 모델을 동시에 통합하여 사용자에게 선택할 수 있도록 하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-006\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"AI 모델 파라미터 조정\",\n      \"requirement_detail\": \"AI 모델의 답변 온도와 유사 응답 개수를 사용자에게 조정할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-007\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-007\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"프롬프트 템플릿 관리\",\n      \"requirement_detail\": \"프롬프트 템플릿을 등록·수정·삭제하고 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-008\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-008\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"입력\",\n      \"requirement_name\": \"프롬프트 템플릿 활용\",\n      \"requirement_detail\": \"등록된 프롬프트 템플릿을 선택·수정하고 사용자 질의문을 입력할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-009\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"대화형 UX·스레드 대화\",\n      \"requirement_detail\": \"ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-010\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"대화 히스토리 삭제·다운로드\",\n      \"requirement_detail\": \"사용자가 요청한 경우 대화 데이터를 삭제하고 개인 기록을 다운로드할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-011\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-011\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"대화 데이터 암호화\",\n      \"requirement_detail\": \"개인정보를 보호하기 위해 대화 데이터를 암호화하여 저장하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-012\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-012\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"대화 히스토리 복원\",\n      \"requirement_detail\": \"이전 대화를 검색하거나 복원할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-013\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-001::SFR-001-013\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"대화 히스토리 삭제\",\n      \"requirement_detail\": \"사용자가 요청한 경우 대화 데이터를 삭제하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-001\"\n      ]\n    }\n  ]\n}"
+}

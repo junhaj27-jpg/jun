@@ -1,0 +1,130 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C013-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000050",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 클러스터 토폴로지 시각화",
+        "requirement_detail": "HPC 클러스터의 토폴로지와 네트워크 구조를 시각화하여 대시보드에 표시하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000051",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 주요 리소스 대시보드",
+        "requirement_detail": "HPC의 CPU, 메모리, 네트워크 및 스토리지 리소스 사용률을 대시보드에서 실시간 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000052",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 장애 노드·네트워크 경로 강조",
+        "requirement_detail": "장애가 발생한 HPC 노드와 관련 네트워크 경로를 대시보드에서 강조 표시하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000053",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 사용자별 사용량·작업 현황",
+        "requirement_detail": "사용자별 HPC 사용량과 실행 중인 작업 현황을 대시보드에서 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000055",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 사용 로그·과거 작업 내역",
+        "requirement_detail": "HPC 사용 로그와 과거 작업 내역을 대시보드에서 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000057",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 성능 저하·장애 알림",
+        "requirement_detail": "HPC 성능 저하와 장애 발생 시 운영자에게 실시간 알림을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000058",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 리소스 임계치 초과 알림",
+        "requirement_detail": "HPC 리소스의 임계치를 초과할 경우 운영자에게 알림을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000059",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 자동 조치 버튼",
+        "requirement_detail": "리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 3015,
+  "max_new_tokens": 4522,
+  "generated_tokens": 1766,
+  "hit_token_limit": false,
+  "elapsed_seconds": 104.26465004030615,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000050\",\n        \"T2-000051\",\n        \"T2-000052\",\n        \"T2-000053\",\n        \"T2-000055\",\n        \"T2-000057\",\n        \"T2-000058\",\n        \"T2-000059\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement_count\": 8,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 클러스터 토폴로지 시각화\",\n      \"requirement_detail\": \"HPC 클러스터의 토폴로지와 네트워크 구조를 시각화하여 대시보드에 표시하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000050\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-001\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 주요 리소스 대시보드\",\n      \"requirement_detail\": \"HPC의 CPU, 메모리, 네트워크 및 스토리지 리소스 사용률을 대시보드에서 실시간 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000051\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-002\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 장애 노드·네트워크 경로 강조\",\n      \"requirement_detail\": \"장애가 발생한 HPC 노드와 관련 네트워크 경로를 대시보드에서 강조 표시하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000052\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-003\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 사용자별 사용량·작업 현황\",\n      \"requirement_detail\": \"사용자별 HPC 사용량과 실행 중인 작업 현황을 대시보드에서 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000053\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-004\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 사용 로그·과거 작업 내역\",\n      \"requirement_detail\": \"HPC 사용 로그와 과거 작업 내역을 대시보드에서 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000055\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-006\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 성능 저하·장애 알림\",\n      \"requirement_detail\": \"HPC 성능 저하와 장애 발생 시 운영자에게 실시간 알림을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000057\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-008\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 리소스 임계치 초과 알림\",\n      \"requirement_detail\": \"HPC 리소스의 임계치를 초과할 경우 운영자에게 알림을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000058\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-009\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 자동 조치 버튼\",\n      \"requirement_detail\": \"리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000059\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007-010\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}"
+}

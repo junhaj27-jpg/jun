@@ -1,0 +1,435 @@
+{
+  "task_type": "TASK4_FINAL_REQUIREMENTS_TO_CBD",
+  "requirements": [
+    {
+      "requirement_id": "GOLD-001",
+      "requirement_name": "독립운영 모듈형·확장형 온프레미스 플랫폼",
+      "requirement_type": "기능",
+      "description": "플랫폼은 대학 내부 인프라에서 독립 운영하고 주요 기능을 저결합 모듈로 구성하며 신규 LLM·외부 API, 데이터 증가와 트래픽 변동을 구조변경 없이 수용하고 민감데이터의 외부유출을 방지하여야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "독립운영 모듈형·확장형 온프레미스 플랫폼의 아키텍처·대화기록·CSV·엑셀 산출결과 확인"
+      ],
+      "note": "Task2 ID: T2-001; T2-010 | 원자 ID: SFR-001-001; SFR-001-003; SFR-003-001; SFR-003-002 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-002",
+      "requirement_name": "온프레미스 자원·응답성능·고가용성 최적화",
+      "requirement_type": "기능",
+      "description": "온프레미스 서버의 CPU·메모리 사용량과 운영기준을 분석하고 다수 사용자 처리, 응답시간·처리용량과 로컬자원 활용을 최적화하며 고가용성 설계로 장애복구시간을 최소화하여야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "온프레미스 자원·응답성능·고가용성 최적화의 문서처리·벡터검색·자동학습·분산처리·대화처리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-002; T2-011 | 원자 ID: SFR-001-002; SFR-003-003 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-003",
+      "requirement_name": "복수 LLM API 통합관리·모델선택·응답 파라미터 조정",
+      "requirement_type": "기능",
+      "description": "상용·오픈소스·온프레미스 LLM API를 단일 인터페이스로 통합하고 API별 사용량을 실시간 모니터링하며 사용자가 모델을 선택하고 답변 온도·유사응답 개수·창의성·신뢰성·결과범위를 조정할 수 있어야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-002",
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "복수 LLM API 통합관리·모델선택·응답 파라미터 조정의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-003; T2-007; T2-018 | 원자 ID: SFR-001-004; SFR-001-005; SFR-002-001; SFR-002-002; SFR-005-003; SFR-005-004 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-004",
+      "requirement_name": "프롬프트 템플릿·챗봇 프롬프트 관리·편집",
+      "requirement_type": "기능",
+      "description": "프롬프트 템플릿을 등록·수정·삭제하고 사용자가 템플릿을 선택·편집하여 질의문에 입력하며 AI 서비스 스튜디오에서 챗봇 프롬프트를 수정할 수 있어야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "프롬프트 템플릿·챗봇 프롬프트 관리·편집의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-004; T2-016 | 원자 ID: SFR-001-006; SFR-001-007; SFR-005-001 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-005",
+      "requirement_name": "대화 스레드 저장·검색·복원·삭제·다운로드",
+      "requirement_type": "기능",
+      "description": "대화내용을 스레드로 저장하고 이전 대화를 검색·복원하며 사용자가 자신의 대화기록을 삭제하거나 파일로 다운로드할 수 있어야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "대화 스레드 저장·검색·복원·삭제·다운로드의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-005 | 원자 ID: SFR-001-008; SFR-001-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-006",
+      "requirement_name": "대화데이터 암호화 저장",
+      "requirement_type": "기능",
+      "description": "대화데이터는 개인정보 보호를 위해 암호화하여 저장하여야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "대화데이터 암호화 저장의 암호화 저장·HTTPS·외부유출 방지와 접근통제 결과 확인"
+      ],
+      "note": "Task2 ID: T2-006 | 원자 ID: SFR-001-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-007",
+      "requirement_name": "상용 LLM 라이선스 만료알림",
+      "requirement_type": "기능",
+      "description": "상용 LLM 라이선스 만료가 임박하거나 만료된 경우 관리자에게 알림을 제공하여야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "상용 LLM 라이선스 만료알림의 챗봇·다국어·음성·알림·답변 서비스 제공결과 확인"
+      ],
+      "note": "Task2 ID: T2-008 | 원자 ID: SFR-002-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-008",
+      "requirement_name": "LLM API 호출최적화·분산처리",
+      "requirement_type": "기능",
+      "description": "LLM API 호출속도를 최적화하고 대량요청 또는 과부하 상황에서 요청을 분산 처리하여 안정적인 응답성능을 유지하여야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "LLM API 호출최적화·분산처리의 문서처리·벡터검색·자동학습·분산처리·대화처리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-009 | 원자 ID: SFR-002-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-009",
+      "requirement_name": "챗봇 이용·사용자·대화·FAQ 통계 대시보드·파일제공",
+      "requirement_type": "기능",
+      "description": "관리자는 사용자별·챗봇별·유형별·기간별 사용량과 전체·평균 이용자수, AI 응답수, 사용자 발화수와 자주하는 질문을 대시보드에서 분석·시각화하고 통계결과를 CSV 또는 엑셀파일로 다운로드할 수 있어야 한다.",
+      "source": [
+        "SFR-003",
+        "SFR-009",
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "챗봇 이용·사용자·대화·FAQ 통계 대시보드·파일제공의 집계기준, 기간·유형별 통계와 시각화 결과 확인"
+      ],
+      "note": "Task2 ID: T2-012; T2-030; T2-032; T2-039 | 원자 ID: SFR-003-004; SFR-009-001; SFR-009-004; SFR-012-007; SFR-012-008; SFR-012-009 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-010",
+      "requirement_name": "사용자 문서 업로드·검증·지식베이스 관리",
+      "requirement_type": "기능",
+      "description": "PDF, 텍스트, 이미지와 CSV 등 문서를 업로드하고 파일크기·형식을 검증하며 문서목록을 조회·삭제하고 사용자 제공 문서 기반 챗봇 지식베이스를 생성·수정·삭제하여야 한다.",
+      "source": [
+        "SFR-004",
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "사용자 문서 업로드·검증·지식베이스 관리의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-013; T2-017 | 원자 ID: SFR-004-001; SFR-004-002; SFR-004-003; SFR-005-002 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-011",
+      "requirement_name": "문서추출·벡터검색·근거기반 RAG 답변",
+      "requirement_type": "기능",
+      "description": "업로드 문서에서 데이터를 추출하여 지식베이스와 벡터DB에 통합하고 유사도 검색으로 관련정보를 조회하여 문서근거와 링크를 포함한 답변을 생성하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "문서추출·벡터검색·근거기반 RAG 답변의 문서처리·벡터검색·자동학습·분산처리·대화처리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-014; T2-015 | 원자 ID: SFR-004-004; SFR-004-005; SFR-004-006 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-012",
+      "requirement_name": "챗봇 퍼블리시 요청·승인·배포·삭제·테스트 관리",
+      "requirement_type": "기능",
+      "description": "제작된 챗봇은 관리자 승인 후 공용 또는 특정그룹에 배포하고 미퍼블리시 상태에서는 개인 테스트를 지원하며 관리자는 퍼블리시 요청을 승인·거부하고 불필요한 챗봇을 삭제하며 사용·업데이트·권한상태를 조회하여야 한다.",
+      "source": [
+        "SFR-005",
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "챗봇 퍼블리시 요청·승인·배포·삭제·테스트 관리의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-019; T2-038 | 원자 ID: SFR-005-005; SFR-005-006; SFR-012-004; SFR-012-005; SFR-012-006 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-013",
+      "requirement_name": "사용자그룹별 맞춤 챗봇 설계·매칭·스토어 접근",
+      "requirement_type": "기능",
+      "description": "학생·교수·교직원 등 그룹별 맞춤 챗봇을 설계하고 사용자그룹을 관리하며 챗봇과 그룹을 매칭하여 로그인한 사용자에게 권한이 있는 챗봇만 표시하고 즉시 실행할 수 있도록 하여야 한다.",
+      "source": [
+        "SFR-005",
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "사용자그룹별 맞춤 챗봇 설계·매칭·스토어 접근의 사용자그룹·챗봇·관리자 권한별 허용·차단 결과 확인"
+      ],
+      "note": "Task2 ID: T2-020; T2-022 | 원자 ID: SFR-005-007; SFR-005-008; SFR-005-009; SFR-006-004; SFR-006-005 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-014",
+      "requirement_name": "퍼블리시 챗봇 검색·상세·필터탐색",
+      "requirement_type": "기능",
+      "description": "챗봇 스토어에서 퍼블리시된 챗봇을 검색·탐색하고 기능·사용사례를 상세 조회하며 필터조건으로 필요한 챗봇을 찾을 수 있어야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "퍼블리시 챗봇 검색·상세·필터탐색의 검색조건, 목록·상세·대시보드 화면과 조회결과 확인"
+      ],
+      "note": "Task2 ID: T2-021 | 원자 ID: SFR-006-001; SFR-006-002; SFR-006-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-015",
+      "requirement_name": "20개 이상 언어 자동감지·동일언어 응답",
+      "requirement_type": "기능",
+      "description": "20개 이상의 언어를 지원하고 사용자 입력언어를 자동 감지하여 동일한 언어로 답변하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "20개 이상 언어 자동감지·동일언어 응답의 챗봇·다국어·음성·알림·답변 서비스 제공결과 확인"
+      ],
+      "note": "Task2 ID: T2-023 | 원자 ID: SFR-007-001; SFR-007-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-016",
+      "requirement_name": "질의의도·맥락·추가질문·다단계 대화관리",
+      "requirement_type": "기능",
+      "description": "질의의도와 대화맥락을 분석하고 정보가 부족하면 추가질문·제안을 제공하며 복잡한 다단계 대화상태를 유지하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "질의의도·맥락·추가질문·다단계 대화관리의 문서처리·벡터검색·자동학습·분산처리·대화처리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-024 | 원자 ID: SFR-007-003; SFR-007-004; SFR-007-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-017",
+      "requirement_name": "홈페이지 정보 자동수집·일일업데이트·자동학습",
+      "requirement_type": "기능",
+      "description": "대학 홈페이지와 게시판의 안내정보를 자동 수집·분석하고 매일 업데이트하며 새로 등록된 정보를 지식베이스에 자동 학습하여야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "홈페이지 정보 자동수집·일일업데이트·자동학습의 문서처리·벡터검색·자동학습·분산처리·대화처리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-025 | 원자 ID: SFR-008-001; SFR-008-002; SFR-008-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-018",
+      "requirement_name": "관리자 홈페이지 지식정보 수동업데이트",
+      "requirement_type": "기능",
+      "description": "관리자는 필요한 홈페이지 정보를 선택하여 지식베이스에 수동으로 즉시 업데이트할 수 있어야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "관리자 홈페이지 지식정보 수동업데이트의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-026 | 원자 ID: SFR-008-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-019",
+      "requirement_name": "최신 학사·일정·공지 답변·출처링크",
+      "requirement_type": "기능",
+      "description": "챗봇은 최신 학사정보, 일정과 공지사항을 사용자 질의에 맞게 답변하고 관련 링크와 출처를 제공하여야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "최신 학사·일정·공지 답변·출처링크의 챗봇·다국어·음성·알림·답변 서비스 제공결과 확인"
+      ],
+      "note": "Task2 ID: T2-027 | 원자 ID: SFR-008-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-020",
+      "requirement_name": "문의 부서·담당자 안내·연락처 관리",
+      "requirement_type": "기능",
+      "description": "사용자 문의와 관련된 정확한 부서·담당자 연락처를 안내하고 관리자가 업무별 담당부서와 연락처를 등록·수정·삭제할 수 있어야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "문의 부서·담당자 안내·연락처 관리의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-028 | 원자 ID: SFR-008-006; SFR-008-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-021",
+      "requirement_name": "데이터 업데이트 모니터링·삭제·재학습 차단",
+      "requirement_type": "기능",
+      "description": "관리자는 홈페이지 데이터의 수집·학습·업데이트 현황을 실시간 조회하고 업데이트 정보를 삭제하며 삭제된 정보의 재학습을 차단할 수 있어야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "데이터 업데이트 모니터링·삭제·재학습 차단의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-029 | 원자 ID: SFR-008-008; SFR-008-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-022",
+      "requirement_name": "대화내용 리뷰·엑셀 일괄다운로드",
+      "requirement_type": "기능",
+      "description": "관리자는 답변정확도 분석을 위해 대화내용을 콘솔에서 검토하고 엑셀파일로 일괄 다운로드할 수 있어야 한다.",
+      "source": [
+        "SFR-009"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "대화내용 리뷰·엑셀 일괄다운로드의 아키텍처·대화기록·CSV·엑셀 산출결과 확인"
+      ],
+      "note": "Task2 ID: T2-031 | 원자 ID: SFR-009-002; SFR-009-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-023",
+      "requirement_name": "한국어 전화 ARS 챗봇 5초 이내 음성응답",
+      "requirement_type": "기능",
+      "description": "전화 ARS에 챗봇을 적용하여 한국어 음성 질의응답을 제공하고 답변 생성과 발화를 5초 이내에 시작하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "한국어 전화 ARS 챗봇 5초 이내 음성응답의 챗봇·다국어·음성·알림·답변 서비스 제공결과 확인"
+      ],
+      "note": "Task2 ID: T2-033 | 원자 ID: SFR-010-001; SFR-010-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-024",
+      "requirement_name": "대량 전화처리·담당자 착신전환",
+      "requirement_type": "기능",
+      "description": "전화 ARS는 대량 인입통화를 안정적으로 처리하고 필요한 경우 담당자에게 착신전환할 수 있어야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "대량 전화처리·담당자 착신전환의 LLM·통합인증·전화·외부서비스 연계와 정상 송수신 결과 확인"
+      ],
+      "note": "Task2 ID: T2-034 | 원자 ID: SFR-010-003; SFR-010-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-025",
+      "requirement_name": "학내 통합인증 로그인",
+      "requirement_type": "기능",
+      "description": "학내에서 운영 중인 통합인증시스템과 연계하여 로그인 기능을 제공하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "학내 통합인증 로그인의 LLM·통합인증·전화·외부서비스 연계와 정상 송수신 결과 확인"
+      ],
+      "note": "Task2 ID: T2-035 | 원자 ID: SFR-011-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-026",
+      "requirement_name": "학내 이메일 인증·비밀번호 암호화·HTTPS·재설정",
+      "requirement_type": "기능",
+      "description": "학내 이메일 기반 ID·비밀번호 인증으로 외부접근을 제한하고 비밀번호를 암호화하며 HTTPS 전송과 본인확인 기반 비밀번호 재설정을 제공하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "학내 이메일 인증·비밀번호 암호화·HTTPS·재설정의 암호화 저장·HTTPS·외부유출 방지와 접근통제 결과 확인"
+      ],
+      "note": "Task2 ID: T2-036 | 원자 ID: SFR-011-002; SFR-011-003; SFR-011-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-027",
+      "requirement_name": "회원 가입승인·거부·삭제·그룹·상태조회",
+      "requirement_type": "기능",
+      "description": "관리자는 신규 회원가입을 승인·거부하고 부적절·비활성 계정을 삭제하며 사용자그룹과 계정상태를 조회할 수 있어야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "회원 가입승인·거부·삭제·그룹·상태조회의 등록·수정·삭제·승인·상태·템플릿·지식 관리 결과 확인"
+      ],
+      "note": "Task2 ID: T2-037 | 원자 ID: SFR-012-001; SFR-012-002; SFR-012-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-028",
+      "requirement_name": "관리자 페이지 인증·접근제어",
+      "requirement_type": "기능",
+      "description": "관리자 페이지는 인증된 관리자 권한 사용자만 접근할 수 있도록 제어하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "관리자 페이지 인증·접근제어의 사용자그룹·챗봇·관리자 권한별 허용·차단 결과 확인"
+      ],
+      "note": "Task2 ID: T2-040 | 원자 ID: SFR-012-010 | 처리유형: 유지"
+    }
+  ]
+}

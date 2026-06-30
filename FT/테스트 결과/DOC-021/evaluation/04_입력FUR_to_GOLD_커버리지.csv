@@ -1,0 +1,13 @@
+﻿source_fur_id,source_requirement_name,linked_gold_ids,linked_gold_count,lineage_semantic_max,overall_semantic_max,overall_best_gold_id,source_covered,passes_semantic_threshold
+SFR-001,(공통) 생성형 AI 서비스 플랫폼 구현,GOLD-001; GOLD-002; GOLD-003; GOLD-004; GOLD-005; GOLD-006,6,0.89905,0.89905,GOLD-001,True,True
+SFR-002,오픈소스 및 상용 LLM API 개발,GOLD-007; GOLD-008,2,0.953596,0.953596,GOLD-007,True,True
+SFR-003,온프레미스 챗봇 구축,GOLD-002; GOLD-005; GOLD-009; GOLD-010,4,0.956267,0.956267,GOLD-002,True,True
+SFR-004,RAG 시스템 구축,GOLD-011; GOLD-012,2,0.901794,0.914527,GOLD-013,True,True
+SFR-005,생성형 AI 서비스 스튜디오,GOLD-003; GOLD-004; GOLD-010; GOLD-013; GOLD-014,5,0.92757,0.92757,GOLD-010,True,True
+SFR-006,챗봇 스토어 구축,GOLD-010,1,0.931511,0.931511,GOLD-010,True,True
+SFR-007,다국어 응대 및 자연어 처리 기능,GOLD-015; GOLD-016,2,0.914198,0.914198,GOLD-015,True,True
+SFR-008,대학 홈페이지 정보 실시간 학습 및 업데이트,GOLD-017; GOLD-018,2,0.923704,0.923704,GOLD-017,True,True
+SFR-009,홈페이지 안내 챗봇 통계 분석 기능,GOLD-010; GOLD-019,2,0.918485,0.918485,GOLD-010,True,True
+SFR-010,음성 질의응답 챗봇 기능,GOLD-020,1,0.959344,0.959344,GOLD-020,True,True
+SFR-011,로그인 기능,GOLD-021; GOLD-022; GOLD-023,3,0.956046,0.956046,GOLD-021,True,True
+SFR-012,관리자 페이지 기능,GOLD-010; GOLD-019; GOLD-024; GOLD-025,4,0.907296,0.907296,GOLD-010,True,True

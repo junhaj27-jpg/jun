@@ -1,0 +1,39 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-007",
+  "atomic_input_sha256": "2832cd80f0319027eb7282c4585d57a3fcaf6e57ce2f2579d3070cddf04d185e",
+  "normalized_requirement_count": 2,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-013",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "온라인 신청·문의 입력",
+      "requirement_detail": "사용자는 온라인으로 신청과 문의사항을 입력할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "T2-014",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "온라인 신청·문의 관리자 확인",
+      "requirement_detail": "관리자는 온라인 신청과 문의사항을 이메일 또는 관리자 기능으로 확인할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    }
+  ]
+}

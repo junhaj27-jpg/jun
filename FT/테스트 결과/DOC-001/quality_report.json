@@ -1,0 +1,37 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "fallback_count": 2,
+  "fallback_records": [
+    {
+      "group_document_id": "DOC-001-EMB-C009-R01-G001",
+      "fallback_gold_id": "GOLD-COVERAGE-001",
+      "current_candidate_id": "T2-000044",
+      "candidate_lineage": [
+        "T2-000044"
+      ],
+      "missing_lineage_ids": [
+        "T2-000044"
+      ],
+      "action": "COVERAGE_FALLBACK_KEPT",
+      "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성"
+    },
+    {
+      "group_document_id": "DOC-001-EMB-C009-R01-G001",
+      "fallback_gold_id": "GOLD-COVERAGE-002",
+      "current_candidate_id": "T2-000046",
+      "candidate_lineage": [
+        "T2-000046"
+      ],
+      "missing_lineage_ids": [
+        "T2-000046"
+      ],
+      "action": "COVERAGE_FALLBACK_KEPT",
+      "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수"
+    }
+  ],
+  "expected_task2_count": 122,
+  "assigned_task2_count": 122,
+  "missing_task2_count": 0,
+  "duplicate_assignment_count": 0,
+  "orphan_relation_count": 0
+}

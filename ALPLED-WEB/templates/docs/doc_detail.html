@@ -1,0 +1,364 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  {% if active_job %}
+    <div
+      id="doc-job-page-state"
+      data-doc-job-page-state
+      data-docs-cd="{{ active_job.docs_cd }}"
+      data-job-kind="{{ active_job.job_kind }}"
+      data-job-title="{{ active_job.title }}"
+      data-job-message="{{ active_job.message }}"
+      data-job-status-code="{{ active_job.job_status_code }}"
+      data-job-status-label="{{ active_job.job_status_label }}"
+      data-poll-url="{{ active_job.poll_url }}"
+      data-poll-interval-ms="{{ active_job.poll_interval_ms }}"
+      data-job-started-at="{{ active_job.started_at }}"
+      data-job-elapsed-seconds="{{ active_job.elapsed_seconds }}"
+      class="hidden"
+    ></div>
+  {% endif %}
+
+  <section class="space-y-4">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+        <p class="mt-1 text-sm text-slate-500">{{ current_project.name }}</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-end gap-3">
+        {% if generation_return_url %}
+          <a href="{{ generation_return_url }}" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+            생성 화면으로 돌아가기
+          </a>
+        {% endif %}
+
+        {% if can_auto_apply %}
+          <button type="button" data-modal-target="meeting-files-modal" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+            회의 내용 자동 적용
+          </button>
+        {% endif %}
+        {% if can_edit %}
+          <form method="post" action="{% url 'doc_lock' document.sn %}">
+            {% csrf_token %}
+            <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              수정하기
+            </button>
+          </form>
+        {% endif %}
+        {% if can_cancel_approval %}
+          <form method="post" action="{% url 'doc_cancel_approval' pending_approval.sn %}">
+            {% csrf_token %}
+            <button type="submit" class="rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800 transition hover:bg-amber-100">
+              승인 요청 취소
+            </button>
+          </form>
+        {% endif %}
+        {% if can_view_revision_history %}
+          <button type="button" data-modal-target="history-modal" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+            수정이력 보기
+          </button>
+        {% endif %}
+        {% if can_request_approval %}
+          <button type="button" data-modal-target="approval-request-modal" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+            승인요청
+          </button>
+        {% endif %}
+
+        <a href="{{ download_url }}" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+          파일 다운로드
+        </a>
+
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 text-sm">
+      <span class="rounded-full bg-slate-100 px-4 py-2 font-semibold text-slate-700">버전 : {{ document.version }}</span>
+      {% if document_state == "readonly" %}
+        <span class="rounded-full bg-amber-100 px-4 py-2 font-semibold text-amber-800">현재 수정자 : {{ locked_by_name }}</span>
+      {% elif pending_approval %}
+        <span class="rounded-full bg-blue-100 px-4 py-2 font-semibold text-blue-800">승인 요청 상태 : {{ pending_approval.approval_status.name }}</span>
+      {% elif document_state == "edit" %}
+        <span class="rounded-full bg-emerald-100 px-4 py-2 font-semibold text-emerald-800">Editing</span>
+      {% else %}
+        <span class="rounded-full bg-slate-100 px-4 py-2 font-semibold text-slate-700">View</span>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    {% include "components/doc_job_status.html" with active_job=active_job %}
+    {% if onlyoffice_enabled %}
+      <div class="mb-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+        OnlyOffice Document Server가 연결되어 있으면 아래 영역에서 문서를 조회하거나 수정할 수 있습니다.
+      </div>
+      <div
+        data-onlyoffice-root
+        data-config-url="{{ editor_config_url }}{% if document_state == 'edit' and not document_change_blocked_by_job %}?mode=edit{% endif %}"
+        data-document-server-url="{{ onlyoffice_document_server_url }}"
+        class="min-h-[720px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-50"
+      >
+        <div class="flex min-h-[720px] items-center justify-center text-sm text-slate-500">OnlyOffice 설정을 불러오는 중입니다.</div>
+      </div>
+
+      {% if document_state == "edit" %}
+        <div
+          class="mt-6 space-y-4"
+          data-onlyoffice-edit-root
+          data-doc-edit-blocked-by-job="{% if document_change_blocked_by_job %}true{% else %}false{% endif %}"
+          data-doc-detail-url="{% url 'doc_detail' document.sn %}"
+          data-doc-save-url="{% url 'doc_save' document.sn %}"
+          data-doc-latest-detail-sn="{{ latest_detail.sn|default:'' }}"
+        >
+          {% if document_change_blocked_by_job %}
+            <div class="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-900">
+              회의 내용 자동 적용이 진행 중입니다. 작업이 완료될 때까지 문서 저장과 승인요청을 잠시 사용할 수 없습니다.
+            </div>
+          {% else %}
+            <div class="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-4 text-sm text-blue-900">
+              저장 버튼을 누르면 OnlyOffice 문서를 저장하고 수정모드를 유지합니다. 승인요청 전까지 현재 수정자가 계속 수정할 수 있습니다.
+            </div>
+          {% endif %}
+          <div data-doc-save-status class="hidden rounded-2xl border px-4 py-3 text-sm"></div>
+          <div class="flex justify-end gap-3">
+            <form method="post" action="{% url 'doc_cancel_edit' document.sn %}">
+              {% csrf_token %}
+              <button type="submit" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                취소
+              </button>
+            </form>
+            <form method="post" action="{% url 'doc_save' document.sn %}" data-doc-save-form>
+              {% csrf_token %}
+              <input type="hidden" name="baseline_detail_sn" value="{{ latest_detail.sn|default:'' }}">
+              <button type="submit" data-doc-save-submit {% if document_change_blocked_by_job %}disabled{% endif %} class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300">
+                저장
+              </button>
+            </form>
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-600">
+        로컬에서 OnlyOffice 설정이 없어 텍스트 기반 화면으로 대체합니다.
+      </div>
+      <div class="mt-6">
+        {% if document_state == "edit" %}
+          <div class="space-y-4">
+            <form method="post" action="{% url 'doc_save' document.sn %}" class="space-y-4">
+              {% csrf_token %}
+              <textarea name="content_text" rows="18" {% if document_change_blocked_by_job %}readonly{% endif %} class="w-full rounded-2xl border border-slate-200 px-4 py-4 text-sm text-slate-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100">{{ latest_text }}</textarea>
+              <div class="flex justify-end gap-3">
+                <button type="submit" {% if document_change_blocked_by_job %}disabled{% endif %} class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-300">
+                  저장
+                </button>
+              </div>
+            </form>
+            <form method="post" action="{% url 'doc_cancel_edit' document.sn %}" class="flex justify-end">
+              {% csrf_token %}
+              <button type="submit" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                취소
+              </button>
+            </form>
+          </div>
+        {% else %}
+          <div class="min-h-[420px] rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5">
+            <pre class="whitespace-pre-wrap text-sm leading-7 text-slate-800">{{ latest_text|default:"문서 내용이 없습니다." }}</pre>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if can_confirm %}
+      <div class="mt-6 flex justify-end">
+        <form method="post" action="{% url 'doc_confirm' document.sn %}">
+          {% csrf_token %}
+          <button type="submit" class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700">
+            저장하기
+          </button>
+        </form>
+      </div>
+    {% endif %}
+  </section>
+</div>
+
+<div id="meeting-files-modal" data-modal-root class="fixed inset-0 z-50 {% if open_meeting_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-6xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">회의 내용 자동 적용</h3>
+          <p class="mt-1 text-sm text-slate-500">현재 프로젝트의 회의록 파일을 골라 문서에 자동 반영합니다.</p>
+        </div>
+        <button type="button" data-modal-hide="meeting-files-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="max-h-[85vh] overflow-y-auto px-6 py-6">
+        <form method="get" class="space-y-4">
+          <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+          <input type="hidden" name="modal" value="meeting-files">
+          <div class="grid gap-3 lg:grid-cols-[auto_auto_minmax(0,1fr)_auto] lg:items-center">
+            <div class="flex items-center gap-3">
+              <label class="text-sm font-semibold text-slate-700" for="meeting_file_type">문서 구분</label>
+              <select id="meeting_file_type" name="meeting_file_type" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+                {% for value, label in meeting_file_type_choices %}
+                  <option value="{{ value }}" {% if meeting_file_type == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="text-sm font-semibold text-slate-700" for="meeting_field">검색 조건</label>
+              <select id="meeting_field" name="meeting_field" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+                {% for value, label in search_field_choices %}
+                  <option value="{{ value }}" {% if meeting_search_field == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <input type="text" name="meeting_q" value="{{ meeting_query }}" class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400" placeholder="검색어를 입력해 주세요.">
+            </div>
+            <button type="submit" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+              검색
+            </button>
+          </div>
+        </form>
+
+        <form method="post" action="{% url 'doc_auto_apply' document.sn %}" class="mt-4 space-y-4" data-doc-job-form data-job-kind="auto_apply">
+          {% csrf_token %}
+          {% include "files/partials/file_selector_table.html" with documents=meeting_documents current_project=current_project empty_message="등록된 회의록 문서가 없습니다." %}
+          <div class="flex justify-end">
+            <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              반영
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="history-modal" data-modal-root class="fixed inset-0 z-50 {% if open_history_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-6xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">수정 이력 보기</h3>
+          <p class="mt-1 text-sm text-slate-500">{{ history_scope_label }}</p>
+        </div>
+        <button type="button" data-modal-hide="history-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="grid max-h-[85vh] gap-6 overflow-y-auto px-6 py-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <div class="space-y-3">
+          {% for row in revision_rows %}
+            <div class="rounded-2xl border border-slate-200 p-4" data-history-preview-row>
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold text-slate-900">
+                    {% if row.title %}{{ row.title }}{% else %}{{ row.created_at|date:"Y-m-d H:i" }}{% endif %}
+                  </p>
+                  <p class="mt-1 text-xs text-slate-500">{{ row.subtitle }}</p>
+                </div>
+                {% if row.is_current %}
+                  <span class="shrink-0 rounded-full bg-blue-100 px-2.5 py-1 text-[11px] font-semibold text-blue-700">현재</span>
+                {% endif %}
+              </div>
+              <p class="mt-2 text-xs text-slate-500">{{ row.created_at|date:"Y-m-d H:i" }} · {{ row.creator_name }}</p>
+              <div class="mt-3 flex gap-2">
+                <button type="button" {% if row.preview_url %}data-history-preview-url="{{ row.preview_url }}"{% else %}disabled{% endif %} data-history-preview-button class="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50">
+                  미리보기
+                </button>
+                {% if row.can_restore %}
+                  <form method="post" action="{{ row.restore_url }}">
+                    {% csrf_token %}
+                    <button type="submit" class="rounded-lg bg-blue-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-blue-700">
+                      이 버전으로 복원
+                    </button>
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+          {% empty %}
+            <div class="rounded-2xl border border-dashed border-slate-200 p-6 text-sm text-slate-500">
+              저장된 수정 이력이 없습니다.
+            </div>
+          {% endfor %}
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5" data-history-preview-panel data-document-server-url="{{ onlyoffice_document_server_url }}">
+          <p data-history-preview-meta class="mb-3 text-sm font-semibold text-slate-900">최신 버전 미리보기</p>
+          <div data-history-preview-placeholder class="flex min-h-[520px] items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white px-6 text-center text-sm text-slate-500">
+            미리보기 버튼을 누르면 선택한 이력을 OnlyOffice로 표시합니다.
+          </div>
+          <div data-history-preview-editor class="hidden min-h-[520px] overflow-hidden rounded-xl border border-slate-200 bg-white"></div>
+          <pre data-history-preview-content class="hidden whitespace-pre-wrap text-sm leading-7 text-slate-800">{{ preview_text|default:"미리볼 문서를 선택해 주세요." }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="generation-failed-modal" data-modal-root class="fixed inset-0 z-50 {% if open_generation_failed_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-2xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">생성 실패 정보</h3>
+          <p class="mt-1 text-sm text-slate-500">산출물 생성 중 발생한 오류 내용을 확인해 주세요.</p>
+        </div>
+        <button type="button" data-modal-hide="generation-failed-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="space-y-4 px-6 py-6 text-sm text-slate-700">
+        {% if failed_generation_job %}
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+            <p><span class="font-semibold text-slate-900">작업 ID</span> {{ failed_generation_job.job_id }}</p>
+            <p class="mt-1"><span class="font-semibold text-slate-900">요청 ID</span> {{ failed_generation_job.request_id|default:"-" }}</p>
+            <p class="mt-1"><span class="font-semibold text-slate-900">오류 코드</span> {{ failed_generation_job.error_code|default:"-" }}</p>
+          </div>
+          <div class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-4">
+            <p class="mb-2 font-semibold text-rose-900">오류 로그</p>
+            <pre class="whitespace-pre-wrap break-all text-sm leading-6 text-rose-900">{{ failed_generation_job.error_message|default:"오류 메시지가 없습니다." }}</pre>
+          </div>
+        {% else %}
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-600">
+            표시할 생성 실패 정보가 없습니다.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if can_request_approval %}
+<div id="approval-request-modal" data-modal-root class="fixed inset-0 z-50 {% if open_approval_request_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-2xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">승인 요청</h3>
+          <p class="mt-1 text-sm text-slate-500">프로젝트 관리자에게 전달할 요청 내용을 입력해 주세요.</p>
+        </div>
+        <button type="button" data-modal-hide="approval-request-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="px-6 py-6">
+        <form method="post" action="{% url 'doc_request_approval' document.sn %}" class="space-y-4">
+          {% csrf_token %}
+          <textarea name="request_content" rows="6" maxlength="{{ approval_request_max_length }}" class="w-full rounded-2xl border border-slate-200 px-4 py-4 text-sm text-slate-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100" placeholder="승인 요청 내용을 입력해 주세요."></textarea>
+          <div class="flex justify-end">
+            <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              확인
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

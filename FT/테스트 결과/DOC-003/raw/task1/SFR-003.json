@@ -1,0 +1,84 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-003",
+      "requirement_name": "반응형 웹페이지 방식 도입",
+      "requirement_type": "기능",
+      "requirement_definition": "반응형 웹페이지 방식 도입",
+      "requirement_detail": "• 다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용\n• 모바일 기기의 OS 및 브라우저와의 호환성 준수\n• 간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2041,
+      "max_new_tokens": 4096,
+      "generated_tokens": 309,
+      "hit_token_limit": false,
+      "elapsed_seconds": 18.65235176915303,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-003\",\n  \"decomposition_count\": 3,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-003-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"다중 디바이스·브라우저 반응형 웹\",\n      \"source_text\": \"다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-002\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"모바일 OS·브라우저 호환성\",\n      \"source_text\": \"모바일 기기의 OS 및 브라우저와의 호환성 준수\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-003\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"간결 메뉴·UI 접근성·가독성·편리성·확장성\",\n      \"source_text\": \"간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-003",
+        "decomposition_count": 3,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-003-001",
+            "action_type": "제공",
+            "output_name": "다중 디바이스·브라우저 반응형 웹",
+            "source_text": "다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용"
+          },
+          {
+            "atomic_id": "SFR-003-002",
+            "action_type": "제공",
+            "output_name": "모바일 OS·브라우저 호환성",
+            "source_text": "모바일 기기의 OS 및 브라우저와의 호환성 준수"
+          },
+          {
+            "atomic_id": "SFR-003-003",
+            "action_type": "제공",
+            "output_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+            "source_text": "간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-003",
+    "decomposition_count": 3,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-003-001",
+        "action_type": "제공",
+        "output_name": "다중 디바이스·브라우저 반응형 웹",
+        "source_text": "다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용"
+      },
+      {
+        "atomic_id": "SFR-003-002",
+        "action_type": "제공",
+        "output_name": "모바일 OS·브라우저 호환성",
+        "source_text": "모바일 기기의 OS 및 브라우저와의 호환성 준수"
+      },
+      {
+        "atomic_id": "SFR-003-003",
+        "action_type": "제공",
+        "output_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+        "source_text": "간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보"
+      }
+    ]
+  }
+}

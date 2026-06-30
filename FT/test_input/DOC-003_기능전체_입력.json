@@ -1,0 +1,116 @@
+{
+  "document_id": "DOC-003",
+  "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+  "functional_requirements": [
+    {
+      "requirement_id": "SFR-001",
+      "requirement_name": "홈패이지 구축 일반사항",
+      "requirement_type": "기능",
+      "requirement_definition": "홈패이지 구축 일반사항",
+      "requirement_detail": "• 제시한 요구사항은 최소한의 요구조건이며, 세부 요구사항에 제시되지 않은 사항이라도 향후 개발단계에서 상호 협의를 통해 변경 혹은 증감이 가능하다.\n• 타 대학 분석 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.\n• 전자정부 표준프레임워크 기반의 반응형 웹 기술을 적용하여야 한다.\n• 구축되는 모든 홈페이지는 전자정부 표준프레임워크 기반 콘텐츠관리시스템(CMS) 상에서 생성·관리·운영되어야 하며, 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.\n• 홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.\n• 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.\n• 웹 로그 분석을 통하여 이용률 추이, 방문경로, 에러 내용 등을 분석하여 웹 사이트가 관리될 수 있도록 하여야 한다.\n• 개인정보가 수집·이용을 필요로 하는 기능의 경우 개인정보 동의 절차를 반영하여야 한다.(시설 대관, 수강신청 등)\n• 개인정보, 비밀번호 등 송수신할 때는 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-002",
+      "requirement_name": "사용자 중심의 홈페이지 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자 중심의 홈페이지 구축",
+      "requirement_detail": "• 사용자의 시각적 요소와 기능적인 요소를 고려한 디자인 제작\n• 형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴 구성\n• 현재 제안요청서에서 요청하는 메뉴를 모두 포함하며, ‘주관부서’의 요구에 따라 추가 메뉴를 구성할 수 있음\n• 가독성 및 사용성을 고려한 레이아웃, 명확한 서체 규정 등 웹 스타일 가이드를 제작하여 일관성 유지\n• 데이터의 안전한 암호화 처리(개인식별정보/비밀번호 등)",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-003",
+      "requirement_name": "반응형 웹페이지 방식 도입",
+      "requirement_type": "기능",
+      "requirement_definition": "반응형 웹페이지 방식 도입",
+      "requirement_detail": "• 다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용\n• 모바일 기기의 OS 및 브라우저와의 호환성 준수\n• 간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-004",
+      "requirement_name": "랜딩페이지 제작",
+      "requirement_type": "기능",
+      "requirement_definition": "랜딩페이지 제작",
+      "requirement_detail": "• RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-005",
+      "requirement_name": "콘텐츠관리시스템(CMS) 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "콘텐츠관리시스템(CMS) 기능",
+      "requirement_detail": "• 현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다.\n• 현재 운영중인 CMS 기능이 모두 활성화되어야 한다.\n• 관리자 시스템 접근 제어 기능 제공\n• 메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-006",
+      "requirement_name": "통합게시판 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "통합게시판 구축",
+      "requirement_detail": "• 사업단 홈페이지에서는 모든 공지사항 등 주요 게시글 확인가능\n• 사업단 홈페이지에서는 해당 사업단의 공지사항 및 게시글을 확인가능",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-007",
+      "requirement_name": "온라인 신청 및 문의",
+      "requirement_type": "기능",
+      "requirement_definition": "온라인 신청 및 문의",
+      "requirement_detail": "• 사용자의 온라인 신청 및 문의사항을 이메일 혹은 관리자 기능을 통하여 확인",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-008",
+      "requirement_name": "SSO",
+      "requirement_type": "기능",
+      "requirement_definition": "SSO",
+      "requirement_detail": "• 우리대학에서 사용중인 SSO 연계하여 로그인의 불편함을 최소화하여야 한다.",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-009",
+      "requirement_name": "성과관리",
+      "requirement_type": "기능",
+      "requirement_definition": "성과관리",
+      "requirement_detail": "• 우리 사업단의 성과를 조회할 수 있는 기능 제공하여야 한다.",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-010",
+      "requirement_name": "검색최적화",
+      "requirement_type": "기능",
+      "requirement_definition": "검색최적화",
+      "requirement_detail": "• 네이버, 구글 등의 포털사이트 검색 최적화\n• 챗GPT 등 LLM의 검색 최적화",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  ]
+}

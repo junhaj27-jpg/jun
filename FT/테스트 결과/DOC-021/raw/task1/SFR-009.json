@@ -1,0 +1,96 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-009",
+      "requirement_name": "홈페이지 안내 챗봇 통계 분석 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "홈페이지 안내 챗봇의 통계정보 관리 기능에 관한 사항",
+      "requirement_detail": "▪ 각종 통계분석 기능 적용 및 리포팅\n- 유형별 기간별(일/월/분기/년/특정기간) 이용현황\n- 전체 이용자 수, 평균 이용자 수, 평균 대화 수 등\n▪ 답변에 대한 정확도를 제공 또는 분석을 위한 자료 제공\n- 제공되는 콘솔을 이용하여 대화 내용 리뷰 가능\n- 대화 내용을 엑셀형태로 일괄 다운로드 기능 제공\n▪ 통계분석 기능에 의한 정보를 엑셀형태로 제공",
+      "source_location": {
+        "table_index": 22,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2104,
+      "max_new_tokens": 4096,
+      "generated_tokens": 314,
+      "hit_token_limit": false,
+      "elapsed_seconds": 18.751295457128435,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-009\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-009-001\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"챗봇 이용현황 통계 분석\",\n      \"source_text\": \"유형별 기간별 이용현황 및 이용자 수·대화 수 통계\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"챗봇 대화 정확도 리뷰\",\n      \"source_text\": \"대화 내용 리뷰 콘솔\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-003\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"대화내용 엑셀 다운로드\",\n      \"source_text\": \"대화 내용 엑셀 다운로드\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-004\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"통계정보 엑셀 다운로드\",\n      \"source_text\": \"통계분석 정보 엑셀 다운로드\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-009",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-009-001",
+            "action_type": "분석",
+            "output_name": "챗봇 이용현황 통계 분석",
+            "source_text": "유형별 기간별 이용현황 및 이용자 수·대화 수 통계"
+          },
+          {
+            "atomic_id": "SFR-009-002",
+            "action_type": "조회",
+            "output_name": "챗봇 대화 정확도 리뷰",
+            "source_text": "대화 내용 리뷰 콘솔"
+          },
+          {
+            "atomic_id": "SFR-009-003",
+            "action_type": "산출",
+            "output_name": "대화내용 엑셀 다운로드",
+            "source_text": "대화 내용 엑셀 다운로드"
+          },
+          {
+            "atomic_id": "SFR-009-004",
+            "action_type": "산출",
+            "output_name": "통계정보 엑셀 다운로드",
+            "source_text": "통계분석 정보 엑셀 다운로드"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-009",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-009-001",
+        "action_type": "분석",
+        "output_name": "챗봇 이용현황 통계 분석",
+        "source_text": "유형별 기간별 이용현황 및 이용자 수·대화 수 통계"
+      },
+      {
+        "atomic_id": "SFR-009-002",
+        "action_type": "조회",
+        "output_name": "챗봇 대화 정확도 리뷰",
+        "source_text": "대화 내용 리뷰 콘솔"
+      },
+      {
+        "atomic_id": "SFR-009-003",
+        "action_type": "산출",
+        "output_name": "대화내용 엑셀 다운로드",
+        "source_text": "대화 내용 엑셀 다운로드"
+      },
+      {
+        "atomic_id": "SFR-009-004",
+        "action_type": "산출",
+        "output_name": "통계정보 엑셀 다운로드",
+        "source_text": "통계분석 정보 엑셀 다운로드"
+      }
+    ]
+  }
+}

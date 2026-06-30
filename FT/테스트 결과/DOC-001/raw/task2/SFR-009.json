@@ -1,0 +1,232 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-009",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-009::SFR-009-001",
+        "action_type": "관리",
+        "output_name": "VM·BM·컨테이너 통합 보안정책 관리",
+        "source_text": "VM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용",
+        "original_atomic_id": "SFR-009-001",
+        "source_fur_id": "SFR-009"
+      },
+      {
+        "atomic_id": "SFR-009::SFR-009-002",
+        "action_type": "처리",
+        "output_name": "동적 확장 환경 자원 보안정책 자동 적용",
+        "source_text": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용",
+        "original_atomic_id": "SFR-009-002",
+        "source_fur_id": "SFR-009"
+      },
+      {
+        "atomic_id": "SFR-009::SFR-009-003",
+        "action_type": "모니터링",
+        "output_name": "자원 유형별 보안상태 실시간 모니터링",
+        "source_text": "자원 유형별 보안 상태를 실시간으로 모니터링",
+        "original_atomic_id": "SFR-009-003",
+        "source_fur_id": "SFR-009"
+      },
+      {
+        "atomic_id": "SFR-009::SFR-009-004",
+        "action_type": "검증",
+        "output_name": "자원 이상행위 탐지 및 알림",
+        "source_text": "이상 행위 발생 시 탐지 및 알림",
+        "original_atomic_id": "SFR-009-004",
+        "source_fur_id": "SFR-009"
+      },
+      {
+        "atomic_id": "SFR-009::SFR-009-005",
+        "action_type": "권한",
+        "output_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+        "source_text": "VM 사용자 또는 그룹 역할 기반 접근 제어 정책 설정, BM 운영 역할 기반 접근권한 설정, 역할 기반 접근 및 변경 행위 감사 및 이력 추적",
+        "original_atomic_id": "SFR-009-005",
+        "source_fur_id": "SFR-009"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-009::SFR-009-001",
+        "SFR-009::SFR-009-002",
+        "SFR-009::SFR-009-003",
+        "SFR-009::SFR-009-004",
+        "SFR-009::SFR-009-005"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2526,
+      "max_new_tokens": 6144,
+      "generated_tokens": 812,
+      "hit_token_limit": false,
+      "elapsed_seconds": 49.61178745608777,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-009\",\n  \"normalized_requirement_count\": 5,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-021\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM·BM·컨테이너 통합 보안정책 관리\",\n      \"requirement_detail\": \"VM, BM 및 컨테이너 자원에 통합 보안정책을 수립하고 일괄 적용하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-022\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"동적 확장 환경 자원 보안정책 자동 적용\",\n      \"requirement_detail\": \"대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-023\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"모니터링\",\n      \"requirement_name\": \"자원 유형별 보안상태 실시간 모니터링\",\n      \"requirement_detail\": \"VM, BM 및 컨테이너 자원 유형별 보안상태를 실시간으로 모니터링하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-024\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"검증\",\n      \"requirement_name\": \"자원 이상행위 탐지 및 알림\",\n      \"requirement_detail\": \"VM, BM 및 컨테이너 자원의 이상행위를 탐지하고 사용자에게 알림을 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-025\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"권한\",\n      \"requirement_name\": \"VM·BM 역할 기반 접근권한 설정 및 감사\",\n      \"requirement_detail\": \"VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-009",
+        "normalized_requirement_count": 5,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-021",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "VM·BM·컨테이너 통합 보안정책 관리",
+            "requirement_detail": "VM, BM 및 컨테이너 자원에 통합 보안정책을 수립하고 일괄 적용하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          },
+          {
+            "task2_id": "T2-022",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "처리",
+            "requirement_name": "동적 확장 환경 자원 보안정책 자동 적용",
+            "requirement_detail": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          },
+          {
+            "task2_id": "T2-023",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "모니터링",
+            "requirement_name": "자원 유형별 보안상태 실시간 모니터링",
+            "requirement_detail": "VM, BM 및 컨테이너 자원 유형별 보안상태를 실시간으로 모니터링하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          },
+          {
+            "task2_id": "T2-024",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "검증",
+            "requirement_name": "자원 이상행위 탐지 및 알림",
+            "requirement_detail": "VM, BM 및 컨테이너 자원의 이상행위를 탐지하고 사용자에게 알림을 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          },
+          {
+            "task2_id": "T2-025",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-005"
+            ],
+            "reference_context_ids": [],
+            "action_type": "권한",
+            "requirement_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+            "requirement_detail": "VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-009",
+    "normalized_requirement_count": 5,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-021",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "VM·BM·컨테이너 통합 보안정책 관리",
+        "requirement_detail": "VM, BM 및 컨테이너 자원에 통합 보안정책을 수립하고 일괄 적용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-022",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "동적 확장 환경 자원 보안정책 자동 적용",
+        "requirement_detail": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-023",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "모니터링",
+        "requirement_name": "자원 유형별 보안상태 실시간 모니터링",
+        "requirement_detail": "VM, BM 및 컨테이너 자원 유형별 보안상태를 실시간으로 모니터링하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-024",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "검증",
+        "requirement_name": "자원 이상행위 탐지 및 알림",
+        "requirement_detail": "VM, BM 및 컨테이너 자원의 이상행위를 탐지하고 사용자에게 알림을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-025",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "권한",
+        "requirement_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+        "requirement_detail": "VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      }
+    ]
+  }
+}

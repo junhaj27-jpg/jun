@@ -1,0 +1,1054 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "document_id": "DOC-021",
+  "final_requirement_count": 25,
+  "final_requirements": [
+    {
+      "gold_id": "GOLD-001",
+      "action_type": "관리",
+      "requirement_name": "다중 LLM 통합·확장성·API 최적화 설계",
+      "requirement_detail": "GPT-4, Llama 등 다양한 LLM을 모듈화하여 독립 개발과 확장성에 유리하게 통합하고 새 LLM과 외부 API를 연계하며 API 호출 속도를 최적화하고 대량 요청을 분산 처리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000001",
+        "T2-000003",
+        "T2-000004",
+        "T2-000005"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-001",
+        "SFR-001::SFR-001-003",
+        "SFR-001::SFR-001-004",
+        "SFR-001::SFR-001-005"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-002",
+      "action_type": "제공",
+      "requirement_name": "온프레미스 독립 운영 챗봇",
+      "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 하며, 온프레미스 서버 자원의 효율적 활용과 사용량 분석을 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000002",
+        "T2-000017"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-002",
+        "SFR-003::SFR-003-001"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-003",
+      "action_type": "관리",
+      "requirement_name": "AI 모델 선택·응답 파라미터 조정",
+      "requirement_detail": "사용자는 적합한 AI 모델을 선택하고 창의성, 신뢰성, 답변 온도 및 유사 응답 개수를 조정할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000006",
+        "T2-000026"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-006",
+        "SFR-005::SFR-005-003"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-005"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-004",
+      "action_type": "입력",
+      "requirement_name": "프롬프트 템플릿 관리·편집·활용",
+      "requirement_detail": "프롬프트 템플릿을 등록·수정·삭제하고 사용자 질의문을 입력할 수 있어야 하며, 사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000007",
+        "T2-000008",
+        "T2-000024"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-007",
+        "SFR-001::SFR-001-008",
+        "SFR-005::SFR-005-001"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-005"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-005",
+      "action_type": "제공",
+      "requirement_name": "대화형 UX·스레드 대화",
+      "requirement_detail": "ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 하며, 다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000009",
+        "T2-000019"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-009",
+        "SFR-003::SFR-003-003"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-006",
+      "action_type": "관리",
+      "requirement_name": "대화 히스토리 관리",
+      "requirement_detail": "사용자는 대화 히스토리의 삭제와 다운로드를 요청할 수 있어야 하며, 관리자는 대화 히스토리의 복원과 삭제를 관리할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000010",
+        "T2-000011",
+        "T2-000012",
+        "T2-000013"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-010",
+        "SFR-001::SFR-001-011",
+        "SFR-001::SFR-001-012",
+        "SFR-001::SFR-001-013"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-007",
+      "action_type": "관리",
+      "requirement_name": "상용 LLM API 통합 관리 및 사용량 모니터링",
+      "requirement_detail": "GPT-4 등 상용 LLM API를 등록·연계하고 통합 관리하며 API 사용량을 실시간 모니터링하고 통계를 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000014",
+        "T2-000016"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-001",
+        "SFR-002::SFR-002-002",
+        "SFR-002::SFR-002-004"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-008",
+      "action_type": "조회",
+      "requirement_name": "상용 LLM 라이센스 만료 알림",
+      "requirement_detail": "상용 LLM 라이센스가 만료되기 전에 알림을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000015"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-003"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-009",
+      "action_type": "보안",
+      "requirement_name": "온프레미스 민감데이터 보안",
+      "requirement_detail": "첨부문서, 사용자정보와 챗봇 채팅데이터의 외부유출을 차단하여야 한다.",
+      "source_task2_ids": [
+        "T2-000018"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-002"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-010",
+      "action_type": "관리",
+      "requirement_name": "사용자 그룹별 챗봇 설계·검색·매칭·환경·통계 관리",
+      "requirement_detail": "사용자 그룹별 요구사항에 맞춘 챗봇을 설계하고 사용자 그룹을 생성·수정·삭제하며 챗봇과 매칭할 수 있어야 하며, 사용자는 챗봇을 검색·탐색·필터링하고 선택한 챗봇의 환경을 적용하며 챗봇 이용현황 통계와 대화 리뷰를 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000020",
+        "T2-000027",
+        "T2-000029",
+        "T2-000030",
+        "T2-000031",
+        "T2-000037",
+        "T2-000049",
+        "T2-000050"
+      ],
+      "source_atomic_ids": [
+        "SFR-003-004",
+        "SFR-005-004",
+        "SFR-005-006",
+        "SFR-005-007",
+        "SFR-006-001",
+        "SFR-006-002",
+        "SFR-006-003",
+        "SFR-006-004",
+        "SFR-009-001",
+        "SFR-009-002",
+        "SFR-012-003",
+        "SFR-012-004",
+        "SFR-012-005",
+        "SFR-012-006",
+        "SFR-003::SFR-003-004",
+        "SFR-005::SFR-005-004",
+        "SFR-005::SFR-005-006",
+        "SFR-005::SFR-005-007",
+        "SFR-006::SFR-006-001",
+        "SFR-006::SFR-006-002",
+        "SFR-006::SFR-006-003",
+        "SFR-006::SFR-006-004",
+        "SFR-009::SFR-009-001",
+        "SFR-009::SFR-009-002",
+        "SFR-012::SFR-012-003",
+        "SFR-012::SFR-012-006",
+        "SFR-012::SFR-012-004",
+        "SFR-012::SFR-012-005"
+      ],
+      "sources": [
+        "SFR-003",
+        "SFR-005",
+        "SFR-006",
+        "SFR-009",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과를 기준으로 통합하여 사용자 경험과 관리 효율성을 고려한 하나의 요구사항으로 제공함."
+    },
+    {
+      "gold_id": "GOLD-011",
+      "action_type": "관리",
+      "requirement_name": "다형식 문서 업로드·통합·데이터 추출",
+      "requirement_detail": "PDF, 텍스트 및 이미지 파일을 업로드하고 파일 크기와 형식을 유효성 검사하며, 업로드 문서를 통합 관리하고 조회·삭제하고 데이터를 추출하여야 한다.",
+      "source_task2_ids": [
+        "T2-000021",
+        "T2-000022"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-001",
+        "SFR-004::SFR-004-002",
+        "SFR-004::SFR-004-003",
+        "SFR-004::SFR-004-004"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·보완 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-012",
+      "action_type": "처리",
+      "requirement_name": "RAG 검색·답변 생성·근거 링크",
+      "requirement_detail": "벡터DB에서 검색결과를 활용하여 질문에 답변을 생성하고 근거 문서와 링크를 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000023"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-005"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-013",
+      "action_type": "산출",
+      "requirement_name": "문서 기반 지식베이스 생성·관리",
+      "requirement_detail": "사용자가 제공한 문서를 기반으로 챗봇 지식베이스를 생성하고 관리할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000025"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-002"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-014",
+      "action_type": "조회",
+      "requirement_name": "퍼블리시 전 개인 테스트",
+      "requirement_detail": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 사용자 테스트와 점검을 할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000028"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-005"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-015",
+      "action_type": "제공",
+      "requirement_name": "다국어 응대 및 언어 감지 기능",
+      "requirement_detail": "다국어 응대 및 언어 감지 기능을 제공하여야 하며, 20개 이상 언어로 응답과 언어 자동 감지를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000032"
+      ],
+      "source_atomic_ids": [
+        "SFR-007::SFR-007-001"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-016",
+      "action_type": "처리",
+      "requirement_name": "질의 의도 분석 및 맥락 기반 응답",
+      "requirement_detail": "질의 의도 분석 및 맥락 기반 응답을 처리하여야 하며, 질의 의도 분석과 맥락 맞춤 응답, 불명확 질문 처리 및 다단계 대화 관리를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000033"
+      ],
+      "source_atomic_ids": [
+        "SFR-007::SFR-007-002",
+        "SFR-007::SFR-007-003"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-017",
+      "action_type": "제공",
+      "requirement_name": "홈페이지·게시판 최신정보 자동 학습 및 질의응답",
+      "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하며 최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+      "source_task2_ids": [
+        "T2-000034",
+        "T2-000036"
+      ],
+      "source_atomic_ids": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003",
+        "SFR-008::SFR-008-005",
+        "SFR-008::SFR-008-006"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-018",
+      "action_type": "입력",
+      "requirement_name": "관리자 수동 정보 업데이트",
+      "requirement_detail": "관리자는 특정 학사정보를 수동으로 업데이트할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000035"
+      ],
+      "source_atomic_ids": [
+        "SFR-008::SFR-008-004"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-019",
+      "action_type": "산출",
+      "requirement_name": "대화·통계·사용량 엑셀 다운로드",
+      "requirement_detail": "대화내용, 통계분석 및 사용량 데이터를 엑셀파일로 다운로드할 수 있어야 하며, 대화내용, 통계분석 및 사용량 데이터의 엑셀 다운로드를 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000038",
+        "T2-000039",
+        "T2-000051"
+      ],
+      "source_atomic_ids": [
+        "SFR-009::SFR-009-003",
+        "SFR-009::SFR-009-004",
+        "SFR-012::SFR-012-007"
+      ],
+      "sources": [
+        "SFR-009",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 동일 구현 결과와 검수 기준에 따라 통합함."
+    },
+    {
+      "gold_id": "GOLD-020",
+      "action_type": "제공",
+      "requirement_name": "ARS 전화 응답·음성 대화·대량 통화",
+      "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하고 한국어 음성 대화와 대량 통화량 처리를 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000040",
+        "T2-000041",
+        "T2-000042"
+      ],
+      "source_atomic_ids": [
+        "SFR-010::SFR-010-001",
+        "SFR-010::SFR-010-002",
+        "SFR-010::SFR-010-003"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-021",
+      "action_type": "권한",
+      "requirement_name": "학내 통합인증·이메일 ID·외부 사용자 차단",
+      "requirement_detail": "학내 운영중인 통합인증시스템을 연계하여 로그인을 처리하고, 학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하며, 외부 사용자의 접근을 차단하여야 한다.",
+      "source_task2_ids": [
+        "T2-000043",
+        "T2-000044"
+      ],
+      "source_atomic_ids": [
+        "SFR-011-001",
+        "SFR-011-002",
+        "SFR-011::SFR-011-001",
+        "SFR-011::SFR-011-002"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-022",
+      "action_type": "보안",
+      "requirement_name": "비밀번호 암호화·HTTPS",
+      "requirement_detail": "비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.",
+      "source_task2_ids": [
+        "T2-000045"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-003"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-023",
+      "action_type": "입력",
+      "requirement_name": "비밀번호 재설정",
+      "requirement_detail": "사용자가 비밀번호를 재설정할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000046"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-004"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-024",
+      "action_type": "관리",
+      "requirement_name": "신규 회원 승인·거부",
+      "requirement_detail": "관리자는 신규 회원 가입 요청을 승인하거나 거부할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000047"
+      ],
+      "source_atomic_ids": [
+        "SFR-012::SFR-012-001"
+      ],
+      "sources": [
+        "SFR-012"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-025",
+      "action_type": "관리",
+      "requirement_name": "부적절 계정 삭제",
+      "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000048"
+      ],
+      "source_atomic_ids": [
+        "SFR-012::SFR-012-002"
+      ],
+      "sources": [
+        "SFR-012"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함."
+    }
+  ],
+  "relation_decisions": [
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000015"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-008",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000018"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-009",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000023"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-012",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000025"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-013",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000028"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-014",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000032"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-015",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000033"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-016",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000035"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-018",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000046"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-023",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000047"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-024",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "comparison_ids": [
+        "T2-000001",
+        "T2-000003",
+        "T2-000004",
+        "T2-000005"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "문서형식, 사용자·관리자 범위, 실행환경, 보안등급, 주기, 파일형식, 인터페이스 및 원본 SFR ID를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-001"
+    },
+    {
+      "comparison_ids": [
+        "T2-000014",
+        "T2-000016"
+      ],
+      "relation_type": "PARENT_CHILD",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "문서형식, 사용자·관리자 범위, 실행환경, 보안등급, 주기, 파일형식, 인터페이스 및 원본 SFR ID를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-007"
+    },
+    {
+      "comparison_ids": [
+        "T2-000002",
+        "T2-000017"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-002"
+    },
+    {
+      "comparison_ids": [
+        "T2-000009",
+        "T2-000019"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-005"
+    },
+    {
+      "comparison_ids": [
+        "T2-000040",
+        "T2-000041",
+        "T2-000042"
+      ],
+      "relation_type": "PARENT_CHILD",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-020"
+    },
+    {
+      "comparison_ids": [
+        "T2-000006",
+        "T2-000026"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "문서 전체의 사용자, 데이터 범위, 연계 대상, 수치 및 기능 조건을 최종 요구사항에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-003"
+    },
+    {
+      "comparison_ids": [
+        "T2-000007",
+        "T2-000008",
+        "T2-000024"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 역할, 파일 제한, 보안·보관기간, AI·외부연계·CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-004"
+    },
+    {
+      "gold_id": "GOLD-006",
+      "comparison_ids": [
+        "T2-000010",
+        "T2-000011",
+        "T2-000012",
+        "T2-000013"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현을 기준으로 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-022",
+      "comparison_ids": [
+        "T2-000045"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-025",
+      "comparison_ids": [
+        "T2-000048"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "사용자 역할, 처리계층, 데이터 대상, 실행채널, 보안위험 또는 검수결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "사용자·관리자 구분, 검색조건, 파일 제한, 보안·보관기간, CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "comparison_ids": [
+        "T2-000020",
+        "T2-000027",
+        "T2-000029",
+        "T2-000030",
+        "T2-000031",
+        "T2-000037",
+        "T2-000049",
+        "T2-000050"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과를 기준으로 통합하여 사용자 경험과 관리 효율성을 고려한 하나의 요구사항으로 제공함.",
+      "preserved_conditions": [
+        "사용자·관리자 역할, 학습·플랫폼·AI·영상·문자·파일 처리, RAG·검색·OCR·PDF·다국어·보안·개인정보·반도체 범위, 화면·스트리밍·다운로드·온라인 회의 결과와 원문 SFR 계보를 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-010"
+    },
+    {
+      "comparison_ids": [
+        "T2-000021",
+        "T2-000022"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·보완 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "문서형식, 사용자·관리자 범위, 실행환경, 보안등급, 파일·메모리 제약 및 출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-011"
+    },
+    {
+      "comparison_ids": [
+        "T2-000034",
+        "T2-000036"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "학습자·교수자·관리자 역할, 데이터 범위, 추천 검색·평가·이력·보안 조건과 원문 SFR ID를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-017"
+    },
+    {
+      "comparison_ids": [
+        "T2-000038",
+        "T2-000039",
+        "T2-000051"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 동일 구현 결과와 검수 기준에 따라 통합함.",
+      "preserved_conditions": [
+        "사용자·관리자 구분, 검색조건, 파일 제한, 보안조건, 처리상태와 출처를 최종 요구사항에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-019"
+    },
+    {
+      "comparison_ids": [
+        "T2-000043",
+        "T2-000044"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "학습자·교수자·관리자 역할, 학습·강의·시스템·플랫폼·성과·데이터 범위, 추천 검색·보안·보관기간 및 원본 SFR ID를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-021"
+    }
+  ],
+  "quality": {
+    "status": "PASS",
+    "fallback_count": 0,
+    "fallback_records": [],
+    "expected_task2_count": 51,
+    "assigned_task2_count": 51,
+    "missing_task2_count": 0,
+    "duplicate_assignment_count": 0,
+    "orphan_relation_count": 0
+  },
+  "trace": {
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "input_file": "/workspace/test_input/DOC-021_기능전체_입력.json",
+    "input_fur_count": 12,
+    "pipeline": "TASK1_TASK2_TASK3_EMBEDDING_GROUP_V10_4_RELATION_REPAIR_EVALUATION",
+    "pipeline_version": "v10.4",
+    "manifest_signatures": {
+      "task1": "f27911908e35ccb65effbdf9f8c0f0f34a6a0005a76ed912c44b0944aca7856b",
+      "task2": "0e6d91c986a7e282fb9c6a8ff2e0a7556a2566702dfd1ca388f5191ff7a11910",
+      "task3": "ed1350017b6df6570c2a878ae64a13c5d4d21b36b9d7fa5c0e014136287c009c"
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "embedding_device": "cuda",
+    "task1_atomic_total": 64,
+    "task1_reused_fur_count": 0,
+    "task1_generated_fur_count": 12,
+    "task2_candidate_total": 51,
+    "task2_reused_fur_count": 0,
+    "task2_generated_fur_count": 12,
+    "embedding_model": "intfloat/multilingual-e5-base",
+    "scope_global_count": 0,
+    "scope_local_count": 0,
+    "similar_component_count": 10,
+    "similar_component_item_count": 41,
+    "singleton_count": 10,
+    "task3_component_traces": [
+      {
+        "component_no": 1,
+        "initial_count": 6,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 6,
+            "chunk_count": 1,
+            "output_final_count": 2,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 2,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 3,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 3,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 4,
+        "initial_count": 3,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 3,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 5,
+        "initial_count": 6,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 6,
+            "chunk_count": 1,
+            "output_final_count": 3,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 6,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 7,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 8,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 9,
+        "initial_count": 3,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 3,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 10,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      }
+    ],
+    "task3_fallback_count": 0,
+    "quality_status": "PASS",
+    "assignment_quality": {
+      "expected_task2_count": 51,
+      "assigned_task2_count": 51,
+      "missing_task2_count": 0,
+      "duplicate_assignment_count": 0,
+      "orphan_relation_count": 0
+    },
+    "task3_final_total": 25
+  }
+}

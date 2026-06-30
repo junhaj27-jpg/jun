@@ -1,0 +1,84 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-009",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-009::SFR-009-001",
+        "action_type": "조회",
+        "output_name": "사업단 성과 조회",
+        "source_text": "우리 사업단의 성과를 조회할 수 있는 기능",
+        "original_atomic_id": "SFR-009-001",
+        "source_fur_id": "SFR-009"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-009::SFR-009-001"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1937,
+      "max_new_tokens": 6144,
+      "generated_tokens": 175,
+      "hit_token_limit": false,
+      "elapsed_seconds": 11.055048470851034,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-009\",\n  \"normalized_requirement_count\": 1,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-013\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-009::SFR-009-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"사업단 성과 조회\",\n      \"requirement_detail\": \"사업단별 성과를 조회할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-009\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-009",
+        "normalized_requirement_count": 1,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-013",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-009::SFR-009-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "사업단 성과 조회",
+            "requirement_detail": "사업단별 성과를 조회할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-009"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-009",
+    "normalized_requirement_count": 1,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-013",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "사업단 성과 조회",
+        "requirement_detail": "사업단별 성과를 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      }
+    ]
+  }
+}

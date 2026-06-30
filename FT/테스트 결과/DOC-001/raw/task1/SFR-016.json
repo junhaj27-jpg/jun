@@ -1,0 +1,249 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-016",
+      "requirement_name": "HPC 및 양자 시스템 연결 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "양자 시스템 구축 및 제어 환경",
+      "requirement_detail": "○ Classic to Quantum 트랜스파일링 기능\n일반 알고리즘 변환\nㆍ고전 알고리즘을 양자 알고리즘으로 변환하는 자동 매핑 기능을 제공해야 함\nㆍ다양한 양자 게이트 세트 지원 제공해야 함\n최적화 및 컴파일\nㆍ양자 회로 최적화를 위한 단계별 컴파일 파이프라인 제공해야 함\nㆍ게이트 융합 및 단순화를 통한 실행 시간 최적화를 제공해야 함\n\n○ Classic to Quantum data encoding 기능\n다양한 데이터 인코딩 방식\nㆍ진폭(Amplitude)/기저(Basis) 인코딩을 지원해야 함\n인코딩 최적화\nㆍ데이터 특성에 따른 최적 인코딩 방식 추천을 제공해야 함\nㆍ큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공해야 함\n\n○ Classic to Quantum data decoding 기능\n측정 결과 해석\nㆍ양자 상태 측정 결과의 통계 분석을 제공해야 함\nㆍ샷기반 카운팅 및 확률 분포 추정을 확인할 수 있어야 함\n결과 후 처리\nㆍ양자 노이즈 및 에러 필터링 메커니즘을 적용해야 함\nㆍ양자 결과를 고전 데이터 형식으로 변환 기능을 제공해야 함\nㆍ결과 불확실성에 대한 정량화 및 신뢰구간을 계산할 수 있어야 함\n데이터 시각화\nㆍ양자 결과의 대시보드 시각화 기능을 제공해야 함\nㆍ고전 데이터와 양자 결과 비교 분석 환경을 제공해야 함\n\n○ Quantum 시뮬레이션 모듈\n시뮬레이션 방법론 적용\nㆍ텐서 네트워크 기반 시뮬레이션을 지원해야 함\nㆍ몬테카를로 샘플링 시뮬레이션을 지원해야 함\n성능 최적화\nㆍGPU 가속 양자 시뮬레이션을 제공해야 함\nㆍ분산 HPC 클러스터를 활용한 병렬 시뮬레이션을 제공해야 함\nㆍ희소 행렬 및 메모리 최적화 기법을 적용 및 활용해야 함\n\n○ QPU adaptor 모듈\n다양한 QPU 지원\nㆍ클라우드 기반 QPU 접근 인터페이스를 제공해야 함\nㆍ주요 양자 벤더(IBM, Rigetti, IonQ 등) API 통합 관리를 제공해야 함\n작업 스케줄링\nㆍ작업 실행 상태 모니터링 및 알림을 제공해야 함\nㆍ자원 할당 최적화 및 과금 산출을 제공해야 함",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2566,
+      "max_new_tokens": 4096,
+      "generated_tokens": 1225,
+      "hit_token_limit": false,
+      "elapsed_seconds": 70.59883371181786,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-016\",\n  \"decomposition_count\": 17,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-016-001\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"고전 알고리즘 자동 매핑\",\n      \"source_text\": \"고전 알고리즘을 양자 알고리즘으로 자동 매핑\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-002\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"양자 게이트 세트 지원\",\n      \"source_text\": \"다양한 양자 게이트 세트 지원\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-003\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"양자 회로 최적화 컴파일\",\n      \"source_text\": \"양자 회로 최적화를 위한 단계별 컴파일\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-004\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"게이트 융합·단순화\",\n      \"source_text\": \"게이트 융합 및 단순화를 통한 실행 시간 최적화\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-005\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"진폭·기저 인코딩\",\n      \"source_text\": \"진폭(Amplitude)/기저(Basis) 인코딩\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-006\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"데이터 특성 기반 인코딩 추천\",\n      \"source_text\": \"데이터 특성에 따른 최적 인코딩 방식 추천\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-007\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"큐비트 사용량 최소화 인코딩\",\n      \"source_text\": \"큐비트 사용량 최소화 인코딩 벤치마킹 전략\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-008\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"양자 측정 통계 분석\",\n      \"source_text\": \"양자 상태 측정 결과의 통계 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-009\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"샷기반 카운팅·확률 분포\",\n      \"source_text\": \"샷기반 카운팅 및 확률 분포 추정\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-010\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"양자 노이즈·에러 필터링\",\n      \"source_text\": \"양자 노이즈 및 에러 필터링 메커니즘\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-011\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"양자 결과 고전 데이터 변환\",\n      \"source_text\": \"양자 결과를 고전 데이터 형식으로 변환\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-012\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"양자 결과 불확실성·신뢰구간\",\n      \"source_text\": \"결과 불확실성에 대한 정량화 및 신뢰구간\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-013\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"양자 결과 대시보드 시각화\",\n      \"source_text\": \"양자 결과의 대시보드 시각화\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-014\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"고전·양자 결과 비교 분석\",\n      \"source_text\": \"고전 데이터와 양자 결과 비교 분석 환경\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-015\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"텐서 네트워크 기반 시뮬레이션\",\n      \"source_text\": \"텐서 네트워크 기반 시뮬레이션\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-016\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"몬테카를로 샘플링 시뮬레이션\",\n      \"source_text\": \"몬테카를로 샘플링 시뮬레이션\"\n    },\n    {\n      \"atomic_id\": \"SFR-016-017\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"GPU·분산 HPC·희소 행렬 시뮬레이션\",\n      \"source_text\": \"GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-016",
+        "decomposition_count": 17,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-016-001",
+            "action_type": "처리",
+            "output_name": "고전 알고리즘 자동 매핑",
+            "source_text": "고전 알고리즘을 양자 알고리즘으로 자동 매핑"
+          },
+          {
+            "atomic_id": "SFR-016-002",
+            "action_type": "제공",
+            "output_name": "양자 게이트 세트 지원",
+            "source_text": "다양한 양자 게이트 세트 지원"
+          },
+          {
+            "atomic_id": "SFR-016-003",
+            "action_type": "처리",
+            "output_name": "양자 회로 최적화 컴파일",
+            "source_text": "양자 회로 최적화를 위한 단계별 컴파일"
+          },
+          {
+            "atomic_id": "SFR-016-004",
+            "action_type": "처리",
+            "output_name": "게이트 융합·단순화",
+            "source_text": "게이트 융합 및 단순화를 통한 실행 시간 최적화"
+          },
+          {
+            "atomic_id": "SFR-016-005",
+            "action_type": "제공",
+            "output_name": "진폭·기저 인코딩",
+            "source_text": "진폭(Amplitude)/기저(Basis) 인코딩"
+          },
+          {
+            "atomic_id": "SFR-016-006",
+            "action_type": "제공",
+            "output_name": "데이터 특성 기반 인코딩 추천",
+            "source_text": "데이터 특성에 따른 최적 인코딩 방식 추천"
+          },
+          {
+            "atomic_id": "SFR-016-007",
+            "action_type": "제공",
+            "output_name": "큐비트 사용량 최소화 인코딩",
+            "source_text": "큐비트 사용량 최소화 인코딩 벤치마킹 전략"
+          },
+          {
+            "atomic_id": "SFR-016-008",
+            "action_type": "분석",
+            "output_name": "양자 측정 통계 분석",
+            "source_text": "양자 상태 측정 결과의 통계 분석"
+          },
+          {
+            "atomic_id": "SFR-016-009",
+            "action_type": "조회",
+            "output_name": "샷기반 카운팅·확률 분포",
+            "source_text": "샷기반 카운팅 및 확률 분포 추정"
+          },
+          {
+            "atomic_id": "SFR-016-010",
+            "action_type": "처리",
+            "output_name": "양자 노이즈·에러 필터링",
+            "source_text": "양자 노이즈 및 에러 필터링 메커니즘"
+          },
+          {
+            "atomic_id": "SFR-016-011",
+            "action_type": "처리",
+            "output_name": "양자 결과 고전 데이터 변환",
+            "source_text": "양자 결과를 고전 데이터 형식으로 변환"
+          },
+          {
+            "atomic_id": "SFR-016-012",
+            "action_type": "처리",
+            "output_name": "양자 결과 불확실성·신뢰구간",
+            "source_text": "결과 불확실성에 대한 정량화 및 신뢰구간"
+          },
+          {
+            "atomic_id": "SFR-016-013",
+            "action_type": "조회",
+            "output_name": "양자 결과 대시보드 시각화",
+            "source_text": "양자 결과의 대시보드 시각화"
+          },
+          {
+            "atomic_id": "SFR-016-014",
+            "action_type": "분석",
+            "output_name": "고전·양자 결과 비교 분석",
+            "source_text": "고전 데이터와 양자 결과 비교 분석 환경"
+          },
+          {
+            "atomic_id": "SFR-016-015",
+            "action_type": "제공",
+            "output_name": "텐서 네트워크 기반 시뮬레이션",
+            "source_text": "텐서 네트워크 기반 시뮬레이션"
+          },
+          {
+            "atomic_id": "SFR-016-016",
+            "action_type": "제공",
+            "output_name": "몬테카를로 샘플링 시뮬레이션",
+            "source_text": "몬테카를로 샘플링 시뮬레이션"
+          },
+          {
+            "atomic_id": "SFR-016-017",
+            "action_type": "제공",
+            "output_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+            "source_text": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-016",
+    "decomposition_count": 17,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-016-001",
+        "action_type": "처리",
+        "output_name": "고전 알고리즘 자동 매핑",
+        "source_text": "고전 알고리즘을 양자 알고리즘으로 자동 매핑"
+      },
+      {
+        "atomic_id": "SFR-016-002",
+        "action_type": "제공",
+        "output_name": "양자 게이트 세트 지원",
+        "source_text": "다양한 양자 게이트 세트 지원"
+      },
+      {
+        "atomic_id": "SFR-016-003",
+        "action_type": "처리",
+        "output_name": "양자 회로 최적화 컴파일",
+        "source_text": "양자 회로 최적화를 위한 단계별 컴파일"
+      },
+      {
+        "atomic_id": "SFR-016-004",
+        "action_type": "처리",
+        "output_name": "게이트 융합·단순화",
+        "source_text": "게이트 융합 및 단순화를 통한 실행 시간 최적화"
+      },
+      {
+        "atomic_id": "SFR-016-005",
+        "action_type": "제공",
+        "output_name": "진폭·기저 인코딩",
+        "source_text": "진폭(Amplitude)/기저(Basis) 인코딩"
+      },
+      {
+        "atomic_id": "SFR-016-006",
+        "action_type": "제공",
+        "output_name": "데이터 특성 기반 인코딩 추천",
+        "source_text": "데이터 특성에 따른 최적 인코딩 방식 추천"
+      },
+      {
+        "atomic_id": "SFR-016-007",
+        "action_type": "제공",
+        "output_name": "큐비트 사용량 최소화 인코딩",
+        "source_text": "큐비트 사용량 최소화 인코딩 벤치마킹 전략"
+      },
+      {
+        "atomic_id": "SFR-016-008",
+        "action_type": "분석",
+        "output_name": "양자 측정 통계 분석",
+        "source_text": "양자 상태 측정 결과의 통계 분석"
+      },
+      {
+        "atomic_id": "SFR-016-009",
+        "action_type": "조회",
+        "output_name": "샷기반 카운팅·확률 분포",
+        "source_text": "샷기반 카운팅 및 확률 분포 추정"
+      },
+      {
+        "atomic_id": "SFR-016-010",
+        "action_type": "처리",
+        "output_name": "양자 노이즈·에러 필터링",
+        "source_text": "양자 노이즈 및 에러 필터링 메커니즘"
+      },
+      {
+        "atomic_id": "SFR-016-011",
+        "action_type": "처리",
+        "output_name": "양자 결과 고전 데이터 변환",
+        "source_text": "양자 결과를 고전 데이터 형식으로 변환"
+      },
+      {
+        "atomic_id": "SFR-016-012",
+        "action_type": "처리",
+        "output_name": "양자 결과 불확실성·신뢰구간",
+        "source_text": "결과 불확실성에 대한 정량화 및 신뢰구간"
+      },
+      {
+        "atomic_id": "SFR-016-013",
+        "action_type": "조회",
+        "output_name": "양자 결과 대시보드 시각화",
+        "source_text": "양자 결과의 대시보드 시각화"
+      },
+      {
+        "atomic_id": "SFR-016-014",
+        "action_type": "분석",
+        "output_name": "고전·양자 결과 비교 분석",
+        "source_text": "고전 데이터와 양자 결과 비교 분석 환경"
+      },
+      {
+        "atomic_id": "SFR-016-015",
+        "action_type": "제공",
+        "output_name": "텐서 네트워크 기반 시뮬레이션",
+        "source_text": "텐서 네트워크 기반 시뮬레이션"
+      },
+      {
+        "atomic_id": "SFR-016-016",
+        "action_type": "제공",
+        "output_name": "몬테카를로 샘플링 시뮬레이션",
+        "source_text": "몬테카를로 샘플링 시뮬레이션"
+      },
+      {
+        "atomic_id": "SFR-016-017",
+        "action_type": "제공",
+        "output_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+        "source_text": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화"
+      }
+    ]
+  }
+}

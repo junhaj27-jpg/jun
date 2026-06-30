@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-011",
+      "requirement_name": "병렬 I/O 평가 및 최적화 분류 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "병렬 I/O 평가 및 최적화 분류 기능",
+      "requirement_detail": "○ 병렬 파일 시스템 및 클라우드 스토리지 벤치마크 기능\n다양한 병렬 파일 시스템 및 스토리지 시스템에 대한 성능 벤치마크 기능을 제공하며, 입출력 처리량, 지연시간, 동시 접근 성능 등을 자동 측정한다.\n클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터 기능을 제공한다.\n스토리지 및 클라우드 간의 데이터 접근에 대한 사용자 인증, 권한 부여, 접근제어 로그 수집을 포함하는 스토리지 액세스 관리 기능을 제공한다.\n벤치마크 결과에 기반하여 스토리지 유형별 I/O 성능 비교 리포트를 자동 생성하고, 최적화 대상 분류 기능을 제공한다.\n\n○ 병렬 워크로드 복제 및 시뮬레이션 기반 최적화 프레임워크\n실제 HPC 워크로드를 복제하여 다양한 환경에서 시뮬레이션 가능한 프레임워크를 제공하고, 시뮬레이션 시 저장소 구성 변경을 반영할 수 있는 기능을 제공한다.\n스토리지 성능 프로파일링을 스케줄 기반으로 수행하고, 시점별 I/O 패턴 분석 및 리소스 사용 이력을 수집하는 기능을 제공한다.\n다양한 규모와 패턴의 대용량 워크로드를 자동으로 생성 또는 복제하여 병렬 환경에서 테스트할 수 있는 기능을 제공한다.\n시뮬레이션 결과를 기반으로 워크로드 특성과 스토리지 구성의 적합도를 분석하고, 최적화 방안을 제안할 수 있는 분류 및 리포트 기능을 제공한다.",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2412,
+  "max_new_tokens": 4096,
+  "generated_tokens": 917,
+  "hit_token_limit": false,
+  "elapsed_seconds": 55.6005151020363,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-011\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-011-001\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"병렬 파일 시스템·클라우드 스토리지 성능 벤치마크\",\n      \"source_text\": \"다양한 병렬 파일 시스템 및 클라우드 스토리지에 대한 성능 벤치마크 기능\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-002\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"클라우드 객체 스토리지 연동 어댑터\",\n      \"source_text\": \"클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터 기능\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-003\",\n      \"action_type\": \"보안\",\n      \"output_name\": \"스토리지 액세스 인증·권한·로그 관리\",\n      \"source_text\": \"스토리지 및 클라우드 간의 데이터 접근에 대한 사용자 인증, 권한 부여, 접근제어 로그 수집\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-004\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"스토리지 I/O 성능 비교 리포트\",\n      \"source_text\": \"벤치마크 결과에 기반하여 스토리지 유형별 I/O 성능 비교 리포트 자동 생성\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-005\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"스토리지 최적화 대상 분류\",\n      \"source_text\": \"최적화 대상 분류 기능\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-006\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"HPC 워크로드 복제·시뮬레이션 프레임워크\",\n      \"source_text\": \"실제 HPC 워크로드 복제와 다양한 환경에서 시뮬레이션 가능한 프레임워크\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-007\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"스토리지 성능 프로파일링·I/O 패턴·리소스 이력 분석\",\n      \"source_text\": \"스토리지 성능 프로파일링, 시점별 I/O 패턴 분석 및 리소스 사용 이력 수집\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-008\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"대용량 병렬 워크로드 생성·복제 테스트\",\n      \"source_text\": \"다양한 규모와 패턴의 대용량 워크로드 자동 생성 또는 복제\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-009\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"워크로드·스토리지 적합도 분석\",\n      \"source_text\": \"워크로드 특성과 스토리지 구성의 적합도 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-011-010\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"스토리지 최적화 방안 리포트\",\n      \"source_text\": \"최적화 방안 제안과 분류 및 리포트 기능\"\n    }\n  ]\n}"
+}

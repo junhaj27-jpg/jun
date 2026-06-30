@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-015",
+      "requirement_name": "어플리케이션별 가상 자원 추천 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "어플리케이션별 가상 자원 추천 기능",
+      "requirement_detail": "○ 어플리케이션 특성 기반 가상 자원 추천 및 자동화 프로비저닝 기능\n어플리케이션 또는 서비스 유형별로 자원 요구 특성을 정의하고, 이를 기반으로 VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그 형태로 제공하는 기능을 제공한다.\n서비스 실행 시 사용된 자원의 구성, 성능, 변경 이력 등을 추적하고, 향후 자원 추천 정확도 향상을 위한 기준 데이터로 활용할 수 있는 기능을 제공한다.\n어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝하고, 정책 기반으로 배포할 수 있는 기능을 제공한다.\n컨테이너 기반의 서비스를 위한 최적화된 리소스를 추천하고, 선택된 환경에서 자동으로 컨테이너를 생성 및 배포할 수 있는 기능을 제공한다.\n이기종 가속기에 대한 사용 요청을 분석하여 해당 디바이스 플러그인이 사전 설정된 최적 환경을 추천하고, 필요 시 자동 설정할 수 있는 기능을 제공한다.",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2235,
+  "max_new_tokens": 4096,
+  "generated_tokens": 459,
+  "hit_token_limit": false,
+  "elapsed_seconds": 27.874253201298416,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-015\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-015-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"서비스 유형별 자원 요구 특성 정의\",\n      \"source_text\": \"어플리케이션 또는 서비스 유형별로 자원 요구 특성을 정의\"\n    },\n    {\n      \"atomic_id\": \"SFR-015-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM·Container·BM 자원 조합 카탈로그\",\n      \"source_text\": \"VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그\"\n    },\n    {\n      \"atomic_id\": \"SFR-015-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"서비스 자원 구성·성능·변경 이력 추적\",\n      \"source_text\": \"서비스 실행 시 사용된 자원의 구성, 성능, 변경 이력 등을 추적\"\n    },\n    {\n      \"atomic_id\": \"SFR-015-004\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"서비스 유형별 최적 자원 자동 프로비저닝\",\n      \"source_text\": \"어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝\"\n    },\n    {\n      \"atomic_id\": \"SFR-015-005\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"컨테이너 최적 리소스 추천·생성·배포\",\n      \"source_text\": \"컨테이너 기반 서비스를 위한 최적화된 리소스를 추천하고, 선택된 환경에서 자동으로 컨테이너를 생성 및 배포\"\n    }\n  ]\n}"
+}

@@ -1,0 +1,19 @@
+{% if register_only %}
+  <div id="app-notice-root" data-notice-root data-modal-root class="fixed inset-0 z-[75] hidden items-center justify-center bg-slate-950/55 p-4">
+    <div class="relative w-full max-w-md">
+      <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-xl">
+        <div class="border-b border-slate-200 px-6 py-5">
+          <h3 data-notice-title class="text-lg font-semibold text-slate-900">안내</h3>
+        </div>
+        <div class="px-6 py-6">
+          <p data-notice-message class="text-sm leading-7 text-slate-700"></p>
+          <div class="mt-6 flex justify-end">
+            <button type="button" data-notice-submit class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              확인
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

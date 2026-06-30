@@ -1,0 +1,39 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-010",
+  "atomic_input_sha256": "a33eac02c3a6928d9d2cc7df478ce44f5458552c21bf1ad1b6443d9d420aa86b",
+  "normalized_requirement_count": 2,
+  "normalized_requirements": [
+    {
+      "task2_id": "SFR-010::T2-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "포털 검색 최적화",
+      "requirement_detail": "포털 검색 최적화 기능을 제공하여야 하며, 네이버, 구글 등의 포털사이트 검색 최적화를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "task2_id": "SFR-010::T2-002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "LLM 검색 최적화",
+      "requirement_detail": "LLM 검색 최적화 기능을 제공하여야 하며, 챗GPT 등 LLM의 검색 최적화를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    }
+  ]
+}

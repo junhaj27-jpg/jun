@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-004",
+      "requirement_name": "CXL 메모리 기반 가상자원 파이프라인 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "CXL 메모리 기반 가상자원 파이프라인 기능",
+      "requirement_detail": "○ CXL 메모리 기반 VM 파이프라인 기능 개발\nCXL 메모리를 활용한 VM 메모리 확장 기능 개발\nㆍCXL 메모리를 동적으로 할당 및 해제할 수 있는 메커니즘 개발해야 함\nㆍ기존 DRAM과 CXL 메모리의 계층적(Hierarchical) 메모리 관리 기능을 구현해야 함\n가상 머신(VM) 내 CXL 메모리 활용 지원\nㆍVM에서 CXL 메모리 인식 및 활용을 위한 설정 지원\nㆍCXL 메모리를 특정 VM에 직접 할당할 수 있는 기능을 제공해야 함\nVM별 CXL 메모리 사용량 모니터링 및 최적화\nㆍVM별 CXL 메모리 사용량 모니터링 및 성능 분석 기능을 제공해야 함\nㆍ메모리 사용량을 조절할 수 있는 자동 조정(Auto-Balancing) 기능을 제공해야 함\n\n○ CXL 메모리 기반 Container 파이프라인 기능 개발\n컨테이너 환경에서 CXL 메모리 할당 및 관리 기능 개발\nㆍKubernetes 및 Docker에서 CXL 메모리를 리소스로 인식하도록 CRD(Custom Resource Definition)를 개발해야 함\nㆍ컨테이너별 CXL 메모리 동적 할당 및 해제 기능을 구현해야 함\n컨테이너 오케스트레이션 연동 기능 개발\nㆍKubernetes에서 CXL 메모리를 리소스 풀 등록 및 스케줄링 가능하도록 지원해야 함\nㆍCXL 메모리 사용량을 기반으로 Auto-scaling 정책 수립 및 적용해야 함\n\n○CXL 메모리 기반 BM 파이프라인 기능 개발\nCXL 메모리를 활용한 BM서버 메모리 확장 기능 개발\nㆍ기존 DRAM과 CXL 메모리를 조합하여 메모리 계층을 구성하는 기능 개발해야 함\nHPC 및 AI/ML 워크로드에서 CXL 메모리 최적화\nBM 서버에서의 CXL 메모리 활용 모니터링 및 관리 기능 개발\nㆍCXL 메모리기반 모니터링 및 성능 분석 기능 구현해야 함\nㆍ서버 부하에 따라 CXL 메모리 자동 확장(Auto Scaling) 기능 구현해야 함\nㆍCXL 메모리 장애 감지 및 자동 복구(Failover) 기능 구현 방안을 마련해야 함",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2541,
+  "max_new_tokens": 4096,
+  "generated_tokens": 932,
+  "hit_token_limit": false,
+  "elapsed_seconds": 56.591108561027795,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-004\",\n  \"decomposition_count\": 13,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-004-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 동적 할당·해제\",\n      \"source_text\": \"CXL 메모리 동적 할당 및 해제\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"계층적 메모리 관리\",\n      \"source_text\": \"기존 DRAM과 CXL 메모리 계층적 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM CXL 메모리 인식·활용 설정\",\n      \"source_text\": \"VM에서 CXL 메모리 인식 및 활용 설정\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM별 CXL 메모리 할당\",\n      \"source_text\": \"CXL 메모리 특정 VM에 직접 할당\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-005\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"VM별 CXL 메모리 사용량 모니터링\",\n      \"source_text\": \"VM별 CXL 메모리 사용량 모니터링\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-006\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"CXL 메모리 자동 조정\",\n      \"source_text\": \"메모리 사용량 자동 조정\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-007\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 CRD\",\n      \"source_text\": \"Kubernetes 및 Docker CRD\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-008\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"컨테이너 CXL 메모리 동적 할당·해제\",\n      \"source_text\": \"컨테이너별 CXL 메모리 동적 할당 및 해제\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-009\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 리소스 풀 등록·스케줄링\",\n      \"source_text\": \"Kubernetes CXL 메모리 리소스 풀 등록 및 스케줄링\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-010\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 기반 Auto-scaling\",\n      \"source_text\": \"CXL 메모리 사용량 기반 Auto-scaling\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-011\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 계층 구성\",\n      \"source_text\": \"기존 DRAM과 CXL 메모리 조합\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-012\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"CXL 메모리 모니터링·성능 분석\",\n      \"source_text\": \"CXL 메모리 모니터링 및 성능 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-013\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 자동 확장·장애 복구\",\n      \"source_text\": \"CXL 메모리 자동 확장 및 장애 감지·복구\"\n    }\n  ]\n}"
+}

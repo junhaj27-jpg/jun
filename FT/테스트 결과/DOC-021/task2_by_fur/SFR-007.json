@@ -1,0 +1,40 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-007",
+  "atomic_input_sha256": "d225286bd91d3221b3dd29bdc7d2cd4fae59ec06467b105e3a2106bd272e7eb5",
+  "normalized_requirement_count": 2,
+  "normalized_requirements": [
+    {
+      "task2_id": "SFR-007::T2-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "다국어 응대 및 언어 감지 기능",
+      "requirement_detail": "다국어 응대 및 언어 감지 기능을 제공하여야 하며, 20개 이상 언어로 응답과 언어 자동 감지를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "task2_id": "SFR-007::T2-002",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-007::SFR-007-002",
+        "SFR-007::SFR-007-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "질의 의도 분석 및 맥락 기반 응답",
+      "requirement_detail": "질의 의도 분석 및 맥락 기반 응답을 처리하여야 하며, 질의 의도 분석과 맥락 맞춤 응답, 불명확 질문 처리 및 다단계 대화 관리를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+﻿status,document_id,input_file,pipeline_quality_status,evaluation_status,intrinsic_quality_score,input_fur_count,task1_atomic_total,task2_candidate_total,task3_final_total,similar_component_count,singleton_count,task3_fallback_count,task2_coverage_rate,atomic_coverage_rate,fur_source_coverage_rate,task2_to_gold_similarity_average,residual_strong_duplicate_pair_count,residual_duplicate_review_pair_count,residual_duplicate_affected_gold_count,overmerge_review_count,review_item_count,reference_semantic_f1,reference_score
+SUCCESS,DOC-001,DOC-001_기능전체_입력.json,REVIEW_REQUIRED,FAIL,100.0,17,152,122,99,21,9,2,1.0,1.0,1.0,0.987973,0,3,0,0,4,0.842553,70.47
+SUCCESS,DOC-003,DOC-003_기능전체_입력.json,PASS,PASS,100.0,10,27,27,19,6,5,0,1.0,1.0,1.0,0.978141,0,2,0,0,2,0.974359,84.12
+SUCCESS,DOC-021,DOC-021_기능전체_입력.json,PASS,FAIL,100.0,12,64,51,25,10,10,0,1.0,1.0,1.0,0.962794,0,0,0,0,1,0.943396,79.68

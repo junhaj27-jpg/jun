@@ -1,0 +1,55 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-009",
+  "atomic_input_sha256": "d02ccdcab8a3693c23c160d88086f725bd09881df5c88385809dc00647318836",
+  "normalized_requirement_count": 3,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-021",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-009::SFR-009-001",
+        "SFR-009::SFR-009-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "챗봇 이용현황 통계·대화 리뷰",
+      "requirement_detail": "챗봇 이용현황 통계 분석 기능을 제공하여야 하며, 유형별 기간별 이용현황 및 이용자 수·대화 수 통계와 대화내용 리뷰를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "task2_id": "T2-022",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-009::SFR-009-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "대화내용 엑셀 다운로드",
+      "requirement_detail": "대화내용 엑셀 다운로드 기능을 제공하여야 하며, 대화내용을 엑셀파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "task2_id": "T2-023",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-009::SFR-009-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "통계정보 엑셀 다운로드",
+      "requirement_detail": "통계정보 엑셀 다운로드 기능을 제공하여야 하며, 통계분석 정보를 엑셀파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009"
+    }
+  ]
+}

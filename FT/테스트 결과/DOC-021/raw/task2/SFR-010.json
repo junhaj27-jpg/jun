@@ -1,0 +1,158 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-010",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-010::SFR-010-001",
+        "action_type": "제공",
+        "output_name": "ARS 전화 응답 챗봇",
+        "source_text": "생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답",
+        "original_atomic_id": "SFR-010-001",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-002",
+        "action_type": "제공",
+        "output_name": "ARS 한국어 음성 대화",
+        "source_text": "전화 ARS는 한국어로 대화 가능",
+        "original_atomic_id": "SFR-010-002",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-003",
+        "action_type": "제공",
+        "output_name": "ARS 대량 통화 처리",
+        "source_text": "전화 ARS는 대량 통화량 처리 가능",
+        "original_atomic_id": "SFR-010-003",
+        "source_fur_id": "SFR-010"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-010::SFR-010-001",
+        "SFR-010::SFR-010-002",
+        "SFR-010::SFR-010-003"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2201,
+      "max_new_tokens": 6144,
+      "generated_tokens": 476,
+      "hit_token_limit": false,
+      "elapsed_seconds": 29.938756316900253,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-010\",\n  \"normalized_requirement_count\": 3,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"SFR-010::T2-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"ARS 전화 응답 챗봇\",\n      \"requirement_detail\": \"생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-010::T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"ARS 한국어 음성 대화\",\n      \"requirement_detail\": \"전화 ARS는 한국어로 음성 대화를 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-010::T2-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"ARS 대량 통화 처리\",\n      \"requirement_detail\": \"전화 ARS는 대량 통화량을 처리할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-010",
+        "normalized_requirement_count": 3,
+        "normalized_requirements": [
+          {
+            "task2_id": "SFR-010::T2-001",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-010::SFR-010-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "제공",
+            "requirement_name": "ARS 전화 응답 챗봇",
+            "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-010"
+            ]
+          },
+          {
+            "task2_id": "SFR-010::T2-002",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-010::SFR-010-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "제공",
+            "requirement_name": "ARS 한국어 음성 대화",
+            "requirement_detail": "전화 ARS는 한국어로 음성 대화를 지원하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-010"
+            ]
+          },
+          {
+            "task2_id": "SFR-010::T2-003",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-010::SFR-010-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "제공",
+            "requirement_name": "ARS 대량 통화 처리",
+            "requirement_detail": "전화 ARS는 대량 통화량을 처리할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-010"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-010",
+    "normalized_requirement_count": 3,
+    "normalized_requirements": [
+      {
+        "task2_id": "SFR-010::T2-001",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 전화 응답 챗봇",
+        "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "SFR-010::T2-002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 한국어 음성 대화",
+        "requirement_detail": "전화 ARS는 한국어로 음성 대화를 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "SFR-010::T2-003",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 대량 통화 처리",
+        "requirement_detail": "전화 ARS는 대량 통화량을 처리할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      }
+    ]
+  }
+}

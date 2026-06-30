@@ -1,0 +1,62 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-011",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-011::SFR-011-001",
+        "action_type": "연계",
+        "output_name": "학내 통합인증 로그인",
+        "source_text": "학내 운영중인 통합인증시스템을 활용한 로그인 기능",
+        "original_atomic_id": "SFR-011-001",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-002",
+        "action_type": "권한",
+        "output_name": "학내 이메일 ID·외부 사용자 차단",
+        "source_text": "학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 방지",
+        "original_atomic_id": "SFR-011-002",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-003",
+        "action_type": "보안",
+        "output_name": "비밀번호 암호화·HTTPS",
+        "source_text": "비밀번호 암호화 및 안전한 데이터 전송을 위한 HTTPS 프로토콜 사용",
+        "original_atomic_id": "SFR-011-003",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-004",
+        "action_type": "입력",
+        "output_name": "비밀번호 재설정",
+        "source_text": "비밀번호 재설정 기능",
+        "original_atomic_id": "SFR-011-004",
+        "source_fur_id": "SFR-011"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-011::SFR-011-001",
+        "SFR-011::SFR-011-002",
+        "SFR-011::SFR-011-003",
+        "SFR-011::SFR-011-004"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2350,
+  "max_new_tokens": 6144,
+  "generated_tokens": 611,
+  "hit_token_limit": false,
+  "elapsed_seconds": 36.94623748678714,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-011\",\n  \"normalized_requirement_count\": 4,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-031\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"학내 통합인증 로그인\",\n      \"requirement_detail\": \"학내 운영중인 통합인증시스템을 연계하여 로그인을 처리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-032\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"권한\",\n      \"requirement_name\": \"학내 이메일 ID·외부 사용자 차단\",\n      \"requirement_detail\": \"학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 차단하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-033\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"비밀번호 암호화·HTTPS\",\n      \"requirement_detail\": \"비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-034\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"입력\",\n      \"requirement_name\": \"비밀번호 재설정\",\n      \"requirement_detail\": \"사용자가 비밀번호를 재설정할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    }\n  ]\n}"
+}

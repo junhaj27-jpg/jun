@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-001",
+      "requirement_name": "(공통) 생성형 AI 서비스 플랫폼 구현",
+      "requirement_type": "기능",
+      "requirement_definition": "생성형 AI 서비스 플랫폼 구축 시 공통적으로 요구되는 사항",
+      "requirement_detail": "▪ 플랫폼 구조 설계 및 구축\n- 모듈화된 아키텍처 설계\n• 플랫폼의 주요 기능(LLM 연동, 사용자 인터페이스, 데이터 처리 등)을 모듈화하여 독립적으로 개발 및 확장 가능하도록 설계\n• 모듈 간 의존성을 최소화하여 특정 기능의 업데이트나 테스트 시 전체 시스템에 영향을 주지 않도록 구현\n- 온프레미스 환경 최적화\n• 온프레미스 서버 자원을 효율적으로 활용할 수 있도록 플랫폼을 설계\n• 자원(CPU, 메모리) 사용량을 분석하고, 시스템이 안정적으로 작동할 수 있는 기준을 설정\n- 플랫폼 확장성 보장\n• 새로운 LLM 모델 추가 또는 외부 서비스(API) 연동 시 시스템 구조 변경 없이 통합 가능\n• 학습 데이터 증가나 사용자 트래픽 변동에도 유연하게 대응할 수 있는 확장성 제공\n▪ LLM 통합 및 운영\n- 다양한 LLM 지원\n• 온프레미스 형태로 설치된 LLM과 상용 LLM의 API 통합 지원\n• GPT-4, Llama 등 다양한 LLM 모델을 동시에 통합하여 사용자가 상황에 맞는 모델을 선택할 수 있도록 기능 제공\n- AI 모델의 파라미터 조정 가능\n• 답변 온도 조정\n• 유사 응답 개수 조정\n▪ 프롬프트 템플릿 지원 기능\n- 프롬프트 템플릿 관리\n• 프롬프트 템플릿 등록, 수정, 삭제 기능\n- 등록된 프롬프트 활용\n• 등록된 프롬프트를 선택하여 내용 수정 후 질의문에 입력할 수 있는 기능\n▪ 사용자 중심 서비스 제공\n- 대화형 UX(사용자 경험) 구현\n• ChatGPT와 유사한 UX(사용자 경험)를 구현하여 직관적이고 편리한 인터페이스를 제공\n• 사용자가 대화 흐름을 쉽게 이해할 수 있도록 대화 내용을 스레드 형식으로 저장하고, 이전 대화를 검색하거나 복원할 수 있는 기능 제공\n- 대화 히스토리 관리\n• 사용자가 요청한 경우 대화 데이터를 삭제하거나 개인 기록으로 다운로드할 수 있는 기능 추가\n• 개인정보 보호를 위해 대화 데이터는 암호화 저장",
+      "source_location": {
+        "table_index": 14,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2572,
+  "max_new_tokens": 4096,
+  "generated_tokens": 964,
+  "hit_token_limit": false,
+  "elapsed_seconds": 59.140455569606274,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-001\",\n  \"decomposition_count\": 13,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-001-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"모듈화 아키텍처 설계\",\n      \"source_text\": \"주요 기능을 모듈화하여 독립 개발·확장과 의존성 최소화\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"온프레미스 자원 최적화\",\n      \"source_text\": \"온프레미스 서버 자원 효율 활용과 사용량 분석·안정성 기준\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"플랫폼 확장성 설계\",\n      \"source_text\": \"새 LLM 모델과 외부 API 통합 및 학습데이터·사용자 트래픽 확장성\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-004\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"온프레미스·상용 LLM 통합\",\n      \"source_text\": \"온프레미스 LLM과 상용 LLM API 통합\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-005\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"다양한 LLM 동시 통합\",\n      \"source_text\": \"GPT-4, Llama 등 다양한 LLM 모델 동시 통합\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-006\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"AI 모델 파라미터 조정\",\n      \"source_text\": \"답변 온도와 유사 응답 개수 조정\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-007\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"프롬프트 템플릿 관리\",\n      \"source_text\": \"프롬프트 템플릿 등록·수정·삭제\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-008\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"프롬프트 템플릿 활용\",\n      \"source_text\": \"등록 프롬프트 선택·수정·질의문 입력\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-009\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"대화형 UX·스레드 대화\",\n      \"source_text\": \"ChatGPT 유사 UX와 대화 스레드 저장·검색·복원\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-010\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"대화 히스토리 삭제·다운로드\",\n      \"source_text\": \"대화 데이터 삭제와 개인 기록 다운로드\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-011\",\n      \"action_type\": \"보안\",\n      \"output_name\": \"대화 데이터 암호화\",\n      \"source_text\": \"개인정보 보호를 위한 대화 데이터 암호화 저장\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-012\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"대화 히스토리 복원\",\n      \"source_text\": \"이전 대화를 검색하거나 복원\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-013\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"대화 히스토리 삭제\",\n      \"source_text\": \"사용자가 요청한 경우 대화 데이터 삭제\"\n    }\n  ]\n}"
+}

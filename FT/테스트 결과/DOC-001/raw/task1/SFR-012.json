@@ -1,0 +1,105 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-012",
+      "requirement_name": "HPC 작업에 대한 I/O 프로파일링 및 특성화 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "HPC 작업에 대한 I/O 프로파일링 및 특성화 기능",
+      "requirement_detail": "○ I/O 프로파일링 및 HPC 클라우드 연계 최적화 기능\nHPC 환경에서 발생하는 애플리케이션 및 시스템 수준의 I/O 작업을 추적하고, 디스크, 파일 시스템, 네트워크 I/O에 대한 프로파일링 정보를 수집 및 분석 기능을 제공한다.\n컨테이너 기반 클러스터와 연계하여 I/O 추적 정보를 컨테이너 단위로 분리 수집할 수 있는 기능을 제공하고, 멀티노드 환경에서도 통합 분석이 가능해야 한다.\n온프레미스 HPC 시스템과 퍼블릭 클라우드를 연결하는 HPC 클라우드 어댑터 기능을 제공하며, 클라우드 상에서도 동일한 I/O 추적 및 관리가 가능하도록 한다.\nHPC 클라우드 자원에 대한 액세스를 제어하고, 클라우드 스토리지 I/O 패턴에 대한 프로파일링 결과를 기반으로 접근권한 및 정책을 설정할 수 있는 기능을 제공한다.\n클라우드 기반 HPC 워크로드의 실행 및 스토리지 사용을 스케줄링하고, I/O 특성 기반의 자동 리소스 할당 및 구성을 지원하는 연계형 스케줄링 기능을 제공한다.",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2291,
+      "max_new_tokens": 4096,
+      "generated_tokens": 431,
+      "hit_token_limit": false,
+      "elapsed_seconds": 26.08982886420563,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-012\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-012-001\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"HPC I/O 프로파일링 및 분석\",\n      \"source_text\": \"HPC 애플리케이션·시스템 수준 I/O 추적·분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-002\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"컨테이너 기반 I/O 추적·통합 분석\",\n      \"source_text\": \"컨테이너 단위 I/O 분리 수집·멀티노드 통합 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-003\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"HPC 클라우드 어댑터\",\n      \"source_text\": \"온프레미스 HPC와 퍼블릭 클라우드 I/O 연계\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-004\",\n      \"action_type\": \"권한\",\n      \"output_name\": \"I/O 프로파일링 기반 접근권한·정책 설정\",\n      \"source_text\": \"I/O 프로파일링 결과 기반 접근권한·정책 설정\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-005\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"I/O 특성 기반 자동 리소스 할당·구성\",\n      \"source_text\": \"I/O 특성 기반 자동 리소스 할당·구성\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-012",
+        "decomposition_count": 5,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-012-001",
+            "action_type": "분석",
+            "output_name": "HPC I/O 프로파일링 및 분석",
+            "source_text": "HPC 애플리케이션·시스템 수준 I/O 추적·분석"
+          },
+          {
+            "atomic_id": "SFR-012-002",
+            "action_type": "연계",
+            "output_name": "컨테이너 기반 I/O 추적·통합 분석",
+            "source_text": "컨테이너 단위 I/O 분리 수집·멀티노드 통합 분석"
+          },
+          {
+            "atomic_id": "SFR-012-003",
+            "action_type": "연계",
+            "output_name": "HPC 클라우드 어댑터",
+            "source_text": "온프레미스 HPC와 퍼블릭 클라우드 I/O 연계"
+          },
+          {
+            "atomic_id": "SFR-012-004",
+            "action_type": "권한",
+            "output_name": "I/O 프로파일링 기반 접근권한·정책 설정",
+            "source_text": "I/O 프로파일링 결과 기반 접근권한·정책 설정"
+          },
+          {
+            "atomic_id": "SFR-012-005",
+            "action_type": "연계",
+            "output_name": "I/O 특성 기반 자동 리소스 할당·구성",
+            "source_text": "I/O 특성 기반 자동 리소스 할당·구성"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-012",
+    "decomposition_count": 5,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-012-001",
+        "action_type": "분석",
+        "output_name": "HPC I/O 프로파일링 및 분석",
+        "source_text": "HPC 애플리케이션·시스템 수준 I/O 추적·분석"
+      },
+      {
+        "atomic_id": "SFR-012-002",
+        "action_type": "연계",
+        "output_name": "컨테이너 기반 I/O 추적·통합 분석",
+        "source_text": "컨테이너 단위 I/O 분리 수집·멀티노드 통합 분석"
+      },
+      {
+        "atomic_id": "SFR-012-003",
+        "action_type": "연계",
+        "output_name": "HPC 클라우드 어댑터",
+        "source_text": "온프레미스 HPC와 퍼블릭 클라우드 I/O 연계"
+      },
+      {
+        "atomic_id": "SFR-012-004",
+        "action_type": "권한",
+        "output_name": "I/O 프로파일링 기반 접근권한·정책 설정",
+        "source_text": "I/O 프로파일링 결과 기반 접근권한·정책 설정"
+      },
+      {
+        "atomic_id": "SFR-012-005",
+        "action_type": "연계",
+        "output_name": "I/O 특성 기반 자동 리소스 할당·구성",
+        "source_text": "I/O 특성 기반 자동 리소스 할당·구성"
+      }
+    ]
+  }
+}

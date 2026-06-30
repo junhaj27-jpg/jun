@@ -1,0 +1,70 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-010",
+  "atomic_input_sha256": "58810ed6127f4c019be0a06bc20af33f1481d6c110059fec445aba16c39e52f9",
+  "normalized_requirement_count": 4,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-031",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "HPC 장애 실시간 ChatOps 자동화",
+      "requirement_detail": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "task2_id": "T2-032",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-010::SFR-010-002",
+        "SFR-010::SFR-010-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "반복장애 ChatOps 워크플로우 관리·실행결과 공유",
+      "requirement_detail": "반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "task2_id": "T2-033",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-010::SFR-010-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "HPC 장애대응 정보 역할별 보고",
+      "requirement_detail": "장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "task2_id": "T2-034",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "HPC 장애대응 자동 리포트",
+      "requirement_detail": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010"
+    }
+  ]
+}

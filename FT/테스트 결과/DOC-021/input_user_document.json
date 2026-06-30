@@ -1,0 +1,138 @@
+{
+  "document_id": "DOC-021",
+  "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+  "functional_requirements": [
+    {
+      "requirement_id": "SFR-001",
+      "requirement_name": "(공통) 생성형 AI 서비스 플랫폼 구현",
+      "requirement_type": "기능",
+      "requirement_definition": "생성형 AI 서비스 플랫폼 구축 시 공통적으로 요구되는 사항",
+      "requirement_detail": "▪ 플랫폼 구조 설계 및 구축\n- 모듈화된 아키텍처 설계\n• 플랫폼의 주요 기능(LLM 연동, 사용자 인터페이스, 데이터 처리 등)을 모듈화하여 독립적으로 개발 및 확장 가능하도록 설계\n• 모듈 간 의존성을 최소화하여 특정 기능의 업데이트나 테스트 시 전체 시스템에 영향을 주지 않도록 구현\n- 온프레미스 환경 최적화\n• 온프레미스 서버 자원을 효율적으로 활용할 수 있도록 플랫폼을 설계\n• 자원(CPU, 메모리) 사용량을 분석하고, 시스템이 안정적으로 작동할 수 있는 기준을 설정\n- 플랫폼 확장성 보장\n• 새로운 LLM 모델 추가 또는 외부 서비스(API) 연동 시 시스템 구조 변경 없이 통합 가능\n• 학습 데이터 증가나 사용자 트래픽 변동에도 유연하게 대응할 수 있는 확장성 제공\n▪ LLM 통합 및 운영\n- 다양한 LLM 지원\n• 온프레미스 형태로 설치된 LLM과 상용 LLM의 API 통합 지원\n• GPT-4, Llama 등 다양한 LLM 모델을 동시에 통합하여 사용자가 상황에 맞는 모델을 선택할 수 있도록 기능 제공\n- AI 모델의 파라미터 조정 가능\n• 답변 온도 조정\n• 유사 응답 개수 조정\n▪ 프롬프트 템플릿 지원 기능\n- 프롬프트 템플릿 관리\n• 프롬프트 템플릿 등록, 수정, 삭제 기능\n- 등록된 프롬프트 활용\n• 등록된 프롬프트를 선택하여 내용 수정 후 질의문에 입력할 수 있는 기능\n▪ 사용자 중심 서비스 제공\n- 대화형 UX(사용자 경험) 구현\n• ChatGPT와 유사한 UX(사용자 경험)를 구현하여 직관적이고 편리한 인터페이스를 제공\n• 사용자가 대화 흐름을 쉽게 이해할 수 있도록 대화 내용을 스레드 형식으로 저장하고, 이전 대화를 검색하거나 복원할 수 있는 기능 제공\n- 대화 히스토리 관리\n• 사용자가 요청한 경우 대화 데이터를 삭제하거나 개인 기록으로 다운로드할 수 있는 기능 추가\n• 개인정보 보호를 위해 대화 데이터는 암호화 저장",
+      "source_location": {
+        "table_index": 14,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-002",
+      "requirement_name": "오픈소스 및 상용 LLM API 개발",
+      "requirement_type": "기능",
+      "requirement_definition": "오픈소스 및 상용 LLM을 활용하기 위한 API 제공",
+      "requirement_detail": "▪ LLM API 통합 관리\n- GPT-4 및 기타 상용 LLM의 API의 통합 관리 기능을 제공하여, 각 API 사용량을 실시간으로 모니터링하고 통계를 확인 가능\n- 단일 인터페이스를 통해 복수의 API 호출 가능하도록 통합 인터페이스 설계\n- LLM 사용량 모니터링 및 상용 LLM 라이센스 만료 시 알림 제공\n▪ API 호출 최적화\n- API 호출 속도를 최적화하여 플랫폼의 응답 성능 확보\n- 대량 요청 /과부하 상황에서도 API 요청 분산 처리를 통한 안정적인 API 성능을 유지",
+      "source_location": {
+        "table_index": 15,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-003",
+      "requirement_name": "온프레미스 챗봇 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "온프레미스 환경에서 안정적으로 작동하는 챗봇 서비스를 구축‧운영",
+      "requirement_detail": "▪ 온프레미스 환경 최적화\n- 독립 운영 지원\n• 대학 내 인프라에 독립적으로 운영 가능한 챗봇 구축\n• 온프레미스 환경에서 민감한 데이터(첨부 문서, 사용자 정보, 채팅 데이터)를 외부 유출로부터 보호\n- 챗봇 성능 최적화\n• 다수의 사용자를 처리할 수 있도록 온프레미스 챗봇의 성능을 최적화\n• 로컬 서버 자원을 최적 활용하여 응답 시간과 처리 용량 최적화\n• 고가용성 설계를 통한 장애 복구 시간 최소화\n▪ 관리자 도구 제공\n- 관리자에게 챗봇 사용 데이터를 연동 제공하는 대시보드 제공",
+      "source_location": {
+        "table_index": 16,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-004",
+      "requirement_name": "RAG 시스템 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자가 업로드한 문서를 기반으로 챗봇이 지식을 자동으로 학습하는 RAG 시스템 구축",
+      "requirement_detail": "▪ 문서 업로드 기능\n- 사용자 문서(PDF, 텍스트, 이미지)를 플랫폼에 업로드할 수 있는 인터페이스 제공\n- 파일 크기와 형식에 대한 유효성 검사를 통해 안정적인 업로드 지원\n- 업로드된 문서를 지식베이스에 자동 통합하여 데이터 활용성을 극대화\n- 구조화된 문서 데이터(예: CSV) 및 비구조화된 문서 데이터(PDF 등) 모두 지원\n- 업로드된 문서 조회 기능\n- 필요시 문서를 삭제할 수 있는 기능\n▪ RAG(검색증강생성) 시스템\n- 업로드 된 문서에서 데이터를 추출하여 챗봇의 지식베이스로 통합\n- 벡터DB 및 유사도 검색 기술을 활용하여 사용자의 질문에 가장 관련성 높은 정보를 검색\n- 질문에 대한 응답 생성 시 문서의 내용을 기반으로 답변의 근거와 링크 제공",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-005",
+      "requirement_name": "생성형 AI 서비스 스튜디오",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자가 직접 챗봇을 설계, 편집할 수 있는 AI 서비스 스튜디오 구축",
+      "requirement_detail": "▪ 챗봇 설계 기능\n- 프롬프트를 손쉽게 수정 가능\n- 사용자 제공 문서를 기반으로 챗봇 지식베이스를 생성 및 관리할 수 있는 기능\n▪ 모델 파라미터 조정\n- 프로젝트 요구에 따라 적합한 LLM 모델을 선택하여 활용\n- 사용자 요구에 따라 응답의 창의성, 신뢰성 및 결과 범위를 조정할 수 있도록 지원\n▪ 챗봇 저장 및 퍼블리시 과정\n- 제작 완료 후 관리자의 승인 하에 챗봇을 공용으로 배포하거나 특정 사용자 그룹에만 제한적으로 배포 가능\n- 퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 기능을 점검할 수 있도록 지원\n▪ 사용자 그룹별 서비스 맞춤화\n- 학생, 교수, 교직원 등 사용자 그룹별로 요구사항에 맞춘 챗봇 설계를 지원\n▪ 특정 그룹을 지정한 챗봇 사용 기능\n- 사용자 그룹 관리(생성,수정,삭제) 기능\n- 챗봇에 사용자 그룹 매칭 기능",
+      "source_location": {
+        "table_index": 18,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-006",
+      "requirement_name": "챗봇 스토어 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "퍼블리시된 챗봇을 검색 및 불러올 수 있는 스토어 구축",
+      "requirement_detail": "▪ 챗봇 검색 및 탐색 기능\n- 플랫폼 내에서 퍼블리시된 챗봇을 탐색 및 검색할 수 있는 인터페이스\n- 각 챗봇에 대한 상세 설명(기능, 사용 사례 등)을 표시\n- 필터링 옵션을 통해 필요한 챗봇을 빠르게 찾을 수 있는 기능\n▪ 사용자 그룹별 서비스 구분\n- 사용자 그룹(학생, 교수, 교직원 등)별로 적합한 챗봇 조회\n- 사용자 로그인 시 그룹에 맞는 챗봇만 표시 및 활용 가능\n▪ 챗봇 활용\n- 선택한 챗봇을 불러와 사용자의 환경에 즉시 적용 가능",
+      "source_location": {
+        "table_index": 19,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-007",
+      "requirement_name": "다국어 응대 및 자연어 처리 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "자연어 처리(NLP) 기술을 통해 맥락과 의도를 이해하여 대화의 유연성과 정확성을 제공",
+      "requirement_detail": "▪ 다국어 응대\n- 20개 이상의 언어(한국어, 영어, 중국어, 일본어, 스페인어 등)로 사용자의 질문에 응답 가능\n- 사용자가 입력한 언어를 자동으로 감지하고 동일한 언어로 응답 생성\n▪ 자연어 처리 기능\n- 사용자의 질의 의도를 분석하여 맥락에 맞는 응답 제공\n- 질문이 불명확하거나 추가 정보가 필요한 경우 적절한 질문 또는 제안을 통해 대화 지속\n- 복잡한 다단계 질의응답을 처리할 수 있는 대화 관리 시스템 구현",
+      "source_location": {
+        "table_index": 20,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-008",
+      "requirement_name": "대학 홈페이지 정보 실시간 학습 및 업데이트",
+      "requirement_type": "기능",
+      "requirement_definition": "홈페이지 안내 챗봇이 대학 홈페이지 및 관련 게시판의 정보를 자동으로 학습하고 업데이트하여 사용자에게 최신 정보를 제공",
+      "requirement_detail": "▪ 홈페이지 데이터 자동 학습\n- 대학 홈페이지의 페이지 중 안내에 적합한 정보를 수집 및 분석\n- 크롤러를 활용하여 웹 페이지의 최신 정보를 매일 업데이트\n▪ 실시간 정보 처리\n- 게시판 또는 웹 페이지에 새로 업로드된 정보를 자동으로 학습하고 지식베이스에 추가\n- 관리자가 직접 수동으로 특정 정보를 업데이트 가능\n▪ 사용자 질의에 기반한 정보 제공\n- 최신 학사 정보, 일정, 공지사항 등을 사용자 질의에 따라 정확히 응답\n- 각 응답에 관련 링크 및 출처 정보 포함\n▪ 업무 담당 부서 및 연락처 관리 기능\n- 사용자 질문 관련 부서 및 연락처 별도 안내 기능\n- 업무 관련 부서 및 연락 관리 기능\n▪ 관리 및 모니터링\n- 관리자 대시보드에서 실시간 데이터 업데이트 현황 확인\n- 업데이트 정보 삭제 기능 및 삭제된 업데이트 정보 재학습 금지 기능",
+      "source_location": {
+        "table_index": 21,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-009",
+      "requirement_name": "홈페이지 안내 챗봇 통계 분석 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "홈페이지 안내 챗봇의 통계정보 관리 기능에 관한 사항",
+      "requirement_detail": "▪ 각종 통계분석 기능 적용 및 리포팅\n- 유형별 기간별(일/월/분기/년/특정기간) 이용현황\n- 전체 이용자 수, 평균 이용자 수, 평균 대화 수 등\n▪ 답변에 대한 정확도를 제공 또는 분석을 위한 자료 제공\n- 제공되는 콘솔을 이용하여 대화 내용 리뷰 가능\n- 대화 내용을 엑셀형태로 일괄 다운로드 기능 제공\n▪ 통계분석 기능에 의한 정보를 엑셀형태로 제공",
+      "source_location": {
+        "table_index": 22,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-010",
+      "requirement_name": "음성 질의응답 챗봇 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "챗봇을 전화에 적용해 음성 답변 기능 구현",
+      "requirement_detail": "▪ 생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답\n- ARS 전화 응대시 챗봇의 응답 생성/발화 시간 5초 이내\n▪ 전화 ARS는 한국어로 대화 가능\n▪ 전화 ARS는 대량 통화량 처리 가능\n▪ 전화 착신 전환 기능을 고려한 서비스 설계 필요",
+      "source_location": {
+        "table_index": 23,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-011",
+      "requirement_name": "로그인 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자 인증 및 접근 관리를 위한 로그인 기능",
+      "requirement_detail": "▪ 통합인증시스템 로그인 기능\n- 학내 운영중인 통합인증시스템을 활용한 로그인 기능\n▪ 외부 사용자 인증 기능\n- ID와 비밀번호를 기반으로 한 기본 인증 기능\n- 학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 방지\n- 비밀번호 암호화 및 안전한 데이터 전송을 위한 HTTPS 프로토콜 사용\n- 비밀번호 재설정 기능",
+      "source_location": {
+        "table_index": 24,
+        "source_type": "detailed_requirement_table"
+      }
+    },
+    {
+      "requirement_id": "SFR-012",
+      "requirement_name": "관리자 페이지 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "서비스 운영 및 관리를 위한 관리자 전용 페이지를 제공",
+      "requirement_detail": "▪ 회원 관리 기능\n- 신규 회원 가입 요청을 승인하거나 거부할 수 있는 기능 제공\n- 부적절하거나 비활성화된 계정을 삭제할 수 있는 권한 제공\n- 사용자 그룹(학생, 교수, 관리자 등) 및 계정 상태를 확인할 수 있는 기능 지원\n▪ 챗봇 관리 기능\n- 생성된 챗봇의 퍼블리시 요청을 승인 또는 거부할 수 있는 기능 제공\n- 비활성화되거나 필요 없는 챗봇을 삭제할 수 있는 권한 제공\n- 각 챗봇의 사용 현황, 업데이트 상태, 권한 정보를 열람할 수 있는 기능 지원\n▪ 사용량 조회 및 통계 분석\n- 사용자별 또는 챗봇별 사용량 데이터를 실시간으로 확인할 수 있는 기능 제공\n- 챗봇 사용 데이터를 분석하고 시각적으로 표현하여 운영 성과를 평가할 수 있는 기능\n① 날짜별 채팅 사용자 수\n② 날짜별 대화량(AI 응답 수, 사용자 발화 수)\n③ 자주하는 질문 목록\n- 통계 데이터를 CSV 또는 엑셀 형식으로 다운로드할 수 있는 기능 제공\n▪ 보안 및 접근 제어\n- 관리자 권한을 가진 사용자만 접근할 수 있도록 인증 및 권한 관리 강화",
+      "source_location": {
+        "table_index": 25,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  ]
+}

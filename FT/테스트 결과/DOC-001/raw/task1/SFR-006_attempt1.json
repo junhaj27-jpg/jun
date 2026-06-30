@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-006",
+      "requirement_name": "과학기반 유지보수 계획 관리",
+      "requirement_type": "기능",
+      "requirement_definition": "과학기반 유지보수 계획 관리",
+      "requirement_detail": "○ 유지보수 계획 자동화 및 최적화\n스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화를 수행해야 함\n유지보수 일정에 따른 스토리지 프록시 재구성 및 운영 정책에 대한 자동 적용 기능을 제공해야 함\n데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구 기능을 제공해야 함\n장애 발생 시 고가용성 옵션을 활용한 자동 페일오버(Failover) 프로세스 구축해야 함\nHA 구성 내 노드별 유지보수 이력 관리 및 성능 변화 분석해야 함\nHPC 클러스터의 성능 최적화를 위한 자동 튜닝 및 유지보수 기능을 제공해야 함\n\n○ 예방 및 대응 기반 유지보수 계획 관리\n유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅을 제공해야 함\n주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능을 구현해야 함\n시스템 안정성 검증을 위한 테스트 및 모니터링 자동화를 제공해야 함\n비용 및 성능을 고려한 탄력적인 자원 할당 정책 수립 및 적용해야 함",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2262,
+  "max_new_tokens": 4096,
+  "generated_tokens": 808,
+  "hit_token_limit": false,
+  "elapsed_seconds": 50.672644392587245,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-006\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-006-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"스토리지 프록시 상태 모니터링·이상 탐지\",\n      \"source_text\": \"스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"유지보수 일정 기반 스토리지 프록시 재구성\",\n      \"source_text\": \"유지보수 일정에 따른 스토리지 프록시 재구성\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"운영 정책 자동 적용\",\n      \"source_text\": \"운영 정책에 대한 자동 적용\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"스냅샷·복구 기반 데이터 무결성 유지보수\",\n      \"source_text\": \"데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-005\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"장애 자동 페일오버\",\n      \"source_text\": \"장애 발생 시 고가용성 옵션을 활용한 자동 페일오버\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-006\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"HA 노드별 유지보수 이력 관리\",\n      \"source_text\": \"HA 구성 내 노드별 유지보수 이력 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-007\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"HA 성능 변화 분석\",\n      \"source_text\": \"HA 구성 내 노드별 유지보수 이력 관리 및 성능 변화 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-008\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"HPC 자동 튜닝·성능 최적화\",\n      \"source_text\": \"HPC 클러스터의 성능 최적화를 위한 자동 튜닝\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-009\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"유지보수 성능 비교·영향 분석 레포트\",\n      \"source_text\": \"유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-010\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"시스템 변경 사전 검토·롤백 정책\",\n      \"source_text\": \"주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능\"\n    }\n  ]\n}"
+}

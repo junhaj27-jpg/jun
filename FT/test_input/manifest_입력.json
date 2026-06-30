@@ -1,0 +1,20 @@
+[
+  {
+    "document_id": "DOC-001",
+    "FUR수": 17,
+    "detail채움": 17,
+    "출처": "docx파싱"
+  },
+  {
+    "document_id": "DOC-003",
+    "FUR수": 10,
+    "detail채움": 10,
+    "출처": "학습데이터"
+  },
+  {
+    "document_id": "DOC-021",
+    "FUR수": 12,
+    "detail채움": 12,
+    "출처": "학습데이터"
+  }
+]

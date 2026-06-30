@@ -1,0 +1,41 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-008",
+  "atomic_input_sha256": "dc888c1e567c64ffcf758fd053c4fb225d2275067f4c1a91c7bf72fb1042b796",
+  "normalized_requirement_count": 2,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-023",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "장애 복구 자동화 및 모니터링",
+      "requirement_detail": "클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "task2_id": "T2-024",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-008::SFR-008-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "장애 복구 보고서 및 개선점 분석",
+      "requirement_detail": "장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    }
+  ]
+}

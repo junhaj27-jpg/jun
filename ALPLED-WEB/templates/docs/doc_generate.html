@@ -1,0 +1,456 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-3">
+  {% if active_job %}
+    <div
+      id="doc-job-page-state"
+      data-doc-job-page-state
+      data-docs-cd="{{ active_job.docs_cd }}"
+      data-job-kind="{{ active_job.job_kind }}"
+      data-job-title="{{ active_job.title }}"
+      data-job-message="{{ active_job.message }}"
+      data-job-status-code="{{ active_job.job_status_code }}"
+      data-job-status-label="{{ active_job.job_status_label }}"
+      data-poll-url="{{ active_job.poll_url }}"
+      data-poll-interval-ms="{{ active_job.poll_interval_ms }}"
+      data-job-started-at="{{ active_job.started_at }}"
+      data-job-elapsed-seconds="{{ active_job.elapsed_seconds }}"
+      class="hidden"
+    ></div>
+  {% endif %}
+
+  <section class="space-y-3">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+        <p class="mt-1 text-sm text-slate-500">
+          {% if current_project %}{{ current_project.name }}{% else %}현재 선택된 프로젝트가 없습니다.{% endif %}
+        </p>
+      </div>
+      {% if can_reset_generation %}
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+          <input type="hidden" name="action" value="reset_generation">
+          <button type="submit" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50">
+            재생성
+          </button>
+        </form>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div class="grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
+      <div class="space-y-3">
+        {% include "components/doc_job_status.html" with active_job=active_job %}
+
+        <div class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm">
+          <p class="font-semibold text-slate-900">{{ selected_step_guide.title }}</p>
+          <p class="mt-1">{{ selected_step_guide.description }}</p>
+          <p class="mt-0.5 text-slate-500">{{ selected_step_guide.help }}</p>
+        </div>
+
+        {% if not selected_is_current_step %}
+          <div class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm">
+            {% if selected_progress_row.status == "confirmed" %}
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p>{{ selected_document_label }}은 이미 저장 완료된 산출물입니다. 아래 버튼으로 저장본을 미리보기하거나 다운로드할 수 있습니다.</p>
+                <div class="flex shrink-0 flex-wrap gap-2">
+                  {% if selected_progress_row.detail_url %}
+                    <a href="{{ selected_progress_row.detail_url }}" class="rounded-lg bg-blue-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-blue-700">미리보기</a>
+                  {% endif %}
+                  {% if selected_progress_row.download_url %}
+                    <a href="{{ selected_progress_row.download_url }}" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50">다운로드</a>
+                  {% endif %}
+                </div>
+              </div>
+            {% elif selected_progress_row.status == "review" %}
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <p>{{ selected_document_label }} 초안이 검토 중입니다. 해당 산출물 미리보기 화면에서 내용을 확인해 주세요.</p>
+                {% if selected_progress_row.detail_url %}
+                  <a href="{{ selected_progress_row.detail_url }}" class="rounded-lg bg-blue-600 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-blue-700">초안 미리보기</a>
+                {% endif %}
+              </div>
+            {% else %}
+              {{ selected_document_label }} 생성을 위해 필요한 선행 산출물이 아직 준비되지 않았습니다.
+              {% if selected_progress_row.missing_prerequisite_labels %}
+                먼저 <span class="font-semibold text-slate-900">{{ selected_progress_row.missing_prerequisite_labels|join:", " }}</span> 저장본을 준비해 주세요.
+              {% endif %}
+            {% endif %}
+          </div>
+        {% elif show_file_selector %}
+          <div class="pl-1">
+            <button type="button" data-modal-target="docs-generate-files-modal" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              {% if has_selected_files %}문서 다시 선택{% else %}문서 불러오기{% endif %}
+            </button>
+          </div>
+
+          {% if has_selected_files %}
+            <div class="max-w-3xl rounded-[1.75rem] border border-slate-200 bg-slate-100/90 px-5 py-5 shadow-inner">
+              <p class="mb-4 text-sm font-semibold text-slate-900">선택 문서</p>
+              <div class="space-y-3">
+                {% for selected_file in selected_files %}
+                  <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                    <div class="min-w-0">
+                      <p class="truncate text-sm font-medium text-slate-900">{{ selected_file.name }}</p>
+                      <p class="mt-1 text-xs text-slate-500">{{ selected_file.file_type.name }}</p>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        {% elif show_itf_upload %}
+          <section class="max-w-5xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div class="mb-4 flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h2 class="text-xl font-semibold text-slate-900">화면 설계서 입력</h2>
+                <p class="mt-1 text-sm text-slate-500">아키텍처 설계서 단계로 넘어가기 전에 화면 UI 이미지 또는 와이어프레임을 업로드해 주세요.</p>
+              </div>
+              {% if itf_references %}
+                <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">등록 {{ itf_references|length }}건</span>
+              {% endif %}
+            </div>
+
+            <form method="post" enctype="multipart/form-data" data-itf-upload-form>
+              {% csrf_token %}
+              <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+              <input type="hidden" name="action" value="upload_itf_reference">
+              <input type="file" name="itf_references" accept=".png,.jpg,.jpeg,image/png,image/jpeg" multiple hidden data-itf-file-input>
+              <div data-itf-drop-zone class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-5 py-7 text-center transition">
+                <p class="text-sm font-semibold text-slate-800">화면 이미지를 끌어다 놓거나 파일 선택 버튼으로 등록해 주세요.</p>
+                <p class="mt-1 text-sm text-slate-500">허용 파일 형식: .png, .jpg, .jpeg / 파일당 최대 3MB / 여러 장 선택 가능</p>
+                <button type="button" data-itf-upload-select class="mt-5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                  화면 이미지 선택
+                </button>
+              </div>
+            </form>
+
+            {% if itf_references %}
+              <div class="mt-5 rounded-[1.5rem] bg-slate-100 p-4">
+                <p class="mb-3 text-sm font-semibold text-slate-900">등록된 화면 이미지</p>
+                <div class="grid gap-3 md:grid-cols-2">
+                  {% for reference in itf_references %}
+                    <div class="flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                      <div class="min-w-0">
+                        <p class="truncate text-sm font-medium text-slate-900">{{ reference.name }}</p>
+                        <p class="mt-1 text-xs text-slate-500">{{ reference.extension|upper }} / {{ reference.size|filesizeformat }}</p>
+                      </div>
+                      <form method="post" class="shrink-0">
+                        {% csrf_token %}
+                        <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+                        <input type="hidden" name="action" value="remove_itf_reference">
+                        <input type="hidden" name="reference_token" value="{{ reference.token }}">
+                        <button type="submit" class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-red-600" aria-label="화면 이미지 제거">
+                          삭제
+                        </button>
+                      </form>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </section>
+        {% elif show_architecture_inputs %}
+          {% if not architecture_networks and not open_arch_form %}
+            <div class="max-w-4xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="rounded-2xl border border-dashed border-slate-300 bg-white px-5 py-8 text-center">
+                <p class="text-sm font-medium text-slate-700">아키텍처 구성요소명, 목적, 기술 스택, 방화벽, 인증 방식, 인프라 사양을 등록할 수 있습니다.</p>
+                <p class="mt-2 text-sm font-medium text-slate-700">필요한 구성요소를 1개 이상 추가해야 아키텍처 설계서 생성이 가능합니다.</p>
+                <a href="?docs_cd={{ selected_document_code }}&resume=1&arch_form=1" class="mt-5 inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                  구성요소 추가
+                </a>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if open_arch_form %}
+            <section class="max-w-5xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="mb-5 flex items-center justify-between gap-3">
+                <div>
+                  <h2 class="text-xl font-semibold text-slate-900">아키텍처 구성요소 입력</h2>
+                  <p class="mt-1 text-sm text-slate-500">설계서에 포함할 시스템·서버·외부 연계·보안 구성요소 정보를 입력해 주세요.</p>
+                </div>
+                {% if architecture_networks %}
+                  <a href="?docs_cd={{ selected_document_code }}&resume=1" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                    입력 닫기
+                  </a>
+                {% endif %}
+              </div>
+              <form method="post" class="space-y-5">
+                {% csrf_token %}
+                <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+                <input type="hidden" name="action" value="add_project_net">
+
+                <div class="grid gap-5 md:grid-cols-2">
+                  <div class="space-y-2">
+                    <label for="project-net-name" class="block text-sm font-medium text-slate-900">구성요소명 <span class="text-red-500">*</span></label>
+                    <input id="project-net-name" name="name" type="text" value="{{ architecture_form.name }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: 웹 UI, AI Agent 서버, DB 서버, S3">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="project-net-purpose" class="block text-sm font-medium text-slate-900">구성요소 목적</label>
+                    <input id="project-net-purpose" name="purpose" type="text" value="{{ architecture_form.purpose }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: 사용자 요청 처리, 산출물 생성, 메타데이터 저장">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="project-net-middleware" class="block text-sm font-medium text-slate-900">기술 스택 / 미들웨어</label>
+                    <input id="project-net-middleware" name="middleware_stack" type="text" value="{{ architecture_form.middleware_stack }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: Django, FastAPI, LangGraph, MySQL, Qdrant">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="project-net-firewall" class="block text-sm font-medium text-slate-900">방화벽 / 접근 정책</label>
+                    <input id="project-net-firewall" name="firewall_settings" type="text" value="{{ architecture_form.firewall_settings }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: 443 허용, DB 3306 내부망만 허용">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="project-net-auth" class="block text-sm font-medium text-slate-900">인증 방식</label>
+                    <input id="project-net-auth" name="auth_method" type="text" value="{{ architecture_form.auth_method }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: Session, JWT, API Key, 서비스 계정">
+                  </div>
+                  <div class="space-y-2">
+                    <label for="project-net-expected" class="block text-sm font-medium text-slate-900">예상 동시 접속자 수</label>
+                    <input id="project-net-expected" name="expected_concurrent_users" type="text" value="{{ architecture_form.expected_concurrent_users }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="숫자만 입력해 주세요. 예: 50">
+                  </div>
+                  <div class="space-y-2 md:col-span-2">
+                    <label for="project-net-hardware" class="block text-sm font-medium text-slate-900">하드웨어 / 인프라 사양</label>
+                    <input id="project-net-hardware" name="hardware_spec" type="text" value="{{ architecture_form.hardware_spec }}" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="예: 2vCPU / 4GB, RDS MySQL, S3, Auto Scaling">
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="project-net-remarks" class="block text-sm font-medium text-slate-900">추가 설명</label>
+                  <textarea id="project-net-remarks" name="remarks" rows="5" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400" placeholder="구성요소 간 연계, 배포 위치, 운영 조건, 예외 사항 등을 입력해 주세요.">{{ architecture_form.remarks }}</textarea>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                  <label class="inline-flex items-center gap-3 text-sm font-medium text-slate-900">
+                    <span>클라우드 사용 여부</span>
+                    <input type="checkbox" name="cloud_yn" value="Y" class="h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" {% if architecture_form.cloud_yn == "Y" %}checked{% endif %}>
+                  </label>
+                  <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                    구성요소 추가
+                  </button>
+                </div>
+              </form>
+            </section>
+          {% endif %}
+
+          {% if architecture_networks %}
+            <div class="flex flex-wrap items-center gap-3 pl-1">
+              {% if not open_arch_form %}
+                <a href="?docs_cd={{ selected_document_code }}&resume=1&arch_form=1" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                  구성요소 추가
+                </a>
+              {% endif %}
+              <p class="text-sm text-slate-500">등록된 구성요소 {{ architecture_networks|length }}건</p>
+            </div>
+
+            <div class="max-w-6xl overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+              <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-slate-200 text-sm">
+                  <thead class="bg-slate-50">
+                    <tr>
+                      <th scope="col" class="px-4 py-3 text-left font-semibold text-slate-700">구성요소명</th>
+                      <th scope="col" class="px-4 py-3 text-left font-semibold text-slate-700">목적</th>
+                      <th scope="col" class="px-4 py-3 text-left font-semibold text-slate-700">기술 스택</th>
+                      <th scope="col" class="px-4 py-3 text-left font-semibold text-slate-700">접근/인증</th>
+                      <th scope="col" class="px-4 py-3 text-center font-semibold text-slate-700">클라우드</th>
+                      <th scope="col" class="px-4 py-3 text-center font-semibold text-slate-700">처리</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 bg-white">
+                    {% for network in architecture_networks %}
+                      <tr class="transition hover:bg-slate-50">
+                        <td class="max-w-[180px] px-4 py-4 align-top font-medium text-slate-900">
+                          <p class="truncate">{{ network.name }}</p>
+                          {% if network.expected_concurrent_users %}
+                            <p class="mt-1 text-xs font-normal text-slate-500">동시 {{ network.expected_concurrent_users }}명</p>
+                          {% endif %}
+                        </td>
+                        <td class="max-w-[220px] px-4 py-4 align-top text-slate-600">
+                          <p class="line-clamp-2">{{ network.purpose|default:"-" }}</p>
+                          {% if network.hardware_spec %}
+                            <p class="mt-1 text-xs text-slate-400">{{ network.hardware_spec }}</p>
+                          {% endif %}
+                        </td>
+                        <td class="max-w-[220px] px-4 py-4 align-top text-slate-600">
+                          <p class="line-clamp-2">{{ network.middleware_stack|default:"-" }}</p>
+                        </td>
+                        <td class="max-w-[240px] px-4 py-4 align-top text-slate-600">
+                          <p class="line-clamp-2">{{ network.firewall_settings|default:"-" }}</p>
+                          {% if network.auth_method %}
+                            <p class="mt-1 text-xs text-slate-400">인증: {{ network.auth_method }}</p>
+                          {% endif %}
+                        </td>
+                        <td class="px-4 py-4 text-center align-top">
+                          {% if network.cloud_yn == "Y" %}
+                            <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800">Y</span>
+                          {% else %}
+                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">N</span>
+                          {% endif %}
+                        </td>
+                        <td class="px-4 py-4 text-center align-top">
+                          <form method="post" class="inline-flex">
+                            {% csrf_token %}
+                            <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+                            <input type="hidden" name="action" value="delete_project_net">
+                            <input type="hidden" name="project_net_sn" value="{{ network.sn }}">
+                            <button type="submit" class="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-red-600" aria-label="구성요소 제거">
+                              삭제
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm">
+            {{ selected_document_label }}은 별도 파일 업로드나 구성요소 입력 없이 필요한 선행 산출물 저장본을 기준으로 생성됩니다.
+            아래의 생성 버튼을 눌러 산출물 생성을 진행해 주세요.
+          </div>
+        {% endif %}
+
+        {% if can_start_current_generation or active_job and active_job.job_kind == "initial" and selected_is_current_step %}
+          <div class="pl-1" data-doc-job-cta-slot>
+            <form method="post" action="{% url 'doc_generate' %}" class="inline-flex{% if active_job and active_job.job_kind == 'initial' and selected_is_current_step %} hidden{% endif %}" data-doc-job-form data-job-kind="initial" data-submit-url="{% url 'doc_generate' %}">
+              {% csrf_token %}
+              {% for selected_file in selected_files %}
+                <input type="hidden" name="selected_files" value="{{ selected_file.sn }}">
+              {% endfor %}
+              <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+              <input type="hidden" name="action" value="start_current">
+              <button type="submit" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700">
+                {{ start_button_label }}
+              </button>
+            </form>
+          </div>
+        {% endif %}
+
+        {% if current_draft and not active_job %}
+          <div class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm">
+            {{ current_document_label }} 초안이 준비되었습니다.<br>
+            미리보기로 내용을 확인하거나, 문제가 없으면 저장하기를 진행할 수 있습니다.
+          </div>
+          <div class="flex flex-wrap items-center gap-2 pl-1">
+            <a href="{{ current_check_url }}" class="inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              {{ current_document_label }} 미리보기
+            </a>
+            <form method="post" action="{% url 'doc_confirm' current_draft.sn %}" class="inline-flex">
+              {% csrf_token %}
+              <button type="submit" class="inline-flex rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700">
+                저장하기
+              </button>
+            </form>
+          </div>
+        {% endif %}
+
+        {% if is_complete %}
+          <div class="w-full rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm leading-6 text-emerald-900 shadow-sm">
+            모든 산출물 초안 저장이 완료되었습니다. 필요한 산출물은 승인요청을 진행해 주세요.
+          </div>
+        {% endif %}
+      </div>
+
+      <aside class="xl:sticky xl:top-24 xl:self-start">
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 shadow-sm">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold text-slate-900">생성 진행 현황</p>
+            <span class="text-xs text-slate-500">{{ progress_rows|length }} 단계</span>
+          </div>
+          <div class="mt-3 space-y-2">
+            {% for row in progress_rows %}
+              <div class="rounded-xl border border-slate-200 bg-white px-3 py-2.5">
+                <div class="flex items-center justify-between gap-2">
+                  <p class="min-w-0 break-keep text-sm font-medium leading-5 text-slate-900">{{ row.label }}</p>
+                  {% if row.status == "confirmed" %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-800">{{ row.status_label }}</span>
+                  {% elif row.status == "review" %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-blue-100 px-2.5 py-1 text-[11px] font-semibold text-blue-800">{{ row.status_label }}</span>
+                  {% elif row.status == "processing" %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-blue-100 px-2.5 py-1 text-[11px] font-semibold text-blue-800">{{ row.status_label }}</span>
+                  {% elif row.status == "failed" %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-rose-100 px-2.5 py-1 text-[11px] font-semibold text-rose-800">{{ row.status_label }}</span>
+                  {% elif row.status == "pending" %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-semibold text-amber-800">{{ row.status_label }}</span>
+                  {% else %}
+                    <span data-doc-progress-badge="{{ row.code }}" class="shrink-0 whitespace-nowrap rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-700">{{ row.status_label }}</span>
+                  {% endif %}
+                </div>
+                {% if row.detail_url %}
+                  <div class="mt-2 flex flex-wrap gap-1.5">
+                    <a href="{{ row.detail_url }}" class="inline-flex min-w-[70px] items-center justify-center whitespace-nowrap rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[11px] font-semibold text-slate-700 transition hover:bg-slate-50">
+                    {% if row.status == "review" %}초안 미리보기{% else %}미리보기{% endif %}
+                    </a>
+                    {% if row.download_url %}
+                      <a href="{{ row.download_url }}" class="inline-flex min-w-[72px] items-center justify-center whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-[11px] font-semibold text-white shadow-sm transition hover:bg-slate-700">다운로드</a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<div id="docs-generate-files-modal" data-modal-root class="fixed inset-0 z-50 {% if open_file_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-6xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">문서 불러오기</h3>
+          <p class="mt-1 text-sm text-slate-500">현재 프로젝트에 등록된 RFP 또는 회의록 문서를 선택해 주세요.</p>
+        </div>
+        <button type="button" data-modal-hide="docs-generate-files-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="max-h-[85vh] overflow-y-auto px-6 py-6">
+        <form method="get" class="space-y-4">
+          <input type="hidden" name="docs_cd" value="{{ selected_document_code }}">
+          <input type="hidden" name="modal" value="files">
+          <input type="hidden" name="resume" value="1">
+          <div class="grid gap-3 lg:grid-cols-[auto_auto_minmax(0,1fr)_auto] lg:items-center">
+            <div class="flex items-center gap-3">
+              <label class="text-sm font-semibold text-slate-700" for="file_type">문서 구분</label>
+              <select id="file_type" name="file_type" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+                {% for value, label in file_type_choices %}
+                  <option value="{{ value }}" {% if file_type == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="text-sm font-semibold text-slate-700" for="field">검색 조건</label>
+              <select id="field" name="field" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+                {% for value, label in search_field_choices %}
+                  <option value="{{ value }}" {% if search_field == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <input type="text" name="q" value="{{ query }}" class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400" placeholder="검색어를 입력해 주세요">
+            </div>
+            <button type="submit" class="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+              검색
+            </button>
+          </div>
+
+          {% include "files/partials/file_selector_table.html" with documents=documents current_project=current_project selected_file_ids=selected_file_ids %}
+
+          <div class="flex justify-end border-t border-slate-200 pt-4">
+            <button type="submit" name="apply_selection" value="1" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+              선택 완료
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

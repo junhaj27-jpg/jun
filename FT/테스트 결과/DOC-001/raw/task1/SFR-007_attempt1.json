@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-007",
+      "requirement_name": "HPC 통합 관리를 위한 UI/UX 개발",
+      "requirement_type": "기능",
+      "requirement_definition": "HPC 통합 관리를 위한 UI/UX 개발",
+      "requirement_detail": "○ 운영자 중심의 HPC 모니터링 및 시각화\nHPC 토폴로지 대시보드\nㆍ클러스터 토폴로지를 직관적으로 시각화하여 노드 간 연결 상태, 성능, 장애 정보를 실시간 제공\nㆍCPU, 메모리, 네트워크, 스토리지 등 주요 리소스 사용률을 대시보드에서 한눈에 확인 가능\nㆍ장애 발생 시 해당 노드 및 네트워크 경로를 강조 표시하고, 유지보수 추천 조치 제공\n사용자 및 워크로드 모니터링 기능\nㆍ사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황을 실시간으로 모니터링하는 UI 제공\nㆍHPC 작업별 실행 시간 예측 및 자원 소모율을 시각적으로 분석하여 최적의 실행 환경 추천\nㆍHPC 사용 로그 및 과거 작업 내역을 기반으로 성능 최적화 제안 기능 구현\n알림 및 자동 대응 UI 지원\nㆍ성능 저하, 장애 발생 시 운영자에게 실시간 알림 제공 (이메일, 웹 푸시, 슬랙 연동 등)\nㆍ클러스터 리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼 제공\nㆍ사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션을 UI에서 쉽게 설정 가능\n\n○ 하이브리드 HPC 환경을 고려한 UX/UI\nVM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리할 수 있는 UI 제공\nVM, 컨테이너, Baremetal 간 최적의 리소스 활용을 위한 자동 배치(Placement) 기능 제공\n컨테이너 기반 HPC 작업을 VM 또는 Baremetal 노드로 쉽게 이동(Migrate)할 수 있도록 지원\nVM, 컨테이너, Baremetal 인스턴스를 생성하고 HPC 클러스터에 연결하는 직관적인 UI 제공\n사용자 요청에 따라 HPC 클러스터 자원을 스케일 업 및 다운이 가능해야 함",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2464,
+  "max_new_tokens": 4096,
+  "generated_tokens": 1024,
+  "hit_token_limit": false,
+  "elapsed_seconds": 61.55352200428024,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-007\",\n  \"decomposition_count\": 13,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-007-001\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 클러스터 토폴로지 시각화\",\n      \"source_text\": \"HPC 토폴로지 대시보드\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 주요 리소스 대시보드\",\n      \"source_text\": \"CPU, 메모리, 네트워크, 스토리지 리소스 사용률\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-003\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 장애 노드·네트워크 경로 강조\",\n      \"source_text\": \"장애 발생 시 해당 노드 및 네트워크 경로 강조 표시\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-004\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 사용자별 사용량·작업 현황\",\n      \"source_text\": \"사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-005\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"HPC 작업 실행시간·자원 소모율 분석\",\n      \"source_text\": \"HPC 작업별 실행 시간 예측 및 자원 소모율 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-006\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 사용 로그·과거 작업 내역\",\n      \"source_text\": \"HPC 사용 로그 및 과거 작업 내역\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-007\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 성능 최적화 제안\",\n      \"source_text\": \"성능 최적화 제안 기능\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-008\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 성능 저하·장애 알림\",\n      \"source_text\": \"성능 저하, 장애 발생 시 운영자에게 실시간 알림\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-009\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 리소스 임계치 초과 알림\",\n      \"source_text\": \"클러스터 리소스 임계치 초과 시 운영자에게 알림\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-010\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"HPC 자동 조치 버튼\",\n      \"source_text\": \"리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-011\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"HPC 자동 스케일링·재시작 정책 설정\",\n      \"source_text\": \"사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-012\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"하이브리드 HPC 환경 통합 관리\",\n      \"source_text\": \"VM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-013\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"하이브리드 HPC 자동 배치·이동\",\n      \"source_text\": \"VM, 컨테이너, Baremetal 간 최적의 리소스 활용 자동 배치 및 컨테이너 이동\"\n    }\n  ]\n}"
+}

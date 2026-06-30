@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <section class="space-y-4">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+      {% if current_project %}
+        <p class="mt-1 text-sm text-slate-500">{{ current_project.name }}</p>
+      {% endif %}
+    </div>
+
+    <form method="get" class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div class="grid gap-3 lg:grid-cols-[auto_auto_minmax(0,1fr)_auto] lg:items-center">
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold text-slate-700" for="docs_cd">산출물 구분</label>
+          <select id="docs_cd" name="docs_cd" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+            {% for value, label in document_type_choices %}
+              <option value="{{ value }}" {% if selected_document_code == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold text-slate-700" for="status">승인 상태</label>
+          <select id="status" name="status" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+            {% for value, label in approval_status_choices %}
+              <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          {% if include_requester_search %}
+            <input type="text" name="requester" value="{{ requester_query }}" class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400" placeholder="요청자명을 입력해 주세요.">
+          {% else %}
+            <input type="text" name="requester" value="{{ requester_query }}" style="display:none;">
+          {% endif %}
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+            검색
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left text-sm">
+        <thead class="border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-600">
+          <tr>
+            <th class="px-6 py-4 text-center font-semibold">산출물</th>
+            <th class="px-6 py-4 text-center font-semibold">버전</th>
+            <th class="px-6 py-4 text-center font-semibold">요청자</th>
+            <th class="px-6 py-4 text-center font-semibold">승인 상태</th>
+            <th class="px-6 py-4 text-center font-semibold">요청 내용</th>
+            <th class="px-6 py-4 text-center font-semibold">요청 일시</th>
+            <th class="px-6 py-4 text-center font-semibold">처리</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 text-slate-700">
+          {% for row in documents %}
+            <tr class="bg-white transition hover:bg-slate-50">
+              <td class="px-6 py-4 text-center">
+                <a href="{{ row.detail_url }}" class="font-semibold text-slate-900 hover:text-blue-700">
+                  {{ row.document_label }}
+                </a>
+              </td>
+              <td class="px-6 py-4 text-center">{{ row.version }}</td>
+              <td class="px-6 py-4 text-center">{{ row.requester_name }}</td>
+              <td class="px-6 py-4 text-center">{{ row.status_name }}</td>
+              <td class="px-6 py-4 text-center">{{ row.request_content }}</td>
+              <td class="px-6 py-4 text-center">{{ row.created_at|date:"Y-m-d H:i" }}</td>
+              <td class="px-6 py-4 text-center">
+                <a href="{{ row.detail_url }}" class="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                  {% if is_manager and row.status_code == "APRV_REQ" %}검토{% else %}확인{% endif %}
+                </a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="7" class="px-6 py-20 text-center text-sm text-slate-500">
+                {% if current_project %}승인 요청 내역이 없습니다.{% else %}선택 가능한 프로젝트가 없습니다.{% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="pt-2">
+    {% include "components/pagination.html" %}
+  </div>
+</div>
+{% endblock %}

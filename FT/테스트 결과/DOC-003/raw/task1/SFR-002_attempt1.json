@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-002",
+      "requirement_name": "사용자 중심의 홈페이지 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자 중심의 홈페이지 구축",
+      "requirement_detail": "• 사용자의 시각적 요소와 기능적인 요소를 고려한 디자인 제작\n• 형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴 구성\n• 현재 제안요청서에서 요청하는 메뉴를 모두 포함하며, ‘주관부서’의 요구에 따라 추가 메뉴를 구성할 수 있음\n• 가독성 및 사용성을 고려한 레이아웃, 명확한 서체 규정 등 웹 스타일 가이드를 제작하여 일관성 유지\n• 데이터의 안전한 암호화 처리(개인식별정보/비밀번호 등)",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2105,
+  "max_new_tokens": 4096,
+  "generated_tokens": 423,
+  "hit_token_limit": false,
+  "elapsed_seconds": 25.071893773041666,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-002-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"사용자 중심 디자인·기능 설계\",\n      \"source_text\": \"사용자의 시각적 요소와 기능적인 요소를 고려한 디자인 제작\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"직관적인 메뉴구성·주관부서 추가메뉴\",\n      \"source_text\": \"형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴 구성\\n현재 제안요청서에서 요청하는 메뉴를 모두 포함하며, ‘주관부서’의 요구에 따라 추가 메뉴를 구성할 수 있음\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-003\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"웹 스타일 가이드·일관성 유지\",\n      \"source_text\": \"가독성 및 사용성을 고려한 레이아웃, 명확한 서체 규정 등 웹 스타일 가이드를 제작하여 일관성 유지\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-004\",\n      \"action_type\": \"보안\",\n      \"output_name\": \"개인정보·비밀번호 암호화\",\n      \"source_text\": \"데이터의 안전한 암호화 처리(개인식별정보/비밀번호 등)\"\n    }\n  ]\n}"
+}

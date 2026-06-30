@@ -1,0 +1,26 @@
+[
+  {
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "FUR수": 17,
+    "gold_final수": 136,
+    "gold_cbd수": 136,
+    "input출처": "docx파싱"
+  },
+  {
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "FUR수": 10,
+    "gold_final수": 20,
+    "gold_cbd수": 20,
+    "input출처": "학습데이터완전본"
+  },
+  {
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "FUR수": 12,
+    "gold_final수": 28,
+    "gold_cbd수": 28,
+    "input출처": "학습데이터완전본"
+  }
+]

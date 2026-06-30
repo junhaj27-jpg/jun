@@ -1,0 +1,69 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-003",
+  "atomic_input_sha256": "cb81ea8781dd573565295be88615f57cdfbaca2db41df888f1487fc211403901",
+  "normalized_requirement_count": 4,
+  "normalized_requirements": [
+    {
+      "task2_id": "SFR-003-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "온프레미스 독립 운영 챗봇",
+      "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "SFR-003-002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "보안",
+      "requirement_name": "온프레미스 민감데이터 보안",
+      "requirement_detail": "첨부문서, 사용자정보와 챗봇 채팅데이터의 외부유출을 차단하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "SFR-003-003",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "온프레미스 챗봇 성능·자원·고가용성",
+      "requirement_detail": "다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "SFR-003-004",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "관리자 챗봇 사용데이터 대시보드",
+      "requirement_detail": "관리자 대시보드에 챗봇 사용데이터를 연동하여 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    }
+  ]
+}

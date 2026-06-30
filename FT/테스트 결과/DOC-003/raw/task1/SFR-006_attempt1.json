@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-006",
+      "requirement_name": "통합게시판 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "통합게시판 구축",
+      "requirement_detail": "• 사업단 홈페이지에서는 모든 공지사항 등 주요 게시글 확인가능\n• 사업단 홈페이지에서는 해당 사업단의 공지사항 및 게시글을 확인가능",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 1992,
+  "max_new_tokens": 4096,
+  "generated_tokens": 118,
+  "hit_token_limit": false,
+  "elapsed_seconds": 7.289053677115589,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-006\",\n  \"decomposition_count\": 1,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-006-001\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사업단 통합게시판 게시글 조회\",\n      \"source_text\": \"사업단 홈페이지에서 모든 공지사항 및 게시글 확인\"\n    }\n  ]\n}"
+}

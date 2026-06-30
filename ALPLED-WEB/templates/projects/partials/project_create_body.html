@@ -1,0 +1,131 @@
+<form method="post" action="{% url 'project_list' %}" class="space-y-8" data-project-create-form data-project-form-root data-project-readonly-assignments="{{ project_form_readonly_assignments|yesno:'true,false' }}">
+  {% csrf_token %}
+  <input type="hidden" name="action" value="{% if project_form_mode == 'edit' %}update_project{% else %}create_project{% endif %}" data-project-form-action>
+  <input type="hidden" name="project_sn" value="{{ project_form_project_sn }}">
+  <input type="hidden" name="next" value="{% url 'project_list' %}?{{ preserved_querystring }}">
+
+  {% if project_form_readonly_assignments %}
+    <div class="rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm text-blue-800">
+      프로젝트 관리자로 할당된 사용자는 시스템 관리자가 생성한 프로젝트의 <span class="font-semibold">프로젝트명만 수정</span>할 수 있습니다. 프로젝트 삭제와 관리자/담당자 할당 변경은 시스템 관리자만 가능합니다.
+    </div>
+  {% endif %}
+
+  {% if project_form_mode == "edit" %}
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="space-y-2">
+        <p class="text-sm font-medium text-slate-500">프로젝트 ID</p>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900">{{ project_form_project_id }}</div>
+      </div>
+      <div class="space-y-2">
+        <p class="text-sm font-medium text-slate-500">등록일자</p>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900">{{ project_form_created_at|date:"Y-m-d H:i" }}</div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="space-y-2">
+    <label for="project-name" class="block text-sm font-medium text-slate-900">프로젝트명</label>
+    <input
+      id="project-name"
+      name="project_name"
+      type="text"
+      value="{{ project_form_name|default:'' }}"
+      class="w-full max-w-xl rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+      placeholder="프로젝트명을 입력하세요.">
+  </div>
+
+  <section class="space-y-3">
+    <div class="flex items-center justify-between">
+      <h4 class="text-sm font-semibold text-slate-900">프로젝트 관리자</h4>
+      {% if project_form_can_assign_users %}
+        <button
+          type="button"
+          data-project-open-search="manager"
+          data-modal-target="project-user-search-modal"
+          class="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+          추가
+        </button>
+      {% endif %}
+    </div>
+    <input type="hidden" name="manager_user_ids" value="{{ project_form_manager_user_ids }}" data-project-role-input="manager">
+    <div class="space-y-3" data-project-role-list="manager">
+      {% for user in project_form_manager_users %}
+      <div class="flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm" data-project-user-item data-user-id="{{ user.user_id }}">
+        <div>
+          <p class="text-sm font-medium text-slate-900" data-project-user-name>{{ user.name }}</p>
+          <p class="mt-1 text-xs text-slate-500" data-project-user-meta>{% if user.position or user.department %}{{ user.position }}{% if user.position and user.department %} / {% endif %}{{ user.department }}{% else %}프로젝트 관리자{% endif %}</p>
+        </div>
+        {% if project_form_can_assign_users %}
+          <button type="button" class="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700" data-project-remove-user>
+            삭제
+          </button>
+        {% endif %}
+      </div>
+      {% empty %}
+      <div data-project-empty class="rounded-xl bg-slate-100 px-4 py-5 text-center text-sm text-slate-500">
+        아직 추가된 관리자가 없습니다.
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="space-y-3">
+    <div class="flex items-center justify-between">
+      <h4 class="text-sm font-semibold text-slate-900">담당</h4>
+      {% if project_form_can_assign_users %}
+        <button
+          type="button"
+          data-project-open-search="member"
+          data-modal-target="project-user-search-modal"
+          class="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+          추가
+        </button>
+      {% endif %}
+    </div>
+    <input type="hidden" name="member_user_ids" value="{{ project_form_member_user_ids }}" data-project-role-input="member">
+    <div class="space-y-3" data-project-role-list="member">
+      {% for user in project_form_member_users %}
+      <div class="flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm" data-project-user-item data-user-id="{{ user.user_id }}">
+        <div>
+          <p class="text-sm font-medium text-slate-900" data-project-user-name>{{ user.name }}</p>
+          <p class="mt-1 text-xs text-slate-500" data-project-user-meta>{% if user.position or user.department %}{{ user.position }}{% if user.position and user.department %} / {% endif %}{{ user.department }}{% else %}멤버{% endif %}</p>
+        </div>
+        {% if project_form_can_assign_users %}
+          <button type="button" class="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700" data-project-remove-user>
+            삭제
+          </button>
+        {% endif %}
+      </div>
+      {% empty %}
+      <div data-project-empty class="rounded-xl bg-slate-100 px-4 py-5 text-center text-sm text-slate-500">
+        아직 추가된 담당자가 없습니다.
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <div class="flex justify-end gap-3">
+    {% if project_form_can_delete %}
+      <button type="submit" formnovalidate class="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700" data-project-delete-submit>
+        삭제
+      </button>
+    {% endif %}
+    <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700" data-project-create-submit>
+      {{ project_form_submit_label|default:"프로젝트 등록" }}
+    </button>
+  </div>
+</form>
+
+{% if project_form_can_assign_users %}
+<template id="project-user-item-template">
+  <div class="flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm" data-project-user-item>
+    <div>
+      <p class="text-sm font-medium text-slate-900" data-project-user-name></p>
+      <p class="mt-1 text-xs text-slate-500" data-project-user-meta></p>
+    </div>
+    <button type="button" class="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-red-700" data-project-remove-user>
+      삭제
+    </button>
+  </div>
+</template>
+{% endif %}

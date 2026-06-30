@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ title|default:"ALPLED" }}{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/favicon.png' %}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: "Noto Sans KR", system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 antialiased">
+  {% include "components/alert.html" with register_only=True %}
+  {% include "components/confirm.html" with register_only=True %}
+  {% include "components/notice.html" with register_only=True %}
+  {% include "components/job_progress.html" with register_only=True %}
+  {% if request.user.is_authenticated %}
+    {% include "components/sidebar.html" %}
+  {% endif %}
+
+  <div class="{% if request.user.is_authenticated %}lg:pl-64{% endif %}">
+    <main class="min-h-screen p-4 sm:p-6 lg:p-8">
+      {% if messages and not suppress_page_messages %}
+        <div class="mb-6 space-y-3">
+          {% for message in messages %}
+            {% include "components/alert.html" with message=message %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <script src="{% static 'js/app.js' %}"></script>
+  {% if request.user.is_authenticated %}
+    <script>
+      sessionStorage.setItem("alpledAuthenticatedSession", "1");
+
+      window.addEventListener("pageshow", function (event) {
+        if (event.persisted) {
+          window.location.reload();
+        }
+      });
+    </script>
+  {% endif %}
+</body>
+</html>

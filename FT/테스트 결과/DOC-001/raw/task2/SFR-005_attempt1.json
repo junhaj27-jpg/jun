@@ -1,0 +1,116 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-005",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-005::SFR-005-001",
+        "action_type": "제공",
+        "output_name": "워크로드 기반 VM·BM 인스턴스 자동 추천",
+        "source_text": "워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형 자동 추천",
+        "original_atomic_id": "SFR-005-001",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-002",
+        "action_type": "제공",
+        "output_name": "NUMA-Aware·CXL 메모리 기반 클러스터 배포",
+        "source_text": "NUMA-Aware 및 CXL 메모리 기반 최적 클러스터 배포",
+        "original_atomic_id": "SFR-005-002",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-003",
+        "action_type": "분석",
+        "output_name": "클러스터 자원 부하 분석",
+        "source_text": "클러스터 내 자원(메모리, CPU, 네트워크) 부하 분석",
+        "original_atomic_id": "SFR-005-003",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-004",
+        "action_type": "처리",
+        "output_name": "클러스터 자원 자동 확장",
+        "source_text": "자원 부하 분석 및 자동 확장(Auto Scaling)",
+        "original_atomic_id": "SFR-005-004",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-005",
+        "action_type": "관리",
+        "output_name": "VM·BM 서버 고정·동적 리소스 조정",
+        "source_text": "VM 및 BM 서버의 사용량 모니터링 및 고정/동적 리소스 조정",
+        "original_atomic_id": "SFR-005-005",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-006",
+        "action_type": "처리",
+        "output_name": "리소스 사용률 기반 인스턴스 축소",
+        "source_text": "리소스 사용률이 일정 기준 이하일 경우 인스턴스 축소",
+        "original_atomic_id": "SFR-005-006",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-007",
+        "action_type": "관리",
+        "output_name": "GPU·고성능 연산 자원 스케줄링",
+        "source_text": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링",
+        "original_atomic_id": "SFR-005-007",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-008",
+        "action_type": "조회",
+        "output_name": "VM·BM 클러스터 자원 사용량 모니터링",
+        "source_text": "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량 모니터링",
+        "original_atomic_id": "SFR-005-008",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-009",
+        "action_type": "분석",
+        "output_name": "장기 사용 패턴 분석",
+        "source_text": "장기적인 사용 패턴을 분석하여 최적의 인프라 리소스 할당 방안 도출",
+        "original_atomic_id": "SFR-005-009",
+        "source_fur_id": "SFR-005"
+      },
+      {
+        "atomic_id": "SFR-005::SFR-005-010",
+        "action_type": "제공",
+        "output_name": "오버커밋·과부하 자동 경고 및 로그 중앙 분석",
+        "source_text": "오버커밋 및 과부하 상태 감지 자동 경고와 VM, 컨테이너, Baremetal 로그 중앙 취합·분석",
+        "original_atomic_id": "SFR-005-010",
+        "source_fur_id": "SFR-005"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-005::SFR-005-001",
+        "SFR-005::SFR-005-002",
+        "SFR-005::SFR-005-003",
+        "SFR-005::SFR-005-004",
+        "SFR-005::SFR-005-005",
+        "SFR-005::SFR-005-006",
+        "SFR-005::SFR-005-007",
+        "SFR-005::SFR-005-008",
+        "SFR-005::SFR-005-009",
+        "SFR-005::SFR-005-010"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 3226,
+  "max_new_tokens": 6144,
+  "generated_tokens": 1212,
+  "hit_token_limit": false,
+  "elapsed_seconds": 72.94000962236896,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-005\",\n  \"normalized_requirement_count\": 7,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-017\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"워크로드 기반 VM·BM 인스턴스 자동 추천\",\n      \"requirement_detail\": \"워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형을 자동으로 추천하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-018\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"NUMA-Aware·CXL 메모리 기반 클러스터 배포\",\n      \"requirement_detail\": \"NUMA-Aware 및 CXL 메모리 기반 최적의 클러스터 배포를 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-019\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-003\",\n        \"SFR-005::SFR-005-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"클러스터 자원 부하 분석·자동 확장\",\n      \"requirement_detail\": \"클러스터 내 자원 부하를 분석하고 자동 확장 기능을 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-020\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-005\",\n        \"SFR-005::SFR-005-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM·BM 서버 고정·동적 리소스 조정·인스턴스 축소\",\n      \"requirement_detail\": \"VM 및 BM 서버의 사용량을 모니터링하고 고정 또는 동적 리소스를 조정하며 사용률이 일정 기준 이하일 경우 인스턴스를 축소하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-021\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-007\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"GPU·고성능 연산 자원 스케줄링\",\n      \"requirement_detail\": \"GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링을 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-022\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-008\",\n        \"SFR-005::SFR-005-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"VM·BM 클러스터 자원 사용량 모니터링·장기 패턴 분석\",\n      \"requirement_detail\": \"VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량을 모니터링하고 장기적인 사용 패턴을 분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-023\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-005::SFR-005-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"오버커밋·과부하 자동 경고 및 로그 중앙 분석\",\n      \"requirement_detail\": \"오버커밋 및 과부하 상태를 감지하여 자동 경고를 제공하고 VM, 컨테이너 및 Baremetal 로그를 중앙에서 취합·분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-005\"\n      ]\n    }\n  ]\n}"
+}

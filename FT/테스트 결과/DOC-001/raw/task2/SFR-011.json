@@ -1,0 +1,313 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-011",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-011::SFR-011-001",
+        "action_type": "분석",
+        "output_name": "병렬 파일 시스템·클라우드 스토리지 성능 벤치마크",
+        "source_text": "다양한 병렬 파일 시스템 및 클라우드 스토리지에 대한 성능 벤치마크 기능",
+        "original_atomic_id": "SFR-011-001",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-002",
+        "action_type": "연계",
+        "output_name": "클라우드 객체 스토리지 연동 어댑터",
+        "source_text": "클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터 기능",
+        "original_atomic_id": "SFR-011-002",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-003",
+        "action_type": "보안",
+        "output_name": "스토리지 액세스 인증·권한·로그 관리",
+        "source_text": "스토리지 및 클라우드 간의 데이터 접근에 대한 사용자 인증, 권한 부여, 접근제어 로그 수집",
+        "original_atomic_id": "SFR-011-003",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-004",
+        "action_type": "산출",
+        "output_name": "스토리지 I/O 성능 비교 리포트",
+        "source_text": "벤치마크 결과에 기반하여 스토리지 유형별 I/O 성능 비교 리포트 자동 생성",
+        "original_atomic_id": "SFR-011-004",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-005",
+        "action_type": "분석",
+        "output_name": "스토리지 최적화 대상 분류",
+        "source_text": "최적화 대상 분류 기능",
+        "original_atomic_id": "SFR-011-005",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-006",
+        "action_type": "분석",
+        "output_name": "HPC 워크로드 복제·시뮬레이션 프레임워크",
+        "source_text": "실제 HPC 워크로드 복제와 다양한 환경에서 시뮬레이션 가능한 프레임워크",
+        "original_atomic_id": "SFR-011-006",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-007",
+        "action_type": "분석",
+        "output_name": "스토리지 성능 프로파일링·I/O 패턴·리소스 이력 분석",
+        "source_text": "스토리지 성능 프로파일링, 시점별 I/O 패턴 분석 및 리소스 사용 이력 수집",
+        "original_atomic_id": "SFR-011-007",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-008",
+        "action_type": "산출",
+        "output_name": "대용량 병렬 워크로드 생성·복제 테스트",
+        "source_text": "다양한 규모와 패턴의 대용량 워크로드 자동 생성 또는 복제",
+        "original_atomic_id": "SFR-011-008",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-009",
+        "action_type": "분석",
+        "output_name": "워크로드·스토리지 적합도 분석",
+        "source_text": "워크로드 특성과 스토리지 구성의 적합도 분석",
+        "original_atomic_id": "SFR-011-009",
+        "source_fur_id": "SFR-011"
+      },
+      {
+        "atomic_id": "SFR-011::SFR-011-010",
+        "action_type": "산출",
+        "output_name": "스토리지 최적화 방안 리포트",
+        "source_text": "최적화 방안 제안과 분류 및 리포트 기능",
+        "original_atomic_id": "SFR-011-010",
+        "source_fur_id": "SFR-011"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-011::SFR-011-001",
+        "SFR-011::SFR-011-002",
+        "SFR-011::SFR-011-003",
+        "SFR-011::SFR-011-004",
+        "SFR-011::SFR-011-005",
+        "SFR-011::SFR-011-006",
+        "SFR-011::SFR-011-007",
+        "SFR-011::SFR-011-008",
+        "SFR-011::SFR-011-009",
+        "SFR-011::SFR-011-010"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 3280,
+      "max_new_tokens": 6144,
+      "generated_tokens": 1104,
+      "hit_token_limit": false,
+      "elapsed_seconds": 66.3755051298067,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-011\",\n  \"normalized_requirement_count\": 7,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-031\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"병렬 파일 시스템·클라우드 스토리지 성능 벤치마크\",\n      \"requirement_detail\": \"다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 결과를 분석할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-032\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"연계\",\n      \"requirement_name\": \"클라우드 객체 스토리지 연동 어댑터\",\n      \"requirement_detail\": \"클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-033\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"스토리지 액세스 인증·권한·로그 관리\",\n      \"requirement_detail\": \"스토리지와 클라우드 간 데이터 접근에 대한 사용자 인증, 권한 부여 및 접근 로그를 관리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-034\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"스토리지 I/O 성능 비교 리포트\",\n      \"requirement_detail\": \"벤치마크 결과를 기반으로 스토리지 유형별 I/O 성능을 비교하여 리포트를 자동 생성하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-035\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-005\",\n        \"SFR-011::SFR-011-006\",\n        \"SFR-011::SFR-011-007\",\n        \"SFR-011::SFR-011-008\",\n        \"SFR-011::SFR-011-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC 워크로드·스토리지 적합도 분석·시뮬레이션\",\n      \"requirement_detail\": \"HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-036\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-011::SFR-011-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"스토리지 최적화 방안 리포트\",\n      \"requirement_detail\": \"분석 결과를 기반으로 스토리지 최적화 방안을 제안하고 분류하여 리포트를 생성하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-011\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-011",
+        "normalized_requirement_count": 6,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-031",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-011::SFR-011-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "분석",
+            "requirement_name": "병렬 파일 시스템·클라우드 스토리지 성능 벤치마크",
+            "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 결과를 분석할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          },
+          {
+            "task2_id": "T2-032",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-011::SFR-011-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "연계",
+            "requirement_name": "클라우드 객체 스토리지 연동 어댑터",
+            "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          },
+          {
+            "task2_id": "T2-033",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-011::SFR-011-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "보안",
+            "requirement_name": "스토리지 액세스 인증·권한·로그 관리",
+            "requirement_detail": "스토리지와 클라우드 간 데이터 접근에 대한 사용자 인증, 권한 부여 및 접근 로그를 관리하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          },
+          {
+            "task2_id": "T2-034",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-011::SFR-011-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "산출",
+            "requirement_name": "스토리지 I/O 성능 비교 리포트",
+            "requirement_detail": "벤치마크 결과를 기반으로 스토리지 유형별 I/O 성능을 비교하여 리포트를 자동 생성하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          },
+          {
+            "task2_id": "T2-035",
+            "merge_decision": "MERGED",
+            "merged_from": [
+              "SFR-011::SFR-011-005",
+              "SFR-011::SFR-011-006",
+              "SFR-011::SFR-011-007",
+              "SFR-011::SFR-011-008",
+              "SFR-011::SFR-011-009"
+            ],
+            "reference_context_ids": [],
+            "action_type": "분석",
+            "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+            "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          },
+          {
+            "task2_id": "T2-036",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-011::SFR-011-010"
+            ],
+            "reference_context_ids": [],
+            "action_type": "산출",
+            "requirement_name": "스토리지 최적화 방안 리포트",
+            "requirement_detail": "분석 결과를 기반으로 스토리지 최적화 방안을 제안하고 분류하여 리포트를 생성하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-011"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-011",
+    "normalized_requirement_count": 6,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-031",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "병렬 파일 시스템·클라우드 스토리지 성능 벤치마크",
+        "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 결과를 분석할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-032",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "연계",
+        "requirement_name": "클라우드 객체 스토리지 연동 어댑터",
+        "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-033",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "보안",
+        "requirement_name": "스토리지 액세스 인증·권한·로그 관리",
+        "requirement_detail": "스토리지와 클라우드 간 데이터 접근에 대한 사용자 인증, 권한 부여 및 접근 로그를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-034",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "스토리지 I/O 성능 비교 리포트",
+        "requirement_detail": "벤치마크 결과를 기반으로 스토리지 유형별 I/O 성능을 비교하여 리포트를 자동 생성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-035",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-011::SFR-011-005",
+          "SFR-011::SFR-011-006",
+          "SFR-011::SFR-011-007",
+          "SFR-011::SFR-011-008",
+          "SFR-011::SFR-011-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+        "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-036",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "스토리지 최적화 방안 리포트",
+        "requirement_detail": "분석 결과를 기반으로 스토리지 최적화 방안을 제안하고 분류하여 리포트를 생성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      }
+    ]
+  }
+}

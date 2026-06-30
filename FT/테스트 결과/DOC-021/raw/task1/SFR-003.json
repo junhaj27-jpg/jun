@@ -1,0 +1,96 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-003",
+      "requirement_name": "온프레미스 챗봇 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "온프레미스 환경에서 안정적으로 작동하는 챗봇 서비스를 구축‧운영",
+      "requirement_detail": "▪ 온프레미스 환경 최적화\n- 독립 운영 지원\n• 대학 내 인프라에 독립적으로 운영 가능한 챗봇 구축\n• 온프레미스 환경에서 민감한 데이터(첨부 문서, 사용자 정보, 채팅 데이터)를 외부 유출로부터 보호\n- 챗봇 성능 최적화\n• 다수의 사용자를 처리할 수 있도록 온프레미스 챗봇의 성능을 최적화\n• 로컬 서버 자원을 최적 활용하여 응답 시간과 처리 용량 최적화\n• 고가용성 설계를 통한 장애 복구 시간 최소화\n▪ 관리자 도구 제공\n- 관리자에게 챗봇 사용 데이터를 연동 제공하는 대시보드 제공",
+      "source_location": {
+        "table_index": 16,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2170,
+      "max_new_tokens": 4096,
+      "generated_tokens": 335,
+      "hit_token_limit": false,
+      "elapsed_seconds": 20.467034127563238,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-003\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-003-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"온프레미스 독립 운영 챗봇\",\n      \"source_text\": \"대학 인프라 독립 운영\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-002\",\n      \"action_type\": \"보안\",\n      \"output_name\": \"온프레미스 민감데이터 보안\",\n      \"source_text\": \"첨부문서·사용자정보·채팅데이터 외부유출 차단\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-003\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"온프레미스 챗봇 성능·자원·고가용성\",\n      \"source_text\": \"다수 사용자 처리·자원·응답·장애 복구\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-004\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"관리자 챗봇 사용데이터 대시보드\",\n      \"source_text\": \"관리자 대시보드 연동\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-003",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-003-001",
+            "action_type": "제공",
+            "output_name": "온프레미스 독립 운영 챗봇",
+            "source_text": "대학 인프라 독립 운영"
+          },
+          {
+            "atomic_id": "SFR-003-002",
+            "action_type": "보안",
+            "output_name": "온프레미스 민감데이터 보안",
+            "source_text": "첨부문서·사용자정보·채팅데이터 외부유출 차단"
+          },
+          {
+            "atomic_id": "SFR-003-003",
+            "action_type": "처리",
+            "output_name": "온프레미스 챗봇 성능·자원·고가용성",
+            "source_text": "다수 사용자 처리·자원·응답·장애 복구"
+          },
+          {
+            "atomic_id": "SFR-003-004",
+            "action_type": "제공",
+            "output_name": "관리자 챗봇 사용데이터 대시보드",
+            "source_text": "관리자 대시보드 연동"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-003",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-003-001",
+        "action_type": "제공",
+        "output_name": "온프레미스 독립 운영 챗봇",
+        "source_text": "대학 인프라 독립 운영"
+      },
+      {
+        "atomic_id": "SFR-003-002",
+        "action_type": "보안",
+        "output_name": "온프레미스 민감데이터 보안",
+        "source_text": "첨부문서·사용자정보·채팅데이터 외부유출 차단"
+      },
+      {
+        "atomic_id": "SFR-003-003",
+        "action_type": "처리",
+        "output_name": "온프레미스 챗봇 성능·자원·고가용성",
+        "source_text": "다수 사용자 처리·자원·응답·장애 복구"
+      },
+      {
+        "atomic_id": "SFR-003-004",
+        "action_type": "제공",
+        "output_name": "관리자 챗봇 사용데이터 대시보드",
+        "source_text": "관리자 대시보드 연동"
+      }
+    ]
+  }
+}

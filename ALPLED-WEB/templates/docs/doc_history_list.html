@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-5">
+  {% if active_job %}
+    <div
+      id="doc-job-page-state"
+      data-doc-job-page-state
+      data-docs-cd="{{ active_job.docs_cd }}"
+      data-job-kind="{{ active_job.job_kind }}"
+      data-job-title="{{ active_job.title }}"
+      data-job-message="{{ active_job.message }}"
+      data-job-status-code="{{ active_job.job_status_code }}"
+      data-job-status-label="{{ active_job.job_status_label }}"
+      data-poll-url="{{ active_job.poll_url }}"
+      data-poll-interval-ms="{{ active_job.poll_interval_ms }}"
+      data-job-started-at="{{ active_job.started_at }}"
+      data-job-elapsed-seconds="{{ active_job.elapsed_seconds }}"
+      class="hidden"
+    ></div>
+  {% endif %}
+
+  <section class="space-y-3">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+        {% if current_project %}
+          <p class="mt-1 text-sm text-slate-500">{{ current_project.name }}</p>
+        {% endif %}
+      </div>
+      {% if can_generate %}
+        <a href="{% url 'doc_generate' %}{% if selected_document_code != 'all' %}?docs_cd={{ selected_document_code }}{% endif %}" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+          산출물 생성
+        </a>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div class="border-t-2 border-slate-900">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-6 py-4">
+        <div>
+          <h2 class="text-base font-semibold text-slate-900">산출물 버전이력</h2>
+          <p class="mt-1 text-sm text-slate-500">프로젝트 관리자가 승인 완료한 산출물 버전 목록입니다. 승인된 버전을 미리보기하거나 다운로드할 수 있습니다.</p>
+        </div>
+        {% if has_documents %}
+          <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">총 {{ documents|length }}건</span>
+        {% endif %}
+      </div>
+
+      <div class="border-b border-slate-200 bg-slate-50/80 px-6 py-3">
+        <form method="get" class="flex flex-wrap items-center gap-3">
+          <label for="docs_cd" class="text-sm font-semibold text-slate-700">산출물 구분</label>
+          <select id="docs_cd" name="docs_cd" class="min-w-[220px] rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700">
+            {% for value, label in document_type_choices %}
+              <option value="{{ value }}" {% if selected_document_code == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700">조회</button>
+        </form>
+      </div>
+
+      {% if active_job %}
+        <div class="border-b border-slate-200 px-6 py-4">
+          {% include "components/doc_job_status.html" with active_job=active_job %}
+        </div>
+      {% endif %}
+
+      {% if current_project and has_documents %}
+        <div class="overflow-x-auto">
+          <table class="min-w-[1240px] w-full table-fixed text-left text-sm">
+            <thead class="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wide text-slate-600">
+              <tr>
+                <th class="w-[190px] px-5 py-3 text-center">산출물명</th>
+                <th class="w-[90px] px-5 py-3 text-center">버전</th>
+                <th class="w-[300px] px-5 py-3 text-center">확정자</th>
+                <th class="w-[220px] px-5 py-3 text-center">확정 일시</th>
+                <th class="px-5 py-3 text-center">수정 내용</th>
+                <th class="w-[110px] px-5 py-3 text-center">상태</th>
+                <th class="w-[180px] px-5 py-3 text-center">기능</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              {% for document in documents %}
+                <tr class="bg-white transition hover:bg-slate-50">
+                  <td class="px-5 py-4 text-center">
+                    {% if document.detail_url %}
+                      <a href="{{ document.detail_url }}" class="inline-block max-w-[160px] break-keep font-semibold text-slate-900 hover:text-blue-700">
+                        {{ document.type_name }}
+                      </a>
+                    {% else %}
+                      <span class="inline-block max-w-[160px] break-keep font-semibold text-slate-900">{{ document.type_name }}</span>
+                    {% endif %}
+                  </td>
+                  <td class="px-5 py-4 text-center font-semibold text-slate-900 whitespace-nowrap">{% if document.version == "-" %}-{% else %}v{{ document.version }}{% endif %}</td>
+                  <td class="px-5 py-4 text-center">
+                    <span class="block truncate" title="{{ document.creator_name }}">{{ document.creator_name }}</span>
+                  </td>
+                  <td class="px-5 py-4 text-center whitespace-nowrap">{{ document.created_at|date:"Y-m-d H:i" }}</td>
+                  <td class="px-5 py-4 text-center">
+                    <span class="line-clamp-2 break-keep">{{ document.modification_content }}</span>
+                  </td>
+                  <td class="px-5 py-4 text-center">
+                    <span class="{{ document.status_badge_class }}">
+                      {{ document.status_label }}
+                    </span>
+                  </td>
+                  <td class="px-5 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2 whitespace-nowrap">
+                      {% if document.detail_url %}
+                        <a href="{{ document.detail_url }}" class="inline-flex min-w-[72px] items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50">
+                          {{ document.action_label|default:"미리보기" }}
+                        </a>
+                      {% endif %}
+                      {% if document.download_url %}
+                        <a href="{{ document.download_url }}" class="inline-flex min-w-[82px] items-center justify-center rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-slate-700">
+                          다운로드
+                        </a>
+                      {% endif %}
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="px-6 py-5">
+          {% include "components/pagination.html" %}
+        </div>
+      {% else %}
+        <div class="px-8 py-10 text-sm text-slate-700">
+          {% if current_project %}
+          <p class="font-semibold">승인 완료된 산출물 버전이 없습니다.</p>
+          <p class="mt-1">{{ generation_help_text }}</p>
+          {% else %}
+          <p class="font-semibold">선택 가능한 프로젝트가 없습니다.</p>
+          <p class="mt-1">프로젝트를 먼저 생성하거나 현재 프로젝트를 선택해 주세요.</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+<div id="generation-wait-modal" data-modal-root class="fixed inset-0 z-50 {% if open_generation_wait_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+  <div class="relative w-full max-w-xl">
+    <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div>
+          <h3 class="text-lg font-semibold text-slate-900">생성 진행 안내</h3>
+          <p class="mt-1 text-sm text-slate-500">현재 선택한 산출물은 아직 생성 중입니다.</p>
+        </div>
+        <button type="button" data-modal-hide="generation-wait-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+          <span class="text-3xl leading-none">&times;</span>
+        </button>
+      </div>
+      <div class="space-y-4 px-6 py-6 text-sm text-slate-700">
+        <p>산출물 생성 중이니 잠시만 기다려 주세요. 완료 후 상세 화면에서 결과를 확인할 수 있습니다.</p>
+        {% if wait_modal_job %}
+          <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+            <p class="font-semibold text-slate-900">{{ wait_modal_job.document_type.name }}</p>
+            <p class="mt-1 text-slate-600">작업 ID: {{ wait_modal_job.job_id }}</p>
+            <p class="mt-1 text-slate-600">상태: {{ wait_modal_job.job_status.name }}</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

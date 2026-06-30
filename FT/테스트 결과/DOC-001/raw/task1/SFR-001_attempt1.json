@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-001",
+      "requirement_name": "CXL 메모리 적용을 위한 프레임워크 설계",
+      "requirement_type": "기능",
+      "requirement_definition": "CXL 메모리 적용을 위한 프레임워크 설계",
+      "requirement_detail": "○ CXL 아키텍처 및 프레임워크 설계 고려사항\nCXL 지원 하드웨어\nㆍKI Cloud R&D 플랫폼을 기반으로 CXL 2.0 또는 CXL 3.0을 지원하는 메모리를 고려한 프레임워크를 설계해야 함\nㆍCXL Type 1,2,3 디바이스와의 호환성을 검토 및 확인해야 함\nKI Cloud 인프라와의 호환성 확인\nㆍKI Cloud 환경에서 CXL 메모리를 활용할 수 있는 프레임워크 설계 필요\nㆍOpenstack, Kubernetes에서 CXL 메모리를 동적으로 할당할 수 있는 방안을 고려해야 함\nCXL 메모리 풀링(Pooling) 지원\nㆍ다중 노드에서 공유 가능한 CXL 메모리 풀을 생성 및 관리하는 기능\nㆍ메모리 대역폭, 지연시간 등을 고려한 QoS 정책 설계\n\n○ CXL 메모리 적용에 대한 성능 및 확장성 요구사항\n메모리 성능 최적화\nㆍCXL 메모리의 대역폭과 지연시간 분석을 기반으로 워크로드 최적화가 가능해야 함\nㆍ기존 DRAM과의 계층적 메모리(Hierarchical Memory) 관리가 가능해야 함\n자원 할당 및 스케일링\nㆍVM, Container를 실행 전 또는 실행 중에 CXL 메모리를 추가 및 제거할 수 있어야 함\nㆍ노드 간 CXL 메모리 사용량을 모니터링하고 자동 확장 지원이 가능해야 함",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2326,
+  "max_new_tokens": 4096,
+  "generated_tokens": 775,
+  "hit_token_limit": false,
+  "elapsed_seconds": 47.06692933710292,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-001\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-001-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 2.0/3.0 메모리 프레임워크 설계\",\n      \"source_text\": \"CXL 2.0 또는 3.0 메모리와 호환성 검토\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL Type 1~3 디바이스 호환성 검토\",\n      \"source_text\": \"CXL Type 1,2,3 디바이스 호환성 검토\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-003\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"KI Cloud CXL 메모리 프레임워크 설계\",\n      \"source_text\": \"KI Cloud 환경에서 CXL 메모리 활용\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-004\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"Openstack·Kubernetes CXL 메모리 동적 할당\",\n      \"source_text\": \"Openstack, Kubernetes에서 CXL 메모리 동적 할당\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-005\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"다중 노드 CXL 메모리 풀 생성·관리\",\n      \"source_text\": \"다중 노드 공유 CXL 메모리 풀 생성·관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-006\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 QoS 정책 설계\",\n      \"source_text\": \"메모리 대역폭·지연시간 기반 QoS 정책\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-007\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"CXL 메모리 대역폭·지연 분석\",\n      \"source_text\": \"CXL 메모리 대역폭과 지연 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-008\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"계층적 메모리 관리\",\n      \"source_text\": \"기존 DRAM과 계층적 메모리 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-009\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM·Container CXL 메모리 동적 할당\",\n      \"source_text\": \"VM, Container 실행 중 CXL 메모리 추가·제거\"\n    },\n    {\n      \"atomic_id\": \"SFR-001-010\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"노드 CXL 메모리 사용량 모니터링\",\n      \"source_text\": \"노드 간 CXL 메모리 사용량 모니터링\"\n    }\n  ]\n}"
+}

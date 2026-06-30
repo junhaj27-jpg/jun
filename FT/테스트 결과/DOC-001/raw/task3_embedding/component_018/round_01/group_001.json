@@ -1,0 +1,583 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C018-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000085",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-013::SFR-013-001",
+          "SFR-013::SFR-013-002",
+          "SFR-013::SFR-013-003",
+          "SFR-013::SFR-013-004",
+          "SFR-013::SFR-013-005",
+          "SFR-013::SFR-013-006",
+          "SFR-013::SFR-013-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리",
+        "requirement_detail": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-013"
+        ]
+      },
+      {
+        "task2_id": "T2-000088",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-013::SFR-013-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+        "requirement_detail": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-013"
+        ]
+      },
+      {
+        "task2_id": "T2-000089",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-014::SFR-014-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+        "requirement_detail": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-014"
+        ]
+      },
+      {
+        "task2_id": "T2-000090",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-014::SFR-014-002",
+          "SFR-014::SFR-014-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산",
+        "requirement_detail": "워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-014"
+        ]
+      },
+      {
+        "task2_id": "T2-000091",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-014::SFR-014-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+        "requirement_detail": "생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-014"
+        ]
+      },
+      {
+        "task2_id": "T2-000093",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-015::SFR-015-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+        "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      },
+      {
+        "task2_id": "T2-000094",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-015::SFR-015-002",
+          "SFR-015::SFR-015-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+        "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 3261,
+      "max_new_tokens": 4891,
+      "generated_tokens": 2825,
+      "hit_token_limit": false,
+      "elapsed_seconds": 169.16907883714885,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000085\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"comparison_ids\": [\n        \"T2-000088\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"comparison_ids\": [\n        \"T2-000089\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"comparison_ids\": [\n        \"T2-000090\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"comparison_ids\": [\n        \"T2-000091\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"comparison_ids\": [\n        \"T2-000093\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"comparison_ids\": [\n        \"T2-000094\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리\",\n      \"requirement_detail\": \"VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000085\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-013::SFR-013-001\",\n        \"SFR-013::SFR-013-002\",\n        \"SFR-013::SFR-013-003\",\n        \"SFR-013::SFR-013-004\",\n        \"SFR-013::SFR-013-005\",\n        \"SFR-013::SFR-013-006\",\n        \"SFR-013::SFR-013-007\"\n      ],\n      \"sources\": [\n        \"SFR-013\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링\",\n      \"requirement_detail\": \"VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000088\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-013::SFR-013-010\"\n      ],\n      \"sources\": [\n        \"SFR-013\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의\",\n      \"requirement_detail\": \"이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000089\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-014::SFR-014-001\"\n      ],\n      \"sources\": [\n        \"SFR-014\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산\",\n      \"requirement_detail\": \"워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000090\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-014::SFR-014-002\",\n        \"SFR-014::SFR-014-003\"\n      ],\n      \"sources\": [\n        \"SFR-014\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적\",\n      \"requirement_detail\": \"생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000091\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-014::SFR-014-004\"\n      ],\n      \"sources\": [\n        \"SFR-014\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"서비스 유형별 자원 요구 특성 정의\",\n      \"requirement_detail\": \"서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000093\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-015::SFR-015-001\"\n      ],\n      \"sources\": [\n        \"SFR-015\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"서비스 자원 조합·성능·변경 이력 관리\",\n      \"requirement_detail\": \"VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000094\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-015::SFR-015-002\",\n        \"SFR-015::SFR-015-003\"\n      ],\n      \"sources\": [\n        \"SFR-015\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "comparison_ids": [
+              "T2-000085"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-002",
+            "comparison_ids": [
+              "T2-000088"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-003",
+            "comparison_ids": [
+              "T2-000089"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-004",
+            "comparison_ids": [
+              "T2-000090"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-005",
+            "comparison_ids": [
+              "T2-000091"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-006",
+            "comparison_ids": [
+              "T2-000093"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-007",
+            "comparison_ids": [
+              "T2-000094"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          }
+        ],
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "관리",
+            "requirement_name": "VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리",
+            "requirement_detail": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000085"
+            ],
+            "source_atomic_ids": [
+              "SFR-013::SFR-013-001",
+              "SFR-013::SFR-013-002",
+              "SFR-013::SFR-013-003",
+              "SFR-013::SFR-013-004",
+              "SFR-013::SFR-013-005",
+              "SFR-013::SFR-013-006",
+              "SFR-013::SFR-013-007"
+            ],
+            "sources": [
+              "SFR-013"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "관리",
+            "requirement_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+            "requirement_detail": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000088"
+            ],
+            "source_atomic_ids": [
+              "SFR-013::SFR-013-010"
+            ],
+            "sources": [
+              "SFR-013"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "관리",
+            "requirement_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+            "requirement_detail": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.",
+            "source_task2_ids": [
+              "T2-000089"
+            ],
+            "source_atomic_ids": [
+              "SFR-014::SFR-014-001"
+            ],
+            "sources": [
+              "SFR-014"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "처리",
+            "requirement_name": "워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산",
+            "requirement_detail": "워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.",
+            "source_task2_ids": [
+              "T2-000090"
+            ],
+            "source_atomic_ids": [
+              "SFR-014::SFR-014-002",
+              "SFR-014::SFR-014-003"
+            ],
+            "sources": [
+              "SFR-014"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "산출",
+            "requirement_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+            "requirement_detail": "생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.",
+            "source_task2_ids": [
+              "T2-000091"
+            ],
+            "source_atomic_ids": [
+              "SFR-014::SFR-014-004"
+            ],
+            "sources": [
+              "SFR-014"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "관리",
+            "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+            "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000093"
+            ],
+            "source_atomic_ids": [
+              "SFR-015::SFR-015-001"
+            ],
+            "sources": [
+              "SFR-015"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "관리",
+            "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+            "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+            "source_task2_ids": [
+              "T2-000094"
+            ],
+            "source_atomic_ids": [
+              "SFR-015::SFR-015-002",
+              "SFR-015::SFR-015-003"
+            ],
+            "sources": [
+              "SFR-015"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          }
+        ],
+        "final_requirement_count": 7
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "comparison_ids": [
+          "T2-000085"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-002",
+        "comparison_ids": [
+          "T2-000088"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-003",
+        "comparison_ids": [
+          "T2-000089"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-004",
+        "comparison_ids": [
+          "T2-000090"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-005",
+        "comparison_ids": [
+          "T2-000091"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-006",
+        "comparison_ids": [
+          "T2-000093"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-007",
+        "comparison_ids": [
+          "T2-000094"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      }
+    ],
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "관리",
+        "requirement_name": "VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리",
+        "requirement_detail": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000085"
+        ],
+        "source_atomic_ids": [
+          "SFR-013::SFR-013-001",
+          "SFR-013::SFR-013-002",
+          "SFR-013::SFR-013-003",
+          "SFR-013::SFR-013-004",
+          "SFR-013::SFR-013-005",
+          "SFR-013::SFR-013-006",
+          "SFR-013::SFR-013-007"
+        ],
+        "sources": [
+          "SFR-013"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "관리",
+        "requirement_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+        "requirement_detail": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000088"
+        ],
+        "source_atomic_ids": [
+          "SFR-013::SFR-013-010"
+        ],
+        "sources": [
+          "SFR-013"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "관리",
+        "requirement_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+        "requirement_detail": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.",
+        "source_task2_ids": [
+          "T2-000089"
+        ],
+        "source_atomic_ids": [
+          "SFR-014::SFR-014-001"
+        ],
+        "sources": [
+          "SFR-014"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "처리",
+        "requirement_name": "워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산",
+        "requirement_detail": "워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.",
+        "source_task2_ids": [
+          "T2-000090"
+        ],
+        "source_atomic_ids": [
+          "SFR-014::SFR-014-002",
+          "SFR-014::SFR-014-003"
+        ],
+        "sources": [
+          "SFR-014"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "산출",
+        "requirement_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+        "requirement_detail": "생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.",
+        "source_task2_ids": [
+          "T2-000091"
+        ],
+        "source_atomic_ids": [
+          "SFR-014::SFR-014-004"
+        ],
+        "sources": [
+          "SFR-014"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "관리",
+        "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+        "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000093"
+        ],
+        "source_atomic_ids": [
+          "SFR-015::SFR-015-001"
+        ],
+        "sources": [
+          "SFR-015"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "관리",
+        "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+        "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+        "source_task2_ids": [
+          "T2-000094"
+        ],
+        "source_atomic_ids": [
+          "SFR-015::SFR-015-002",
+          "SFR-015::SFR-015-003"
+        ],
+        "sources": [
+          "SFR-015"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      }
+    ],
+    "final_requirement_count": 7
+  }
+}

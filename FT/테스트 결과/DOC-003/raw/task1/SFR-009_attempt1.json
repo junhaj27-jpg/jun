@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-009",
+      "requirement_name": "성과관리",
+      "requirement_type": "기능",
+      "requirement_definition": "성과관리",
+      "requirement_detail": "• 우리 사업단의 성과를 조회할 수 있는 기능 제공하여야 한다.",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 1962,
+  "max_new_tokens": 4096,
+  "generated_tokens": 113,
+  "hit_token_limit": false,
+  "elapsed_seconds": 7.432086686603725,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-009\",\n  \"decomposition_count\": 1,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-009-001\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사업단 성과 조회\",\n      \"source_text\": \"우리 사업단의 성과를 조회할 수 있는 기능\"\n    }\n  ]\n}"
+}

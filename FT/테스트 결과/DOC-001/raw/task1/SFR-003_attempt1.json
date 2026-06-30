@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-003",
+      "requirement_name": "HPC SW에 대한 CXL 메모리 적용",
+      "requirement_type": "기능",
+      "requirement_definition": "HPC SW에 대한 CXL 메모리 적용",
+      "requirement_detail": "○ CXL 메모리 적용을 위한 HPC SW 요구사항 도출\nHPC 워크로드 분석 및 CXL 적용 가능성 평가\nㆍ기존 HPC 애플리케이션에서의 메모리 사용 패턴 분석을 기반으로 HPC SW 설계를 수행해야 함\nㆍCXL 메모리 적용 시 성능 병목 구간(Bottleneck) 및 대역폭/지연시간에 분석이 수행되어야 함\nHPC SW의 CXL 메모리 활용 모델 정의\nㆍCXL 메모리를 Compute Node와 Storage Node 간 공유 자원 활용 방안이 수립되어야 함\nㆍ기존 DRAM과 CXL 메모리 간 데이터 이동 방식 설계되어야 함 (Page Cache, Direct Access 등)\n\n○ CXL 메모리를 적용한 HPC SW 개발\nCXL 메모리를 활용한 메모리 관리 기능 개발\nㆍ기존 DRAM과 CXL 메모리를 구분하여 동작하는 메모리 할당/해제 메커니즘 구현해야 함\nㆍDirect Memory Access (DMA) 기반 데이터 이동이 가능해야 함\nHPC 애플리케이션의 CXL 메모리 최적화\nㆍOpenMP/MPI에서 CXL 메모리를 활용한 공유 메모리 모델이 구현되어야 함\nㆍAI/ML 애플리케이션에서 CXL 메모리를 활용한 모델 캐싱 및 기계 학습이 가능해야 함\nㆍ데이터베이스 및 In-memory Computing SW에서 CXL 메모리를 활용한 메모리 확장이 가능해야 함\nHPC SW 프레임워크와의 연동 개발\nㆍSLURM을 기반으로 CXL-aware Job Scheduling이 가능해야 함\nㆍ클라우드 플랫폼에서 CXL 메모리 할당을 위한 CRD(Custom Resource Definition) 개발해야 함\n\n○ CXL 메모리 기반 HPC SW 성능 평가 및 벤치마크\nCXL 메모리를 적용한 HPC 워크로드 성능 분석\nㆍAI/ML, CFD, 분자 시뮬레이션 등 HPC 워크로드에서의 메모리 대역폭 및 지연시간에 대한 성능 분석을 수행해야 함\nㆍNUMA-Local vs. CXL 메모리 액세스에 따른 성능 비교 분석과 CXL 메모리 캐싱 및 데이터 이동 효율성 평가를 실시해야 함",
+      "source_location": {}
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2523,
+  "max_new_tokens": 4096,
+  "generated_tokens": 838,
+  "hit_token_limit": false,
+  "elapsed_seconds": 50.87760561378673,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-003\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-003-001\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"HPC 애플리케이션 메모리 사용패턴 분석\",\n      \"source_text\": \"기존 HPC 애플리케이션에서의 메모리 사용 패턴 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-002\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"CXL 메모리 성능 병목·대역폭·지연 분석\",\n      \"source_text\": \"CXL 메모리 적용 시 성능 병목 구간 및 대역폭/지연시간 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-003\",\n      \"action_type\": \"설계\",\n      \"output_name\": \"CXL 메모리 Compute·Storage 공유 활용\",\n      \"source_text\": \"CXL 메모리를 Compute Node와 Storage Node 간 공유 자원 활용 방안\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-004\",\n      \"action_type\": \"설계\",\n      \"output_name\": \"CXL 메모리 DRAM 데이터 이동 방식\",\n      \"source_text\": \"기존 DRAM과 CXL 메모리 간 데이터 이동 방식\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-005\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"CXL 메모리 할당·해제·DMA 메커니즘\",\n      \"source_text\": \"기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘, DMA 데이터 이동\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-006\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"OpenMP·MPI CXL 공유 메모리 모델\",\n      \"source_text\": \"OpenMP/MPI에서 CXL 메모리 활용 공유 메모리 모델\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-007\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"AI·ML CXL 모델 캐싱·기계학습\",\n      \"source_text\": \"AI/ML 애플리케이션에서 CXL 메모리 활용 모델 캐싱 및 기계 학습\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-008\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"데이터베이스·In-memory CXL 메모리 확장\",\n      \"source_text\": \"데이터베이스 및 In-memory Computing SW에서 CXL 메모리 활용 메모리 확장\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-009\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"SLURM CXL-aware Job Scheduling\",\n      \"source_text\": \"SLURM을 기반으로 CXL-aware Job Scheduling\"\n    },\n    {\n      \"atomic_id\": \"SFR-003-010\",\n      \"action_type\": \"개발\",\n      \"output_name\": \"CXL 메모리 할당 CRD\",\n      \"source_text\": \"클라우드 플랫폼에서 CXL 메모리 할당을 위한 CRD\"\n    }\n  ]\n}"
+}

@@ -1,0 +1,165 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-002",
+      "requirement_name": "CXL 메모리 적용을 위한 프레임워크 개발",
+      "requirement_type": "기능",
+      "requirement_definition": "CXL 메모리 적용을 위한 프레임워크 개발",
+      "requirement_detail": "○ 메모리 자원 관리\n메모리 풀링\nㆍ여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리 가능한 시스템을 구축해야 함\nㆍ메모리 풀의 동적 확장 및 축소를 관리할 수 있어야 함\n메모리 할당\nㆍ어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함\nㆍ워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함\n\n○ 성능 모니터링 및 분석\n성능 측정\nㆍCXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함\nㆍ세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함\nㆍ캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함\nㆍ히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함\nㆍCXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함\n데이터 및 분석\nㆍ메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함\nㆍ성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함\n트랜잭션 모니터링\nㆍ초당 메모리 트랜잭션 수(IOPS)를 측정할 수 있어야 함\nㆍ읽기/쓰기 작업 비율 및 분포 분석 모니터링 정보를 제공할 수 있어야 함\nㆍ평균 트랜잭션 크기 및 분포 측정 정보를 제공할 수 있어야 함\n\n○ 레이턴시 프로파일링 관리\n지연 시간 측정\nㆍ평균/최소/최대 메모리 접근 지연 시간을 측정할 수 있어야 함\nㆍ읽기/쓰기 작업별 지연시간 차이를 분석할 수 있어야 함",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2446,
+      "max_new_tokens": 4096,
+      "generated_tokens": 892,
+      "hit_token_limit": false,
+      "elapsed_seconds": 52.52812487492338,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-002-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"CXL 메모리 풀링 및 동적 확장·축소 관리\",\n      \"source_text\": \"여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적 확장 및 축소를 관리할 수 있어야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"어플리케이션별 메모리 할당 우선순위 지정 관리\",\n      \"source_text\": \"어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"워크로드 특성 기반 메모리 할당 메커니즘\",\n      \"source_text\": \"워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-004\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"CXL 메모리 실시간 대역폭 사용량 모니터링\",\n      \"source_text\": \"CXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-005\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"세분화된 레이턴시 측정\",\n      \"source_text\": \"세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-006\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"캐시 적중률 및 미스 패턴 모니터링\",\n      \"source_text\": \"캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-007\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"히트맵 기반 메모리 접근 패턴 시각화\",\n      \"source_text\": \"히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-008\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"CXL 링크별 실시간 대역폭 사용량 측정\",\n      \"source_text\": \"CXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-009\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"메모리 접근 패턴 분석 및 시각화\",\n      \"source_text\": \"메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-010\",\n      \"action_type\": \"검증\",\n      \"output_name\": \"성능 이상 자동 감지 및 Alert\",\n      \"source_text\": \"성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-002",
+        "decomposition_count": 10,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-002-001",
+            "action_type": "관리",
+            "output_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+            "source_text": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적 확장 및 축소를 관리할 수 있어야 함"
+          },
+          {
+            "atomic_id": "SFR-002-002",
+            "action_type": "관리",
+            "output_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+            "source_text": "어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-003",
+            "action_type": "관리",
+            "output_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+            "source_text": "워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-004",
+            "action_type": "조회",
+            "output_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+            "source_text": "CXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-005",
+            "action_type": "조회",
+            "output_name": "세분화된 레이턴시 측정",
+            "source_text": "세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함"
+          },
+          {
+            "atomic_id": "SFR-002-006",
+            "action_type": "조회",
+            "output_name": "캐시 적중률 및 미스 패턴 모니터링",
+            "source_text": "캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-007",
+            "action_type": "조회",
+            "output_name": "히트맵 기반 메모리 접근 패턴 시각화",
+            "source_text": "히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-008",
+            "action_type": "조회",
+            "output_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+            "source_text": "CXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-009",
+            "action_type": "조회",
+            "output_name": "메모리 접근 패턴 분석 및 시각화",
+            "source_text": "메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함"
+          },
+          {
+            "atomic_id": "SFR-002-010",
+            "action_type": "검증",
+            "output_name": "성능 이상 자동 감지 및 Alert",
+            "source_text": "성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-002",
+    "decomposition_count": 10,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-002-001",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+        "source_text": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적 확장 및 축소를 관리할 수 있어야 함"
+      },
+      {
+        "atomic_id": "SFR-002-002",
+        "action_type": "관리",
+        "output_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+        "source_text": "어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-003",
+        "action_type": "관리",
+        "output_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+        "source_text": "워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-004",
+        "action_type": "조회",
+        "output_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+        "source_text": "CXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-005",
+        "action_type": "조회",
+        "output_name": "세분화된 레이턴시 측정",
+        "source_text": "세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함"
+      },
+      {
+        "atomic_id": "SFR-002-006",
+        "action_type": "조회",
+        "output_name": "캐시 적중률 및 미스 패턴 모니터링",
+        "source_text": "캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-007",
+        "action_type": "조회",
+        "output_name": "히트맵 기반 메모리 접근 패턴 시각화",
+        "source_text": "히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-008",
+        "action_type": "조회",
+        "output_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+        "source_text": "CXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-009",
+        "action_type": "조회",
+        "output_name": "메모리 접근 패턴 분석 및 시각화",
+        "source_text": "메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함"
+      },
+      {
+        "atomic_id": "SFR-002-010",
+        "action_type": "검증",
+        "output_name": "성능 이상 자동 감지 및 Alert",
+        "source_text": "성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함"
+      }
+    ]
+  }
+}

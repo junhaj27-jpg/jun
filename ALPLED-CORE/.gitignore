@@ -1,0 +1,9 @@
+.env
+__pycache__/
+qdrant_storage/
+/storage/
+requests/
+tests/
+old/
+logs/
+requests/generate.http

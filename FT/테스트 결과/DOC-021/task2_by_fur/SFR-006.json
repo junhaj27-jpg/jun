@@ -1,0 +1,41 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-006",
+  "atomic_input_sha256": "7bdcc73671e22b7372154fc803e8547242b908fe944f0fdd4139bfdff794257f",
+  "normalized_requirement_count": 2,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-017",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-006::SFR-006-001",
+        "SFR-006::SFR-006-002",
+        "SFR-006::SFR-006-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용자 그룹별 챗봇 검색·탐색·필터링·활용",
+      "requirement_detail": "사용자 그룹별로 챗봇을 검색·탐색·필터링하고 선택한 챗봇을 활용할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-006"
+      ],
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "task2_id": "T2-018",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-006::SFR-006-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "선택 챗봇 환경 적용",
+      "requirement_detail": "사용자가 선택한 챗봇의 환경을 적용하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-006"
+      ],
+      "source_fur_id": "SFR-006"
+    }
+  ]
+}

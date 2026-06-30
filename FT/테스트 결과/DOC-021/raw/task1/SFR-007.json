@@ -1,0 +1,84 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-007",
+      "requirement_name": "다국어 응대 및 자연어 처리 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "자연어 처리(NLP) 기술을 통해 맥락과 의도를 이해하여 대화의 유연성과 정확성을 제공",
+      "requirement_detail": "▪ 다국어 응대\n- 20개 이상의 언어(한국어, 영어, 중국어, 일본어, 스페인어 등)로 사용자의 질문에 응답 가능\n- 사용자가 입력한 언어를 자동으로 감지하고 동일한 언어로 응답 생성\n▪ 자연어 처리 기능\n- 사용자의 질의 의도를 분석하여 맥락에 맞는 응답 제공\n- 질문이 불명확하거나 추가 정보가 필요한 경우 적절한 질문 또는 제안을 통해 대화 지속\n- 복잡한 다단계 질의응답을 처리할 수 있는 대화 관리 시스템 구현",
+      "source_location": {
+        "table_index": 20,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2135,
+      "max_new_tokens": 4096,
+      "generated_tokens": 270,
+      "hit_token_limit": false,
+      "elapsed_seconds": 16.691551699768752,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-007\",\n  \"decomposition_count\": 3,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-007-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"다국어 응대 및 언어 감지 기능\",\n      \"source_text\": \"20개 이상 언어로 응답과 언어 자동 감지\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-002\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"질의 의도 분석 및 맥락 기반 응답\",\n      \"source_text\": \"질의 의도 분석과 맥락 맞춤 응답\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-003\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"불명확 질문 처리 및 다단계 대화 관리\",\n      \"source_text\": \"불명확 질문·추가정보 요청과 다단계 질의응답\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-007",
+        "decomposition_count": 3,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-007-001",
+            "action_type": "제공",
+            "output_name": "다국어 응대 및 언어 감지 기능",
+            "source_text": "20개 이상 언어로 응답과 언어 자동 감지"
+          },
+          {
+            "atomic_id": "SFR-007-002",
+            "action_type": "처리",
+            "output_name": "질의 의도 분석 및 맥락 기반 응답",
+            "source_text": "질의 의도 분석과 맥락 맞춤 응답"
+          },
+          {
+            "atomic_id": "SFR-007-003",
+            "action_type": "처리",
+            "output_name": "불명확 질문 처리 및 다단계 대화 관리",
+            "source_text": "불명확 질문·추가정보 요청과 다단계 질의응답"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-007",
+    "decomposition_count": 3,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-007-001",
+        "action_type": "제공",
+        "output_name": "다국어 응대 및 언어 감지 기능",
+        "source_text": "20개 이상 언어로 응답과 언어 자동 감지"
+      },
+      {
+        "atomic_id": "SFR-007-002",
+        "action_type": "처리",
+        "output_name": "질의 의도 분석 및 맥락 기반 응답",
+        "source_text": "질의 의도 분석과 맥락 맞춤 응답"
+      },
+      {
+        "atomic_id": "SFR-007-003",
+        "action_type": "처리",
+        "output_name": "불명확 질문 처리 및 다단계 대화 관리",
+        "source_text": "불명확 질문·추가정보 요청과 다단계 질의응답"
+      }
+    ]
+  }
+}

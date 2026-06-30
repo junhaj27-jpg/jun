@@ -1,0 +1,105 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-014",
+      "requirement_name": "이종 HPC 워크로드 계산 및 최적화 브로커링 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "이종 HPC 워크로드 계산 및 최적화 브로커링 기능",
+      "requirement_detail": "○ 이종 HPC 워크로드 기반 최적화 계산 및 스케줄링 브로커링 기능\n이종 HPC 환경에서 실행되는 다양한 Task 및 서비스 워크로드를 유형별로 분류하고, 계산 자원 특성에 따라 실행 우선순위 및 처리방식을 정의할 수 있는 기능을 제공한다.\n워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴을 분석하고, 작업 구성과 배치 전략을 자동 최적화할 수 있는 기능을 제공한다.\n워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하고, 이를 기반으로 스케줄링 정책을 생성할 수 있는 기능을 제공한다.\n생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적하며, 동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용 기능을 제공한다.",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2208,
+      "max_new_tokens": 4096,
+      "generated_tokens": 510,
+      "hit_token_limit": false,
+      "elapsed_seconds": 30.814330281224102,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-014\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-014-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의\",\n      \"source_text\": \"이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식 정의\"\n    },\n    {\n      \"atomic_id\": \"SFR-014-002\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"워크로드 실행 로그·이력 기반 자원 사용 패턴 분석\",\n      \"source_text\": \"워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-014-003\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"워크로드 특성·클러스터 자원 상태 기반 최적 실행 계획 계산\",\n      \"source_text\": \"워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획 계산\"\n    },\n    {\n      \"atomic_id\": \"SFR-014-004\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적\",\n      \"source_text\": \"생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적\"\n    },\n    {\n      \"atomic_id\": \"SFR-014-005\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"동적 자원 변화에 따른 스케줄링 정책 재계산·재적용\",\n      \"source_text\": \"동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-014",
+        "decomposition_count": 5,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-014-001",
+            "action_type": "관리",
+            "output_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+            "source_text": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식 정의"
+          },
+          {
+            "atomic_id": "SFR-014-002",
+            "action_type": "분석",
+            "output_name": "워크로드 실행 로그·이력 기반 자원 사용 패턴 분석",
+            "source_text": "워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴 분석"
+          },
+          {
+            "atomic_id": "SFR-014-003",
+            "action_type": "처리",
+            "output_name": "워크로드 특성·클러스터 자원 상태 기반 최적 실행 계획 계산",
+            "source_text": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획 계산"
+          },
+          {
+            "atomic_id": "SFR-014-004",
+            "action_type": "산출",
+            "output_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+            "source_text": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적"
+          },
+          {
+            "atomic_id": "SFR-014-005",
+            "action_type": "처리",
+            "output_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+            "source_text": "동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-014",
+    "decomposition_count": 5,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-014-001",
+        "action_type": "관리",
+        "output_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+        "source_text": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식 정의"
+      },
+      {
+        "atomic_id": "SFR-014-002",
+        "action_type": "분석",
+        "output_name": "워크로드 실행 로그·이력 기반 자원 사용 패턴 분석",
+        "source_text": "워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴 분석"
+      },
+      {
+        "atomic_id": "SFR-014-003",
+        "action_type": "처리",
+        "output_name": "워크로드 특성·클러스터 자원 상태 기반 최적 실행 계획 계산",
+        "source_text": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획 계산"
+      },
+      {
+        "atomic_id": "SFR-014-004",
+        "action_type": "산출",
+        "output_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+        "source_text": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적"
+      },
+      {
+        "atomic_id": "SFR-014-005",
+        "action_type": "처리",
+        "output_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+        "source_text": "동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용"
+      }
+    ]
+  }
+}

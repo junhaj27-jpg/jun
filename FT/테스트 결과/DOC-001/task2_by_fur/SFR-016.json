@@ -1,0 +1,264 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-016",
+  "atomic_input_sha256": "7f9594a10f8fd5ca1e1b8bb87a6ea321dd13c8f309c863576268388a7a27daf6",
+  "normalized_requirement_count": 17,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-031",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "고전 알고리즘 자동 매핑",
+      "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-032",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "양자 게이트 세트 지원",
+      "requirement_detail": "다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-033",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "양자 회로 최적화 컴파일",
+      "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-034",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "게이트 융합·단순화",
+      "requirement_detail": "게이트 융합 및 단순화를 통한 실행 시간 최적화를 수행하여야 하며, 융합·단순화 규칙과 실행 시간 최적화 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-035",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "진폭·기저 인코딩",
+      "requirement_detail": "진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-036",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "데이터 특성 기반 인코딩 추천",
+      "requirement_detail": "데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-037",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "큐비트 사용량 최소화 인코딩",
+      "requirement_detail": "큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-038",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-008"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "양자 측정 통계 분석",
+      "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-039",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-009"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "샷기반 카운팅·확률 분포",
+      "requirement_detail": "샷기반 카운팅 및 확률 분포 추정을 제공하여야 하며, 샷기반 카운팅과 확률 분포 추정 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-040",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-010"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "양자 노이즈·에러 필터링",
+      "requirement_detail": "양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-041",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-011"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "양자 결과 고전 데이터 변환",
+      "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-042",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-012"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "양자 결과 불확실성·신뢰구간",
+      "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-043",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-013"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "양자 결과 대시보드 시각화",
+      "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-044",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-014"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "고전·양자 결과 비교 분석",
+      "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-045",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-015"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "텐서 네트워크 기반 시뮬레이션",
+      "requirement_detail": "텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-046",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-016"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "몬테카를로 샘플링 시뮬레이션",
+      "requirement_detail": "몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "task2_id": "T2-047",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-016::SFR-016-017"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+      "requirement_detail": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화를 지원하여야 하며, GPU·분산 HPC·희소 행렬 시뮬레이션과 메모리 최적화 결과를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-016"
+      ],
+      "source_fur_id": "SFR-016"
+    }
+  ]
+}

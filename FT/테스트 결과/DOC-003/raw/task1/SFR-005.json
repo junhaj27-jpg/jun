@@ -1,0 +1,96 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-005",
+      "requirement_name": "콘텐츠관리시스템(CMS) 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "콘텐츠관리시스템(CMS) 기능",
+      "requirement_detail": "• 현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다.\n• 현재 운영중인 CMS 기능이 모두 활성화되어야 한다.\n• 관리자 시스템 접근 제어 기능 제공\n• 메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2043,
+      "max_new_tokens": 4096,
+      "generated_tokens": 341,
+      "hit_token_limit": false,
+      "elapsed_seconds": 20.568057344760746,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-005\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-005-001\",\n      \"action_type\": \"준수\",\n      \"output_name\": \"현재 운영중인 CMS 호환성\",\n      \"source_text\": \"현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-002\",\n      \"action_type\": \"준수\",\n      \"output_name\": \"현재 운영중인 CMS 기능 활성화\",\n      \"source_text\": \"현재 운영중인 CMS 기능이 모두 활성화되어야 한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-003\",\n      \"action_type\": \"권한\",\n      \"output_name\": \"관리자 시스템 접근 제어\",\n      \"source_text\": \"관리자 시스템 접근 제어 기능 제공\"\n    },\n    {\n      \"atomic_id\": \"SFR-005-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"메뉴·콘텐츠·게시판 관리\",\n      \"source_text\": \"메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-005",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-005-001",
+            "action_type": "준수",
+            "output_name": "현재 운영중인 CMS 호환성",
+            "source_text": "현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다."
+          },
+          {
+            "atomic_id": "SFR-005-002",
+            "action_type": "준수",
+            "output_name": "현재 운영중인 CMS 기능 활성화",
+            "source_text": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다."
+          },
+          {
+            "atomic_id": "SFR-005-003",
+            "action_type": "권한",
+            "output_name": "관리자 시스템 접근 제어",
+            "source_text": "관리자 시스템 접근 제어 기능 제공"
+          },
+          {
+            "atomic_id": "SFR-005-004",
+            "action_type": "관리",
+            "output_name": "메뉴·콘텐츠·게시판 관리",
+            "source_text": "메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-005",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-005-001",
+        "action_type": "준수",
+        "output_name": "현재 운영중인 CMS 호환성",
+        "source_text": "현재 우리대학에서 운영중인 CMS와의 호환성을 확보하여야 한다."
+      },
+      {
+        "atomic_id": "SFR-005-002",
+        "action_type": "준수",
+        "output_name": "현재 운영중인 CMS 기능 활성화",
+        "source_text": "현재 운영중인 CMS 기능이 모두 활성화되어야 한다."
+      },
+      {
+        "atomic_id": "SFR-005-003",
+        "action_type": "권한",
+        "output_name": "관리자 시스템 접근 제어",
+        "source_text": "관리자 시스템 접근 제어 기능 제공"
+      },
+      {
+        "atomic_id": "SFR-005-004",
+        "action_type": "관리",
+        "output_name": "메뉴·콘텐츠·게시판 관리",
+        "source_text": "메뉴, 콘텐츠 및 다양한 형식의 게시판 관리 (생성/수정/삭제/제어 등)"
+      }
+    ]
+  }
+}

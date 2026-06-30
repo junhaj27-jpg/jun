@@ -1,0 +1,102 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-003-EMB-C003-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000005",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "수요기관 콘텐츠 활용 개발",
+        "requirement_detail": "홈페이지에서 게시되는 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000009",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "사용자 중심 디자인·기능 설계",
+        "requirement_detail": "사용자의 시각적 요소와 기능적인 요소를 고려하여 사용자 중심으로 디자인과 기능을 설계하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000010",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "직관적인 메뉴구성·주관부서 추가메뉴",
+        "requirement_detail": "형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴구성을 제공하여야 하며, 현재 제안요청서에서 요청하는 메뉴를 모두 포함하고 주관부서의 요구에 따라 추가 메뉴를 구성할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000011",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "웹 스타일 가이드·일관성 유지",
+        "requirement_detail": "가독성과 사용성을 고려한 레이아웃과 명확한 서체 규정을 포함한 웹 스타일 가이드를 제작하여 일관성 있는 디자인을 유지하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000015",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+        "requirement_detail": "간결한 메뉴 구조와 UI를 제공하여야 하며, 정보의 접근성, 가독성, 편리성과 확장성을 확보하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000020",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "메뉴·콘텐츠·게시판 관리",
+        "requirement_detail": "메뉴, 콘텐츠 및 다양한 형식의 게시판을 생성·수정·삭제·제어할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2797,
+  "max_new_tokens": 4195,
+  "generated_tokens": 720,
+  "hit_token_limit": false,
+  "elapsed_seconds": 42.41395385982469,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000005\",\n        \"T2-000009\",\n        \"T2-000010\",\n        \"T2-000011\",\n        \"T2-000015\",\n        \"T2-000020\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 부분 중복·보완 관계인 기능을 구현 편의와 검수 일관성을 위해 통합함.\",\n      \"preserved_conditions\": \"이용자·관리자 구분, 검색조건, 파일 제한, 보안조건, 처리상태, 출처와 원문 ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"관리\",\n    \"requirement_name\": \"사용자 중심 디자인·메뉴·콘텐츠·게시판 관리\",\n    \"requirement_detail\": \"사용자 중심으로 디자인과 기능을 설계하고 직관적인 메뉴구성과 주관부서 추가메뉴를 제공하며, 수요기관 콘텐츠를 활용하여 간결한 메뉴·UI를 관리하고 접근성·가독성·편리성·확장성을 확보하여야 하며, 메뉴, 콘텐츠 및 다양한 형식의 게시판을 생성·수정·삭제·제어할 수 있어야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000005\",\n      \"T2-000009\",\n      \"T2-000010\",\n      \"T2-000011\",\n      \"T2-000015\",\n      \"T2-000020\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-001::SFR-001-005\",\n      \"SFR-002::SFR-002-001\",\n      \"SFR-002::SFR-002-002\",\n      \"SFR-002::SFR-002-003\",\n      \"SFR-003::SFR-003-003\",\n      \"SFR-005::SFR-005-004\"\n    ],\n    \"sources\": [\n      \"SFR-001\",\n      \"SFR-002\",\n      \"SFR-003\",\n      \"SFR-005\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·보완 관계인 기능을 구현 편의와 검수 일관성을 위해 통합함.\"\n  }\n}"
+}

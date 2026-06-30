@@ -1,0 +1,12 @@
+services:
+  onlyoffice:
+    image: onlyoffice/documentserver
+    container_name: alpled-onlyoffice
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      JWT_ENABLED: "true"
+      JWT_SECRET: "${ONLYOFFICE_JWT_SECRET:-alpled-dev-secret}"
+      JWT_HEADER: "Authorization"
+      JWT_IN_BODY: "true"

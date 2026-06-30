@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-004",
+      "requirement_name": "RAG 시스템 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "사용자가 업로드한 문서를 기반으로 챗봇이 지식을 자동으로 학습하는 RAG 시스템 구축",
+      "requirement_detail": "▪ 문서 업로드 기능\n- 사용자 문서(PDF, 텍스트, 이미지)를 플랫폼에 업로드할 수 있는 인터페이스 제공\n- 파일 크기와 형식에 대한 유효성 검사를 통해 안정적인 업로드 지원\n- 업로드된 문서를 지식베이스에 자동 통합하여 데이터 활용성을 극대화\n- 구조화된 문서 데이터(예: CSV) 및 비구조화된 문서 데이터(PDF 등) 모두 지원\n- 업로드된 문서 조회 기능\n- 필요시 문서를 삭제할 수 있는 기능\n▪ RAG(검색증강생성) 시스템\n- 업로드 된 문서에서 데이터를 추출하여 챗봇의 지식베이스로 통합\n- 벡터DB 및 유사도 검색 기술을 활용하여 사용자의 질문에 가장 관련성 높은 정보를 검색\n- 질문에 대한 응답 생성 시 문서의 내용을 기반으로 답변의 근거와 링크 제공",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2225,
+  "max_new_tokens": 4096,
+  "generated_tokens": 382,
+  "hit_token_limit": false,
+  "elapsed_seconds": 23.34624132514,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-004\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-004-001\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"다형식 문서 업로드\",\n      \"source_text\": \"PDF, 텍스트, 이미지 업로드\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-002\",\n      \"action_type\": \"검증\",\n      \"output_name\": \"업로드 파일 유효성 검사\",\n      \"source_text\": \"파일 크기와 형식 유효성 검사\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"업로드 문서 통합·조회·삭제\",\n      \"source_text\": \"업로드 문서 통합, 조회, 삭제\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-004\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"문서 데이터 추출·통합\",\n      \"source_text\": \"업로드 문서 데이터 추출·통합\"\n    },\n    {\n      \"atomic_id\": \"SFR-004-005\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"RAG 검색·답변 생성·근거 링크\",\n      \"source_text\": \"벡터DB 검색, 질문 답변 생성, 근거·링크\"\n    }\n  ]\n}"
+}

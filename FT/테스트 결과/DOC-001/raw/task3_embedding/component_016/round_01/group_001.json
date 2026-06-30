@@ -1,0 +1,197 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C016-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000074",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "병렬 파일 시스템·클라우드 스토리지 성능 벤치마크",
+        "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 결과를 분석할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-000077",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "스토리지 I/O 성능 비교 리포트",
+        "requirement_detail": "벤치마크 결과를 기반으로 스토리지 유형별 I/O 성능을 비교하여 리포트를 자동 생성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-000079",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "스토리지 최적화 방안 리포트",
+        "requirement_detail": "분석 결과를 기반으로 스토리지 최적화 방안을 제안하고 분류하여 리포트를 생성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2298,
+      "max_new_tokens": 3447,
+      "generated_tokens": 468,
+      "hit_token_limit": false,
+      "elapsed_seconds": 29.348393498919904,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000074\",\n        \"T2-000077\",\n        \"T2-000079\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"산출\",\n    \"requirement_name\": \"스토리지 성능·최적화 분석 리포트\",\n    \"requirement_detail\": \"다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000074\",\n      \"T2-000077\",\n      \"T2-000079\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-011-001\",\n      \"SFR-011-004\",\n      \"SFR-011-010\"\n    ],\n    \"sources\": [\n      \"SFR-011\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함.\"\n  }\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000074",
+              "T2-000077",
+              "T2-000079"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          }
+        ],
+        "final_requirement": {
+          "gold_id": "GOLD-001",
+          "action_type": "산출",
+          "requirement_name": "스토리지 성능·최적화 분석 리포트",
+          "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.",
+          "source_task2_ids": [
+            "T2-000074",
+            "T2-000077",
+            "T2-000079"
+          ],
+          "source_atomic_ids": [
+            "SFR-011-001",
+            "SFR-011-004",
+            "SFR-011-010"
+          ],
+          "sources": [
+            "SFR-011"
+          ],
+          "processing_type": "통합",
+          "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함."
+        },
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "산출",
+            "requirement_name": "스토리지 성능·최적화 분석 리포트",
+            "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.",
+            "source_task2_ids": [
+              "T2-000074",
+              "T2-000077",
+              "T2-000079"
+            ],
+            "source_atomic_ids": [
+              "SFR-011-001",
+              "SFR-011-004",
+              "SFR-011-010"
+            ],
+            "sources": [
+              "SFR-011"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함."
+          }
+        ],
+        "final_requirement_count": 1
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000074",
+          "T2-000077",
+          "T2-000079"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      }
+    ],
+    "final_requirement": {
+      "gold_id": "GOLD-001",
+      "action_type": "산출",
+      "requirement_name": "스토리지 성능·최적화 분석 리포트",
+      "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.",
+      "source_task2_ids": [
+        "T2-000074",
+        "T2-000077",
+        "T2-000079"
+      ],
+      "source_atomic_ids": [
+        "SFR-011-001",
+        "SFR-011-004",
+        "SFR-011-010"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함."
+    },
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "산출",
+        "requirement_name": "스토리지 성능·최적화 분석 리포트",
+        "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.",
+        "source_task2_ids": [
+          "T2-000074",
+          "T2-000077",
+          "T2-000079"
+        ],
+        "source_atomic_ids": [
+          "SFR-011-001",
+          "SFR-011-004",
+          "SFR-011-010"
+        ],
+        "sources": [
+          "SFR-011"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함."
+      }
+    ],
+    "final_requirement_count": 1
+  }
+}

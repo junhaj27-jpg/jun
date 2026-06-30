@@ -1,0 +1,75 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-013",
+  "atomic_input_sha256": "98dada159fbcbaf468e71402837648a11207dbea572332c894c92449ae6e4d12",
+  "normalized_requirement_count": 4,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-033",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-013::SFR-013-001",
+        "SFR-013::SFR-013-002",
+        "SFR-013::SFR-013-003",
+        "SFR-013::SFR-013-004",
+        "SFR-013::SFR-013-005",
+        "SFR-013::SFR-013-006",
+        "SFR-013::SFR-013-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리",
+      "requirement_detail": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-013"
+      ],
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "task2_id": "T2-034",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-013::SFR-013-008"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "Lustre 마운트 성능 영향도 분석·비교",
+      "requirement_detail": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-013"
+      ],
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "task2_id": "T2-035",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-013::SFR-013-009"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "VM NFS·Ceph·GlusterFS 자동 연계",
+      "requirement_detail": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-013"
+      ],
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "task2_id": "T2-036",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-013::SFR-013-010"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+      "requirement_detail": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-013"
+      ],
+      "source_fur_id": "SFR-013"
+    }
+  ]
+}

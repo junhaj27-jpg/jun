@@ -1,0 +1,56 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-004",
+  "atomic_input_sha256": "91f7b374a1a522ea3ee6f279381cff1c31e6b42e05b3b0500b2587793bd49ef0",
+  "normalized_requirement_count": 3,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-013",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-004::SFR-004-001",
+        "SFR-004::SFR-004-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "다형식 문서 업로드·유효성 검사",
+      "requirement_detail": "PDF, 텍스트 및 이미지 파일을 업로드하고 파일 크기와 형식을 유효성 검사하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "task2_id": "T2-014",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-004::SFR-004-003",
+        "SFR-004::SFR-004-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "업로드 문서 통합·조회·삭제·데이터 추출",
+      "requirement_detail": "업로드된 문서를 통합 관리하고 조회·삭제할 수 있어야 하며, 데이터를 추출·통합하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "task2_id": "T2-015",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-004::SFR-004-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "RAG 검색·답변 생성·근거 링크",
+      "requirement_detail": "벡터DB에서 검색결과를 활용하여 질문에 답변을 생성하고 근거 문서와 링크를 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004"
+    }
+  ]
+}

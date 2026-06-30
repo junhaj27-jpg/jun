@@ -1,0 +1,8 @@
+﻿document_id,severity,category,item_id,metric,value,threshold,reason
+DOC-001,HIGH,LINEAGE,SFR-001-003; SFR-001-004; SFR-001-005; SFR-001-009; SFR-003-003; SFR-003-006; SFR-003-010; SFR-004-001; SFR-004-007; SFR-004-008; SFR-007-001; SFR-007-002; SFR-007-003; SFR-007-004; SFR-007-006; SFR-007-008; SFR-007-009; SFR-007-010; SFR-007-012; SFR-007-013; SFR-011-001; SFR-011-004; SFR-011-010; SFR-016-001; SFR-016-002; SFR-016-003; SFR-016-005; SFR-016-006; SFR-016-007; SFR-016-008,unknown_atomic_ids,45.0,0,입력→출력 계보 누락 또는 알 수 없는 ID 발생
+DOC-001,MEDIUM,RESIDUAL_DUPLICATE_REVIEW,GOLD-005 | GOLD-019,review_duplicate_pair,0.964907,"sim>=0.94, same_action=True, name_jaccard>=0.3",관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토
+DOC-001,MEDIUM,RESIDUAL_DUPLICATE_REVIEW,GOLD-006 | GOLD-022,review_duplicate_pair,0.94136,"sim>=0.94, same_action=True, name_jaccard>=0.3",관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토
+DOC-001,MEDIUM,RESIDUAL_DUPLICATE_REVIEW,GOLD-091 | GOLD-093,review_duplicate_pair,0.956704,"sim>=0.94, same_action=True, name_jaccard>=0.3",관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토
+DOC-003,MEDIUM,RESIDUAL_DUPLICATE_REVIEW,GOLD-011 | GOLD-012,review_duplicate_pair,0.955224,"sim>=0.94, same_action=True, name_jaccard>=0.3",관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토
+DOC-003,MEDIUM,RESIDUAL_DUPLICATE_REVIEW,GOLD-014 | GOLD-018,review_duplicate_pair,0.941092,"sim>=0.94, same_action=True, name_jaccard>=0.3",관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토
+DOC-021,HIGH,LINEAGE,SFR-003-004; SFR-005-004; SFR-005-006; SFR-005-007; SFR-006-001; SFR-006-002; SFR-006-003; SFR-006-004; SFR-009-001; SFR-009-002; SFR-011-001; SFR-011-002; SFR-012-003; SFR-012-004; SFR-012-005; SFR-012-006,unknown_atomic_ids,16.0,0,입력→출력 계보 누락 또는 알 수 없는 ID 발생

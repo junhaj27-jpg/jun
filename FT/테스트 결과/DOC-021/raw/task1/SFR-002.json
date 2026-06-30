@@ -1,0 +1,96 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-002",
+      "requirement_name": "오픈소스 및 상용 LLM API 개발",
+      "requirement_type": "기능",
+      "requirement_definition": "오픈소스 및 상용 LLM을 활용하기 위한 API 제공",
+      "requirement_detail": "▪ LLM API 통합 관리\n- GPT-4 및 기타 상용 LLM의 API의 통합 관리 기능을 제공하여, 각 API 사용량을 실시간으로 모니터링하고 통계를 확인 가능\n- 단일 인터페이스를 통해 복수의 API 호출 가능하도록 통합 인터페이스 설계\n- LLM 사용량 모니터링 및 상용 LLM 라이센스 만료 시 알림 제공\n▪ API 호출 최적화\n- API 호출 속도를 최적화하여 플랫폼의 응답 성능 확보\n- 대량 요청 /과부하 상황에서도 API 요청 분산 처리를 통한 안정적인 API 성능을 유지",
+      "source_location": {
+        "table_index": 15,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2132,
+      "max_new_tokens": 4096,
+      "generated_tokens": 317,
+      "hit_token_limit": false,
+      "elapsed_seconds": 18.812337673734874,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-002-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"상용 LLM API 통합 관리\",\n      \"source_text\": \"GPT-4 및 기타 상용 LLM API 통합 관리\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"상용 LLM API 사용량 모니터링\",\n      \"source_text\": \"API 사용량 실시간 모니터링 및 통계 확인\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-003\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"상용 LLM 라이센스 만료 알림\",\n      \"source_text\": \"라이센스 만료 시 알림\"\n    },\n    {\n      \"atomic_id\": \"SFR-002-004\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"API 호출 최적화 및 분산 처리\",\n      \"source_text\": \"API 호출 속도 최적화와 대량 요청 분산 처리\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-002",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-002-001",
+            "action_type": "관리",
+            "output_name": "상용 LLM API 통합 관리",
+            "source_text": "GPT-4 및 기타 상용 LLM API 통합 관리"
+          },
+          {
+            "atomic_id": "SFR-002-002",
+            "action_type": "조회",
+            "output_name": "상용 LLM API 사용량 모니터링",
+            "source_text": "API 사용량 실시간 모니터링 및 통계 확인"
+          },
+          {
+            "atomic_id": "SFR-002-003",
+            "action_type": "조회",
+            "output_name": "상용 LLM 라이센스 만료 알림",
+            "source_text": "라이센스 만료 시 알림"
+          },
+          {
+            "atomic_id": "SFR-002-004",
+            "action_type": "처리",
+            "output_name": "API 호출 최적화 및 분산 처리",
+            "source_text": "API 호출 속도 최적화와 대량 요청 분산 처리"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-002",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-002-001",
+        "action_type": "관리",
+        "output_name": "상용 LLM API 통합 관리",
+        "source_text": "GPT-4 및 기타 상용 LLM API 통합 관리"
+      },
+      {
+        "atomic_id": "SFR-002-002",
+        "action_type": "조회",
+        "output_name": "상용 LLM API 사용량 모니터링",
+        "source_text": "API 사용량 실시간 모니터링 및 통계 확인"
+      },
+      {
+        "atomic_id": "SFR-002-003",
+        "action_type": "조회",
+        "output_name": "상용 LLM 라이센스 만료 알림",
+        "source_text": "라이센스 만료 시 알림"
+      },
+      {
+        "atomic_id": "SFR-002-004",
+        "action_type": "처리",
+        "output_name": "API 호출 최적화 및 분산 처리",
+        "source_text": "API 호출 속도 최적화와 대량 요청 분산 처리"
+      }
+    ]
+  }
+}

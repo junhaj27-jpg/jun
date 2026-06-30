@@ -1,0 +1,35 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-004",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-004::SFR-004-001",
+        "action_type": "산출",
+        "output_name": "RISE사업단·센터 랜딩페이지",
+        "source_text": "RISE사업단 및 각 센터 홈페이지의 효과적인 접근을 위한 랜딩페이지 제작",
+        "original_atomic_id": "SFR-004-001",
+        "source_fur_id": "SFR-004"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-004::SFR-004-001"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 1952,
+  "max_new_tokens": 6144,
+  "generated_tokens": 196,
+  "hit_token_limit": false,
+  "elapsed_seconds": 11.655524665024132,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-004\",\n  \"normalized_requirement_count\": 1,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-012\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-004::SFR-004-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"RISE사업단·센터 랜딩페이지\",\n      \"requirement_detail\": \"RISE사업단 및 각 센터의 홈페이지를 효과적으로 접근할 수 있도록 랜딩페이지를 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-004\"\n      ]\n    }\n  ]\n}"
+}

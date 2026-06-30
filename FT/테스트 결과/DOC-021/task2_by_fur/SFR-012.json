@@ -1,0 +1,86 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-012",
+  "atomic_input_sha256": "5fdb1c3a2ae99550a09589442f4785f7594b785a4cbd2e27daacb0e6c4921c27",
+  "normalized_requirement_count": 5,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-031",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "신규 회원 승인·거부",
+      "requirement_detail": "관리자는 신규 회원 가입 요청을 승인하거나 거부할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "task2_id": "T2-032",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "부적절 계정 삭제",
+      "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "task2_id": "T2-033",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-012::SFR-012-003",
+        "SFR-012::SFR-012-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용자·챗봇 상태·권한·업데이트 조회",
+      "requirement_detail": "관리자는 사용자 그룹과 계정 상태, 챗봇 사용현황, 업데이트 상태와 권한 정보를 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "task2_id": "T2-034",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-012::SFR-012-004",
+        "SFR-012::SFR-012-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "챗봇 퍼블리시·비활성화 삭제",
+      "requirement_detail": "관리자는 생성된 챗봇의 퍼블리시 요청을 승인하거나 거부하고 비활성화되거나 필요 없는 챗봇을 삭제할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "task2_id": "T2-035",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용량·통계 조회·다운로드",
+      "requirement_detail": "관리자는 사용량 데이터를 실시간으로 조회하고 통계 분석 결과를 CSV 또는 엑셀 파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012"
+    }
+  ]
+}

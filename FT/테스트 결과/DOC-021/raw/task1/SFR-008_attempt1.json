@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-008",
+      "requirement_name": "대학 홈페이지 정보 실시간 학습 및 업데이트",
+      "requirement_type": "기능",
+      "requirement_definition": "홈페이지 안내 챗봇이 대학 홈페이지 및 관련 게시판의 정보를 자동으로 학습하고 업데이트하여 사용자에게 최신 정보를 제공",
+      "requirement_detail": "▪ 홈페이지 데이터 자동 학습\n- 대학 홈페이지의 페이지 중 안내에 적합한 정보를 수집 및 분석\n- 크롤러를 활용하여 웹 페이지의 최신 정보를 매일 업데이트\n▪ 실시간 정보 처리\n- 게시판 또는 웹 페이지에 새로 업로드된 정보를 자동으로 학습하고 지식베이스에 추가\n- 관리자가 직접 수동으로 특정 정보를 업데이트 가능\n▪ 사용자 질의에 기반한 정보 제공\n- 최신 학사 정보, 일정, 공지사항 등을 사용자 질의에 따라 정확히 응답\n- 각 응답에 관련 링크 및 출처 정보 포함\n▪ 업무 담당 부서 및 연락처 관리 기능\n- 사용자 질문 관련 부서 및 연락처 별도 안내 기능\n- 업무 관련 부서 및 연락 관리 기능\n▪ 관리 및 모니터링\n- 관리자 대시보드에서 실시간 데이터 업데이트 현황 확인\n- 업데이트 정보 삭제 기능 및 삭제된 업데이트 정보 재학습 금지 기능",
+      "source_location": {
+        "table_index": 21,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2259,
+  "max_new_tokens": 4096,
+  "generated_tokens": 512,
+  "hit_token_limit": false,
+  "elapsed_seconds": 32.4780019777827,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-008\",\n  \"decomposition_count\": 6,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-008-001\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"홈페이지 안내 정보 자동 학습\",\n      \"source_text\": \"대학 홈페이지의 페이지 중 안내에 적합한 정보를 수집 및 분석\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-002\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"홈페이지 최신정보 매일 자동 업데이트\",\n      \"source_text\": \"크롤러를 활용하여 웹 페이지의 최신 정보를 매일 업데이트\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-003\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"게시판·웹페이지 신규정보 자동 학습\",\n      \"source_text\": \"게시판 또는 웹 페이지에 새로 업로드된 정보를 자동으로 학습하고 지식베이스에 추가\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-004\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"관리자 수동 정보 업데이트\",\n      \"source_text\": \"관리자가 직접 수동으로 특정 정보를 업데이트 가능\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-005\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"최신 학사정보·일정·공지사항 질의응답\",\n      \"source_text\": \"최신 학사 정보, 일정, 공지사항 등을 사용자 질의에 따라 정확히 응답\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-006\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"업무 담당부서·연락처 안내\",\n      \"source_text\": \"사용자 질문 관련 부서 및 연락처 별도 안내 기능\"\n    }\n  ]\n}"
+}

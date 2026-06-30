@@ -1,0 +1,538 @@
+{
+  "SFR-001": [
+    {
+      "atomic_id": "SFR-001::SFR-001-001",
+      "action_type": "관리",
+      "output_name": "모듈화 아키텍처 설계",
+      "source_text": "주요 기능을 모듈화하여 독립 개발·확장과 의존성 최소화",
+      "original_atomic_id": "SFR-001-001",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-002",
+      "action_type": "관리",
+      "output_name": "온프레미스 자원 최적화",
+      "source_text": "온프레미스 서버 자원 효율 활용과 사용량 분석·안정성 기준",
+      "original_atomic_id": "SFR-001-002",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-003",
+      "action_type": "관리",
+      "output_name": "플랫폼 확장성 설계",
+      "source_text": "새 LLM 모델과 외부 API 통합 및 학습데이터·사용자 트래픽 확장성",
+      "original_atomic_id": "SFR-001-003",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-004",
+      "action_type": "연계",
+      "output_name": "온프레미스·상용 LLM 통합",
+      "source_text": "온프레미스 LLM과 상용 LLM API 통합",
+      "original_atomic_id": "SFR-001-004",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-005",
+      "action_type": "관리",
+      "output_name": "다양한 LLM 동시 통합",
+      "source_text": "GPT-4, Llama 등 다양한 LLM 모델 동시 통합",
+      "original_atomic_id": "SFR-001-005",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-006",
+      "action_type": "관리",
+      "output_name": "AI 모델 파라미터 조정",
+      "source_text": "답변 온도와 유사 응답 개수 조정",
+      "original_atomic_id": "SFR-001-006",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-007",
+      "action_type": "관리",
+      "output_name": "프롬프트 템플릿 관리",
+      "source_text": "프롬프트 템플릿 등록·수정·삭제",
+      "original_atomic_id": "SFR-001-007",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-008",
+      "action_type": "입력",
+      "output_name": "프롬프트 템플릿 활용",
+      "source_text": "등록 프롬프트 선택·수정·질의문 입력",
+      "original_atomic_id": "SFR-001-008",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-009",
+      "action_type": "제공",
+      "output_name": "대화형 UX·스레드 대화",
+      "source_text": "ChatGPT 유사 UX와 대화 스레드 저장·검색·복원",
+      "original_atomic_id": "SFR-001-009",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-010",
+      "action_type": "관리",
+      "output_name": "대화 히스토리 삭제·다운로드",
+      "source_text": "대화 데이터 삭제와 개인 기록 다운로드",
+      "original_atomic_id": "SFR-001-010",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-011",
+      "action_type": "보안",
+      "output_name": "대화 데이터 암호화",
+      "source_text": "개인정보 보호를 위한 대화 데이터 암호화 저장",
+      "original_atomic_id": "SFR-001-011",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-012",
+      "action_type": "관리",
+      "output_name": "대화 히스토리 복원",
+      "source_text": "이전 대화를 검색하거나 복원",
+      "original_atomic_id": "SFR-001-012",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-013",
+      "action_type": "관리",
+      "output_name": "대화 히스토리 삭제",
+      "source_text": "사용자가 요청한 경우 대화 데이터 삭제",
+      "original_atomic_id": "SFR-001-013",
+      "source_fur_id": "SFR-001"
+    }
+  ],
+  "SFR-002": [
+    {
+      "atomic_id": "SFR-002::SFR-002-001",
+      "action_type": "관리",
+      "output_name": "상용 LLM API 통합 관리",
+      "source_text": "GPT-4 및 기타 상용 LLM API 통합 관리",
+      "original_atomic_id": "SFR-002-001",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-002",
+      "action_type": "조회",
+      "output_name": "상용 LLM API 사용량 모니터링",
+      "source_text": "API 사용량 실시간 모니터링 및 통계 확인",
+      "original_atomic_id": "SFR-002-002",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-003",
+      "action_type": "조회",
+      "output_name": "상용 LLM 라이센스 만료 알림",
+      "source_text": "라이센스 만료 시 알림",
+      "original_atomic_id": "SFR-002-003",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-004",
+      "action_type": "처리",
+      "output_name": "API 호출 최적화 및 분산 처리",
+      "source_text": "API 호출 속도 최적화와 대량 요청 분산 처리",
+      "original_atomic_id": "SFR-002-004",
+      "source_fur_id": "SFR-002"
+    }
+  ],
+  "SFR-003": [
+    {
+      "atomic_id": "SFR-003::SFR-003-001",
+      "action_type": "제공",
+      "output_name": "온프레미스 독립 운영 챗봇",
+      "source_text": "대학 인프라 독립 운영",
+      "original_atomic_id": "SFR-003-001",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-002",
+      "action_type": "보안",
+      "output_name": "온프레미스 민감데이터 보안",
+      "source_text": "첨부문서·사용자정보·채팅데이터 외부유출 차단",
+      "original_atomic_id": "SFR-003-002",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-003",
+      "action_type": "처리",
+      "output_name": "온프레미스 챗봇 성능·자원·고가용성",
+      "source_text": "다수 사용자 처리·자원·응답·장애 복구",
+      "original_atomic_id": "SFR-003-003",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-004",
+      "action_type": "제공",
+      "output_name": "관리자 챗봇 사용데이터 대시보드",
+      "source_text": "관리자 대시보드 연동",
+      "original_atomic_id": "SFR-003-004",
+      "source_fur_id": "SFR-003"
+    }
+  ],
+  "SFR-004": [
+    {
+      "atomic_id": "SFR-004::SFR-004-001",
+      "action_type": "입력",
+      "output_name": "다형식 문서 업로드",
+      "source_text": "PDF, 텍스트, 이미지 업로드",
+      "original_atomic_id": "SFR-004-001",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-002",
+      "action_type": "검증",
+      "output_name": "업로드 파일 유효성 검사",
+      "source_text": "파일 크기와 형식 유효성 검사",
+      "original_atomic_id": "SFR-004-002",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-003",
+      "action_type": "관리",
+      "output_name": "업로드 문서 통합·조회·삭제",
+      "source_text": "업로드 문서 통합, 조회, 삭제",
+      "original_atomic_id": "SFR-004-003",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-004",
+      "action_type": "처리",
+      "output_name": "문서 데이터 추출·통합",
+      "source_text": "업로드 문서 데이터 추출·통합",
+      "original_atomic_id": "SFR-004-004",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-005",
+      "action_type": "처리",
+      "output_name": "RAG 검색·답변 생성·근거 링크",
+      "source_text": "벡터DB 검색, 질문 답변 생성, 근거·링크",
+      "original_atomic_id": "SFR-004-005",
+      "source_fur_id": "SFR-004"
+    }
+  ],
+  "SFR-005": [
+    {
+      "atomic_id": "SFR-005::SFR-005-001",
+      "action_type": "입력",
+      "output_name": "프롬프트 손쉬운 수정",
+      "source_text": "프롬프트를 손쉽게 수정 가능",
+      "original_atomic_id": "SFR-005-001",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-002",
+      "action_type": "산출",
+      "output_name": "문서 기반 지식베이스 생성·관리",
+      "source_text": "사용자 제공 문서를 기반으로 챗봇 지식베이스를 생성 및 관리",
+      "original_atomic_id": "SFR-005-002",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-003",
+      "action_type": "관리",
+      "output_name": "LLM 모델 선택·응답 파라미터 조정",
+      "source_text": "적합한 LLM 모델 선택 및 창의성·신뢰성·결과 범위 조정",
+      "original_atomic_id": "SFR-005-003",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-004",
+      "action_type": "관리",
+      "output_name": "챗봇 저장·관리자 승인·퍼블리시",
+      "source_text": "관리자 승인 하에 공용 배포 또는 특정 사용자 그룹 제한 배포",
+      "original_atomic_id": "SFR-005-004",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-005",
+      "action_type": "조회",
+      "output_name": "퍼블리시 전 개인 테스트",
+      "source_text": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 점검",
+      "original_atomic_id": "SFR-005-005",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-006",
+      "action_type": "관리",
+      "output_name": "사용자 그룹별 챗봇 설계",
+      "source_text": "학생, 교수, 교직원 등 사용자 그룹별 요구사항에 맞춘 챗봇 설계",
+      "original_atomic_id": "SFR-005-006",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-007",
+      "action_type": "관리",
+      "output_name": "사용자 그룹 관리·챗봇 매칭",
+      "source_text": "사용자 그룹 생성·수정·삭제와 챗봇 사용자 그룹 매칭",
+      "original_atomic_id": "SFR-005-007",
+      "source_fur_id": "SFR-005"
+    }
+  ],
+  "SFR-006": [
+    {
+      "atomic_id": "SFR-006::SFR-006-001",
+      "action_type": "조회",
+      "output_name": "퍼블리시 챗봇 검색·탐색·필터링",
+      "source_text": "퍼블리시 챗봇 검색·탐색·필터링",
+      "original_atomic_id": "SFR-006-001",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-002",
+      "action_type": "조회",
+      "output_name": "사용자 그룹별 챗봇 조회",
+      "source_text": "사용자 그룹별 챗봇 조회",
+      "original_atomic_id": "SFR-006-002",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-003",
+      "action_type": "조회",
+      "output_name": "사용자 그룹별 챗봇 활용",
+      "source_text": "사용자 그룹별 챗봇 활용",
+      "original_atomic_id": "SFR-006-003",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-004",
+      "action_type": "연계",
+      "output_name": "선택 챗봇 환경 적용",
+      "source_text": "선택 챗봇 환경 적용",
+      "original_atomic_id": "SFR-006-004",
+      "source_fur_id": "SFR-006"
+    }
+  ],
+  "SFR-007": [
+    {
+      "atomic_id": "SFR-007::SFR-007-001",
+      "action_type": "제공",
+      "output_name": "다국어 응대 및 언어 감지 기능",
+      "source_text": "20개 이상 언어로 응답과 언어 자동 감지",
+      "original_atomic_id": "SFR-007-001",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-002",
+      "action_type": "처리",
+      "output_name": "질의 의도 분석 및 맥락 기반 응답",
+      "source_text": "질의 의도 분석과 맥락 맞춤 응답",
+      "original_atomic_id": "SFR-007-002",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-003",
+      "action_type": "처리",
+      "output_name": "불명확 질문 처리 및 다단계 대화 관리",
+      "source_text": "불명확 질문·추가정보 요청과 다단계 질의응답",
+      "original_atomic_id": "SFR-007-003",
+      "source_fur_id": "SFR-007"
+    }
+  ],
+  "SFR-008": [
+    {
+      "atomic_id": "SFR-008::SFR-008-001",
+      "action_type": "처리",
+      "output_name": "홈페이지 안내 정보 자동 학습",
+      "source_text": "대학 홈페이지의 페이지 중 안내에 적합한 정보를 수집 및 분석",
+      "original_atomic_id": "SFR-008-001",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-002",
+      "action_type": "처리",
+      "output_name": "홈페이지 최신정보 매일 자동 업데이트",
+      "source_text": "크롤러를 활용하여 웹 페이지의 최신 정보를 매일 업데이트",
+      "original_atomic_id": "SFR-008-002",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-003",
+      "action_type": "처리",
+      "output_name": "게시판·웹페이지 신규정보 자동 학습",
+      "source_text": "게시판 또는 웹 페이지에 새로 업로드된 정보를 자동으로 학습하고 지식베이스에 추가",
+      "original_atomic_id": "SFR-008-003",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-004",
+      "action_type": "입력",
+      "output_name": "관리자 수동 정보 업데이트",
+      "source_text": "관리자가 직접 수동으로 특정 정보를 업데이트 가능",
+      "original_atomic_id": "SFR-008-004",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-005",
+      "action_type": "제공",
+      "output_name": "최신 학사정보·일정·공지사항 질의응답",
+      "source_text": "최신 학사 정보, 일정, 공지사항 등을 사용자 질의에 따라 정확히 응답",
+      "original_atomic_id": "SFR-008-005",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-006",
+      "action_type": "제공",
+      "output_name": "업무 담당부서·연락처 안내",
+      "source_text": "사용자 질문 관련 부서 및 연락처 별도 안내 기능",
+      "original_atomic_id": "SFR-008-006",
+      "source_fur_id": "SFR-008"
+    }
+  ],
+  "SFR-009": [
+    {
+      "atomic_id": "SFR-009::SFR-009-001",
+      "action_type": "분석",
+      "output_name": "챗봇 이용현황 통계 분석",
+      "source_text": "유형별 기간별 이용현황 및 이용자 수·대화 수 통계",
+      "original_atomic_id": "SFR-009-001",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-002",
+      "action_type": "조회",
+      "output_name": "챗봇 대화 정확도 리뷰",
+      "source_text": "대화 내용 리뷰 콘솔",
+      "original_atomic_id": "SFR-009-002",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-003",
+      "action_type": "산출",
+      "output_name": "대화내용 엑셀 다운로드",
+      "source_text": "대화 내용 엑셀 다운로드",
+      "original_atomic_id": "SFR-009-003",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-004",
+      "action_type": "산출",
+      "output_name": "통계정보 엑셀 다운로드",
+      "source_text": "통계분석 정보 엑셀 다운로드",
+      "original_atomic_id": "SFR-009-004",
+      "source_fur_id": "SFR-009"
+    }
+  ],
+  "SFR-010": [
+    {
+      "atomic_id": "SFR-010::SFR-010-001",
+      "action_type": "제공",
+      "output_name": "ARS 전화 응답 챗봇",
+      "source_text": "생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답",
+      "original_atomic_id": "SFR-010-001",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-002",
+      "action_type": "제공",
+      "output_name": "ARS 한국어 음성 대화",
+      "source_text": "전화 ARS는 한국어로 대화 가능",
+      "original_atomic_id": "SFR-010-002",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-003",
+      "action_type": "제공",
+      "output_name": "ARS 대량 통화 처리",
+      "source_text": "전화 ARS는 대량 통화량 처리 가능",
+      "original_atomic_id": "SFR-010-003",
+      "source_fur_id": "SFR-010"
+    }
+  ],
+  "SFR-011": [
+    {
+      "atomic_id": "SFR-011::SFR-011-001",
+      "action_type": "연계",
+      "output_name": "학내 통합인증 로그인",
+      "source_text": "학내 운영중인 통합인증시스템을 활용한 로그인 기능",
+      "original_atomic_id": "SFR-011-001",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-002",
+      "action_type": "권한",
+      "output_name": "학내 이메일 ID·외부 사용자 차단",
+      "source_text": "학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 방지",
+      "original_atomic_id": "SFR-011-002",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-003",
+      "action_type": "보안",
+      "output_name": "비밀번호 암호화·HTTPS",
+      "source_text": "비밀번호 암호화 및 안전한 데이터 전송을 위한 HTTPS 프로토콜 사용",
+      "original_atomic_id": "SFR-011-003",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-004",
+      "action_type": "입력",
+      "output_name": "비밀번호 재설정",
+      "source_text": "비밀번호 재설정 기능",
+      "original_atomic_id": "SFR-011-004",
+      "source_fur_id": "SFR-011"
+    }
+  ],
+  "SFR-012": [
+    {
+      "atomic_id": "SFR-012::SFR-012-001",
+      "action_type": "관리",
+      "output_name": "신규 회원 승인·거부",
+      "source_text": "신규 회원 가입 요청 승인 또는 거부",
+      "original_atomic_id": "SFR-012-001",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-002",
+      "action_type": "관리",
+      "output_name": "부적절 계정 삭제",
+      "source_text": "부적절하거나 비활성화된 계정 삭제",
+      "original_atomic_id": "SFR-012-002",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-003",
+      "action_type": "조회",
+      "output_name": "사용자 그룹·계정 상태 조회",
+      "source_text": "사용자 그룹과 계정 상태 확인",
+      "original_atomic_id": "SFR-012-003",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-004",
+      "action_type": "관리",
+      "output_name": "챗봇 퍼블리시 승인·거부",
+      "source_text": "생성된 챗봇의 퍼블리시 요청 승인 또는 거부",
+      "original_atomic_id": "SFR-012-004",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-005",
+      "action_type": "관리",
+      "output_name": "비활성화 챗봇 삭제",
+      "source_text": "비활성화되거나 필요 없는 챗봇 삭제",
+      "original_atomic_id": "SFR-012-005",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-006",
+      "action_type": "조회",
+      "output_name": "챗봇 사용현황·업데이트·권한 조회",
+      "source_text": "챗봇 사용현황, 업데이트 상태와 권한 정보 열람",
+      "original_atomic_id": "SFR-012-006",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-007",
+      "action_type": "조회",
+      "output_name": "사용량·통계 조회·다운로드",
+      "source_text": "사용량 데이터 실시간 조회, 통계 분석과 CSV·엑셀 다운로드",
+      "original_atomic_id": "SFR-012-007",
+      "source_fur_id": "SFR-012"
+    }
+  ]
+}

@@ -1,0 +1,734 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C019-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000096",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "고전 알고리즘 자동 매핑",
+        "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000098",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "양자 회로 최적화 컴파일",
+        "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000103",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "양자 측정 통계 분석",
+        "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000106",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-011"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "양자 결과 고전 데이터 변환",
+        "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000107",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-012"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "양자 결과 불확실성·신뢰구간",
+        "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000108",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "양자 결과 대시보드 시각화",
+        "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000109",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-014"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "고전·양자 결과 비교 분석",
+        "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "error_type": "ValueError",
+      "error_message": "TASK3.relation_decisions[0] 필수 필드 누락=['gold_id']",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 527, in generate_from_messages\n    obj = validate_task_output(task_type, obj)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 442, in validate_task_output\n    raise ValueError(f'TASK3.relation_decisions[{relation_index}] 필수 필드 누락={sorted(missing)}')\nValueError: TASK3.relation_decisions[0] 필수 필드 누락=['gold_id']\n",
+      "hit_token_limit": false
+    },
+    {
+      "attempt": 2,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2963,
+      "max_new_tokens": 6493,
+      "generated_tokens": 2774,
+      "hit_token_limit": false,
+      "elapsed_seconds": 167.1823482788168,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"고전 알고리즘 자동 매핑\",\n      \"requirement_detail\": \"고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000096\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-001\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 회로 최적화 컴파일\",\n      \"requirement_detail\": \"양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000098\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-003\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"양자 측정 통계 분석\",\n      \"requirement_detail\": \"양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000103\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-008\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 결과 고전 데이터 변환\",\n      \"requirement_detail\": \"양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000106\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-011\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 결과 불확실성·신뢰구간\",\n      \"requirement_detail\": \"결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000107\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-012\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"양자 결과 대시보드 시각화\",\n      \"requirement_detail\": \"양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000108\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-013\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"고전·양자 결과 비교 분석\",\n      \"requirement_detail\": \"고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000109\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-014\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    }\n  ],\n  \"final_requirement_count\": 7,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"고전 알고리즘 자동 매핑\",\n      \"requirement_detail\": \"고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000096\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-001\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 회로 최적화 컴파일\",\n      \"requirement_detail\": \"양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000098\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-003\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"양자 측정 통계 분석\",\n      \"requirement_detail\": \"양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000103\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-008\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 결과 고전 데이터 변환\",\n      \"requirement_detail\": \"양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000106\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-011\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 결과 불확실성·신뢰구간\",\n      \"requirement_detail\": \"결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000107\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-012\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"양자 결과 대시보드 시각화\",\n      \"requirement_detail\": \"양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000108\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-013\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"고전·양자 결과 비교 분석\",\n      \"requirement_detail\": \"고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000109\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-014\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "처리",
+            "requirement_name": "고전 알고리즘 자동 매핑",
+            "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000096"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-001"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000096"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "처리",
+            "requirement_name": "양자 회로 최적화 컴파일",
+            "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000098"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-003"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000098"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "분석",
+            "requirement_name": "양자 측정 통계 분석",
+            "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000103"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-008"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000103"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "처리",
+            "requirement_name": "양자 결과 고전 데이터 변환",
+            "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000106"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-011"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000106"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "처리",
+            "requirement_name": "양자 결과 불확실성·신뢰구간",
+            "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000107"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-012"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000107"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "조회",
+            "requirement_name": "양자 결과 대시보드 시각화",
+            "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000108"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-013"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000108"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "분석",
+            "requirement_name": "고전·양자 결과 비교 분석",
+            "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000109"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-014"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000109"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          }
+        ],
+        "final_requirement_count": 7,
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "처리",
+            "requirement_name": "고전 알고리즘 자동 매핑",
+            "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000096"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-001"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "처리",
+            "requirement_name": "양자 회로 최적화 컴파일",
+            "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000098"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-003"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "분석",
+            "requirement_name": "양자 측정 통계 분석",
+            "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000103"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-008"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "처리",
+            "requirement_name": "양자 결과 고전 데이터 변환",
+            "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000106"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-011"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "처리",
+            "requirement_name": "양자 결과 불확실성·신뢰구간",
+            "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000107"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-012"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "조회",
+            "requirement_name": "양자 결과 대시보드 시각화",
+            "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000108"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-013"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "분석",
+            "requirement_name": "고전·양자 결과 비교 분석",
+            "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+            "source_task2_ids": [
+              "T2-000109"
+            ],
+            "source_atomic_ids": [
+              "SFR-016-014"
+            ],
+            "sources": [
+              "SFR-016"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "처리",
+        "requirement_name": "고전 알고리즘 자동 매핑",
+        "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000096"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-001"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000096"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "처리",
+        "requirement_name": "양자 회로 최적화 컴파일",
+        "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000098"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-003"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000098"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "분석",
+        "requirement_name": "양자 측정 통계 분석",
+        "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000103"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-008"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000103"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "처리",
+        "requirement_name": "양자 결과 고전 데이터 변환",
+        "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000106"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-011"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000106"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "처리",
+        "requirement_name": "양자 결과 불확실성·신뢰구간",
+        "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000107"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-012"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000107"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "조회",
+        "requirement_name": "양자 결과 대시보드 시각화",
+        "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000108"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-013"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000108"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "분석",
+        "requirement_name": "고전·양자 결과 비교 분석",
+        "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000109"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-014"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000109"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      }
+    ],
+    "final_requirement_count": 7,
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "처리",
+        "requirement_name": "고전 알고리즘 자동 매핑",
+        "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000096"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-001"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "처리",
+        "requirement_name": "양자 회로 최적화 컴파일",
+        "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000098"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-003"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "분석",
+        "requirement_name": "양자 측정 통계 분석",
+        "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000103"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-008"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "처리",
+        "requirement_name": "양자 결과 고전 데이터 변환",
+        "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000106"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-011"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "처리",
+        "requirement_name": "양자 결과 불확실성·신뢰구간",
+        "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000107"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-012"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "조회",
+        "requirement_name": "양자 결과 대시보드 시각화",
+        "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000108"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-013"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "분석",
+        "requirement_name": "고전·양자 결과 비교 분석",
+        "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+        "source_task2_ids": [
+          "T2-000109"
+        ],
+        "source_atomic_ids": [
+          "SFR-016-014"
+        ],
+        "sources": [
+          "SFR-016"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      }
+    ]
+  }
+}

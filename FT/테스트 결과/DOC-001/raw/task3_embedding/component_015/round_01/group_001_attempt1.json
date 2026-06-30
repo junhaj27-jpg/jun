@@ -1,0 +1,46 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C015-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000069",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "권한",
+        "requirement_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+        "requirement_detail": "VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-000083",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-012::SFR-012-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "권한",
+        "requirement_name": "I/O 프로파일링 기반 접근권한·정책 설정",
+        "requirement_detail": "I/O 프로파일링 결과를 기반으로 접근권한과 정책을 설정하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-012"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2132,
+  "max_new_tokens": 3198,
+  "generated_tokens": 474,
+  "hit_token_limit": false,
+  "elapsed_seconds": 28.364912759978324,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000069\",\n        \"T2-000083\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·항목과 출처를 최종 상세문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"권한\",\n    \"requirement_name\": \"VM·BM·I/O 프로파일링 기반 접근권한·정책 설정 및 감사\",\n    \"requirement_detail\": \"VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 I/O 프로파일링 결과를 기반으로 접근권한과 정책을 설정하고 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000069\",\n      \"T2-000083\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-009::SFR-009-005\",\n      \"SFR-012::SFR-012-004\"\n    ],\n    \"sources\": [\n      \"SFR-009\",\n      \"SFR-012\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.\"\n  }\n}"
+}

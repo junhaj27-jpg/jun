@@ -1,0 +1,53 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-003",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-003::SFR-003-001",
+        "action_type": "제공",
+        "output_name": "다중 디바이스·브라우저 반응형 웹",
+        "source_text": "다양한 디바이스와 브라우저 지원을 위한 반응형 웹 기술 적용",
+        "original_atomic_id": "SFR-003-001",
+        "source_fur_id": "SFR-003"
+      },
+      {
+        "atomic_id": "SFR-003::SFR-003-002",
+        "action_type": "제공",
+        "output_name": "모바일 OS·브라우저 호환성",
+        "source_text": "모바일 기기의 OS 및 브라우저와의 호환성 준수",
+        "original_atomic_id": "SFR-003-002",
+        "source_fur_id": "SFR-003"
+      },
+      {
+        "atomic_id": "SFR-003::SFR-003-003",
+        "action_type": "제공",
+        "output_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+        "source_text": "간결한 메뉴 구조 및 UI를 통해 정보의 접근성, 가독성, 편리성, 확장성 확보",
+        "original_atomic_id": "SFR-003-003",
+        "source_fur_id": "SFR-003"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-003::SFR-003-001",
+        "SFR-003::SFR-003-002",
+        "SFR-003::SFR-003-003"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2253,
+  "max_new_tokens": 6144,
+  "generated_tokens": 554,
+  "hit_token_limit": false,
+  "elapsed_seconds": 34.22738177701831,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-003\",\n  \"normalized_requirement_count\": 3,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"SFR-003-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-003::SFR-003-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"다중 디바이스·브라우저 반응형 웹\",\n      \"requirement_detail\": \"다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-003\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-003-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-003::SFR-003-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"모바일 OS·브라우저 호환성\",\n      \"requirement_detail\": \"모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-003\"\n      ]\n    },\n    {\n      \"task2_id\": \"SFR-003-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-003::SFR-003-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"간결 메뉴·UI 접근성·가독성·편리성·확장성\",\n      \"requirement_detail\": \"간결한 메뉴 구조와 UI를 제공하여야 하며, 정보의 접근성, 가독성, 편리성과 확장성을 확보하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-003\"\n      ]\n    }\n  ]\n}"
+}

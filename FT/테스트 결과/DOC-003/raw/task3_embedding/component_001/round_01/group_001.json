@@ -1,0 +1,173 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-003-EMB-C001-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "타 대학 분석·최적화 홈페이지 구축",
+        "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000006",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "준수",
+        "requirement_name": "홈페이지 이미지 저작권",
+        "requirement_detail": "홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2116,
+      "max_new_tokens": 3174,
+      "generated_tokens": 458,
+      "hit_token_limit": false,
+      "elapsed_seconds": 27.43884374620393,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000002\",\n        \"T2-000006\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·수행대상·검수 결과를 최종 상세문장과 보존조건에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"준수\",\n    \"requirement_name\": \"타 대학 분석·최적화 홈페이지 구축 및 저작권 관리\",\n    \"requirement_detail\": \"타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 하며, 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000002\",\n      \"T2-000006\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-001::SFR-001-002\",\n      \"SFR-001::SFR-001-006\"\n    ],\n    \"sources\": [\n      \"SFR-001\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n  }\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000002",
+              "T2-000006"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·수행대상·검수 결과를 최종 상세문장과 보존조건에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          }
+        ],
+        "final_requirement": {
+          "gold_id": "GOLD-001",
+          "action_type": "준수",
+          "requirement_name": "타 대학 분석·최적화 홈페이지 구축 및 저작권 관리",
+          "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 하며, 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+          "source_task2_ids": [
+            "T2-000002",
+            "T2-000006"
+          ],
+          "source_atomic_ids": [
+            "SFR-001::SFR-001-002",
+            "SFR-001::SFR-001-006"
+          ],
+          "sources": [
+            "SFR-001"
+          ],
+          "processing_type": "통합",
+          "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+        },
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "준수",
+            "requirement_name": "타 대학 분석·최적화 홈페이지 구축 및 저작권 관리",
+            "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 하며, 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+            "source_task2_ids": [
+              "T2-000002",
+              "T2-000006"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-002",
+              "SFR-001::SFR-001-006"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+          }
+        ],
+        "final_requirement_count": 1
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000002",
+          "T2-000006"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·수행대상·검수 결과를 최종 상세문장과 보존조건에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      }
+    ],
+    "final_requirement": {
+      "gold_id": "GOLD-001",
+      "action_type": "준수",
+      "requirement_name": "타 대학 분석·최적화 홈페이지 구축 및 저작권 관리",
+      "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 하며, 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+      "source_task2_ids": [
+        "T2-000002",
+        "T2-000006"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-002",
+        "SFR-001::SFR-001-006"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "준수",
+        "requirement_name": "타 대학 분석·최적화 홈페이지 구축 및 저작권 관리",
+        "requirement_detail": "타 대학의 분석결과 등을 활용하여 우리 대학에 최적화된 홈페이지 구축방안을 마련하고 추진하여야 하며, 홈페이지 내 이미지(일러스트, 사진 등)는 직접 제작 및 수집하여 저작권에 문제가 발생하지 않도록 하여야 한다.",
+        "source_task2_ids": [
+          "T2-000002",
+          "T2-000006"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-002",
+          "SFR-001::SFR-001-006"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+      }
+    ],
+    "final_requirement_count": 1
+  }
+}

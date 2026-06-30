@@ -1,0 +1,97 @@
+<form method="post" novalidate data-user-create-form>
+  {% csrf_token %}
+  <input type="hidden" name="action" value="create_user">
+
+  <div class="grid gap-6 md:grid-cols-2">
+    <div class="space-y-2">
+      <label for="user-create-name" class="block text-sm font-medium text-slate-900">이름</label>
+      <input
+        id="user-create-name"
+        name="name"
+        type="text"
+        value="{{ create_user_form.name }}"
+        required
+        minlength="2"
+        maxlength="100"
+        pattern="[A-Za-z0-9가-힣_ ]+"
+        title="이름은 한글, 영문, 숫자, 밑줄(_)로 2자 이상 100자 이하로 입력해 주세요."
+        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+        placeholder="이름을 입력해주세요">
+    </div>
+
+    <div class="space-y-2">
+      <label for="user-create-id" class="block text-sm font-medium text-slate-900">사원번호</label>
+      <input
+        id="user-create-id"
+        name="user_id"
+        type="text"
+        value="{{ create_user_form.user_id }}"
+        required
+        minlength="7"
+        maxlength="10"
+        pattern="(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9_]{7,10}"
+        title="사원번호는 영문자, 숫자, 밑줄(_) 조합으로 7자 이상 10자 이하로 입력해 주세요."
+        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+        placeholder="사원번호를 입력해주세요">
+    </div>
+
+    <div class="space-y-2">
+      <label for="user-create-dept" class="block text-sm font-medium text-slate-900">부서</label>
+      <input
+        id="user-create-dept"
+        name="department"
+        type="text"
+        value="{{ create_user_form.department }}"
+        maxlength="100"
+        pattern="[A-Za-z0-9가-힣_ ]+"
+        title="부서는 한글, 영문, 숫자, 밑줄(_)로 최대 100자까지 입력해 주세요."
+        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+        placeholder="부서를 입력해주세요">
+    </div>
+
+    <div class="space-y-2">
+      <label for="user-create-position" class="block text-sm font-medium text-slate-900">직급</label>
+      <input
+        id="user-create-position"
+        name="position"
+        type="text"
+        value="{{ create_user_form.position }}"
+        maxlength="100"
+        pattern="[A-Za-z0-9가-힣_ ]+"
+        title="직급은 한글, 영문, 숫자, 밑줄(_)로 최대 100자까지 입력해 주세요."
+        class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400"
+        placeholder="직급을 입력해주세요">
+    </div>
+
+    <div class="space-y-2">
+      <label for="user-create-password" class="block text-sm font-medium text-slate-900">임시 비밀번호</label>
+      <input
+        id="user-create-password"
+        type="text"
+        value="{{ temp_password }}"
+        readonly
+        class="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-900">
+    </div>
+
+    <div class="space-y-2">
+      <label for="user-create-active" class="block text-sm font-medium text-slate-900">활성화 여부</label>
+      <select id="user-create-active" name="use_yn" class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900">
+        <option value="Y" {% if create_user_form.use_yn == "Y" %}selected{% endif %}>활성화</option>
+        <option value="N" {% if create_user_form.use_yn == "N" %}selected{% endif %}>비활성화</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-8 flex items-center justify-end gap-4">
+    {% if open_user_create_modal and messages %}
+      <div class="min-w-0 flex-1 space-y-3" data-user-create-errors>
+        {% for message in messages %}
+          {% include "components/alert.html" with message=message %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+      사용자 추가
+    </button>
+  </div>
+</form>

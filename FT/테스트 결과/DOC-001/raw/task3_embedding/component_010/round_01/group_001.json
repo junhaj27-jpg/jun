@@ -1,0 +1,568 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C010-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000047",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "장애 자동 페일오버",
+        "requirement_detail": "장애 발생 시 고가용성 옵션을 활용하여 자동 페일오버를 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000063",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-008::SFR-008-001",
+          "SFR-008::SFR-008-002",
+          "SFR-008::SFR-008-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "장애 복구 자동화 및 모니터링",
+        "requirement_detail": "클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-008"
+        ]
+      },
+      {
+        "task2_id": "T2-000064",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-008::SFR-008-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "장애 복구 보고서 및 개선점 분석",
+        "requirement_detail": "장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-008"
+        ]
+      },
+      {
+        "task2_id": "T2-000070",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "HPC 장애 실시간 ChatOps 자동화",
+        "requirement_detail": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000071",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-010::SFR-010-002",
+          "SFR-010::SFR-010-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "반복장애 ChatOps 워크플로우 관리·실행결과 공유",
+        "requirement_detail": "반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000072",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-010::SFR-010-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "HPC 장애대응 정보 역할별 보고",
+        "requirement_detail": "장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000073",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "HPC 장애대응 자동 리포트",
+        "requirement_detail": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 3043,
+      "max_new_tokens": 4564,
+      "generated_tokens": 2579,
+      "hit_token_limit": false,
+      "elapsed_seconds": 156.2467187019065,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000047\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000063\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000064\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000070\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000071\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000072\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000073\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-000047\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"장애 자동 페일오버\",\n      \"requirement_detail\": \"장애 발생 시 고가용성 옵션을 활용하여 자동 페일오버를 수행하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000047\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-006::SFR-006-005\"\n      ],\n      \"sources\": [\n        \"SFR-006\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000063\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"장애 복구 자동화 및 모니터링\",\n      \"requirement_detail\": \"클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000063\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-008::SFR-008-001\",\n        \"SFR-008::SFR-008-002\",\n        \"SFR-008::SFR-008-003\"\n      ],\n      \"sources\": [\n        \"SFR-008\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000064\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"장애 복구 보고서 및 개선점 분석\",\n      \"requirement_detail\": \"장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000064\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-008::SFR-008-004\"\n      ],\n      \"sources\": [\n        \"SFR-008\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000070\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 장애 실시간 ChatOps 자동화\",\n      \"requirement_detail\": \"HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000070\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-010::SFR-010-001\"\n      ],\n      \"sources\": [\n        \"SFR-010\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000071\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"반복장애 ChatOps 워크플로우 관리·실행결과 공유\",\n      \"requirement_detail\": \"반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000071\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-010::SFR-010-002\",\n        \"SFR-010::SFR-010-003\"\n      ],\n      \"sources\": [\n        \"SFR-010\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000072\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"HPC 장애대응 정보 역할별 보고\",\n      \"requirement_detail\": \"장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000072\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-010::SFR-010-004\"\n      ],\n      \"sources\": [\n        \"SFR-010\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-000073\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"HPC 장애대응 자동 리포트\",\n      \"requirement_detail\": \"장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000073\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-010::SFR-010-005\"\n      ],\n      \"sources\": [\n        \"SFR-010\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000047"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000047"
+          },
+          {
+            "comparison_ids": [
+              "T2-000063"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000063"
+          },
+          {
+            "comparison_ids": [
+              "T2-000064"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000064"
+          },
+          {
+            "comparison_ids": [
+              "T2-000070"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000070"
+          },
+          {
+            "comparison_ids": [
+              "T2-000071"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000071"
+          },
+          {
+            "comparison_ids": [
+              "T2-000072"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000072"
+          },
+          {
+            "comparison_ids": [
+              "T2-000073"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000073"
+          }
+        ],
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-000047",
+            "action_type": "처리",
+            "requirement_name": "장애 자동 페일오버",
+            "requirement_detail": "장애 발생 시 고가용성 옵션을 활용하여 자동 페일오버를 수행하여야 한다.",
+            "source_task2_ids": [
+              "T2-000047"
+            ],
+            "source_atomic_ids": [
+              "SFR-006::SFR-006-005"
+            ],
+            "sources": [
+              "SFR-006"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000063",
+            "action_type": "관리",
+            "requirement_name": "장애 복구 자동화 및 모니터링",
+            "requirement_detail": "클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.",
+            "source_task2_ids": [
+              "T2-000063"
+            ],
+            "source_atomic_ids": [
+              "SFR-008::SFR-008-001",
+              "SFR-008::SFR-008-002",
+              "SFR-008::SFR-008-003"
+            ],
+            "sources": [
+              "SFR-008"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000064",
+            "action_type": "산출",
+            "requirement_name": "장애 복구 보고서 및 개선점 분석",
+            "requirement_detail": "장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.",
+            "source_task2_ids": [
+              "T2-000064"
+            ],
+            "source_atomic_ids": [
+              "SFR-008::SFR-008-004"
+            ],
+            "sources": [
+              "SFR-008"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000070",
+            "action_type": "처리",
+            "requirement_name": "HPC 장애 실시간 ChatOps 자동화",
+            "requirement_detail": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.",
+            "source_task2_ids": [
+              "T2-000070"
+            ],
+            "source_atomic_ids": [
+              "SFR-010::SFR-010-001"
+            ],
+            "sources": [
+              "SFR-010"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000071",
+            "action_type": "조회",
+            "requirement_name": "반복장애 ChatOps 워크플로우 관리·실행결과 공유",
+            "requirement_detail": "반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.",
+            "source_task2_ids": [
+              "T2-000071"
+            ],
+            "source_atomic_ids": [
+              "SFR-010::SFR-010-002",
+              "SFR-010::SFR-010-003"
+            ],
+            "sources": [
+              "SFR-010"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000072",
+            "action_type": "제공",
+            "requirement_name": "HPC 장애대응 정보 역할별 보고",
+            "requirement_detail": "장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.",
+            "source_task2_ids": [
+              "T2-000072"
+            ],
+            "source_atomic_ids": [
+              "SFR-010::SFR-010-004"
+            ],
+            "sources": [
+              "SFR-010"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-000073",
+            "action_type": "산출",
+            "requirement_name": "HPC 장애대응 자동 리포트",
+            "requirement_detail": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.",
+            "source_task2_ids": [
+              "T2-000073"
+            ],
+            "source_atomic_ids": [
+              "SFR-010::SFR-010-005"
+            ],
+            "sources": [
+              "SFR-010"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          }
+        ],
+        "final_requirement_count": 7
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000047"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000047"
+      },
+      {
+        "comparison_ids": [
+          "T2-000063"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000063"
+      },
+      {
+        "comparison_ids": [
+          "T2-000064"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000064"
+      },
+      {
+        "comparison_ids": [
+          "T2-000070"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000070"
+      },
+      {
+        "comparison_ids": [
+          "T2-000071"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000071"
+      },
+      {
+        "comparison_ids": [
+          "T2-000072"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000072"
+      },
+      {
+        "comparison_ids": [
+          "T2-000073"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000073"
+      }
+    ],
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-000047",
+        "action_type": "처리",
+        "requirement_name": "장애 자동 페일오버",
+        "requirement_detail": "장애 발생 시 고가용성 옵션을 활용하여 자동 페일오버를 수행하여야 한다.",
+        "source_task2_ids": [
+          "T2-000047"
+        ],
+        "source_atomic_ids": [
+          "SFR-006::SFR-006-005"
+        ],
+        "sources": [
+          "SFR-006"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000063",
+        "action_type": "관리",
+        "requirement_name": "장애 복구 자동화 및 모니터링",
+        "requirement_detail": "클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.",
+        "source_task2_ids": [
+          "T2-000063"
+        ],
+        "source_atomic_ids": [
+          "SFR-008::SFR-008-001",
+          "SFR-008::SFR-008-002",
+          "SFR-008::SFR-008-003"
+        ],
+        "sources": [
+          "SFR-008"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000064",
+        "action_type": "산출",
+        "requirement_name": "장애 복구 보고서 및 개선점 분석",
+        "requirement_detail": "장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.",
+        "source_task2_ids": [
+          "T2-000064"
+        ],
+        "source_atomic_ids": [
+          "SFR-008::SFR-008-004"
+        ],
+        "sources": [
+          "SFR-008"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000070",
+        "action_type": "처리",
+        "requirement_name": "HPC 장애 실시간 ChatOps 자동화",
+        "requirement_detail": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.",
+        "source_task2_ids": [
+          "T2-000070"
+        ],
+        "source_atomic_ids": [
+          "SFR-010::SFR-010-001"
+        ],
+        "sources": [
+          "SFR-010"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000071",
+        "action_type": "조회",
+        "requirement_name": "반복장애 ChatOps 워크플로우 관리·실행결과 공유",
+        "requirement_detail": "반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.",
+        "source_task2_ids": [
+          "T2-000071"
+        ],
+        "source_atomic_ids": [
+          "SFR-010::SFR-010-002",
+          "SFR-010::SFR-010-003"
+        ],
+        "sources": [
+          "SFR-010"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000072",
+        "action_type": "제공",
+        "requirement_name": "HPC 장애대응 정보 역할별 보고",
+        "requirement_detail": "장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.",
+        "source_task2_ids": [
+          "T2-000072"
+        ],
+        "source_atomic_ids": [
+          "SFR-010::SFR-010-004"
+        ],
+        "sources": [
+          "SFR-010"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-000073",
+        "action_type": "산출",
+        "requirement_name": "HPC 장애대응 자동 리포트",
+        "requirement_detail": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.",
+        "source_task2_ids": [
+          "T2-000073"
+        ],
+        "source_atomic_ids": [
+          "SFR-010::SFR-010-005"
+        ],
+        "sources": [
+          "SFR-010"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      }
+    ],
+    "final_requirement_count": 7
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-010",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-010::SFR-010-001",
+        "action_type": "처리",
+        "output_name": "HPC 장애 실시간 ChatOps 자동화",
+        "source_text": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단, 조치 명령을 수행할 수 있는 기능을 제공한다.",
+        "original_atomic_id": "SFR-010-001",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-002",
+        "action_type": "관리",
+        "output_name": "반복장애 ChatOps 워크플로우 관리",
+        "source_text": "반복적으로 발생하는 장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고, 지정된 명령어로 자동 실행할 수 있는 기능을 제공한다.",
+        "original_atomic_id": "SFR-010-002",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-003",
+        "action_type": "조회",
+        "output_name": "ChatOps 명령 실행결과 실시간 공유",
+        "source_text": "ChatOps 명령 실행 시 관련 로그, 처리 상태, 결과 등을 실시간으로 채팅창에 표시하여 상황 공유 및 협업을 지원하는 기능을 제공한다.",
+        "original_atomic_id": "SFR-010-003",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-004",
+        "action_type": "제공",
+        "output_name": "HPC 장애대응 정보 역할별 보고",
+        "source_text": "장애 발생 시 주요 이벤트, 원인 분석, 조치 내역 등을 요약해 전사 공유 채널로 자동 전송하는 기능을 제공한다.\nHPC 운영조직 내 역할 기반으로 보고 수준을 다르게 구성하여, 관리자, 운영자, 모니터링 요원별로 적정 수준의 정보를 전달할 수 있는 기능을 제공한다.",
+        "original_atomic_id": "SFR-010-004",
+        "source_fur_id": "SFR-010"
+      },
+      {
+        "atomic_id": "SFR-010::SFR-010-005",
+        "action_type": "산출",
+        "output_name": "HPC 장애대응 자동 리포트",
+        "source_text": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고, 정해진 채널로 주기적으로 전달하는 기능을 제공한다.",
+        "original_atomic_id": "SFR-010-005",
+        "source_fur_id": "SFR-010"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-010::SFR-010-001",
+        "SFR-010::SFR-010-002",
+        "SFR-010::SFR-010-003",
+        "SFR-010::SFR-010-004",
+        "SFR-010::SFR-010-005"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2657,
+  "max_new_tokens": 6144,
+  "generated_tokens": 740,
+  "hit_token_limit": false,
+  "elapsed_seconds": 45.264109363313764,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-010\",\n  \"normalized_requirement_count\": 4,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-031\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 장애 실시간 ChatOps 자동화\",\n      \"requirement_detail\": \"HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-032\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-002\",\n        \"SFR-010::SFR-010-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"반복장애 ChatOps 워크플로우 관리·실행결과 공유\",\n      \"requirement_detail\": \"반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-033\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"HPC 장애대응 정보 역할별 보고\",\n      \"requirement_detail\": \"장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-034\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-010::SFR-010-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"HPC 장애대응 자동 리포트\",\n      \"requirement_detail\": \"장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-010\"\n      ]\n    }\n  ]\n}"
+}

@@ -1,0 +1,84 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-010",
+      "requirement_name": "음성 질의응답 챗봇 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "챗봇을 전화에 적용해 음성 답변 기능 구현",
+      "requirement_detail": "▪ 생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답\n- ARS 전화 응대시 챗봇의 응답 생성/발화 시간 5초 이내\n▪ 전화 ARS는 한국어로 대화 가능\n▪ 전화 ARS는 대량 통화량 처리 가능\n▪ 전화 착신 전환 기능을 고려한 서비스 설계 필요",
+      "source_location": {
+        "table_index": 23,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2067,
+      "max_new_tokens": 4096,
+      "generated_tokens": 257,
+      "hit_token_limit": false,
+      "elapsed_seconds": 15.657844180241227,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-010\",\n  \"decomposition_count\": 3,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-010-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"ARS 전화 응답 챗봇\",\n      \"source_text\": \"생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답\"\n    },\n    {\n      \"atomic_id\": \"SFR-010-002\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"ARS 한국어 음성 대화\",\n      \"source_text\": \"전화 ARS는 한국어로 대화 가능\"\n    },\n    {\n      \"atomic_id\": \"SFR-010-003\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"ARS 대량 통화 처리\",\n      \"source_text\": \"전화 ARS는 대량 통화량 처리 가능\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-010",
+        "decomposition_count": 3,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-010-001",
+            "action_type": "제공",
+            "output_name": "ARS 전화 응답 챗봇",
+            "source_text": "생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답"
+          },
+          {
+            "atomic_id": "SFR-010-002",
+            "action_type": "제공",
+            "output_name": "ARS 한국어 음성 대화",
+            "source_text": "전화 ARS는 한국어로 대화 가능"
+          },
+          {
+            "atomic_id": "SFR-010-003",
+            "action_type": "제공",
+            "output_name": "ARS 대량 통화 처리",
+            "source_text": "전화 ARS는 대량 통화량 처리 가능"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-010",
+    "decomposition_count": 3,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-010-001",
+        "action_type": "제공",
+        "output_name": "ARS 전화 응답 챗봇",
+        "source_text": "생성된 챗봇을 전화에 적용하여 인입 전화에 챗봇이 즉시 응답"
+      },
+      {
+        "atomic_id": "SFR-010-002",
+        "action_type": "제공",
+        "output_name": "ARS 한국어 음성 대화",
+        "source_text": "전화 ARS는 한국어로 대화 가능"
+      },
+      {
+        "atomic_id": "SFR-010-003",
+        "action_type": "제공",
+        "output_name": "ARS 대량 통화 처리",
+        "source_text": "전화 ARS는 대량 통화량 처리 가능"
+      }
+    ]
+  }
+}

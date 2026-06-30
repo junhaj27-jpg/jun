@@ -1,0 +1,347 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-021-EMB-C002-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "온프레미스 자원 최적화",
+        "requirement_detail": "온프레미스 서버 자원을 효율적으로 활용하고 사용량을 분석하여 안정성 기준을 설정하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000009",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "대화형 UX·스레드 대화",
+        "requirement_detail": "ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000017",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "온프레미스 독립 운영 챗봇",
+        "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000019",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "온프레미스 챗봇 성능·자원·고가용성",
+        "requirement_detail": "다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000040",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 전화 응답 챗봇",
+        "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000041",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 한국어 음성 대화",
+        "requirement_detail": "전화 ARS는 한국어로 음성 대화를 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000042",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "ARS 대량 통화 처리",
+        "requirement_detail": "전화 ARS는 대량 통화량을 처리할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2819,
+      "max_new_tokens": 4228,
+      "generated_tokens": 1341,
+      "hit_token_limit": false,
+      "elapsed_seconds": 81.64308590861037,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000002\",\n        \"T2-000017\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000009\",\n        \"T2-000019\"\n      ],\n      \"relation_type\": \"SEMANTIC_DUPLICATE\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000040\",\n        \"T2-000041\",\n        \"T2-000042\"\n      ],\n      \"relation_type\": \"PARENT_CHILD\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"온프레미스 독립 운영 챗봇\",\n      \"requirement_detail\": \"대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 하며, 온프레미스 서버 자원의 효율적 활용과 사용량 분석을 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000002\",\n        \"T2-000017\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-002\",\n        \"SFR-003::SFR-003-001\"\n      ],\n      \"sources\": [\n        \"SFR-001\",\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"ARS 전화 응답·음성 대화·대량 통화\",\n      \"requirement_detail\": \"생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하고 한국어 음성 대화와 대량 통화량 처리를 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000040\",\n        \"T2-000041\",\n        \"T2-000042\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-010::SFR-010-001\",\n        \"SFR-010::SFR-010-002\",\n        \"SFR-010::SFR-010-003\"\n      ],\n      \"sources\": [\n        \"SFR-010\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"대화형 UX·스레드 대화\",\n      \"requirement_detail\": \"ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 하며, 다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000009\",\n        \"T2-000019\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-009\",\n        \"SFR-003::SFR-003-003\"\n      ],\n      \"sources\": [\n        \"SFR-001\",\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"통합\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000002",
+              "T2-000017"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+            "preserved_conditions": [
+              "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          },
+          {
+            "comparison_ids": [
+              "T2-000009",
+              "T2-000019"
+            ],
+            "relation_type": "SEMANTIC_DUPLICATE",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+            "preserved_conditions": [
+              "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-003"
+          },
+          {
+            "comparison_ids": [
+              "T2-000040",
+              "T2-000041",
+              "T2-000042"
+            ],
+            "relation_type": "PARENT_CHILD",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+            "preserved_conditions": [
+              "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-002"
+          }
+        ],
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "제공",
+            "requirement_name": "온프레미스 독립 운영 챗봇",
+            "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 하며, 온프레미스 서버 자원의 효율적 활용과 사용량 분석을 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000002",
+              "T2-000017"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-002",
+              "SFR-003::SFR-003-001"
+            ],
+            "sources": [
+              "SFR-001",
+              "SFR-003"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "제공",
+            "requirement_name": "ARS 전화 응답·음성 대화·대량 통화",
+            "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하고 한국어 음성 대화와 대량 통화량 처리를 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000040",
+              "T2-000041",
+              "T2-000042"
+            ],
+            "source_atomic_ids": [
+              "SFR-010::SFR-010-001",
+              "SFR-010::SFR-010-002",
+              "SFR-010::SFR-010-003"
+            ],
+            "sources": [
+              "SFR-010"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "제공",
+            "requirement_name": "대화형 UX·스레드 대화",
+            "requirement_detail": "ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 하며, 다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000009",
+              "T2-000019"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-009",
+              "SFR-003::SFR-003-003"
+            ],
+            "sources": [
+              "SFR-001",
+              "SFR-003"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+          }
+        ],
+        "final_requirement_count": 3
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000002",
+          "T2-000017"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+        "preserved_conditions": [
+          "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      },
+      {
+        "comparison_ids": [
+          "T2-000009",
+          "T2-000019"
+        ],
+        "relation_type": "SEMANTIC_DUPLICATE",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+        "preserved_conditions": [
+          "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-003"
+      },
+      {
+        "comparison_ids": [
+          "T2-000040",
+          "T2-000041",
+          "T2-000042"
+        ],
+        "relation_type": "PARENT_CHILD",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+        "preserved_conditions": [
+          "사용자·관리자 역할, 데이터 범위, 추천 검색·분류·평가·보안 수준, 출처와 원문 ID를 최종 문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-002"
+      }
+    ],
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "제공",
+        "requirement_name": "온프레미스 독립 운영 챗봇",
+        "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 하며, 온프레미스 서버 자원의 효율적 활용과 사용량 분석을 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000002",
+          "T2-000017"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-002",
+          "SFR-003::SFR-003-001"
+        ],
+        "sources": [
+          "SFR-001",
+          "SFR-003"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "제공",
+        "requirement_name": "ARS 전화 응답·음성 대화·대량 통화",
+        "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하고 한국어 음성 대화와 대량 통화량 처리를 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000040",
+          "T2-000041",
+          "T2-000042"
+        ],
+        "source_atomic_ids": [
+          "SFR-010::SFR-010-001",
+          "SFR-010::SFR-010-002",
+          "SFR-010::SFR-010-003"
+        ],
+        "sources": [
+          "SFR-010"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "제공",
+        "requirement_name": "대화형 UX·스레드 대화",
+        "requirement_detail": "ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 하며, 다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000009",
+          "T2-000019"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-009",
+          "SFR-003::SFR-003-003"
+        ],
+        "sources": [
+          "SFR-001",
+          "SFR-003"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+      }
+    ],
+    "final_requirement_count": 3
+  }
+}

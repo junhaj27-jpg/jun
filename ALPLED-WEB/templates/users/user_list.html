@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <section class="space-y-4">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <button type="button" data-modal-target="user-create-modal" class="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+          사용자 등록
+        </button>
+      </div>
+    </div>
+
+    <form method="get" class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div class="grid gap-3 lg:grid-cols-[auto_auto_minmax(0,1fr)_auto] lg:items-center">
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold text-slate-700" for="active">활성 여부</label>
+          <select id="active" name="active" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+            <option value="all" {% if active_filter == "all" %}selected{% endif %}>전체</option>
+            <option value="Y" {% if active_filter == "Y" %}selected{% endif %}>활성화</option>
+            <option value="N" {% if active_filter == "N" %}selected{% endif %}>비활성화</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <label class="text-sm font-semibold text-slate-700" for="field">검색 조건</label>
+          <select id="field" name="field" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700">
+            <option value="all" {% if search_field == "all" %}selected{% endif %}>전체</option>
+            <option value="user_id" {% if search_field == "user_id" %}selected{% endif %}>사원번호</option>
+            <option value="name" {% if search_field == "name" %}selected{% endif %}>이름</option>
+            <option value="position" {% if search_field == "position" %}selected{% endif %}>직급</option>
+            <option value="department" {% if search_field == "department" %}selected{% endif %}>부서</option>
+          </select>
+        </div>
+
+        <div>
+          <input type="text" name="q" value="{{ query }}" class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 shadow-sm placeholder:text-slate-400" placeholder="검색어를 입력해 주세요">
+        </div>
+
+        <div class="flex justify-end">
+          <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+            검색
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+      <h2 class="text-base font-semibold text-slate-900">사용자</h2>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left text-sm">
+        <thead class="border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-600">
+          <tr>
+            <th scope="col" class="px-6 py-4 text-center font-semibold">사원번호</th>
+            <th scope="col" class="px-6 py-4 text-center font-semibold">이름</th>
+            <th scope="col" class="px-6 py-4 text-center font-semibold">부서</th>
+            <th scope="col" class="px-6 py-4 text-center font-semibold">직급</th>
+            <th scope="col" class="px-6 py-4 text-center font-semibold">활성 여부</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 text-slate-700">
+          {% for user in users %}
+            <tr
+              data-modal-target="user-detail-modal"
+              data-user-sn="{{ user.sn }}"
+              data-user-id="{{ user.user_id }}"
+              data-user-name="{{ user.name }}"
+              data-user-department="{{ user.department|default:'' }}"
+              data-user-position="{{ user.position|default:'' }}"
+              data-user-use-yn="{{ user.use_yn }}"
+              data-user-temp-password-yn="{{ user.tmpr_pswd_yn|default:'N' }}"
+              data-user-created-at="{{ user.created_at|date:'Y-m-d H:i:s' }}"
+              data-user-project-roles="{{ user.project_role_json|default:'[]'|escape }}"
+              class="cursor-pointer bg-white transition hover:bg-slate-50">
+              <td class="px-6 py-4 text-center font-medium text-slate-900">{{ user.user_id }}</td>
+              <td class="px-6 py-4 text-center">{{ user.name }}</td>
+              <td class="px-6 py-4 text-center">{{ user.department|default:"-" }}</td>
+              <td class="px-6 py-4 text-center">{{ user.position|default:"-" }}</td>
+              <td class="px-6 py-4 text-center">
+                {% if user.use_yn == "Y" %}
+                  {% include "components/badge.html" with kind="success" label="활성화" %}
+                {% else %}
+                  {% include "components/badge.html" with kind="danger" label="비활성화" %}
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="px-6 py-20 text-center text-sm text-slate-500">등록된 사용자가 없습니다.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="pt-2">
+    {% include "components/pagination.html" %}
+  </div>
+</div>
+
+<div id="user-page-state" data-open-user-create-modal="{% if open_user_create_modal %}true{% else %}false{% endif %}" hidden></div>
+
+{% include "components/modal.html" with modal_id="user-create-modal" title="사용자 등록" subtitle="새 사용자의 정보를 입력하여 등록합니다." body_template="users/partials/user_create_body.html" width_class="max-w-4xl" %}
+{% include "components/modal.html" with modal_id="user-detail-modal" title="사용자 상세" subtitle="선택한 사용자의 정보를 확인하고 임시 비밀번호를 초기화할 수 있습니다." body_template="users/partials/user_detail_body.html" width_class="max-w-4xl" %}
+{% endblock %}

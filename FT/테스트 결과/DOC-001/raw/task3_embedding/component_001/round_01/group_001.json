@@ -1,0 +1,639 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C001-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000001",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-001::SFR-001-001",
+          "SFR-001::SFR-001-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 2.0/3.0 메모리·디바이스 호환성 설계",
+        "requirement_detail": "CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000004",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 QoS 정책 설계",
+        "requirement_detail": "메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000008",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+        "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-000021",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "설계",
+        "requirement_name": "CXL 메모리 DRAM 데이터 이동 방식",
+        "requirement_detail": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000022",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "개발",
+        "requirement_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+        "requirement_detail": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000025",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-003::SFR-003-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "개발",
+        "requirement_name": "데이터베이스·In-memory CXL 메모리 확장",
+        "requirement_detail": "데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-003"
+        ]
+      },
+      {
+        "task2_id": "T2-000032",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-006",
+          "SFR-004::SFR-004-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+        "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      },
+      {
+        "task2_id": "T2-000035",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-004::SFR-004-013"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+        "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-004"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 3085,
+      "max_new_tokens": 4627,
+      "generated_tokens": 2889,
+      "hit_token_limit": false,
+      "elapsed_seconds": 176.21410160139203,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000001\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"comparison_ids\": [\n        \"T2-000004\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"comparison_ids\": [\n        \"T2-000008\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"comparison_ids\": [\n        \"T2-000021\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"comparison_ids\": [\n        \"T2-000022\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"comparison_ids\": [\n        \"T2-000025\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"comparison_ids\": [\n        \"T2-000032\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"comparison_ids\": [\n        \"T2-000035\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 2.0/3.0 메모리·디바이스 호환성 설계\",\n      \"requirement_detail\": \"CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000001\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-001\",\n        \"SFR-001::SFR-001-002\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 QoS 정책 설계\",\n      \"requirement_detail\": \"메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000004\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-001::SFR-001-006\"\n      ],\n      \"sources\": [\n        \"SFR-001\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 풀링 및 동적 확장·축소 관리\",\n      \"requirement_detail\": \"여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000008\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-002::SFR-002-001\"\n      ],\n      \"sources\": [\n        \"SFR-002\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"설계\",\n      \"requirement_name\": \"CXL 메모리 DRAM 데이터 이동 방식\",\n      \"requirement_detail\": \"기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000021\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-004\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"개발\",\n      \"requirement_name\": \"CXL 메모리 할당·해제·DMA 메커니즘\",\n      \"requirement_detail\": \"기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000022\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-005\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"개발\",\n      \"requirement_name\": \"데이터베이스·In-memory CXL 메모리 확장\",\n      \"requirement_detail\": \"데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000025\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-003::SFR-003-008\"\n      ],\n      \"sources\": [\n        \"SFR-003\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"CXL 메모리 자동 조정·Auto-scaling\",\n      \"requirement_detail\": \"메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000032\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-004::SFR-004-006\",\n        \"SFR-004::SFR-004-010\"\n      ],\n      \"sources\": [\n        \"SFR-004\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 자동 확장·장애 복구\",\n      \"requirement_detail\": \"CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000035\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-004::SFR-004-013\"\n      ],\n      \"sources\": [\n        \"SFR-004\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "comparison_ids": [
+              "T2-000001"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-002",
+            "comparison_ids": [
+              "T2-000004"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-003",
+            "comparison_ids": [
+              "T2-000008"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-004",
+            "comparison_ids": [
+              "T2-000021"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-005",
+            "comparison_ids": [
+              "T2-000022"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-006",
+            "comparison_ids": [
+              "T2-000025"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-007",
+            "comparison_ids": [
+              "T2-000032"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          },
+          {
+            "gold_id": "GOLD-008",
+            "comparison_ids": [
+              "T2-000035"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+            "preserved_conditions": [
+              "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+            ],
+            "excluded_or_absorbed_ids": []
+          }
+        ],
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "관리",
+            "requirement_name": "CXL 2.0/3.0 메모리·디바이스 호환성 설계",
+            "requirement_detail": "CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000001"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-001",
+              "SFR-001::SFR-001-002"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 QoS 정책 설계",
+            "requirement_detail": "메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.",
+            "source_task2_ids": [
+              "T2-000004"
+            ],
+            "source_atomic_ids": [
+              "SFR-001::SFR-001-006"
+            ],
+            "sources": [
+              "SFR-001"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+            "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000008"
+            ],
+            "source_atomic_ids": [
+              "SFR-002::SFR-002-001"
+            ],
+            "sources": [
+              "SFR-002"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "설계",
+            "requirement_name": "CXL 메모리 DRAM 데이터 이동 방식",
+            "requirement_detail": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.",
+            "source_task2_ids": [
+              "T2-000021"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-004"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "개발",
+            "requirement_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+            "requirement_detail": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.",
+            "source_task2_ids": [
+              "T2-000022"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-005"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "개발",
+            "requirement_name": "데이터베이스·In-memory CXL 메모리 확장",
+            "requirement_detail": "데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.",
+            "source_task2_ids": [
+              "T2-000025"
+            ],
+            "source_atomic_ids": [
+              "SFR-003::SFR-003-008"
+            ],
+            "sources": [
+              "SFR-003"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "처리",
+            "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+            "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+            "source_task2_ids": [
+              "T2-000032"
+            ],
+            "source_atomic_ids": [
+              "SFR-004::SFR-004-006",
+              "SFR-004::SFR-004-010"
+            ],
+            "sources": [
+              "SFR-004"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-008",
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+            "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+            "source_task2_ids": [
+              "T2-000035"
+            ],
+            "source_atomic_ids": [
+              "SFR-004::SFR-004-013"
+            ],
+            "sources": [
+              "SFR-004"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+          }
+        ],
+        "final_requirement_count": 8
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "comparison_ids": [
+          "T2-000001"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-002",
+        "comparison_ids": [
+          "T2-000004"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-003",
+        "comparison_ids": [
+          "T2-000008"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-004",
+        "comparison_ids": [
+          "T2-000021"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-005",
+        "comparison_ids": [
+          "T2-000022"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-006",
+        "comparison_ids": [
+          "T2-000025"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-007",
+        "comparison_ids": [
+          "T2-000032"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      },
+      {
+        "gold_id": "GOLD-008",
+        "comparison_ids": [
+          "T2-000035"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+        "preserved_conditions": [
+          "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+        ],
+        "excluded_or_absorbed_ids": []
+      }
+    ],
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "관리",
+        "requirement_name": "CXL 2.0/3.0 메모리·디바이스 호환성 설계",
+        "requirement_detail": "CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000001"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-001",
+          "SFR-001::SFR-001-002"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 QoS 정책 설계",
+        "requirement_detail": "메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.",
+        "source_task2_ids": [
+          "T2-000004"
+        ],
+        "source_atomic_ids": [
+          "SFR-001::SFR-001-006"
+        ],
+        "sources": [
+          "SFR-001"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+        "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000008"
+        ],
+        "source_atomic_ids": [
+          "SFR-002::SFR-002-001"
+        ],
+        "sources": [
+          "SFR-002"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "설계",
+        "requirement_name": "CXL 메모리 DRAM 데이터 이동 방식",
+        "requirement_detail": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.",
+        "source_task2_ids": [
+          "T2-000021"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-004"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "개발",
+        "requirement_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+        "requirement_detail": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.",
+        "source_task2_ids": [
+          "T2-000022"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-005"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "개발",
+        "requirement_name": "데이터베이스·In-memory CXL 메모리 확장",
+        "requirement_detail": "데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.",
+        "source_task2_ids": [
+          "T2-000025"
+        ],
+        "source_atomic_ids": [
+          "SFR-003::SFR-003-008"
+        ],
+        "sources": [
+          "SFR-003"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "처리",
+        "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+        "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+        "source_task2_ids": [
+          "T2-000032"
+        ],
+        "source_atomic_ids": [
+          "SFR-004::SFR-004-006",
+          "SFR-004::SFR-004-010"
+        ],
+        "sources": [
+          "SFR-004"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-008",
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+        "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+        "source_task2_ids": [
+          "T2-000035"
+        ],
+        "source_atomic_ids": [
+          "SFR-004::SFR-004-013"
+        ],
+        "sources": [
+          "SFR-004"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+      }
+    ],
+    "final_requirement_count": 8
+  }
+}

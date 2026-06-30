@@ -1,0 +1,84 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-006",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-006::SFR-006-001",
+        "action_type": "조회",
+        "output_name": "사업단 통합게시판 게시글 조회",
+        "source_text": "사업단 홈페이지에서 모든 공지사항 및 게시글 확인",
+        "original_atomic_id": "SFR-006-001",
+        "source_fur_id": "SFR-006"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-006::SFR-006-001"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1942,
+      "max_new_tokens": 6144,
+      "generated_tokens": 191,
+      "hit_token_limit": false,
+      "elapsed_seconds": 11.793360563926399,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-006\",\n  \"normalized_requirement_count\": 1,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-013\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-006::SFR-006-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"사업단 통합게시판 게시글 조회\",\n      \"requirement_detail\": \"사업단 통합게시판의 공지사항과 게시글을 조회할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-006\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-006",
+        "normalized_requirement_count": 1,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-013",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-006::SFR-006-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "사업단 통합게시판 게시글 조회",
+            "requirement_detail": "사업단 통합게시판의 공지사항과 게시글을 조회할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-006"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-006",
+    "normalized_requirement_count": 1,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-013",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "사업단 통합게시판 게시글 조회",
+        "requirement_detail": "사업단 통합게시판의 공지사항과 게시글을 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      }
+    ]
+  }
+}

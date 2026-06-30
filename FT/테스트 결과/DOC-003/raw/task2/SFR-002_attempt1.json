@@ -1,0 +1,62 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-003",
+    "source_requirement_id": "SFR-002",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-002::SFR-002-001",
+        "action_type": "제공",
+        "output_name": "사용자 중심 디자인·기능 설계",
+        "source_text": "사용자의 시각적 요소와 기능적인 요소를 고려한 디자인 제작",
+        "original_atomic_id": "SFR-002-001",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-002",
+        "action_type": "관리",
+        "output_name": "직관적인 메뉴구성·주관부서 추가메뉴",
+        "source_text": "형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴 구성\n현재 제안요청서에서 요청하는 메뉴를 모두 포함하며, ‘주관부서’의 요구에 따라 추가 메뉴를 구성할 수 있음",
+        "original_atomic_id": "SFR-002-002",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-003",
+        "action_type": "제공",
+        "output_name": "웹 스타일 가이드·일관성 유지",
+        "source_text": "가독성 및 사용성을 고려한 레이아웃, 명확한 서체 규정 등 웹 스타일 가이드를 제작하여 일관성 유지",
+        "original_atomic_id": "SFR-002-003",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-004",
+        "action_type": "보안",
+        "output_name": "개인정보·비밀번호 암호화",
+        "source_text": "데이터의 안전한 암호화 처리(개인식별정보/비밀번호 등)",
+        "original_atomic_id": "SFR-002-004",
+        "source_fur_id": "SFR-002"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-002::SFR-002-001",
+        "SFR-002::SFR-002-002",
+        "SFR-002::SFR-002-003",
+        "SFR-002::SFR-002-004"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2427,
+  "max_new_tokens": 6144,
+  "generated_tokens": 700,
+  "hit_token_limit": false,
+  "elapsed_seconds": 42.863044125027955,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"normalized_requirement_count\": 4,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"사용자 중심 디자인·기능 설계\",\n      \"requirement_detail\": \"사용자의 시각적 요소와 기능적인 요소를 고려하여 사용자 중심으로 디자인과 기능을 설계하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"직관적인 메뉴구성·주관부서 추가메뉴\",\n      \"requirement_detail\": \"형식적인 콘텐츠 구조를 탈피하고 직관적인 메뉴구성을 제공하여야 하며, 현재 제안요청서에서 요청하는 메뉴를 모두 포함하고 주관부서의 요구에 따라 추가 메뉴를 구성할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"웹 스타일 가이드·일관성 유지\",\n      \"requirement_detail\": \"가독성과 사용성을 고려한 레이아웃과 명확한 서체 규정을 포함한 웹 스타일 가이드를 제작하여 일관성 있는 디자인을 유지하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-004\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"보안\",\n      \"requirement_name\": \"개인정보·비밀번호 암호화\",\n      \"requirement_detail\": \"개인식별정보와 비밀번호 등의 민감데이터를 안전하게 암호화하여 처리하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    }\n  ]\n}"
+}

@@ -1,0 +1,132 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C008-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000038",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-005::SFR-005-003",
+          "SFR-005::SFR-005-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "클러스터 자원 부하 분석·자동 확장",
+        "requirement_detail": "클러스터 내 자원 부하를 분석하고 자동 확장 기능을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-000040",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "GPU·고성능 연산 자원 스케줄링",
+        "requirement_detail": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      },
+      {
+        "task2_id": "T2-000045",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "운영 정책 자동 적용",
+        "requirement_detail": "운영 정책을 설정하고 자동으로 적용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000060",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-011"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "HPC 자동 스케일링·재시작 정책 설정",
+        "requirement_detail": "사전 정의된 정책에 따라 HPC 자원의 자동 스케일링과 노드 재시작을 설정할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000066",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "동적 확장 환경 자원 보안정책 자동 적용",
+        "requirement_detail": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      },
+      {
+        "task2_id": "T2-000092",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-014::SFR-014-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+        "requirement_detail": "동적 자원 변화에 따라 스케줄링 정책을 재계산하고 재적용하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-014"
+        ]
+      },
+      {
+        "task2_id": "T2-000095",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-015::SFR-015-004",
+          "SFR-015::SFR-015-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "서비스 유형별 자원 자동 프로비저닝·컨테이너 배포",
+        "requirement_detail": "서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-015"
+        ]
+      },
+      {
+        "task2_id": "T2-000112",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-017"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+        "requirement_detail": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화를 지원하여야 하며, GPU·분산 HPC·희소 행렬 시뮬레이션과 메모리 최적화 결과를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 3102,
+  "max_new_tokens": 4653,
+  "generated_tokens": 2866,
+  "hit_token_limit": false,
+  "elapsed_seconds": 173.38587094610557,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"comparison_ids\": [\n        \"T2-000038\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"comparison_ids\": [\n        \"T2-000040\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"comparison_ids\": [\n        \"T2-000045\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최终 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"comparison_ids\": [\n        \"T2-000060\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"comparison_ids\": [\n        \"T2-000066\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"comparison_ids\": [\n        \"T2-000092\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"comparison_ids\": [\n        \"T2-000095\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"comparison_ids\": [\n        \"T2-000112\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"클러스터 자원 부하 분석·자동 확장\",\n      \"requirement_detail\": \"클러스터 내 자원 부하를 분석하고 자동 확장 기능을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000038\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-003\",\n        \"SFR-005::SFR-005-004\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"GPU·고성능 연산 자원 스케줄링\",\n      \"requirement_detail\": \"GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000040\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-005::SFR-005-007\"\n      ],\n      \"sources\": [\n        \"SFR-005\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"운영 정책 자동 적용\",\n      \"requirement_detail\": \"운영 정책을 설정하고 자동으로 적용하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000045\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-006::SFR-006-003\"\n      ],\n      \"sources\": [\n        \"SFR-006\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"HPC 자동 스케일링·재시작 정책 설정\",\n      \"requirement_detail\": \"사전 정의된 정책에 따라 HPC 자원의 자동 스케일링과 노드 재시작을 설정할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000060\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007::SFR-007-011\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"동적 확장 환경 자원 보안정책 자동 적용\",\n      \"requirement_detail\": \"대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000066\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-009::SFR-009-002\"\n      ],\n      \"sources\": [\n        \"SFR-009\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"동적 자원 변화에 따른 스케줄링 정책 재계산·재적용\",\n      \"requirement_detail\": \"동적 자원 변화에 따라 스케줄링 정책을 재계산하고 재적용하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000092\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-014::SFR-014-005\"\n      ],\n      \"sources\": [\n        \"SFR-014\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"서비스 유형별 자원 자동 프로비저닝·컨테이너 배포\",\n      \"requirement_detail\": \"서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000095\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-015::SFR-015-004\",\n        \"SFR-015::SFR-015-005\"\n      ],\n      \"sources\": [\n        \"SFR-015\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"GPU·분산 HPC·희소 행렬 시뮬레이션\",\n      \"requirement_detail\": \"GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화를 지원하여야 하며, GPU·분산 HPC·희소 행렬 시뮬레이션과 메모리 최적화 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000112\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016::SFR-016-017\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    }\n  ]\n}"
+}

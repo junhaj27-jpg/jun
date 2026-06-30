@@ -1,0 +1,159 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-003",
+  "atomic_input_sha256": "b7a1023b92a615e387231d339dd33a160f52a20a3ed18030b9817dae43a8e0cd",
+  "normalized_requirement_count": 10,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "HPC 애플리케이션 메모리 사용패턴 분석",
+      "requirement_detail": "기존 HPC 애플리케이션에서의 메모리 사용 패턴을 분석하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "CXL 메모리 성능 병목·대역폭·지연 분석",
+      "requirement_detail": "CXL 메모리 적용 시 성능 병목 구간 및 대역폭과 지연시간을 분석하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-003",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "설계",
+      "requirement_name": "CXL 메모리 Compute·Storage 공유 활용",
+      "requirement_detail": "CXL 메모리를 Compute Node와 Storage Node 간 공유 자원으로 활용할 수 있는 방안을 설계하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-004",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "설계",
+      "requirement_name": "CXL 메모리 DRAM 데이터 이동 방식",
+      "requirement_detail": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-005",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+      "requirement_detail": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-006",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "OpenMP·MPI CXL 공유 메모리 모델",
+      "requirement_detail": "OpenMP와 MPI에서 CXL 메모리 활용을 위한 공유 메모리 모델을 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-007",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "AI·ML CXL 모델 캐싱·기계학습",
+      "requirement_detail": "AI와 ML 애플리케이션에서 CXL 메모리 활용을 위한 모델 캐싱 및 기계 학습을 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-008",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-008"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "데이터베이스·In-memory CXL 메모리 확장",
+      "requirement_detail": "데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-009",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-009"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "SLURM CXL-aware Job Scheduling",
+      "requirement_detail": "SLURM을 기반으로 CXL 메모리 특성을 고려한 Job Scheduling을 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "T2-010",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-010"
+      ],
+      "reference_context_ids": [],
+      "action_type": "개발",
+      "requirement_name": "CXL 메모리 할당 CRD",
+      "requirement_detail": "클라우드 플랫폼에서 CXL 메모리 할당을 위한 CRD를 개발하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    }
+  ]
+}

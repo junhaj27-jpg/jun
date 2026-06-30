@@ -1,0 +1,46 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-003-EMB-C006-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000026",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "포털 검색 최적화",
+        "requirement_detail": "포털 검색 최적화 기능을 제공하여야 하며, 네이버, 구글 등의 포털사이트 검색 최적화를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      },
+      {
+        "task2_id": "T2-000027",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-010::SFR-010-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "LLM 검색 최적화",
+        "requirement_detail": "LLM 검색 최적화 기능을 제공하여야 하며, 챗GPT 등 LLM의 검색 최적화를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-010"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2116,
+  "max_new_tokens": 3174,
+  "generated_tokens": 454,
+  "hit_token_limit": false,
+  "elapsed_seconds": 26.498197010718286,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000026\",\n        \"T2-000027\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"포털·메일·SNS·문자·외부시스템 연계, 인증방식, 파일 제한, 보안조건, 처리상태와 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"제공\",\n    \"requirement_name\": \"포털·LLM 검색 최적화\",\n    \"requirement_detail\": \"포털·LLM 검색 최적화 기능을 제공하여야 하며, 네이버, 구글 등의 포털사이트 검색 최적화와 챗GPT 등 LLM의 검색 최적화를 포함하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000026\",\n      \"T2-000027\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-010::SFR-010-001\",\n      \"SFR-010::SFR-010-002\"\n    ],\n    \"sources\": [\n      \"SFR-010\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n  }\n}"
+}

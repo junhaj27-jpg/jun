@@ -1,0 +1,1252 @@
+{
+  "SFR-001": [
+    {
+      "atomic_id": "SFR-001::SFR-001-001",
+      "action_type": "관리",
+      "output_name": "CXL 2.0/3.0 메모리 프레임워크 설계",
+      "source_text": "CXL 2.0 또는 3.0 메모리와 호환성 검토",
+      "original_atomic_id": "SFR-001-001",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-002",
+      "action_type": "관리",
+      "output_name": "CXL Type 1~3 디바이스 호환성 검토",
+      "source_text": "CXL Type 1,2,3 디바이스 호환성 검토",
+      "original_atomic_id": "SFR-001-002",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-003",
+      "action_type": "연계",
+      "output_name": "KI Cloud CXL 메모리 프레임워크 설계",
+      "source_text": "KI Cloud 환경에서 CXL 메모리 활용",
+      "original_atomic_id": "SFR-001-003",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-004",
+      "action_type": "연계",
+      "output_name": "Openstack·Kubernetes CXL 메모리 동적 할당",
+      "source_text": "Openstack, Kubernetes에서 CXL 메모리 동적 할당",
+      "original_atomic_id": "SFR-001-004",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-005",
+      "action_type": "관리",
+      "output_name": "다중 노드 CXL 메모리 풀 생성·관리",
+      "source_text": "다중 노드 공유 CXL 메모리 풀 생성·관리",
+      "original_atomic_id": "SFR-001-005",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-006",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 QoS 정책 설계",
+      "source_text": "메모리 대역폭·지연시간 기반 QoS 정책",
+      "original_atomic_id": "SFR-001-006",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-007",
+      "action_type": "분석",
+      "output_name": "CXL 메모리 대역폭·지연 분석",
+      "source_text": "CXL 메모리 대역폭과 지연 분석",
+      "original_atomic_id": "SFR-001-007",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-008",
+      "action_type": "관리",
+      "output_name": "계층적 메모리 관리",
+      "source_text": "기존 DRAM과 계층적 메모리 관리",
+      "original_atomic_id": "SFR-001-008",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-009",
+      "action_type": "관리",
+      "output_name": "VM·Container CXL 메모리 동적 할당",
+      "source_text": "VM, Container 실행 중 CXL 메모리 추가·제거",
+      "original_atomic_id": "SFR-001-009",
+      "source_fur_id": "SFR-001"
+    },
+    {
+      "atomic_id": "SFR-001::SFR-001-010",
+      "action_type": "조회",
+      "output_name": "노드 CXL 메모리 사용량 모니터링",
+      "source_text": "노드 간 CXL 메모리 사용량 모니터링",
+      "original_atomic_id": "SFR-001-010",
+      "source_fur_id": "SFR-001"
+    }
+  ],
+  "SFR-002": [
+    {
+      "atomic_id": "SFR-002::SFR-002-001",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+      "source_text": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적 확장 및 축소를 관리할 수 있어야 함",
+      "original_atomic_id": "SFR-002-001",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-002",
+      "action_type": "관리",
+      "output_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+      "source_text": "어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함",
+      "original_atomic_id": "SFR-002-002",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-003",
+      "action_type": "관리",
+      "output_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+      "source_text": "워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함",
+      "original_atomic_id": "SFR-002-003",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-004",
+      "action_type": "조회",
+      "output_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+      "source_text": "CXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함",
+      "original_atomic_id": "SFR-002-004",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-005",
+      "action_type": "조회",
+      "output_name": "세분화된 레이턴시 측정",
+      "source_text": "세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함",
+      "original_atomic_id": "SFR-002-005",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-006",
+      "action_type": "조회",
+      "output_name": "캐시 적중률 및 미스 패턴 모니터링",
+      "source_text": "캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함",
+      "original_atomic_id": "SFR-002-006",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-007",
+      "action_type": "조회",
+      "output_name": "히트맵 기반 메모리 접근 패턴 시각화",
+      "source_text": "히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함",
+      "original_atomic_id": "SFR-002-007",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-008",
+      "action_type": "조회",
+      "output_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+      "source_text": "CXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함",
+      "original_atomic_id": "SFR-002-008",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-009",
+      "action_type": "조회",
+      "output_name": "메모리 접근 패턴 분석 및 시각화",
+      "source_text": "메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함",
+      "original_atomic_id": "SFR-002-009",
+      "source_fur_id": "SFR-002"
+    },
+    {
+      "atomic_id": "SFR-002::SFR-002-010",
+      "action_type": "검증",
+      "output_name": "성능 이상 자동 감지 및 Alert",
+      "source_text": "성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함",
+      "original_atomic_id": "SFR-002-010",
+      "source_fur_id": "SFR-002"
+    }
+  ],
+  "SFR-003": [
+    {
+      "atomic_id": "SFR-003::SFR-003-001",
+      "action_type": "분석",
+      "output_name": "HPC 애플리케이션 메모리 사용패턴 분석",
+      "source_text": "기존 HPC 애플리케이션에서의 메모리 사용 패턴 분석",
+      "original_atomic_id": "SFR-003-001",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-002",
+      "action_type": "분석",
+      "output_name": "CXL 메모리 성능 병목·대역폭·지연 분석",
+      "source_text": "CXL 메모리 적용 시 성능 병목 구간 및 대역폭/지연시간 분석",
+      "original_atomic_id": "SFR-003-002",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-003",
+      "action_type": "설계",
+      "output_name": "CXL 메모리 Compute·Storage 공유 활용",
+      "source_text": "CXL 메모리를 Compute Node와 Storage Node 간 공유 자원 활용 방안",
+      "original_atomic_id": "SFR-003-003",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-004",
+      "action_type": "설계",
+      "output_name": "CXL 메모리 DRAM 데이터 이동 방식",
+      "source_text": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식",
+      "original_atomic_id": "SFR-003-004",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-005",
+      "action_type": "개발",
+      "output_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+      "source_text": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘, DMA 데이터 이동",
+      "original_atomic_id": "SFR-003-005",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-006",
+      "action_type": "개발",
+      "output_name": "OpenMP·MPI CXL 공유 메모리 모델",
+      "source_text": "OpenMP/MPI에서 CXL 메모리 활용 공유 메모리 모델",
+      "original_atomic_id": "SFR-003-006",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-007",
+      "action_type": "개발",
+      "output_name": "AI·ML CXL 모델 캐싱·기계학습",
+      "source_text": "AI/ML 애플리케이션에서 CXL 메모리 활용 모델 캐싱 및 기계 학습",
+      "original_atomic_id": "SFR-003-007",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-008",
+      "action_type": "개발",
+      "output_name": "데이터베이스·In-memory CXL 메모리 확장",
+      "source_text": "데이터베이스 및 In-memory Computing SW에서 CXL 메모리 활용 메모리 확장",
+      "original_atomic_id": "SFR-003-008",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-009",
+      "action_type": "개발",
+      "output_name": "SLURM CXL-aware Job Scheduling",
+      "source_text": "SLURM을 기반으로 CXL-aware Job Scheduling",
+      "original_atomic_id": "SFR-003-009",
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "atomic_id": "SFR-003::SFR-003-010",
+      "action_type": "개발",
+      "output_name": "CXL 메모리 할당 CRD",
+      "source_text": "클라우드 플랫폼에서 CXL 메모리 할당을 위한 CRD",
+      "original_atomic_id": "SFR-003-010",
+      "source_fur_id": "SFR-003"
+    }
+  ],
+  "SFR-004": [
+    {
+      "atomic_id": "SFR-004::SFR-004-001",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 동적 할당·해제",
+      "source_text": "CXL 메모리 동적 할당 및 해제",
+      "original_atomic_id": "SFR-004-001",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-002",
+      "action_type": "관리",
+      "output_name": "계층적 메모리 관리",
+      "source_text": "기존 DRAM과 CXL 메모리 계층적 관리",
+      "original_atomic_id": "SFR-004-002",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-003",
+      "action_type": "관리",
+      "output_name": "VM CXL 메모리 인식·활용 설정",
+      "source_text": "VM에서 CXL 메모리 인식 및 활용 설정",
+      "original_atomic_id": "SFR-004-003",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-004",
+      "action_type": "관리",
+      "output_name": "VM별 CXL 메모리 할당",
+      "source_text": "CXL 메모리 특정 VM에 직접 할당",
+      "original_atomic_id": "SFR-004-004",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-005",
+      "action_type": "조회",
+      "output_name": "VM별 CXL 메모리 사용량 모니터링",
+      "source_text": "VM별 CXL 메모리 사용량 모니터링",
+      "original_atomic_id": "SFR-004-005",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-006",
+      "action_type": "처리",
+      "output_name": "CXL 메모리 자동 조정",
+      "source_text": "메모리 사용량 자동 조정",
+      "original_atomic_id": "SFR-004-006",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-007",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 CRD",
+      "source_text": "Kubernetes 및 Docker CRD",
+      "original_atomic_id": "SFR-004-007",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-008",
+      "action_type": "관리",
+      "output_name": "컨테이너 CXL 메모리 동적 할당·해제",
+      "source_text": "컨테이너별 CXL 메모리 동적 할당 및 해제",
+      "original_atomic_id": "SFR-004-008",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-009",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 리소스 풀 등록·스케줄링",
+      "source_text": "Kubernetes CXL 메모리 리소스 풀 등록 및 스케줄링",
+      "original_atomic_id": "SFR-004-009",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-010",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 기반 Auto-scaling",
+      "source_text": "CXL 메모리 사용량 기반 Auto-scaling",
+      "original_atomic_id": "SFR-004-010",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-011",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 계층 구성",
+      "source_text": "기존 DRAM과 CXL 메모리 조합",
+      "original_atomic_id": "SFR-004-011",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-012",
+      "action_type": "조회",
+      "output_name": "CXL 메모리 모니터링·성능 분석",
+      "source_text": "CXL 메모리 모니터링 및 성능 분석",
+      "original_atomic_id": "SFR-004-012",
+      "source_fur_id": "SFR-004"
+    },
+    {
+      "atomic_id": "SFR-004::SFR-004-013",
+      "action_type": "관리",
+      "output_name": "CXL 메모리 자동 확장·장애 복구",
+      "source_text": "CXL 메모리 자동 확장 및 장애 감지·복구",
+      "original_atomic_id": "SFR-004-013",
+      "source_fur_id": "SFR-004"
+    }
+  ],
+  "SFR-005": [
+    {
+      "atomic_id": "SFR-005::SFR-005-001",
+      "action_type": "제공",
+      "output_name": "워크로드 기반 VM·BM 인스턴스 자동 추천",
+      "source_text": "워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형 자동 추천",
+      "original_atomic_id": "SFR-005-001",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-002",
+      "action_type": "제공",
+      "output_name": "NUMA-Aware·CXL 메모리 기반 클러스터 배포",
+      "source_text": "NUMA-Aware 및 CXL 메모리 기반 최적 클러스터 배포",
+      "original_atomic_id": "SFR-005-002",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-003",
+      "action_type": "분석",
+      "output_name": "클러스터 자원 부하 분석",
+      "source_text": "클러스터 내 자원(메모리, CPU, 네트워크) 부하 분석",
+      "original_atomic_id": "SFR-005-003",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-004",
+      "action_type": "처리",
+      "output_name": "클러스터 자원 자동 확장",
+      "source_text": "자원 부하 분석 및 자동 확장(Auto Scaling)",
+      "original_atomic_id": "SFR-005-004",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-005",
+      "action_type": "관리",
+      "output_name": "VM·BM 서버 고정·동적 리소스 조정",
+      "source_text": "VM 및 BM 서버의 사용량 모니터링 및 고정/동적 리소스 조정",
+      "original_atomic_id": "SFR-005-005",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-006",
+      "action_type": "처리",
+      "output_name": "리소스 사용률 기반 인스턴스 축소",
+      "source_text": "리소스 사용률이 일정 기준 이하일 경우 인스턴스 축소",
+      "original_atomic_id": "SFR-005-006",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-007",
+      "action_type": "관리",
+      "output_name": "GPU·고성능 연산 자원 스케줄링",
+      "source_text": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링",
+      "original_atomic_id": "SFR-005-007",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-008",
+      "action_type": "조회",
+      "output_name": "VM·BM 클러스터 자원 사용량 모니터링",
+      "source_text": "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량 모니터링",
+      "original_atomic_id": "SFR-005-008",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-009",
+      "action_type": "분석",
+      "output_name": "장기 사용 패턴 분석",
+      "source_text": "장기적인 사용 패턴을 분석하여 최적의 인프라 리소스 할당 방안 도출",
+      "original_atomic_id": "SFR-005-009",
+      "source_fur_id": "SFR-005"
+    },
+    {
+      "atomic_id": "SFR-005::SFR-005-010",
+      "action_type": "제공",
+      "output_name": "오버커밋·과부하 자동 경고 및 로그 중앙 분석",
+      "source_text": "오버커밋 및 과부하 상태 감지 자동 경고와 VM, 컨테이너, Baremetal 로그 중앙 취합·분석",
+      "original_atomic_id": "SFR-005-010",
+      "source_fur_id": "SFR-005"
+    }
+  ],
+  "SFR-006": [
+    {
+      "atomic_id": "SFR-006::SFR-006-001",
+      "action_type": "관리",
+      "output_name": "스토리지 프록시 상태 모니터링·이상 탐지",
+      "source_text": "스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화",
+      "original_atomic_id": "SFR-006-001",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-002",
+      "action_type": "관리",
+      "output_name": "유지보수 일정 기반 스토리지 프록시 재구성",
+      "source_text": "유지보수 일정에 따른 스토리지 프록시 재구성",
+      "original_atomic_id": "SFR-006-002",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-003",
+      "action_type": "관리",
+      "output_name": "운영 정책 자동 적용",
+      "source_text": "운영 정책에 대한 자동 적용",
+      "original_atomic_id": "SFR-006-003",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-004",
+      "action_type": "관리",
+      "output_name": "스냅샷·복구 기반 데이터 무결성 유지보수",
+      "source_text": "데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구",
+      "original_atomic_id": "SFR-006-004",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-005",
+      "action_type": "처리",
+      "output_name": "장애 자동 페일오버",
+      "source_text": "장애 발생 시 고가용성 옵션을 활용한 자동 페일오버",
+      "original_atomic_id": "SFR-006-005",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-006",
+      "action_type": "관리",
+      "output_name": "HA 노드별 유지보수 이력 관리",
+      "source_text": "HA 구성 내 노드별 유지보수 이력 관리",
+      "original_atomic_id": "SFR-006-006",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-007",
+      "action_type": "분석",
+      "output_name": "HA 성능 변화 분석",
+      "source_text": "HA 구성 내 노드별 유지보수 이력 관리 및 성능 변화 분석",
+      "original_atomic_id": "SFR-006-007",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-008",
+      "action_type": "처리",
+      "output_name": "HPC 자동 튜닝·성능 최적화",
+      "source_text": "HPC 클러스터의 성능 최적화를 위한 자동 튜닝",
+      "original_atomic_id": "SFR-006-008",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-009",
+      "action_type": "산출",
+      "output_name": "유지보수 성능 비교·영향 분석 레포트",
+      "source_text": "유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅",
+      "original_atomic_id": "SFR-006-009",
+      "source_fur_id": "SFR-006"
+    },
+    {
+      "atomic_id": "SFR-006::SFR-006-010",
+      "action_type": "관리",
+      "output_name": "시스템 변경 사전 검토·롤백 정책",
+      "source_text": "주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능",
+      "original_atomic_id": "SFR-006-010",
+      "source_fur_id": "SFR-006"
+    }
+  ],
+  "SFR-007": [
+    {
+      "atomic_id": "SFR-007::SFR-007-001",
+      "action_type": "조회",
+      "output_name": "HPC 클러스터 토폴로지 시각화",
+      "source_text": "HPC 토폴로지 대시보드",
+      "original_atomic_id": "SFR-007-001",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-002",
+      "action_type": "조회",
+      "output_name": "HPC 주요 리소스 대시보드",
+      "source_text": "CPU, 메모리, 네트워크, 스토리지 리소스 사용률",
+      "original_atomic_id": "SFR-007-002",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-003",
+      "action_type": "조회",
+      "output_name": "HPC 장애 노드·네트워크 경로 강조",
+      "source_text": "장애 발생 시 해당 노드 및 네트워크 경로 강조 표시",
+      "original_atomic_id": "SFR-007-003",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-004",
+      "action_type": "조회",
+      "output_name": "HPC 사용자별 사용량·작업 현황",
+      "source_text": "사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황",
+      "original_atomic_id": "SFR-007-004",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-005",
+      "action_type": "분석",
+      "output_name": "HPC 작업 실행시간·자원 소모율 분석",
+      "source_text": "HPC 작업별 실행 시간 예측 및 자원 소모율 분석",
+      "original_atomic_id": "SFR-007-005",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-006",
+      "action_type": "조회",
+      "output_name": "HPC 사용 로그·과거 작업 내역",
+      "source_text": "HPC 사용 로그 및 과거 작업 내역",
+      "original_atomic_id": "SFR-007-006",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-007",
+      "action_type": "조회",
+      "output_name": "HPC 성능 최적화 제안",
+      "source_text": "성능 최적화 제안 기능",
+      "original_atomic_id": "SFR-007-007",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-008",
+      "action_type": "조회",
+      "output_name": "HPC 성능 저하·장애 알림",
+      "source_text": "성능 저하, 장애 발생 시 운영자에게 실시간 알림",
+      "original_atomic_id": "SFR-007-008",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-009",
+      "action_type": "조회",
+      "output_name": "HPC 리소스 임계치 초과 알림",
+      "source_text": "클러스터 리소스 임계치 초과 시 운영자에게 알림",
+      "original_atomic_id": "SFR-007-009",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-010",
+      "action_type": "조회",
+      "output_name": "HPC 자동 조치 버튼",
+      "source_text": "리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼",
+      "original_atomic_id": "SFR-007-010",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-011",
+      "action_type": "관리",
+      "output_name": "HPC 자동 스케일링·재시작 정책 설정",
+      "source_text": "사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션",
+      "original_atomic_id": "SFR-007-011",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-012",
+      "action_type": "조회",
+      "output_name": "하이브리드 HPC 환경 통합 관리",
+      "source_text": "VM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리",
+      "original_atomic_id": "SFR-007-012",
+      "source_fur_id": "SFR-007"
+    },
+    {
+      "atomic_id": "SFR-007::SFR-007-013",
+      "action_type": "관리",
+      "output_name": "하이브리드 HPC 자동 배치·이동",
+      "source_text": "VM, 컨테이너, Baremetal 간 최적의 리소스 활용 자동 배치 및 컨테이너 이동",
+      "original_atomic_id": "SFR-007-013",
+      "source_fur_id": "SFR-007"
+    }
+  ],
+  "SFR-008": [
+    {
+      "atomic_id": "SFR-008::SFR-008-001",
+      "action_type": "관리",
+      "output_name": "장애 복구 자동화",
+      "source_text": "클라우드 플랫폼 및 서비스에 대한 자동 복구 프로세스",
+      "original_atomic_id": "SFR-008-001",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-002",
+      "action_type": "조회",
+      "output_name": "하드웨어·스토리지·네트워크 모니터링",
+      "source_text": "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림",
+      "original_atomic_id": "SFR-008-002",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-003",
+      "action_type": "관리",
+      "output_name": "장애 시나리오별 대응 전략",
+      "source_text": "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립",
+      "original_atomic_id": "SFR-008-003",
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "atomic_id": "SFR-008::SFR-008-004",
+      "action_type": "산출",
+      "output_name": "장애 복구 보고서 및 개선점 분석",
+      "source_text": "자동 복구 프로세스를 수행 후 보고서 생성 및 개선점 분석",
+      "original_atomic_id": "SFR-008-004",
+      "source_fur_id": "SFR-008"
+    }
+  ],
+  "SFR-009": [
+    {
+      "atomic_id": "SFR-009::SFR-009-001",
+      "action_type": "관리",
+      "output_name": "VM·BM·컨테이너 통합 보안정책 관리",
+      "source_text": "VM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용",
+      "original_atomic_id": "SFR-009-001",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-002",
+      "action_type": "처리",
+      "output_name": "동적 확장 환경 자원 보안정책 자동 적용",
+      "source_text": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용",
+      "original_atomic_id": "SFR-009-002",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-003",
+      "action_type": "모니터링",
+      "output_name": "자원 유형별 보안상태 실시간 모니터링",
+      "source_text": "자원 유형별 보안 상태를 실시간으로 모니터링",
+      "original_atomic_id": "SFR-009-003",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-004",
+      "action_type": "검증",
+      "output_name": "자원 이상행위 탐지 및 알림",
+      "source_text": "이상 행위 발생 시 탐지 및 알림",
+      "original_atomic_id": "SFR-009-004",
+      "source_fur_id": "SFR-009"
+    },
+    {
+      "atomic_id": "SFR-009::SFR-009-005",
+      "action_type": "권한",
+      "output_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+      "source_text": "VM 사용자 또는 그룹 역할 기반 접근 제어 정책 설정, BM 운영 역할 기반 접근권한 설정, 역할 기반 접근 및 변경 행위 감사 및 이력 추적",
+      "original_atomic_id": "SFR-009-005",
+      "source_fur_id": "SFR-009"
+    }
+  ],
+  "SFR-010": [
+    {
+      "atomic_id": "SFR-010::SFR-010-001",
+      "action_type": "처리",
+      "output_name": "HPC 장애 실시간 ChatOps 자동화",
+      "source_text": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단, 조치 명령을 수행할 수 있는 기능을 제공한다.",
+      "original_atomic_id": "SFR-010-001",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-002",
+      "action_type": "관리",
+      "output_name": "반복장애 ChatOps 워크플로우 관리",
+      "source_text": "반복적으로 발생하는 장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고, 지정된 명령어로 자동 실행할 수 있는 기능을 제공한다.",
+      "original_atomic_id": "SFR-010-002",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-003",
+      "action_type": "조회",
+      "output_name": "ChatOps 명령 실행결과 실시간 공유",
+      "source_text": "ChatOps 명령 실행 시 관련 로그, 처리 상태, 결과 등을 실시간으로 채팅창에 표시하여 상황 공유 및 협업을 지원하는 기능을 제공한다.",
+      "original_atomic_id": "SFR-010-003",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-004",
+      "action_type": "제공",
+      "output_name": "HPC 장애대응 정보 역할별 보고",
+      "source_text": "장애 발생 시 주요 이벤트, 원인 분석, 조치 내역 등을 요약해 전사 공유 채널로 자동 전송하는 기능을 제공한다.\nHPC 운영조직 내 역할 기반으로 보고 수준을 다르게 구성하여, 관리자, 운영자, 모니터링 요원별로 적정 수준의 정보를 전달할 수 있는 기능을 제공한다.",
+      "original_atomic_id": "SFR-010-004",
+      "source_fur_id": "SFR-010"
+    },
+    {
+      "atomic_id": "SFR-010::SFR-010-005",
+      "action_type": "산출",
+      "output_name": "HPC 장애대응 자동 리포트",
+      "source_text": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고, 정해진 채널로 주기적으로 전달하는 기능을 제공한다.",
+      "original_atomic_id": "SFR-010-005",
+      "source_fur_id": "SFR-010"
+    }
+  ],
+  "SFR-011": [
+    {
+      "atomic_id": "SFR-011::SFR-011-001",
+      "action_type": "분석",
+      "output_name": "병렬 파일 시스템·클라우드 스토리지 성능 벤치마크",
+      "source_text": "다양한 병렬 파일 시스템 및 클라우드 스토리지에 대한 성능 벤치마크 기능",
+      "original_atomic_id": "SFR-011-001",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-002",
+      "action_type": "연계",
+      "output_name": "클라우드 객체 스토리지 연동 어댑터",
+      "source_text": "클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터 기능",
+      "original_atomic_id": "SFR-011-002",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-003",
+      "action_type": "보안",
+      "output_name": "스토리지 액세스 인증·권한·로그 관리",
+      "source_text": "스토리지 및 클라우드 간의 데이터 접근에 대한 사용자 인증, 권한 부여, 접근제어 로그 수집",
+      "original_atomic_id": "SFR-011-003",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-004",
+      "action_type": "산출",
+      "output_name": "스토리지 I/O 성능 비교 리포트",
+      "source_text": "벤치마크 결과에 기반하여 스토리지 유형별 I/O 성능 비교 리포트 자동 생성",
+      "original_atomic_id": "SFR-011-004",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-005",
+      "action_type": "분석",
+      "output_name": "스토리지 최적화 대상 분류",
+      "source_text": "최적화 대상 분류 기능",
+      "original_atomic_id": "SFR-011-005",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-006",
+      "action_type": "분석",
+      "output_name": "HPC 워크로드 복제·시뮬레이션 프레임워크",
+      "source_text": "실제 HPC 워크로드 복제와 다양한 환경에서 시뮬레이션 가능한 프레임워크",
+      "original_atomic_id": "SFR-011-006",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-007",
+      "action_type": "분석",
+      "output_name": "스토리지 성능 프로파일링·I/O 패턴·리소스 이력 분석",
+      "source_text": "스토리지 성능 프로파일링, 시점별 I/O 패턴 분석 및 리소스 사용 이력 수집",
+      "original_atomic_id": "SFR-011-007",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-008",
+      "action_type": "산출",
+      "output_name": "대용량 병렬 워크로드 생성·복제 테스트",
+      "source_text": "다양한 규모와 패턴의 대용량 워크로드 자동 생성 또는 복제",
+      "original_atomic_id": "SFR-011-008",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-009",
+      "action_type": "분석",
+      "output_name": "워크로드·스토리지 적합도 분석",
+      "source_text": "워크로드 특성과 스토리지 구성의 적합도 분석",
+      "original_atomic_id": "SFR-011-009",
+      "source_fur_id": "SFR-011"
+    },
+    {
+      "atomic_id": "SFR-011::SFR-011-010",
+      "action_type": "산출",
+      "output_name": "스토리지 최적화 방안 리포트",
+      "source_text": "최적화 방안 제안과 분류 및 리포트 기능",
+      "original_atomic_id": "SFR-011-010",
+      "source_fur_id": "SFR-011"
+    }
+  ],
+  "SFR-012": [
+    {
+      "atomic_id": "SFR-012::SFR-012-001",
+      "action_type": "분석",
+      "output_name": "HPC I/O 프로파일링 및 분석",
+      "source_text": "HPC 애플리케이션·시스템 수준 I/O 추적·분석",
+      "original_atomic_id": "SFR-012-001",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-002",
+      "action_type": "연계",
+      "output_name": "컨테이너 기반 I/O 추적·통합 분석",
+      "source_text": "컨테이너 단위 I/O 분리 수집·멀티노드 통합 분석",
+      "original_atomic_id": "SFR-012-002",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-003",
+      "action_type": "연계",
+      "output_name": "HPC 클라우드 어댑터",
+      "source_text": "온프레미스 HPC와 퍼블릭 클라우드 I/O 연계",
+      "original_atomic_id": "SFR-012-003",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-004",
+      "action_type": "권한",
+      "output_name": "I/O 프로파일링 기반 접근권한·정책 설정",
+      "source_text": "I/O 프로파일링 결과 기반 접근권한·정책 설정",
+      "original_atomic_id": "SFR-012-004",
+      "source_fur_id": "SFR-012"
+    },
+    {
+      "atomic_id": "SFR-012::SFR-012-005",
+      "action_type": "연계",
+      "output_name": "I/O 특성 기반 자동 리소스 할당·구성",
+      "source_text": "I/O 특성 기반 자동 리소스 할당·구성",
+      "original_atomic_id": "SFR-012-005",
+      "source_fur_id": "SFR-012"
+    }
+  ],
+  "SFR-013": [
+    {
+      "atomic_id": "SFR-013::SFR-013-001",
+      "action_type": "관리",
+      "output_name": "VM 기반 Lustre 자동 마운트 구성",
+      "source_text": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트할 수 있는 구성 자동화 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-001",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-002",
+      "action_type": "관리",
+      "output_name": "Lustre 마운트 구성 동적 변경·유지관리",
+      "source_text": "Lustre 마운트 구성을 동적으로 변경하거나 유지 관리할 수 있는 구성 관리 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-002",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-003",
+      "action_type": "관리",
+      "output_name": "Lustre 마운트 작업 스케줄링",
+      "source_text": "정해진 시간 또는 조건에 따라 Lustre 마운트 작업을 자동으로 실행할 수 있는 스케줄링 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-003",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-004",
+      "action_type": "관리",
+      "output_name": "VM Lustre 중앙 통합 마운트 관리",
+      "source_text": "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-004",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-005",
+      "action_type": "관리",
+      "output_name": "Lustre 마운트 설정 운영 변경·이력·롤백",
+      "source_text": "VM-Lustre 스토리지 마운트 설정을 운영 중에 변경 가능하며, 변경 이력 추적 및 롤백 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-005",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-006",
+      "action_type": "관리",
+      "output_name": "Lustre 마운트 스케줄 기반 유연 조정",
+      "source_text": "Lustre 마운트 구성을 시간대, 워크로드 특성, 사용자 그룹 등에 따라 유연하게 조정할 수 있는 스케줄 기반 구성 관리 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-006",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-007",
+      "action_type": "관리",
+      "output_name": "Lustre 마운트 워크로드 기반 자동 스케줄링",
+      "source_text": "마운트 및 언마운트 작업을 워크로드 특성에 따라 자동으로 분배 및 실행하는 최적화된 스케줄링 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-007",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-008",
+      "action_type": "분석",
+      "output_name": "Lustre 마운트 성능 영향도 분석·비교",
+      "source_text": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-008",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-009",
+      "action_type": "연계",
+      "output_name": "VM NFS·Ceph·GlusterFS 자동 연계",
+      "source_text": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다.",
+      "original_atomic_id": "SFR-013-009",
+      "source_fur_id": "SFR-013"
+    },
+    {
+      "atomic_id": "SFR-013::SFR-013-010",
+      "action_type": "관리",
+      "output_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+      "source_text": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다.\nVM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다.\n다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다.",
+      "original_atomic_id": "SFR-013-010",
+      "source_fur_id": "SFR-013"
+    }
+  ],
+  "SFR-014": [
+    {
+      "atomic_id": "SFR-014::SFR-014-001",
+      "action_type": "관리",
+      "output_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+      "source_text": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식 정의",
+      "original_atomic_id": "SFR-014-001",
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "atomic_id": "SFR-014::SFR-014-002",
+      "action_type": "분석",
+      "output_name": "워크로드 실행 로그·이력 기반 자원 사용 패턴 분석",
+      "source_text": "워크로드 실행 로그 및 이력 데이터를 기반으로 자원 사용 패턴 분석",
+      "original_atomic_id": "SFR-014-002",
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "atomic_id": "SFR-014::SFR-014-003",
+      "action_type": "처리",
+      "output_name": "워크로드 특성·클러스터 자원 상태 기반 최적 실행 계획 계산",
+      "source_text": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획 계산",
+      "original_atomic_id": "SFR-014-003",
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "atomic_id": "SFR-014::SFR-014-004",
+      "action_type": "산출",
+      "output_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+      "source_text": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적",
+      "original_atomic_id": "SFR-014-004",
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "atomic_id": "SFR-014::SFR-014-005",
+      "action_type": "처리",
+      "output_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+      "source_text": "동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용",
+      "original_atomic_id": "SFR-014-005",
+      "source_fur_id": "SFR-014"
+    }
+  ],
+  "SFR-015": [
+    {
+      "atomic_id": "SFR-015::SFR-015-001",
+      "action_type": "관리",
+      "output_name": "서비스 유형별 자원 요구 특성 정의",
+      "source_text": "어플리케이션 또는 서비스 유형별로 자원 요구 특성을 정의",
+      "original_atomic_id": "SFR-015-001",
+      "source_fur_id": "SFR-015"
+    },
+    {
+      "atomic_id": "SFR-015::SFR-015-002",
+      "action_type": "관리",
+      "output_name": "VM·Container·BM 자원 조합 카탈로그",
+      "source_text": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그",
+      "original_atomic_id": "SFR-015-002",
+      "source_fur_id": "SFR-015"
+    },
+    {
+      "atomic_id": "SFR-015::SFR-015-003",
+      "action_type": "관리",
+      "output_name": "서비스 자원 구성·성능·변경 이력 추적",
+      "source_text": "서비스 실행 시 사용된 자원의 구성, 성능, 변경 이력 등을 추적",
+      "original_atomic_id": "SFR-015-003",
+      "source_fur_id": "SFR-015"
+    },
+    {
+      "atomic_id": "SFR-015::SFR-015-004",
+      "action_type": "처리",
+      "output_name": "서비스 유형별 최적 자원 자동 프로비저닝",
+      "source_text": "어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝",
+      "original_atomic_id": "SFR-015-004",
+      "source_fur_id": "SFR-015"
+    },
+    {
+      "atomic_id": "SFR-015::SFR-015-005",
+      "action_type": "처리",
+      "output_name": "컨테이너 최적 리소스 추천·생성·배포",
+      "source_text": "컨테이너 기반 서비스를 위한 최적화된 리소스를 추천하고, 선택된 환경에서 자동으로 컨테이너를 생성 및 배포",
+      "original_atomic_id": "SFR-015-005",
+      "source_fur_id": "SFR-015"
+    }
+  ],
+  "SFR-016": [
+    {
+      "atomic_id": "SFR-016::SFR-016-001",
+      "action_type": "처리",
+      "output_name": "고전 알고리즘 자동 매핑",
+      "source_text": "고전 알고리즘을 양자 알고리즘으로 자동 매핑",
+      "original_atomic_id": "SFR-016-001",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-002",
+      "action_type": "제공",
+      "output_name": "양자 게이트 세트 지원",
+      "source_text": "다양한 양자 게이트 세트 지원",
+      "original_atomic_id": "SFR-016-002",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-003",
+      "action_type": "처리",
+      "output_name": "양자 회로 최적화 컴파일",
+      "source_text": "양자 회로 최적화를 위한 단계별 컴파일",
+      "original_atomic_id": "SFR-016-003",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-004",
+      "action_type": "처리",
+      "output_name": "게이트 융합·단순화",
+      "source_text": "게이트 융합 및 단순화를 통한 실행 시간 최적화",
+      "original_atomic_id": "SFR-016-004",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-005",
+      "action_type": "제공",
+      "output_name": "진폭·기저 인코딩",
+      "source_text": "진폭(Amplitude)/기저(Basis) 인코딩",
+      "original_atomic_id": "SFR-016-005",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-006",
+      "action_type": "제공",
+      "output_name": "데이터 특성 기반 인코딩 추천",
+      "source_text": "데이터 특성에 따른 최적 인코딩 방식 추천",
+      "original_atomic_id": "SFR-016-006",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-007",
+      "action_type": "제공",
+      "output_name": "큐비트 사용량 최소화 인코딩",
+      "source_text": "큐비트 사용량 최소화 인코딩 벤치마킹 전략",
+      "original_atomic_id": "SFR-016-007",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-008",
+      "action_type": "분석",
+      "output_name": "양자 측정 통계 분석",
+      "source_text": "양자 상태 측정 결과의 통계 분석",
+      "original_atomic_id": "SFR-016-008",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-009",
+      "action_type": "조회",
+      "output_name": "샷기반 카운팅·확률 분포",
+      "source_text": "샷기반 카운팅 및 확률 분포 추정",
+      "original_atomic_id": "SFR-016-009",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-010",
+      "action_type": "처리",
+      "output_name": "양자 노이즈·에러 필터링",
+      "source_text": "양자 노이즈 및 에러 필터링 메커니즘",
+      "original_atomic_id": "SFR-016-010",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-011",
+      "action_type": "처리",
+      "output_name": "양자 결과 고전 데이터 변환",
+      "source_text": "양자 결과를 고전 데이터 형식으로 변환",
+      "original_atomic_id": "SFR-016-011",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-012",
+      "action_type": "처리",
+      "output_name": "양자 결과 불확실성·신뢰구간",
+      "source_text": "결과 불확실성에 대한 정량화 및 신뢰구간",
+      "original_atomic_id": "SFR-016-012",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-013",
+      "action_type": "조회",
+      "output_name": "양자 결과 대시보드 시각화",
+      "source_text": "양자 결과의 대시보드 시각화",
+      "original_atomic_id": "SFR-016-013",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-014",
+      "action_type": "분석",
+      "output_name": "고전·양자 결과 비교 분석",
+      "source_text": "고전 데이터와 양자 결과 비교 분석 환경",
+      "original_atomic_id": "SFR-016-014",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-015",
+      "action_type": "제공",
+      "output_name": "텐서 네트워크 기반 시뮬레이션",
+      "source_text": "텐서 네트워크 기반 시뮬레이션",
+      "original_atomic_id": "SFR-016-015",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-016",
+      "action_type": "제공",
+      "output_name": "몬테카를로 샘플링 시뮬레이션",
+      "source_text": "몬테카를로 샘플링 시뮬레이션",
+      "original_atomic_id": "SFR-016-016",
+      "source_fur_id": "SFR-016"
+    },
+    {
+      "atomic_id": "SFR-016::SFR-016-017",
+      "action_type": "제공",
+      "output_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+      "source_text": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화",
+      "original_atomic_id": "SFR-016-017",
+      "source_fur_id": "SFR-016"
+    }
+  ],
+  "SFR-017": [
+    {
+      "atomic_id": "SFR-017::SFR-017-001",
+      "action_type": "처리",
+      "output_name": "HPC 벤치마크 자원·환경 설정",
+      "source_text": "지정된 자원 및 환경 설정에 따라 벤치마크를 실행",
+      "original_atomic_id": "SFR-017-001",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-002",
+      "action_type": "처리",
+      "output_name": "HPC 벤치마크 로그 자동 수집",
+      "source_text": "HPC 워크플로우 실행 전 벤치마크 로그를 자동 수집",
+      "original_atomic_id": "SFR-017-002",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-003",
+      "action_type": "처리",
+      "output_name": "HPC 벤치마크 메트릭 자동 기록",
+      "source_text": "프로세스 시작/종료 시간과 CPU, GPU, 메모리, I/O 사용률을 자동 기록",
+      "original_atomic_id": "SFR-017-003",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-004",
+      "action_type": "처리",
+      "output_name": "HPC 벤치마크 상태 로그 자동 수집",
+      "source_text": "성공/실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동 수집",
+      "original_atomic_id": "SFR-017-004",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-005",
+      "action_type": "관리",
+      "output_name": "HPC 벤치마크 로그 시계열 저장",
+      "source_text": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장",
+      "original_atomic_id": "SFR-017-005",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-006",
+      "action_type": "조회",
+      "output_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+      "source_text": "로그 데이터를 검색, 필터링, 정렬하여 조회",
+      "original_atomic_id": "SFR-017-006",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-007",
+      "action_type": "조회",
+      "output_name": "HPC 벤치마크 관제 포털",
+      "source_text": "관리자 및 사용자 권한에 따른 웹 기반 벤치마크 관제 포털",
+      "original_atomic_id": "SFR-017-007",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-008",
+      "action_type": "조회",
+      "output_name": "HPC 벤치마크 이력·구성정보 조회",
+      "source_text": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회",
+      "original_atomic_id": "SFR-017-008",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-009",
+      "action_type": "분석",
+      "output_name": "HPC 벤치마크 자원 활용·병목 분석",
+      "source_text": "자원 활용 효율성과 병목 지점을 시각화",
+      "original_atomic_id": "SFR-017-009",
+      "source_fur_id": "SFR-017"
+    },
+    {
+      "atomic_id": "SFR-017::SFR-017-010",
+      "action_type": "산출",
+      "output_name": "HPC 벤치마크 분석 리포트 생성·공유",
+      "source_text": "리포트를 표, 그래프, 히트맵으로 생성하고 PDF·HTML로 내보내며 이메일 또는 시스템 공유",
+      "original_atomic_id": "SFR-017-010",
+      "source_fur_id": "SFR-017"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{% if register_only %}
+  <div id="app-alert-root" class="pointer-events-none fixed right-4 top-4 z-[60] flex w-full max-w-sm flex-col gap-3"></div>
+  <template id="app-alert-template">
+    <div data-app-alert class="pointer-events-auto rounded-lg border px-4 py-3 text-sm shadow-lg">
+      <div class="flex items-start gap-3">
+        <div data-alert-icon class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold">
+          !
+        </div>
+        <p data-alert-message class="flex-1 font-medium"></p>
+        <button type="button" data-alert-dismiss class="text-xs font-semibold text-inherit opacity-70 transition hover:opacity-100">
+          닫기
+        </button>
+      </div>
+    </div>
+  </template>
+{% else %}
+  {% with level=level|default:message.tags|default:"info" text=message_text|default:message %}
+    <div data-app-alert class="rounded-lg border px-4 py-3 text-sm shadow-sm
+      {% if level == 'success' %}border-emerald-200 bg-emerald-50 text-emerald-800
+      {% elif level == 'error' %}border-red-200 bg-red-50 text-red-800
+      {% elif level == 'warning' %}border-amber-200 bg-amber-50 text-amber-800
+      {% else %}border-blue-200 bg-blue-50 text-blue-800{% endif %}">
+      <div class="flex items-start gap-3">
+        <div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold
+          {% if level == 'success' %}bg-emerald-100 text-emerald-700
+          {% elif level == 'error' %}bg-red-100 text-red-700
+          {% elif level == 'warning' %}bg-amber-100 text-amber-700
+          {% else %}bg-blue-100 text-blue-700{% endif %}">
+          !
+        </div>
+        <p class="flex-1 font-medium">{{ text }}</p>
+      </div>
+    </div>
+  {% endwith %}
+{% endif %}

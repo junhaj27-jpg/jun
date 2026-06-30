@@ -1,0 +1,49 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full text-left text-sm">
+    <thead class="border-b border-slate-200 bg-slate-50 text-xs uppercase text-slate-600">
+      <tr>
+        <th class="px-4 py-4 text-center font-semibold">
+          <input type="checkbox" data-docs-select-all class="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+        </th>
+        <th class="px-6 py-4 text-center font-semibold">문서번호</th>
+        <th class="px-6 py-4 text-center font-semibold">문서명</th>
+        <th class="px-6 py-4 text-center font-semibold">구분</th>
+        <th class="px-6 py-4 text-center font-semibold">등록자</th>
+        <th class="px-6 py-4 text-center font-semibold">등록일자</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200 text-slate-700">
+      {% for document in documents %}
+        <tr class="bg-white transition hover:bg-slate-50">
+          <td class="px-4 py-4 text-center">
+            <input
+              type="checkbox"
+              name="{{ checkbox_name|default:'selected_files' }}"
+              value="{{ document.sn }}"
+              data-docs-item-checkbox
+              {% if selected_file_ids and document.sn|stringformat:"s" in selected_file_ids %}checked{% endif %}
+              class="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+            >
+          </td>
+          <td class="px-6 py-4 text-center font-medium text-slate-900">{{ document.display_no }}</td>
+          <td class="px-6 py-4 text-center">{{ document.name }}</td>
+          <td class="px-6 py-4 text-center">{{ document.type_name }}</td>
+          <td class="px-6 py-4 text-center">{{ document.creator_name }}</td>
+          <td class="px-6 py-4 text-center">{{ document.created_at|date:"Y-m-d H:i" }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6" class="px-6 py-20 text-center text-sm text-slate-500">
+            {% if empty_message %}
+              {{ empty_message }}
+            {% elif current_project %}
+              등록된 문서가 없습니다.
+            {% else %}
+              선택 가능한 프로젝트가 없습니다.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

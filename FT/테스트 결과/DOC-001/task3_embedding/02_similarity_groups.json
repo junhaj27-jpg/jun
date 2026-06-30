@@ -1,0 +1,461 @@
+{
+  "document_id": "DOC-001",
+  "candidate_count": 122,
+  "similar_component_count": 21,
+  "similar_component_item_count": 113,
+  "singleton_count": 9,
+  "groups": [
+    {
+      "group_no": 1,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000001",
+        "T2-000004",
+        "T2-000008",
+        "T2-000021",
+        "T2-000022",
+        "T2-000025",
+        "T2-000032",
+        "T2-000035"
+      ],
+      "min_pair_similarity": 0.907151,
+      "average_pair_similarity": 0.923877,
+      "max_pair_similarity": 0.952281,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 2,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000002",
+        "T2-000003",
+        "T2-000006",
+        "T2-000020",
+        "T2-000023",
+        "T2-000027",
+        "T2-000028",
+        "T2-000033"
+      ],
+      "min_pair_similarity": 0.892683,
+      "average_pair_similarity": 0.926752,
+      "max_pair_similarity": 0.956087,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 3,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000005",
+        "T2-000007",
+        "T2-000011",
+        "T2-000015",
+        "T2-000019",
+        "T2-000029",
+        "T2-000030",
+        "T2-000031"
+      ],
+      "min_pair_similarity": 0.886843,
+      "average_pair_similarity": 0.935145,
+      "max_pair_similarity": 0.971849,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 4,
+      "group_type": "SIMILAR",
+      "size": 4,
+      "task2_ids": [
+        "T2-000009",
+        "T2-000010",
+        "T2-000036",
+        "T2-000084"
+      ],
+      "min_pair_similarity": 0.87088,
+      "average_pair_similarity": 0.899045,
+      "max_pair_similarity": 0.922256,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 5,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000013",
+        "T2-000014",
+        "T2-000016",
+        "T2-000018",
+        "T2-000039",
+        "T2-000041",
+        "T2-000065",
+        "T2-000067"
+      ],
+      "min_pair_similarity": 0.871166,
+      "average_pair_similarity": 0.901416,
+      "max_pair_similarity": 0.96436,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 6,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000017",
+        "T2-000068"
+      ],
+      "min_pair_similarity": 0.917692,
+      "average_pair_similarity": 0.917692,
+      "max_pair_similarity": 0.917692,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 7,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000026",
+        "T2-000037"
+      ],
+      "min_pair_similarity": 0.919602,
+      "average_pair_similarity": 0.919602,
+      "max_pair_similarity": 0.919602,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 8,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000038",
+        "T2-000040",
+        "T2-000045",
+        "T2-000060",
+        "T2-000066",
+        "T2-000092",
+        "T2-000095",
+        "T2-000112"
+      ],
+      "min_pair_similarity": 0.850063,
+      "average_pair_similarity": 0.882889,
+      "max_pair_similarity": 0.920294,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 9,
+      "group_type": "SIMILAR",
+      "size": 3,
+      "task2_ids": [
+        "T2-000043",
+        "T2-000044",
+        "T2-000046"
+      ],
+      "min_pair_similarity": 0.885985,
+      "average_pair_similarity": 0.910622,
+      "max_pair_similarity": 0.933316,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 10,
+      "group_type": "SIMILAR",
+      "size": 7,
+      "task2_ids": [
+        "T2-000047",
+        "T2-000063",
+        "T2-000064",
+        "T2-000070",
+        "T2-000071",
+        "T2-000072",
+        "T2-000073"
+      ],
+      "min_pair_similarity": 0.881734,
+      "average_pair_similarity": 0.908297,
+      "max_pair_similarity": 0.943882,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 11,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000048",
+        "T2-000086"
+      ],
+      "min_pair_similarity": 0.88327,
+      "average_pair_similarity": 0.88327,
+      "max_pair_similarity": 0.88327,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 12,
+      "group_type": "SIMILAR",
+      "size": 7,
+      "task2_ids": [
+        "T2-000049",
+        "T2-000054",
+        "T2-000056",
+        "T2-000078",
+        "T2-000080",
+        "T2-000113",
+        "T2-000121"
+      ],
+      "min_pair_similarity": 0.904691,
+      "average_pair_similarity": 0.923937,
+      "max_pair_similarity": 0.947772,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 13,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000050",
+        "T2-000051",
+        "T2-000052",
+        "T2-000053",
+        "T2-000055",
+        "T2-000057",
+        "T2-000058",
+        "T2-000059"
+      ],
+      "min_pair_similarity": 0.876437,
+      "average_pair_similarity": 0.912752,
+      "max_pair_similarity": 0.963743,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 14,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000061",
+        "T2-000062"
+      ],
+      "min_pair_similarity": 0.935845,
+      "average_pair_similarity": 0.935845,
+      "max_pair_similarity": 0.935845,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 15,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000069",
+        "T2-000083"
+      ],
+      "min_pair_similarity": 0.90161,
+      "average_pair_similarity": 0.90161,
+      "max_pair_similarity": 0.90161,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 16,
+      "group_type": "SIMILAR",
+      "size": 3,
+      "task2_ids": [
+        "T2-000074",
+        "T2-000077",
+        "T2-000079"
+      ],
+      "min_pair_similarity": 0.907325,
+      "average_pair_similarity": 0.921782,
+      "max_pair_similarity": 0.930736,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 17,
+      "group_type": "SIMILAR",
+      "size": 2,
+      "task2_ids": [
+        "T2-000075",
+        "T2-000082"
+      ],
+      "min_pair_similarity": 0.92597,
+      "average_pair_similarity": 0.92597,
+      "max_pair_similarity": 0.92597,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 18,
+      "group_type": "SIMILAR",
+      "size": 7,
+      "task2_ids": [
+        "T2-000085",
+        "T2-000088",
+        "T2-000089",
+        "T2-000090",
+        "T2-000091",
+        "T2-000093",
+        "T2-000094"
+      ],
+      "min_pair_similarity": 0.845584,
+      "average_pair_similarity": 0.899312,
+      "max_pair_similarity": 0.945331,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 19,
+      "group_type": "SIMILAR",
+      "size": 7,
+      "task2_ids": [
+        "T2-000096",
+        "T2-000098",
+        "T2-000103",
+        "T2-000106",
+        "T2-000107",
+        "T2-000108",
+        "T2-000109"
+      ],
+      "min_pair_similarity": 0.87106,
+      "average_pair_similarity": 0.905776,
+      "max_pair_similarity": 0.953502,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 20,
+      "group_type": "SIMILAR",
+      "size": 7,
+      "task2_ids": [
+        "T2-000097",
+        "T2-000100",
+        "T2-000101",
+        "T2-000102",
+        "T2-000105",
+        "T2-000110",
+        "T2-000111"
+      ],
+      "min_pair_similarity": 0.8731,
+      "average_pair_similarity": 0.899362,
+      "max_pair_similarity": 0.936865,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": 21,
+      "group_type": "SIMILAR",
+      "size": 8,
+      "task2_ids": [
+        "T2-000114",
+        "T2-000115",
+        "T2-000116",
+        "T2-000117",
+        "T2-000118",
+        "T2-000119",
+        "T2-000120",
+        "T2-000122"
+      ],
+      "min_pair_similarity": 0.895719,
+      "average_pair_similarity": 0.925023,
+      "max_pair_similarity": 0.957639,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000012"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000024"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000034"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000042"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000076"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000081"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000087"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000099"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    },
+    {
+      "group_no": null,
+      "group_type": "SINGLETON",
+      "size": 1,
+      "task2_ids": [
+        "T2-000104"
+      ],
+      "min_pair_similarity": null,
+      "average_pair_similarity": null,
+      "max_pair_similarity": null,
+      "exceeds_group_limit": false
+    }
+  ]
+}

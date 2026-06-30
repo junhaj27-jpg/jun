@@ -1,0 +1,80 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-021",
+    "source_requirement_id": "SFR-008",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-008::SFR-008-001",
+        "action_type": "처리",
+        "output_name": "홈페이지 안내 정보 자동 학습",
+        "source_text": "대학 홈페이지의 페이지 중 안내에 적합한 정보를 수집 및 분석",
+        "original_atomic_id": "SFR-008-001",
+        "source_fur_id": "SFR-008"
+      },
+      {
+        "atomic_id": "SFR-008::SFR-008-002",
+        "action_type": "처리",
+        "output_name": "홈페이지 최신정보 매일 자동 업데이트",
+        "source_text": "크롤러를 활용하여 웹 페이지의 최신 정보를 매일 업데이트",
+        "original_atomic_id": "SFR-008-002",
+        "source_fur_id": "SFR-008"
+      },
+      {
+        "atomic_id": "SFR-008::SFR-008-003",
+        "action_type": "처리",
+        "output_name": "게시판·웹페이지 신규정보 자동 학습",
+        "source_text": "게시판 또는 웹 페이지에 새로 업로드된 정보를 자동으로 학습하고 지식베이스에 추가",
+        "original_atomic_id": "SFR-008-003",
+        "source_fur_id": "SFR-008"
+      },
+      {
+        "atomic_id": "SFR-008::SFR-008-004",
+        "action_type": "입력",
+        "output_name": "관리자 수동 정보 업데이트",
+        "source_text": "관리자가 직접 수동으로 특정 정보를 업데이트 가능",
+        "original_atomic_id": "SFR-008-004",
+        "source_fur_id": "SFR-008"
+      },
+      {
+        "atomic_id": "SFR-008::SFR-008-005",
+        "action_type": "제공",
+        "output_name": "최신 학사정보·일정·공지사항 질의응답",
+        "source_text": "최신 학사 정보, 일정, 공지사항 등을 사용자 질의에 따라 정확히 응답",
+        "original_atomic_id": "SFR-008-005",
+        "source_fur_id": "SFR-008"
+      },
+      {
+        "atomic_id": "SFR-008::SFR-008-006",
+        "action_type": "제공",
+        "output_name": "업무 담당부서·연락처 안내",
+        "source_text": "사용자 질문 관련 부서 및 연락처 별도 안내 기능",
+        "original_atomic_id": "SFR-008-006",
+        "source_fur_id": "SFR-008"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003",
+        "SFR-008::SFR-008-004",
+        "SFR-008::SFR-008-005",
+        "SFR-008::SFR-008-006"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2636,
+  "max_new_tokens": 6144,
+  "generated_tokens": 565,
+  "hit_token_limit": false,
+  "elapsed_seconds": 34.800452530849725,
+  "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-008\",\n  \"normalized_requirement_count\": 4,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-021\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-008::SFR-008-001\",\n        \"SFR-008::SFR-008-002\",\n        \"SFR-008::SFR-008-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"홈페이지·게시판 최신정보 자동 학습\",\n      \"requirement_detail\": \"대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-008\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-022\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-008::SFR-008-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"입력\",\n      \"requirement_name\": \"관리자 수동 정보 업데이트\",\n      \"requirement_detail\": \"관리자는 특정 학사정보를 수동으로 업데이트할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-008\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-023\",\n      \"merge_decision\": \"MERGED\",\n      \"merged_from\": [\n        \"SFR-008::SFR-008-005\",\n        \"SFR-008::SFR-008-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"최신 학사정보·일정·공지사항 질의응답\",\n      \"requirement_detail\": \"최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-008\"\n      ]\n    }\n  ]\n}"
+}

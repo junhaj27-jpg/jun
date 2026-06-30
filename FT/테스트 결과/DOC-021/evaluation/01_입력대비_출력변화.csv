@@ -1,0 +1,2 @@
+﻿input_fur_count,input_detail_character_count,task1_atomic_count,task2_candidate_count,final_gold_count,relation_decision_count,task1_decomposition_ratio,task2_reduction_ratio_from_task1,task3_reduction_ratio_from_task2,output_to_input_character_ratio
+12,4258,64,51,25,25,5.333333,0.203125,0.509804,0.393612

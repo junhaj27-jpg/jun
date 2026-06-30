@@ -1,0 +1,62 @@
+{
+  "pipeline_version": "v10.4",
+  "created_at_utc": "2026-06-15T16:17:31.375367+00:00",
+  "document_id": "DOC-001",
+  "input_sha256": "54d8526842a7b3056ed720c0df0f673c2a7cae726c3f6942e5a00c3a951fab14",
+  "prompt_hashes": {
+    "TASK1_FUR_ATOMIC_DECOMPOSITION": "15859e872adf699edb47e6c137188884ec31ca5d7f2ac4fcbae3e0540a8a47df",
+    "TASK2_FUR_LOCAL_MERGE_NORMALIZE": "710ae170bf4f7cd9dc01873e91ddc579bd7cd38a0074a33494f8a097167d79e0",
+    "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE": "67ff972b295063b3359921df3d99a325ec58ad3c1fb79361d3c58dfed70402d3"
+  },
+  "task1_signature": "a1019bd33323939133c83cc7eb8093551c1abb5120f454a1dca0d6ade52c685a",
+  "task2_signature": "58a70cbf6a5833e2846a9bfa04a5bfaa15fad39a43d4b50f5ee91f02e06e3fb5",
+  "task3_signature": "6ed682ccd2c7c39524dec6a6c17da28d0f47240cf35037fb3a6550bd1b60c085",
+  "contracts": {
+    "base_model": "Qwen/Qwen3-VL-8B-Instruct",
+    "stage1_adapter": "jaehoony/req-qwen3vl-stage1-core",
+    "stage3_adapter": "jaehoony/req-qwen3vl-stage3-task3doc",
+    "embedding_model": "intfloat/multilingual-e5-base"
+  },
+  "progress": {
+    "task1_completed_furs": [
+      "SFR-001",
+      "SFR-002",
+      "SFR-003",
+      "SFR-004",
+      "SFR-005",
+      "SFR-006",
+      "SFR-007",
+      "SFR-008",
+      "SFR-009",
+      "SFR-010",
+      "SFR-011",
+      "SFR-012",
+      "SFR-013",
+      "SFR-014",
+      "SFR-015",
+      "SFR-016",
+      "SFR-017"
+    ],
+    "task2_completed_furs": [
+      "SFR-001",
+      "SFR-002",
+      "SFR-003",
+      "SFR-004",
+      "SFR-005",
+      "SFR-006",
+      "SFR-007",
+      "SFR-008",
+      "SFR-009",
+      "SFR-010",
+      "SFR-011",
+      "SFR-012",
+      "SFR-013",
+      "SFR-014",
+      "SFR-015",
+      "SFR-016",
+      "SFR-017"
+    ],
+    "task3_status": "REVIEW_REQUIRED",
+    "updated_at_utc": "2026-06-15T17:34:03.931487+00:00"
+  }
+}

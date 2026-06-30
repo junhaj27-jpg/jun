@@ -1,0 +1,105 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-009",
+      "requirement_name": "통합 보안 강화 관리",
+      "requirement_type": "기능",
+      "requirement_definition": "통합 보안 강화 관리",
+      "requirement_detail": "○ 통합 자원 보안 정책 관리 기능\nVM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용 기능을 제공한다\n대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용되는 기능을 제공한다\n자원 유형별 보안 상태를 실시간으로 모니터링하고 이상 행위 발생 시 탐지 및 알림 기능을 제공한다\n\n○ 역할 기반 자원 접근 제어 기능\nVM 자원에 대해 사용자 또는 그룹 단위의 역할 기반 접근 제어 정책을 설정할 수 있는 기능을 제공한다\nBM 자원에 대한 운영 역할 기반의 접근권한 설정 기능을 제공한다\n역할 기반 접근 정책에 따른 자원 접근 및 변경 행위에 대한 감사 및 이력 추적 기능을 제공한다",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2147,
+      "max_new_tokens": 4096,
+      "generated_tokens": 462,
+      "hit_token_limit": false,
+      "elapsed_seconds": 29.05395128764212,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-009\",\n  \"decomposition_count\": 5,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-009-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM·BM·컨테이너 통합 보안정책 관리\",\n      \"source_text\": \"VM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-002\",\n      \"action_type\": \"처리\",\n      \"output_name\": \"동적 확장 환경 자원 보안정책 자동 적용\",\n      \"source_text\": \"대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-003\",\n      \"action_type\": \"모니터링\",\n      \"output_name\": \"자원 유형별 보안상태 실시간 모니터링\",\n      \"source_text\": \"자원 유형별 보안 상태를 실시간으로 모니터링\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-004\",\n      \"action_type\": \"검증\",\n      \"output_name\": \"자원 이상행위 탐지 및 알림\",\n      \"source_text\": \"이상 행위 발생 시 탐지 및 알림\"\n    },\n    {\n      \"atomic_id\": \"SFR-009-005\",\n      \"action_type\": \"권한\",\n      \"output_name\": \"VM·BM 역할 기반 접근권한 설정 및 감사\",\n      \"source_text\": \"VM 사용자 또는 그룹 역할 기반 접근 제어 정책 설정, BM 운영 역할 기반 접근권한 설정, 역할 기반 접근 및 변경 행위 감사 및 이력 추적\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-009",
+        "decomposition_count": 5,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-009-001",
+            "action_type": "관리",
+            "output_name": "VM·BM·컨테이너 통합 보안정책 관리",
+            "source_text": "VM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용"
+          },
+          {
+            "atomic_id": "SFR-009-002",
+            "action_type": "처리",
+            "output_name": "동적 확장 환경 자원 보안정책 자동 적용",
+            "source_text": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용"
+          },
+          {
+            "atomic_id": "SFR-009-003",
+            "action_type": "모니터링",
+            "output_name": "자원 유형별 보안상태 실시간 모니터링",
+            "source_text": "자원 유형별 보안 상태를 실시간으로 모니터링"
+          },
+          {
+            "atomic_id": "SFR-009-004",
+            "action_type": "검증",
+            "output_name": "자원 이상행위 탐지 및 알림",
+            "source_text": "이상 행위 발생 시 탐지 및 알림"
+          },
+          {
+            "atomic_id": "SFR-009-005",
+            "action_type": "권한",
+            "output_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+            "source_text": "VM 사용자 또는 그룹 역할 기반 접근 제어 정책 설정, BM 운영 역할 기반 접근권한 설정, 역할 기반 접근 및 변경 행위 감사 및 이력 추적"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-009",
+    "decomposition_count": 5,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-009-001",
+        "action_type": "관리",
+        "output_name": "VM·BM·컨테이너 통합 보안정책 관리",
+        "source_text": "VM, BM, Container 자원에 대한 통합 보안 정책 수립 및 일괄 적용"
+      },
+      {
+        "atomic_id": "SFR-009-002",
+        "action_type": "처리",
+        "output_name": "동적 확장 환경 자원 보안정책 자동 적용",
+        "source_text": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안 정책이 자동으로 적용"
+      },
+      {
+        "atomic_id": "SFR-009-003",
+        "action_type": "모니터링",
+        "output_name": "자원 유형별 보안상태 실시간 모니터링",
+        "source_text": "자원 유형별 보안 상태를 실시간으로 모니터링"
+      },
+      {
+        "atomic_id": "SFR-009-004",
+        "action_type": "검증",
+        "output_name": "자원 이상행위 탐지 및 알림",
+        "source_text": "이상 행위 발생 시 탐지 및 알림"
+      },
+      {
+        "atomic_id": "SFR-009-005",
+        "action_type": "권한",
+        "output_name": "VM·BM 역할 기반 접근권한 설정 및 감사",
+        "source_text": "VM 사용자 또는 그룹 역할 기반 접근 제어 정책 설정, BM 운영 역할 기반 접근권한 설정, 역할 기반 접근 및 변경 행위 감사 및 이력 추적"
+      }
+    ]
+  }
+}

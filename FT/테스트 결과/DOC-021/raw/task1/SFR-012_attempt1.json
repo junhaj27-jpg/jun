@@ -1,0 +1,27 @@
+{
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-012",
+      "requirement_name": "관리자 페이지 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "서비스 운영 및 관리를 위한 관리자 전용 페이지를 제공",
+      "requirement_detail": "▪ 회원 관리 기능\n- 신규 회원 가입 요청을 승인하거나 거부할 수 있는 기능 제공\n- 부적절하거나 비활성화된 계정을 삭제할 수 있는 권한 제공\n- 사용자 그룹(학생, 교수, 관리자 등) 및 계정 상태를 확인할 수 있는 기능 지원\n▪ 챗봇 관리 기능\n- 생성된 챗봇의 퍼블리시 요청을 승인 또는 거부할 수 있는 기능 제공\n- 비활성화되거나 필요 없는 챗봇을 삭제할 수 있는 권한 제공\n- 각 챗봇의 사용 현황, 업데이트 상태, 권한 정보를 열람할 수 있는 기능 지원\n▪ 사용량 조회 및 통계 분석\n- 사용자별 또는 챗봇별 사용량 데이터를 실시간으로 확인할 수 있는 기능 제공\n- 챗봇 사용 데이터를 분석하고 시각적으로 표현하여 운영 성과를 평가할 수 있는 기능\n① 날짜별 채팅 사용자 수\n② 날짜별 대화량(AI 응답 수, 사용자 발화 수)\n③ 자주하는 질문 목록\n- 통계 데이터를 CSV 또는 엑셀 형식으로 다운로드할 수 있는 기능 제공\n▪ 보안 및 접근 제어\n- 관리자 권한을 가진 사용자만 접근할 수 있도록 인증 및 권한 관리 강화",
+      "source_location": {
+        "table_index": 25,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempt": 1,
+  "adapter_name": "stage1",
+  "prompt_tokens": 2291,
+  "max_new_tokens": 4096,
+  "generated_tokens": 533,
+  "hit_token_limit": false,
+  "elapsed_seconds": 35.28424864029512,
+  "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-012\",\n  \"decomposition_count\": 7,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-012-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"신규 회원 승인·거부\",\n      \"source_text\": \"신규 회원 가입 요청 승인 또는 거부\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"부적절 계정 삭제\",\n      \"source_text\": \"부적절하거나 비활성화된 계정 삭제\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-003\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사용자 그룹·계정 상태 조회\",\n      \"source_text\": \"사용자 그룹과 계정 상태 확인\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"챗봇 퍼블리시 승인·거부\",\n      \"source_text\": \"생성된 챗봇의 퍼블리시 요청 승인 또는 거부\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-005\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"비활성화 챗봇 삭제\",\n      \"source_text\": \"비활성화되거나 필요 없는 챗봇 삭제\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-006\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"챗봇 사용현황·업데이트·권한 조회\",\n      \"source_text\": \"챗봇 사용현황, 업데이트 상태와 권한 정보 열람\"\n    },\n    {\n      \"atomic_id\": \"SFR-012-007\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사용량·통계 조회·다운로드\",\n      \"source_text\": \"사용량 데이터 실시간 조회, 통계 분석과 CSV·엑셀 다운로드\"\n    }\n  ]\n}"
+}

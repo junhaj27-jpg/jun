@@ -1,0 +1,60 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-021-EMB-C004-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000007",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "프롬프트 템플릿 관리",
+        "requirement_detail": "프롬프트 템플릿을 등록·수정·삭제하고 관리하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000008",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-001::SFR-001-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "입력",
+        "requirement_name": "프롬프트 템플릿 활용",
+        "requirement_detail": "등록된 프롬프트 템플릿을 선택·수정하고 사용자 질의문을 입력할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-001"
+        ]
+      },
+      {
+        "task2_id": "T2-000024",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-005::SFR-005-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "입력",
+        "requirement_name": "프롬프트 손쉬운 수정",
+        "requirement_detail": "사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-005"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2242,
+  "max_new_tokens": 3363,
+  "generated_tokens": 522,
+  "hit_token_limit": false,
+  "elapsed_seconds": 31.025889231823385,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000007\",\n        \"T2-000008\",\n        \"T2-000024\"\n      ],\n      \"relation_type\": \"SEMANTIC_DUPLICATE\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"사용자·관리자 역할, 파일 제한, 보안·보관기간, AI·외부연계·CMS·LMS·성과·사업·마일리지 범위와 원문 SFR ID를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-001\",\n    \"action_type\": \"입력\",\n    \"requirement_name\": \"프롬프트 템플릿 관리·편집·활용\",\n    \"requirement_detail\": \"프롬프트 템플릿을 등록·수정·삭제하고 사용자 질의문을 입력할 수 있어야 하며, 사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000007\",\n      \"T2-000008\",\n      \"T2-000024\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-001::SFR-001-007\",\n      \"SFR-001::SFR-001-008\",\n      \"SFR-005::SFR-005-001\"\n    ],\n    \"sources\": [\n      \"SFR-001\",\n      \"SFR-005\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n  }\n}"
+}

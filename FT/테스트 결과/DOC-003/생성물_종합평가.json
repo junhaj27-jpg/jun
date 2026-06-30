@@ -1,0 +1,119 @@
+{
+  "evaluation_version": "v10.5-residual-duplicate",
+  "evaluated_at_utc": "2026-06-15T17:48:46.015851+00:00",
+  "document_id": "DOC-003",
+  "status": "PASS",
+  "intrinsic_quality_score": 100.0,
+  "score_components": {
+    "structure_completeness": 15.0,
+    "task2_lineage": 20.0,
+    "atomic_lineage": 10.0,
+    "fur_source_coverage": 10.0,
+    "semantic_retention": 20.0,
+    "residual_duplicate_cleanliness": 15.0,
+    "text_quality": 10.0
+  },
+  "counts_and_transformation": {
+    "input_fur_count": 10,
+    "input_detail_character_count": 1323,
+    "task1_atomic_count": 27,
+    "task2_candidate_count": 27,
+    "final_gold_count": 19,
+    "relation_decision_count": 19,
+    "task1_decomposition_ratio": 2.7,
+    "task2_reduction_ratio_from_task1": 0.0,
+    "task3_reduction_ratio_from_task2": 0.296296,
+    "output_to_input_character_ratio": 0.871504
+  },
+  "lineage": {
+    "expected_task2_count": 27,
+    "assigned_task2_count": 27,
+    "missing_task2_ids": [],
+    "duplicate_task2_assignments": {},
+    "unknown_task2_ids": [],
+    "expected_atomic_count": 27,
+    "covered_atomic_count": 27,
+    "missing_atomic_ids": [],
+    "unknown_atomic_ids": [],
+    "expected_fur_count": 10,
+    "covered_fur_count": 10,
+    "missing_fur_ids": [],
+    "unknown_fur_ids": [],
+    "task2_coverage_rate": 1.0,
+    "atomic_coverage_rate": 1.0,
+    "fur_source_coverage_rate": 1.0
+  },
+  "metrics": {
+    "required_field_completeness_rate": 1.0,
+    "text_quality_check_pass_rate": 1.0,
+    "task2_to_gold_similarity_average": 0.978141,
+    "task2_to_gold_similarity_minimum": 0.907649,
+    "fur_to_gold_lineage_similarity_average": 0.942251,
+    "fur_to_gold_lineage_similarity_minimum": 0.917887,
+    "name_detail_similarity_average": 0.937691,
+    "residual_strong_duplicate_pair_count": 0,
+    "residual_duplicate_review_pair_count": 2,
+    "residual_duplicate_affected_gold_count": 0,
+    "overmerge_review_count": 0,
+    "review_item_count": 2,
+    "high_review_item_count": 0,
+    "critical_error_count": 0
+  },
+  "thresholds": {
+    "task2_retention": 0.72,
+    "fur_coverage": 0.68,
+    "name_detail": 0.55,
+    "residual_strong_similarity": 0.965,
+    "residual_review_similarity": 0.94,
+    "residual_strong_name_jaccard": 0.45,
+    "residual_review_name_jaccard": 0.3,
+    "overmerge_pair": 0.65,
+    "reference_match": 0.8,
+    "pass_score": 85.0,
+    "review_score": 70.0
+  },
+  "reference_gold_evaluation": {
+    "gold_file": "/workspace/test_input/DOC-003_gold_final.json",
+    "predicted_count": 19,
+    "gold_count": 20,
+    "count_difference": -1,
+    "count_similarity": 0.95,
+    "exact_name_overlap": 2,
+    "exact_name_precision": 0.105263,
+    "exact_name_recall": 0.1,
+    "exact_name_f1": 0.102564,
+    "semantic_match_threshold": 0.8,
+    "semantic_match_count": 19,
+    "semantic_precision": 1.0,
+    "semantic_recall": 0.95,
+    "semantic_f1": 0.974359,
+    "matched_average_similarity": 0.95331,
+    "reference_score": 84.12
+  },
+  "review_items": [
+    {
+      "severity": "MEDIUM",
+      "category": "RESIDUAL_DUPLICATE_REVIEW",
+      "item_id": "GOLD-011 | GOLD-012",
+      "metric": "review_duplicate_pair",
+      "value": 0.955224,
+      "threshold": "sim>=0.94, same_action=True, name_jaccard>=0.3",
+      "reason": "관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토"
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "RESIDUAL_DUPLICATE_REVIEW",
+      "item_id": "GOLD-014 | GOLD-018",
+      "metric": "review_duplicate_pair",
+      "value": 0.941092,
+      "threshold": "sim>=0.94, same_action=True, name_jaccard>=0.3",
+      "reason": "관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토"
+    }
+  ],
+  "interpretation": {
+    "intrinsic_quality_score": "정답 파일 없이 구조·계보·의미 보존·잔존 중복·문장 품질을 규칙과 임베딩으로 평가한 휴리스틱 점수",
+    "reference_score": "정답 GOLD가 있을 때 의미 기반 일대일 매칭과 이름 일치를 결합한 별도 점수",
+    "residual_duplicate": "강한 중복은 수행행위·명칭 핵심어·의미 유사도를 함께 만족한 쌍이며, 검토 후보는 점수 감점 없이 참고 목록으로만 제공",
+    "status": "FAIL은 계보·필수필드 오류 또는 낮은 점수, REVIEW_REQUIRED는 강한 자동 검토 항목이나 fallback 존재, PASS는 자동 지표상 중대한 이상 없음"
+  }
+}

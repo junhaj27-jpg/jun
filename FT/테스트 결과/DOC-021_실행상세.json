@@ -1,0 +1,316 @@
+{
+  "document_id": "DOC-021",
+  "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+  "input_file": "/workspace/test_input/DOC-021_기능전체_입력.json",
+  "input_fur_count": 12,
+  "pipeline": "TASK1_TASK2_TASK3_EMBEDDING_GROUP_V10_4_RELATION_REPAIR_EVALUATION",
+  "pipeline_version": "v10.4",
+  "manifest_signatures": {
+    "task1": "f27911908e35ccb65effbdf9f8c0f0f34a6a0005a76ed912c44b0944aca7856b",
+    "task2": "0e6d91c986a7e282fb9c6a8ff2e0a7556a2566702dfd1ca388f5191ff7a11910",
+    "task3": "ed1350017b6df6570c2a878ae64a13c5d4d21b36b9d7fa5c0e014136287c009c"
+  },
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "embedding_device": "cuda",
+  "task1_atomic_total": 64,
+  "task1_reused_fur_count": 0,
+  "task1_generated_fur_count": 12,
+  "task2_candidate_total": 51,
+  "task2_reused_fur_count": 0,
+  "task2_generated_fur_count": 12,
+  "embedding_model": "intfloat/multilingual-e5-base",
+  "scope_global_count": 0,
+  "scope_local_count": 0,
+  "similar_component_count": 10,
+  "similar_component_item_count": 41,
+  "singleton_count": 10,
+  "task3_component_traces": [
+    {
+      "component_no": 1,
+      "initial_count": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 6,
+          "chunk_count": 1,
+          "output_final_count": 2,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 2,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 3,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 3,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 4,
+      "initial_count": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 3,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 5,
+      "initial_count": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 6,
+          "chunk_count": 1,
+          "output_final_count": 3,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 6,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 7,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 8,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 9,
+      "initial_count": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 3,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 10,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    }
+  ],
+  "task3_fallback_count": 0,
+  "quality_status": "PASS",
+  "assignment_quality": {
+    "expected_task2_count": 51,
+    "assigned_task2_count": 51,
+    "missing_task2_count": 0,
+    "duplicate_assignment_count": 0,
+    "orphan_relation_count": 0
+  },
+  "task3_final_total": 25,
+  "evaluation": {
+    "evaluation_version": "v10.5-residual-duplicate",
+    "evaluated_at_utc": "2026-06-15T18:10:34.390261+00:00",
+    "document_id": "DOC-021",
+    "status": "FAIL",
+    "intrinsic_quality_score": 100.0,
+    "score_components": {
+      "structure_completeness": 15.0,
+      "task2_lineage": 20.0,
+      "atomic_lineage": 10.0,
+      "fur_source_coverage": 10.0,
+      "semantic_retention": 20.0,
+      "residual_duplicate_cleanliness": 15.0,
+      "text_quality": 10.0
+    },
+    "counts_and_transformation": {
+      "input_fur_count": 12,
+      "input_detail_character_count": 4258,
+      "task1_atomic_count": 64,
+      "task2_candidate_count": 51,
+      "final_gold_count": 25,
+      "relation_decision_count": 25,
+      "task1_decomposition_ratio": 5.333333,
+      "task2_reduction_ratio_from_task1": 0.203125,
+      "task3_reduction_ratio_from_task2": 0.509804,
+      "output_to_input_character_ratio": 0.393612
+    },
+    "lineage": {
+      "expected_task2_count": 51,
+      "assigned_task2_count": 51,
+      "missing_task2_ids": [],
+      "duplicate_task2_assignments": {},
+      "unknown_task2_ids": [],
+      "expected_atomic_count": 64,
+      "covered_atomic_count": 64,
+      "missing_atomic_ids": [],
+      "unknown_atomic_ids": [
+        "SFR-003-004",
+        "SFR-005-004",
+        "SFR-005-006",
+        "SFR-005-007",
+        "SFR-006-001",
+        "SFR-006-002",
+        "SFR-006-003",
+        "SFR-006-004",
+        "SFR-009-001",
+        "SFR-009-002",
+        "SFR-011-001",
+        "SFR-011-002",
+        "SFR-012-003",
+        "SFR-012-004",
+        "SFR-012-005",
+        "SFR-012-006"
+      ],
+      "expected_fur_count": 12,
+      "covered_fur_count": 12,
+      "missing_fur_ids": [],
+      "unknown_fur_ids": [],
+      "task2_coverage_rate": 1.0,
+      "atomic_coverage_rate": 1.0,
+      "fur_source_coverage_rate": 1.0
+    },
+    "metrics": {
+      "required_field_completeness_rate": 1.0,
+      "text_quality_check_pass_rate": 1.0,
+      "task2_to_gold_similarity_average": 0.962794,
+      "task2_to_gold_similarity_minimum": 0.898666,
+      "fur_to_gold_lineage_similarity_average": 0.929072,
+      "fur_to_gold_lineage_similarity_minimum": 0.89905,
+      "name_detail_similarity_average": 0.912935,
+      "residual_strong_duplicate_pair_count": 0,
+      "residual_duplicate_review_pair_count": 0,
+      "residual_duplicate_affected_gold_count": 0,
+      "overmerge_review_count": 0,
+      "review_item_count": 1,
+      "high_review_item_count": 1,
+      "critical_error_count": 16
+    },
+    "thresholds": {
+      "task2_retention": 0.72,
+      "fur_coverage": 0.68,
+      "name_detail": 0.55,
+      "residual_strong_similarity": 0.965,
+      "residual_review_similarity": 0.94,
+      "residual_strong_name_jaccard": 0.45,
+      "residual_review_name_jaccard": 0.3,
+      "overmerge_pair": 0.65,
+      "reference_match": 0.8,
+      "pass_score": 85.0,
+      "review_score": 70.0
+    },
+    "reference_gold_evaluation": {
+      "gold_file": "/workspace/test_input/DOC-021_gold_final.json",
+      "predicted_count": 25,
+      "gold_count": 28,
+      "count_difference": -3,
+      "count_similarity": 0.892857,
+      "exact_name_overlap": 0,
+      "exact_name_precision": 0.0,
+      "exact_name_recall": 0.0,
+      "exact_name_f1": 0.0,
+      "semantic_match_threshold": 0.8,
+      "semantic_match_count": 25,
+      "semantic_precision": 1.0,
+      "semantic_recall": 0.892857,
+      "semantic_f1": 0.943396,
+      "matched_average_similarity": 0.935071,
+      "reference_score": 79.68
+    },
+    "review_items": [
+      {
+        "severity": "HIGH",
+        "category": "LINEAGE",
+        "item_id": "SFR-003-004; SFR-005-004; SFR-005-006; SFR-005-007; SFR-006-001; SFR-006-002; SFR-006-003; SFR-006-004; SFR-009-001; SFR-009-002; SFR-011-001; SFR-011-002; SFR-012-003; SFR-012-004; SFR-012-005; SFR-012-006",
+        "metric": "unknown_atomic_ids",
+        "value": 16,
+        "threshold": 0,
+        "reason": "입력→출력 계보 누락 또는 알 수 없는 ID 발생"
+      }
+    ],
+    "interpretation": {
+      "intrinsic_quality_score": "정답 파일 없이 구조·계보·의미 보존·잔존 중복·문장 품질을 규칙과 임베딩으로 평가한 휴리스틱 점수",
+      "reference_score": "정답 GOLD가 있을 때 의미 기반 일대일 매칭과 이름 일치를 결합한 별도 점수",
+      "residual_duplicate": "강한 중복은 수행행위·명칭 핵심어·의미 유사도를 함께 만족한 쌍이며, 검토 후보는 점수 감점 없이 참고 목록으로만 제공",
+      "status": "FAIL은 계보·필수필드 오류 또는 낮은 점수, REVIEW_REQUIRED는 강한 자동 검토 항목이나 fallback 존재, PASS는 자동 지표상 중대한 이상 없음"
+    }
+  }
+}

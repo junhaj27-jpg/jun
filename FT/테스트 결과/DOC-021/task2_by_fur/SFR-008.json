@@ -1,0 +1,57 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "source_requirement_id": "SFR-008",
+  "atomic_input_sha256": "eb8e2b3fca31c640f8590de58e626417eeef7b5558bc90282ca0ef9924201e63",
+  "normalized_requirement_count": 3,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-021",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "홈페이지·게시판 최신정보 자동 학습",
+      "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "task2_id": "T2-022",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-008::SFR-008-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "관리자 수동 정보 업데이트",
+      "requirement_detail": "관리자는 특정 학사정보를 수동으로 업데이트할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    },
+    {
+      "task2_id": "T2-023",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-008::SFR-008-005",
+        "SFR-008::SFR-008-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "최신 학사정보·일정·공지사항 질의응답",
+      "requirement_detail": "최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    }
+  ]
+}

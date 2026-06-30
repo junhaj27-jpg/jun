@@ -1,0 +1,417 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "document_id": "DOC-001",
+    "source_requirement_id": "SFR-002",
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-002::SFR-002-001",
+        "action_type": "관리",
+        "output_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+        "source_text": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적 확장 및 축소를 관리할 수 있어야 함",
+        "original_atomic_id": "SFR-002-001",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-002",
+        "action_type": "관리",
+        "output_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+        "source_text": "어플리케이션 별 메모리 할당 우선순위 지정 관리 기능을 제공해야 함",
+        "original_atomic_id": "SFR-002-002",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-003",
+        "action_type": "관리",
+        "output_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+        "source_text": "워크로드 특성에 따른 메모리 할당 메커니즘을 구현해야 함",
+        "original_atomic_id": "SFR-002-003",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-004",
+        "action_type": "조회",
+        "output_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+        "source_text": "CXL 메모리의 실시간 대역폭 사용량 모니터링 정보를 제공해야 함",
+        "original_atomic_id": "SFR-002-004",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-005",
+        "action_type": "조회",
+        "output_name": "세분화된 레이턴시 측정",
+        "source_text": "세분화된 레이턴시(읽기/쓰기 작업별, 메모리 영역별)를 측정할 수 있어야 함",
+        "original_atomic_id": "SFR-002-005",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-006",
+        "action_type": "조회",
+        "output_name": "캐시 적중률 및 미스 패턴 모니터링",
+        "source_text": "캐시 적중률 및 미스 패턴 모니터링 정보를 제공해야 함",
+        "original_atomic_id": "SFR-002-006",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-007",
+        "action_type": "조회",
+        "output_name": "히트맵 기반 메모리 접근 패턴 시각화",
+        "source_text": "히트맵 기반 메모리 접근 패턴 시각화 정보를 제공해야 함",
+        "original_atomic_id": "SFR-002-007",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-008",
+        "action_type": "조회",
+        "output_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+        "source_text": "CXL 링크별 실시간 대역폭 사용량 측정을 제공해야 함",
+        "original_atomic_id": "SFR-002-008",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-009",
+        "action_type": "조회",
+        "output_name": "메모리 접근 패턴 분석 및 시각화",
+        "source_text": "메모리 접근 패턴 분석 및 시각화 정보를 제공해야 함",
+        "original_atomic_id": "SFR-002-009",
+        "source_fur_id": "SFR-002"
+      },
+      {
+        "atomic_id": "SFR-002::SFR-002-010",
+        "action_type": "검증",
+        "output_name": "성능 이상 자동 감지 및 Alert",
+        "source_text": "성능 이상 징후 자동 감지 및 Alert 메커니즘을 구현해야 함",
+        "original_atomic_id": "SFR-002-010",
+        "source_fur_id": "SFR-002"
+      }
+    ],
+    "reference_contexts": [],
+    "lineage_constraints": {
+      "all_atomic_ids": [
+        "SFR-002::SFR-002-001",
+        "SFR-002::SFR-002-002",
+        "SFR-002::SFR-002-003",
+        "SFR-002::SFR-002-004",
+        "SFR-002::SFR-002-005",
+        "SFR-002::SFR-002-006",
+        "SFR-002::SFR-002-007",
+        "SFR-002::SFR-002-008",
+        "SFR-002::SFR-002-009",
+        "SFR-002::SFR-002-010"
+      ],
+      "merged_from_rule": "각 atomic_id는 normalized_requirements 전체의 merged_from에 정확히 1회만 배정한다.",
+      "reference_context_rule": "다른 요구사항의 참고 근거로 재사용할 때만 reference_context_ids에 넣는다.",
+      "no_new_ids": true
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 3255,
+      "max_new_tokens": 6144,
+      "generated_tokens": 1521,
+      "hit_token_limit": false,
+      "elapsed_seconds": 89.50994737818837,
+      "raw_text": "{\n  \"task_type\": \"TASK2_FUR_LOCAL_MERGE_NORMALIZE\",\n  \"source_requirement_id\": \"SFR-002\",\n  \"normalized_requirement_count\": 10,\n  \"normalized_requirements\": [\n    {\n      \"task2_id\": \"T2-001\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-001\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"CXL 메모리 풀링 및 동적 확장·축소 관리\",\n      \"requirement_detail\": \"여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-002\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-002\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"어플리케이션별 메모리 할당 우선순위 지정 관리\",\n      \"requirement_detail\": \"어플리케이션별 메모리 할당 우선순위를 지정하고 관리할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-003\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-003\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"워크로드 특성 기반 메모리 할당 메커니즘\",\n      \"requirement_detail\": \"워크로드 특성에 따라 메모리 할당을 자동으로 조정하는 메커니즘을 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-004\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-004\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"CXL 메모리 실시간 대역폭 사용량 모니터링\",\n      \"requirement_detail\": \"CXL 메모리의 실시간 대역폭 사용량을 모니터링할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-005\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-005\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"세분화된 레이턴시 측정\",\n      \"requirement_detail\": \"읽기와 쓰기 작업별 및 메모리 영역별 레이턴시를 세분화하여 측정할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-006\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-006\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"캐시 적중률 및 미스 패턴 모니터링\",\n      \"requirement_detail\": \"캐시 적중률과 미스 패턴을 모니터링할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-007\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-007\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"히트맵 기반 메모리 접근 패턴 시각화\",\n      \"requirement_detail\": \"메모리 접근 패턴을 히트맵으로 시각화하여 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-008\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-008\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"CXL 링크별 실시간 대역폭 사용량 측정\",\n      \"requirement_detail\": \"CXL 링크별 실시간 대역폭 사용량을 측정할 수 있어야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-009\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-009\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"메모리 접근 패턴 분석 및 시각화\",\n      \"requirement_detail\": \"메모리 접근 패턴을 분석하고 시각화하여 제공하여야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    },\n    {\n      \"task2_id\": \"T2-010\",\n      \"merge_decision\": \"KEPT\",\n      \"merged_from\": [\n        \"SFR-002::SFR-002-010\"\n      ],\n      \"reference_context_ids\": [],\n      \"action_type\": \"검증\",\n      \"requirement_name\": \"성능 이상 자동 감지 및 Alert\",\n      \"requirement_detail\": \"성능 이상 징후를 자동으로 감지하고 Alert를 발생시켜야 한다.\",\n      \"source_requirement_ids\": [\n        \"SFR-002\"\n      ]\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+        "source_requirement_id": "SFR-002",
+        "normalized_requirement_count": 10,
+        "normalized_requirements": [
+          {
+            "task2_id": "T2-001",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-001"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+            "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-002",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-002"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+            "requirement_detail": "어플리케이션별 메모리 할당 우선순위를 지정하고 관리할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-003",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-003"
+            ],
+            "reference_context_ids": [],
+            "action_type": "관리",
+            "requirement_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+            "requirement_detail": "워크로드 특성에 따라 메모리 할당을 자동으로 조정하는 메커니즘을 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-004",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-004"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+            "requirement_detail": "CXL 메모리의 실시간 대역폭 사용량을 모니터링할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-005",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-005"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "세분화된 레이턴시 측정",
+            "requirement_detail": "읽기와 쓰기 작업별 및 메모리 영역별 레이턴시를 세분화하여 측정할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-006",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-006"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "캐시 적중률 및 미스 패턴 모니터링",
+            "requirement_detail": "캐시 적중률과 미스 패턴을 모니터링할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-007",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-007"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "히트맵 기반 메모리 접근 패턴 시각화",
+            "requirement_detail": "메모리 접근 패턴을 히트맵으로 시각화하여 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-008",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-008"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+            "requirement_detail": "CXL 링크별 실시간 대역폭 사용량을 측정할 수 있어야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-009",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-009"
+            ],
+            "reference_context_ids": [],
+            "action_type": "조회",
+            "requirement_name": "메모리 접근 패턴 분석 및 시각화",
+            "requirement_detail": "메모리 접근 패턴을 분석하고 시각화하여 제공하여야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          },
+          {
+            "task2_id": "T2-010",
+            "merge_decision": "KEPT",
+            "merged_from": [
+              "SFR-002::SFR-002-010"
+            ],
+            "reference_context_ids": [],
+            "action_type": "검증",
+            "requirement_name": "성능 이상 자동 감지 및 Alert",
+            "requirement_detail": "성능 이상 징후를 자동으로 감지하고 Alert를 발생시켜야 한다.",
+            "source_requirement_ids": [
+              "SFR-002"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+    "source_requirement_id": "SFR-002",
+    "normalized_requirement_count": 10,
+    "normalized_requirements": [
+      {
+        "task2_id": "T2-001",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+        "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-002",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "어플리케이션별 메모리 할당 우선순위 지정 관리",
+        "requirement_detail": "어플리케이션별 메모리 할당 우선순위를 지정하고 관리할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-003",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "워크로드 특성 기반 메모리 할당 메커니즘",
+        "requirement_detail": "워크로드 특성에 따라 메모리 할당을 자동으로 조정하는 메커니즘을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-004",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "CXL 메모리 실시간 대역폭 사용량 모니터링",
+        "requirement_detail": "CXL 메모리의 실시간 대역폭 사용량을 모니터링할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-005",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "세분화된 레이턴시 측정",
+        "requirement_detail": "읽기와 쓰기 작업별 및 메모리 영역별 레이턴시를 세분화하여 측정할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-006",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "캐시 적중률 및 미스 패턴 모니터링",
+        "requirement_detail": "캐시 적중률과 미스 패턴을 모니터링할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-007",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "히트맵 기반 메모리 접근 패턴 시각화",
+        "requirement_detail": "메모리 접근 패턴을 히트맵으로 시각화하여 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-008",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "CXL 링크별 실시간 대역폭 사용량 측정",
+        "requirement_detail": "CXL 링크별 실시간 대역폭 사용량을 측정할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-009",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "메모리 접근 패턴 분석 및 시각화",
+        "requirement_detail": "메모리 접근 패턴을 분석하고 시각화하여 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      },
+      {
+        "task2_id": "T2-010",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-002::SFR-002-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "검증",
+        "requirement_name": "성능 이상 자동 감지 및 Alert",
+        "requirement_detail": "성능 이상 징후를 자동으로 감지하고 Alert를 발생시켜야 한다.",
+        "source_requirement_ids": [
+          "SFR-002"
+        ]
+      }
+    ]
+  }
+}

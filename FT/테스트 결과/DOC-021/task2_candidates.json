@@ -1,0 +1,836 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-021",
+  "candidate_requirement_count": 51,
+  "candidate_requirements": [
+    {
+      "task2_id": "T2-000001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "모듈화 아키텍처 설계",
+      "requirement_detail": "주요 기능을 독립 개발과 확장에 유리하게 모듈화하고 모듈 간 의존성을 최소화하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-001"
+    },
+    {
+      "task2_id": "T2-000002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "온프레미스 자원 최적화",
+      "requirement_detail": "온프레미스 서버 자원을 효율적으로 활용하고 사용량을 분석하여 안정성 기준을 설정하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-002"
+    },
+    {
+      "task2_id": "T2-000003",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "플랫폼 확장성 설계",
+      "requirement_detail": "새 LLM 모델과 외부 API를 통합하고 학습데이터와 사용자 트래픽의 확장성을 고려하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-003"
+    },
+    {
+      "task2_id": "T2-000004",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "온프레미스·상용 LLM 통합",
+      "requirement_detail": "온프레미스 LLM과 상용 LLM API를 통합하여 사용자에게 일관된 서비스를 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-004"
+    },
+    {
+      "task2_id": "T2-000005",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "다양한 LLM 동시 통합",
+      "requirement_detail": "GPT-4, Llama 등 다양한 LLM 모델을 동시에 통합하여 사용자에게 선택할 수 있도록 하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-005"
+    },
+    {
+      "task2_id": "T2-000006",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "AI 모델 파라미터 조정",
+      "requirement_detail": "AI 모델의 답변 온도와 유사 응답 개수를 사용자에게 조정할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-006"
+    },
+    {
+      "task2_id": "T2-000007",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "프롬프트 템플릿 관리",
+      "requirement_detail": "프롬프트 템플릿을 등록·수정·삭제하고 관리하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-007"
+    },
+    {
+      "task2_id": "T2-000008",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-008"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "프롬프트 템플릿 활용",
+      "requirement_detail": "등록된 프롬프트 템플릿을 선택·수정하고 사용자 질의문을 입력할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-008"
+    },
+    {
+      "task2_id": "T2-000009",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-009"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "대화형 UX·스레드 대화",
+      "requirement_detail": "ChatGPT 유사 UX를 제공하고 대화 스레드를 저장·검색·복원할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-009"
+    },
+    {
+      "task2_id": "T2-000010",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-010"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "대화 히스토리 삭제·다운로드",
+      "requirement_detail": "사용자가 요청한 경우 대화 데이터를 삭제하고 개인 기록을 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-010"
+    },
+    {
+      "task2_id": "T2-000011",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-011"
+      ],
+      "reference_context_ids": [],
+      "action_type": "보안",
+      "requirement_name": "대화 데이터 암호화",
+      "requirement_detail": "개인정보를 보호하기 위해 대화 데이터를 암호화하여 저장하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-011"
+    },
+    {
+      "task2_id": "T2-000012",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-012"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "대화 히스토리 복원",
+      "requirement_detail": "이전 대화를 검색하거나 복원할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-012"
+    },
+    {
+      "task2_id": "T2-000013",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-001::SFR-001-013"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "대화 히스토리 삭제",
+      "requirement_detail": "사용자가 요청한 경우 대화 데이터를 삭제하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-001"
+      ],
+      "source_fur_id": "SFR-001",
+      "original_task2_id": "T2-013"
+    },
+    {
+      "task2_id": "T2-000014",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-002::SFR-002-001",
+        "SFR-002::SFR-002-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "상용 LLM API 통합 관리 및 사용량 모니터링",
+      "requirement_detail": "GPT-4 등 상용 LLM API를 등록·연계하고 통합 관리하며 API 사용량을 실시간 모니터링하고 통계를 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-002"
+      ],
+      "source_fur_id": "SFR-002",
+      "original_task2_id": "T2-001"
+    },
+    {
+      "task2_id": "T2-000015",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-002::SFR-002-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "상용 LLM 라이센스 만료 알림",
+      "requirement_detail": "상용 LLM 라이센스가 만료되기 전에 알림을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-002"
+      ],
+      "source_fur_id": "SFR-002",
+      "original_task2_id": "T2-002"
+    },
+    {
+      "task2_id": "T2-000016",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-002::SFR-002-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "API 호출 최적화 및 분산 처리",
+      "requirement_detail": "상용 LLM API 호출 속도를 최적화하고 대량 요청을 분산 처리하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-002"
+      ],
+      "source_fur_id": "SFR-002",
+      "original_task2_id": "T2-003"
+    },
+    {
+      "task2_id": "T2-000017",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "온프레미스 독립 운영 챗봇",
+      "requirement_detail": "대학의 인프라와 독립하여 운영되는 챗봇을 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003",
+      "original_task2_id": "SFR-003-001"
+    },
+    {
+      "task2_id": "T2-000018",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "보안",
+      "requirement_name": "온프레미스 민감데이터 보안",
+      "requirement_detail": "첨부문서, 사용자정보와 챗봇 채팅데이터의 외부유출을 차단하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003",
+      "original_task2_id": "SFR-003-002"
+    },
+    {
+      "task2_id": "T2-000019",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "온프레미스 챗봇 성능·자원·고가용성",
+      "requirement_detail": "다수 사용자와의 대화처리, 자원관리, 응답시간과 장애 복구를 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003",
+      "original_task2_id": "SFR-003-003"
+    },
+    {
+      "task2_id": "T2-000020",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "관리자 챗봇 사용데이터 대시보드",
+      "requirement_detail": "관리자 대시보드에 챗봇 사용데이터를 연동하여 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003",
+      "original_task2_id": "SFR-003-004"
+    },
+    {
+      "task2_id": "T2-000021",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-004::SFR-004-001",
+        "SFR-004::SFR-004-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "다형식 문서 업로드·유효성 검사",
+      "requirement_detail": "PDF, 텍스트 및 이미지 파일을 업로드하고 파일 크기와 형식을 유효성 검사하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004",
+      "original_task2_id": "T2-013"
+    },
+    {
+      "task2_id": "T2-000022",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-004::SFR-004-003",
+        "SFR-004::SFR-004-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "업로드 문서 통합·조회·삭제·데이터 추출",
+      "requirement_detail": "업로드된 문서를 통합 관리하고 조회·삭제할 수 있어야 하며, 데이터를 추출·통합하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004",
+      "original_task2_id": "T2-014"
+    },
+    {
+      "task2_id": "T2-000023",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-004::SFR-004-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "RAG 검색·답변 생성·근거 링크",
+      "requirement_detail": "벡터DB에서 검색결과를 활용하여 질문에 답변을 생성하고 근거 문서와 링크를 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004",
+      "original_task2_id": "T2-015"
+    },
+    {
+      "task2_id": "T2-000024",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-005::SFR-005-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "프롬프트 손쉬운 수정",
+      "requirement_detail": "사용자는 프롬프트를 쉽게 수정하고 저장할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-017"
+    },
+    {
+      "task2_id": "T2-000025",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-005::SFR-005-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "문서 기반 지식베이스 생성·관리",
+      "requirement_detail": "사용자가 제공한 문서를 기반으로 챗봇 지식베이스를 생성하고 관리할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-018"
+    },
+    {
+      "task2_id": "T2-000026",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-005::SFR-005-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "LLM 모델 선택·응답 파라미터 조정",
+      "requirement_detail": "사용자는 적합한 LLM 모델을 선택하고 창의성, 신뢰성 및 결과 범위를 조정할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-019"
+    },
+    {
+      "task2_id": "T2-000027",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-005::SFR-005-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "챗봇 저장·관리자 승인·퍼블리시",
+      "requirement_detail": "사용자는 챗봇을 저장하고 관리자 승인 후 공용 또는 특정 사용자 그룹에 제한하여 배포할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-020"
+    },
+    {
+      "task2_id": "T2-000028",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-005::SFR-005-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "퍼블리시 전 개인 테스트",
+      "requirement_detail": "퍼블리시되지 않은 챗봇은 개인 테스트 페이지에서 사용자 테스트와 점검을 할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-021"
+    },
+    {
+      "task2_id": "T2-000029",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-005::SFR-005-006",
+        "SFR-005::SFR-005-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "사용자 그룹별 챗봇 설계·매칭",
+      "requirement_detail": "사용자 그룹별 요구사항에 맞춘 챗봇을 설계하고 사용자 그룹을 생성·수정·삭제하며 챗봇과 매칭할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-005"
+      ],
+      "source_fur_id": "SFR-005",
+      "original_task2_id": "T2-022"
+    },
+    {
+      "task2_id": "T2-000030",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-006::SFR-006-001",
+        "SFR-006::SFR-006-002",
+        "SFR-006::SFR-006-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용자 그룹별 챗봇 검색·탐색·필터링·활용",
+      "requirement_detail": "사용자 그룹별로 챗봇을 검색·탐색·필터링하고 선택한 챗봇을 활용할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-006"
+      ],
+      "source_fur_id": "SFR-006",
+      "original_task2_id": "T2-017"
+    },
+    {
+      "task2_id": "T2-000031",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-006::SFR-006-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "선택 챗봇 환경 적용",
+      "requirement_detail": "사용자가 선택한 챗봇의 환경을 적용하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-006"
+      ],
+      "source_fur_id": "SFR-006",
+      "original_task2_id": "T2-018"
+    },
+    {
+      "task2_id": "T2-000032",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-007::SFR-007-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "다국어 응대 및 언어 감지 기능",
+      "requirement_detail": "다국어 응대 및 언어 감지 기능을 제공하여야 하며, 20개 이상 언어로 응답과 언어 자동 감지를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007",
+      "original_task2_id": "SFR-007::T2-001"
+    },
+    {
+      "task2_id": "T2-000033",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-007::SFR-007-002",
+        "SFR-007::SFR-007-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "질의 의도 분석 및 맥락 기반 응답",
+      "requirement_detail": "질의 의도 분석 및 맥락 기반 응답을 처리하여야 하며, 질의 의도 분석과 맥락 맞춤 응답, 불명확 질문 처리 및 다단계 대화 관리를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-007"
+      ],
+      "source_fur_id": "SFR-007",
+      "original_task2_id": "SFR-007::T2-002"
+    },
+    {
+      "task2_id": "T2-000034",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "홈페이지·게시판 최신정보 자동 학습",
+      "requirement_detail": "대학 홈페이지와 게시판의 안내에 적합한 정보를 수집·분석하고 매일 자동으로 학습하여 지식베이스에 추가하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008",
+      "original_task2_id": "T2-021"
+    },
+    {
+      "task2_id": "T2-000035",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-008::SFR-008-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "관리자 수동 정보 업데이트",
+      "requirement_detail": "관리자는 특정 학사정보를 수동으로 업데이트할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008",
+      "original_task2_id": "T2-022"
+    },
+    {
+      "task2_id": "T2-000036",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-008::SFR-008-005",
+        "SFR-008::SFR-008-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "최신 학사정보·일정·공지사항 질의응답",
+      "requirement_detail": "최신 학사정보, 일정, 공지사항 및 관련 담당부서와 연락처를 사용자 질의에 정확히 응답하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008",
+      "original_task2_id": "T2-023"
+    },
+    {
+      "task2_id": "T2-000037",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-009::SFR-009-001",
+        "SFR-009::SFR-009-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "분석",
+      "requirement_name": "챗봇 이용현황 통계·대화 리뷰",
+      "requirement_detail": "챗봇 이용현황 통계 분석 기능을 제공하여야 하며, 유형별 기간별 이용현황 및 이용자 수·대화 수 통계와 대화내용 리뷰를 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009",
+      "original_task2_id": "T2-021"
+    },
+    {
+      "task2_id": "T2-000038",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-009::SFR-009-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "대화내용 엑셀 다운로드",
+      "requirement_detail": "대화내용 엑셀 다운로드 기능을 제공하여야 하며, 대화내용을 엑셀파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009",
+      "original_task2_id": "T2-022"
+    },
+    {
+      "task2_id": "T2-000039",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-009::SFR-009-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "통계정보 엑셀 다운로드",
+      "requirement_detail": "통계정보 엑셀 다운로드 기능을 제공하여야 하며, 통계분석 정보를 엑셀파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-009"
+      ],
+      "source_fur_id": "SFR-009",
+      "original_task2_id": "T2-023"
+    },
+    {
+      "task2_id": "T2-000040",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "ARS 전화 응답 챗봇",
+      "requirement_detail": "생성된 챗봇을 전화 ARS에 적용하여 인입 전화에 즉시 응답하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010",
+      "original_task2_id": "SFR-010::T2-001"
+    },
+    {
+      "task2_id": "T2-000041",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "ARS 한국어 음성 대화",
+      "requirement_detail": "전화 ARS는 한국어로 음성 대화를 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010",
+      "original_task2_id": "SFR-010::T2-002"
+    },
+    {
+      "task2_id": "T2-000042",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-010::SFR-010-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "ARS 대량 통화 처리",
+      "requirement_detail": "전화 ARS는 대량 통화량을 처리할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-010"
+      ],
+      "source_fur_id": "SFR-010",
+      "original_task2_id": "SFR-010::T2-003"
+    },
+    {
+      "task2_id": "T2-000043",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-011::SFR-011-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "학내 통합인증 로그인",
+      "requirement_detail": "학내 운영중인 통합인증시스템을 연계하여 로그인을 처리하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-011"
+      ],
+      "source_fur_id": "SFR-011",
+      "original_task2_id": "T2-031"
+    },
+    {
+      "task2_id": "T2-000044",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-011::SFR-011-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "권한",
+      "requirement_name": "학내 이메일 ID·외부 사용자 차단",
+      "requirement_detail": "학내 이메일을 ID로 사용하여 대학 구성원의 인증 절차를 단순화하고, 외부 사용자의 접근을 차단하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-011"
+      ],
+      "source_fur_id": "SFR-011",
+      "original_task2_id": "T2-032"
+    },
+    {
+      "task2_id": "T2-000045",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-011::SFR-011-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "보안",
+      "requirement_name": "비밀번호 암호화·HTTPS",
+      "requirement_detail": "비밀번호 암호화와 안전한 데이터 전송을 위해 HTTPS 프로토콜을 사용하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-011"
+      ],
+      "source_fur_id": "SFR-011",
+      "original_task2_id": "T2-033"
+    },
+    {
+      "task2_id": "T2-000046",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-011::SFR-011-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "입력",
+      "requirement_name": "비밀번호 재설정",
+      "requirement_detail": "사용자가 비밀번호를 재설정할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-011"
+      ],
+      "source_fur_id": "SFR-011",
+      "original_task2_id": "T2-034"
+    },
+    {
+      "task2_id": "T2-000047",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "신규 회원 승인·거부",
+      "requirement_detail": "관리자는 신규 회원 가입 요청을 승인하거나 거부할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012",
+      "original_task2_id": "T2-031"
+    },
+    {
+      "task2_id": "T2-000048",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "부적절 계정 삭제",
+      "requirement_detail": "관리자는 부적절하거나 비활성화된 사용자 계정을 삭제할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012",
+      "original_task2_id": "T2-032"
+    },
+    {
+      "task2_id": "T2-000049",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-012::SFR-012-003",
+        "SFR-012::SFR-012-006"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용자·챗봇 상태·권한·업데이트 조회",
+      "requirement_detail": "관리자는 사용자 그룹과 계정 상태, 챗봇 사용현황, 업데이트 상태와 권한 정보를 조회할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012",
+      "original_task2_id": "T2-033"
+    },
+    {
+      "task2_id": "T2-000050",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-012::SFR-012-004",
+        "SFR-012::SFR-012-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "챗봇 퍼블리시·비활성화 삭제",
+      "requirement_detail": "관리자는 생성된 챗봇의 퍼블리시 요청을 승인하거나 거부하고 비활성화되거나 필요 없는 챗봇을 삭제할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012",
+      "original_task2_id": "T2-034"
+    },
+    {
+      "task2_id": "T2-000051",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-012::SFR-012-007"
+      ],
+      "reference_context_ids": [],
+      "action_type": "조회",
+      "requirement_name": "사용량·통계 조회·다운로드",
+      "requirement_detail": "관리자는 사용량 데이터를 실시간으로 조회하고 통계 분석 결과를 CSV 또는 엑셀 파일로 다운로드할 수 있어야 한다.",
+      "source_requirement_ids": [
+        "SFR-012"
+      ],
+      "source_fur_id": "SFR-012",
+      "original_task2_id": "T2-035"
+    }
+  ]
+}

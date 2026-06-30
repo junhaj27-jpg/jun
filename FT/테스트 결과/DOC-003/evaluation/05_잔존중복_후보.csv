@@ -1,0 +1,3 @@
+﻿candidate_level,left_gold_id,right_gold_id,left_name,right_name,left_action_type,right_action_type,same_action_type,semantic_similarity,name_jaccard,shared_source_furs
+REVIEW_CANDIDATE,GOLD-011,GOLD-012,현재 운영중인 CMS 호환성,현재 운영중인 CMS 기능 활성화,준수,준수,True,0.955224,0.5,SFR-005
+REVIEW_CANDIDATE,GOLD-014,GOLD-018,사업단 통합게시판 게시글 조회,사업단 성과 조회,조회,조회,True,0.941092,0.4,

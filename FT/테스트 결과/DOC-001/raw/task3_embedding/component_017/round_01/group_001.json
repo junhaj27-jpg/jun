@@ -1,0 +1,177 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C017-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000075",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-011::SFR-011-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "연계",
+        "requirement_name": "클라우드 객체 스토리지 연동 어댑터",
+        "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-000082",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-012::SFR-012-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "연계",
+        "requirement_name": "HPC 클라우드 어댑터",
+        "requirement_detail": "온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-012"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 2123,
+      "max_new_tokens": 3184,
+      "generated_tokens": 472,
+      "hit_token_limit": false,
+      "elapsed_seconds": 28.51129193790257,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000075\",\n        \"T2-000082\"\n      ],\n      \"relation_type\": \"PARTIAL_OVERLAP\",\n      \"processing_result\": \"MERGED\",\n      \"rationale\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\",\n      \"preserved_conditions\": \"문서 전체의 원문 조건·범위·참고 요구사항을 반영하여 문구와 계보를 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirement\": {\n    \"gold_id\": \"GOLD-000000\",\n    \"action_type\": \"연계\",\n    \"requirement_name\": \"클라우드 객체 스토리지·HPC 클라우드 연동 어댑터\",\n    \"requirement_detail\": \"클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.\",\n    \"source_task2_ids\": [\n      \"T2-000075\",\n      \"T2-000082\"\n    ],\n    \"source_atomic_ids\": [\n      \"SFR-011::SFR-011-002\",\n      \"SFR-012::SFR-012-003\"\n    ],\n    \"sources\": [\n      \"SFR-011\",\n      \"SFR-012\"\n    ],\n    \"processing_type\": \"통합\",\n    \"merge_basis\": \"문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.\"\n  }\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000075",
+              "T2-000082"
+            ],
+            "relation_type": "PARTIAL_OVERLAP",
+            "processing_result": "MERGED",
+            "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+            "preserved_conditions": [
+              "문서 전체의 원문 조건·범위·참고 요구사항을 반영하여 문구와 계보를 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-000000"
+          }
+        ],
+        "final_requirement": {
+          "gold_id": "GOLD-000000",
+          "action_type": "연계",
+          "requirement_name": "클라우드 객체 스토리지·HPC 클라우드 연동 어댑터",
+          "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+          "source_task2_ids": [
+            "T2-000075",
+            "T2-000082"
+          ],
+          "source_atomic_ids": [
+            "SFR-011::SFR-011-002",
+            "SFR-012::SFR-012-003"
+          ],
+          "sources": [
+            "SFR-011",
+            "SFR-012"
+          ],
+          "processing_type": "통합",
+          "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+        },
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-000000",
+            "action_type": "연계",
+            "requirement_name": "클라우드 객체 스토리지·HPC 클라우드 연동 어댑터",
+            "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+            "source_task2_ids": [
+              "T2-000075",
+              "T2-000082"
+            ],
+            "source_atomic_ids": [
+              "SFR-011::SFR-011-002",
+              "SFR-012::SFR-012-003"
+            ],
+            "sources": [
+              "SFR-011",
+              "SFR-012"
+            ],
+            "processing_type": "통합",
+            "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+          }
+        ],
+        "final_requirement_count": 1
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000075",
+          "T2-000082"
+        ],
+        "relation_type": "PARTIAL_OVERLAP",
+        "processing_result": "MERGED",
+        "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+        "preserved_conditions": [
+          "문서 전체의 원문 조건·범위·참고 요구사항을 반영하여 문구와 계보를 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-000000"
+      }
+    ],
+    "final_requirement": {
+      "gold_id": "GOLD-000000",
+      "action_type": "연계",
+      "requirement_name": "클라우드 객체 스토리지·HPC 클라우드 연동 어댑터",
+      "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+      "source_task2_ids": [
+        "T2-000075",
+        "T2-000082"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-002",
+        "SFR-012::SFR-012-003"
+      ],
+      "sources": [
+        "SFR-011",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-000000",
+        "action_type": "연계",
+        "requirement_name": "클라우드 객체 스토리지·HPC 클라우드 연동 어댑터",
+        "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+        "source_task2_ids": [
+          "T2-000075",
+          "T2-000082"
+        ],
+        "source_atomic_ids": [
+          "SFR-011::SFR-011-002",
+          "SFR-012::SFR-012-003"
+        ],
+        "sources": [
+          "SFR-011",
+          "SFR-012"
+        ],
+        "processing_type": "통합",
+        "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+      }
+    ],
+    "final_requirement_count": 1
+  }
+}

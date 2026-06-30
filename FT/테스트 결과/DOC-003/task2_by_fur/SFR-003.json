@@ -1,0 +1,54 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-003",
+  "atomic_input_sha256": "1c4ce94f74cab90def99eabb60d2c662b016ace02302d5ccef528cb7df361c45",
+  "normalized_requirement_count": 3,
+  "normalized_requirements": [
+    {
+      "task2_id": "SFR-003-001",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "다중 디바이스·브라우저 반응형 웹",
+      "requirement_detail": "다양한 디바이스와 브라우저에서 반응형 웹을 제공하여야 하며, 화면·메뉴·기능의 적절한 조정과 사용자 접근성을 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "SFR-003-002",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-002"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "모바일 OS·브라우저 호환성",
+      "requirement_detail": "모바일 OS와 브라우저의 호환성을 제공하여야 하며, 모바일 기기에서의 정상적인 서비스 이용을 지원하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    },
+    {
+      "task2_id": "SFR-003-003",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-003::SFR-003-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "제공",
+      "requirement_name": "간결 메뉴·UI 접근성·가독성·편리성·확장성",
+      "requirement_detail": "간결한 메뉴 구조와 UI를 제공하여야 하며, 정보의 접근성, 가독성, 편리성과 확장성을 확보하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-003"
+      ],
+      "source_fur_id": "SFR-003"
+    }
+  ]
+}

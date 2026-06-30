@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-004",
+  "atomic_input_sha256": "11188d70725755500cde8ae9e8b596a5809c046f7c192c4eb27ef08d311ffd85",
+  "normalized_requirement_count": 1,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-012",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-004::SFR-004-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "RISE사업단·센터 랜딩페이지",
+      "requirement_detail": "RISE사업단 및 각 센터의 홈페이지를 효과적으로 접근할 수 있도록 랜딩페이지를 제공하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-004"
+      ],
+      "source_fur_id": "SFR-004"
+    }
+  ]
+}

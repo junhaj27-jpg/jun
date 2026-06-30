@@ -1,0 +1,72 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-010",
+      "requirement_name": "검색최적화",
+      "requirement_type": "기능",
+      "requirement_definition": "검색최적화",
+      "requirement_detail": "• 네이버, 구글 등의 포털사이트 검색 최적화\n• 챗GPT 등 LLM의 검색 최적화",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1982,
+      "max_new_tokens": 4096,
+      "generated_tokens": 179,
+      "hit_token_limit": false,
+      "elapsed_seconds": 11.389904035255313,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-010\",\n  \"decomposition_count\": 2,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-010-001\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"포털 검색 최적화\",\n      \"source_text\": \"네이버, 구글 등의 포털사이트 검색 최적화\"\n    },\n    {\n      \"atomic_id\": \"SFR-010-002\",\n      \"action_type\": \"제공\",\n      \"output_name\": \"LLM 검색 최적화\",\n      \"source_text\": \"챗GPT 등 LLM의 검색 최적화\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-010",
+        "decomposition_count": 2,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-010-001",
+            "action_type": "제공",
+            "output_name": "포털 검색 최적화",
+            "source_text": "네이버, 구글 등의 포털사이트 검색 최적화"
+          },
+          {
+            "atomic_id": "SFR-010-002",
+            "action_type": "제공",
+            "output_name": "LLM 검색 최적화",
+            "source_text": "챗GPT 등 LLM의 검색 최적화"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-010",
+    "decomposition_count": 2,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-010-001",
+        "action_type": "제공",
+        "output_name": "포털 검색 최적화",
+        "source_text": "네이버, 구글 등의 포털사이트 검색 최적화"
+      },
+      {
+        "atomic_id": "SFR-010-002",
+        "action_type": "제공",
+        "output_name": "LLM 검색 최적화",
+        "source_text": "챗GPT 등 LLM의 검색 최적화"
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-007",
+      "requirement_name": "온라인 신청 및 문의",
+      "requirement_type": "기능",
+      "requirement_definition": "온라인 신청 및 문의",
+      "requirement_detail": "• 사용자의 온라인 신청 및 문의사항을 이메일 혹은 관리자 기능을 통하여 확인",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1981,
+      "max_new_tokens": 4096,
+      "generated_tokens": 184,
+      "hit_token_limit": false,
+      "elapsed_seconds": 11.65661902492866,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-007\",\n  \"decomposition_count\": 2,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-007-001\",\n      \"action_type\": \"입력\",\n      \"output_name\": \"온라인 신청·문의 입력\",\n      \"source_text\": \"사용자의 온라인 신청 및 문의사항\"\n    },\n    {\n      \"atomic_id\": \"SFR-007-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"온라인 신청·문의 관리자 확인\",\n      \"source_text\": \"이메일 혹은 관리자 기능을 통하여 확인\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-007",
+        "decomposition_count": 2,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-007-001",
+            "action_type": "입력",
+            "output_name": "온라인 신청·문의 입력",
+            "source_text": "사용자의 온라인 신청 및 문의사항"
+          },
+          {
+            "atomic_id": "SFR-007-002",
+            "action_type": "조회",
+            "output_name": "온라인 신청·문의 관리자 확인",
+            "source_text": "이메일 혹은 관리자 기능을 통하여 확인"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-007",
+    "decomposition_count": 2,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-007-001",
+        "action_type": "입력",
+        "output_name": "온라인 신청·문의 입력",
+        "source_text": "사용자의 온라인 신청 및 문의사항"
+      },
+      {
+        "atomic_id": "SFR-007-002",
+        "action_type": "조회",
+        "output_name": "온라인 신청·문의 관리자 확인",
+        "source_text": "이메일 혹은 관리자 기능을 통하여 확인"
+      }
+    ]
+  }
+}

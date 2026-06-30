@@ -1,0 +1,60 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-003",
+    "document_name": "3. 2025년 RISE사업단 공용 홈페이지 플랫폼 구축.docx",
+    "requirement": {
+      "requirement_id": "SFR-008",
+      "requirement_name": "SSO",
+      "requirement_type": "기능",
+      "requirement_definition": "SSO",
+      "requirement_detail": "• 우리대학에서 사용중인 SSO 연계하여 로그인의 불편함을 최소화하여야 한다.",
+      "source_location": {
+        "table_index": 17,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 1968,
+      "max_new_tokens": 4096,
+      "generated_tokens": 111,
+      "hit_token_limit": false,
+      "elapsed_seconds": 7.347376524936408,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-008\",\n  \"decomposition_count\": 1,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-008-001\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"우리대학 SSO 로그인 연계\",\n      \"source_text\": \"우리대학 SSO 연계\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-008",
+        "decomposition_count": 1,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-008-001",
+            "action_type": "연계",
+            "output_name": "우리대학 SSO 로그인 연계",
+            "source_text": "우리대학 SSO 연계"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-008",
+    "decomposition_count": 1,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-008-001",
+        "action_type": "연계",
+        "output_name": "우리대학 SSO 로그인 연계",
+        "source_text": "우리대학 SSO 연계"
+      }
+    ]
+  }
+}

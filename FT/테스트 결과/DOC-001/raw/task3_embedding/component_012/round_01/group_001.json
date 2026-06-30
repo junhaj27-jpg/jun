@@ -1,0 +1,577 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C012-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000049",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-006::SFR-006-008",
+          "SFR-006::SFR-006-009",
+          "SFR-006::SFR-006-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "HPC 자동 튜닝·성능 최적화·유지보수 영향 분석",
+        "requirement_detail": "HPC 클러스터의 성능을 자동으로 튜닝하고 최적화하며 유지보수 전후 성능 비교와 영향 분석을 수행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000054",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HPC 작업 실행시간·자원 소모율 분석",
+        "requirement_detail": "HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000056",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 성능 최적화 제안",
+        "requirement_detail": "HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000078",
+        "merge_decision": "MERGED",
+        "merged_from": [
+          "SFR-011::SFR-011-005",
+          "SFR-011::SFR-011-006",
+          "SFR-011::SFR-011-007",
+          "SFR-011::SFR-011-008",
+          "SFR-011::SFR-011-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+        "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-011"
+        ]
+      },
+      {
+        "task2_id": "T2-000080",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-012::SFR-012-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HPC I/O 프로파일링 및 분석",
+        "requirement_detail": "HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-012"
+        ]
+      },
+      {
+        "task2_id": "T2-000113",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 자원·환경 설정",
+        "requirement_detail": "지정된 자원과 환경 설정에 따라 HPC 벤치마크를 실행하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000121",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-009"
+        ],
+        "reference_context_ids": [],
+        "action_type": "분석",
+        "requirement_name": "HPC 벤치마크 자원 활용·병목 분석",
+        "requirement_detail": "자원 활용 효율성과 병목 지점을 시각화하여 분석하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage3",
+      "prompt_tokens": 3019,
+      "max_new_tokens": 4528,
+      "generated_tokens": 2499,
+      "hit_token_limit": false,
+      "elapsed_seconds": 148.3689057631418,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000049\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000054\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000056\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000078\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000080\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000113\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000121\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\",\n      \"preserved_conditions\": \"각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"HPC 자동 튜닝·성능 최적화·유지보수 영향 분석\",\n      \"requirement_detail\": \"HPC 클러스터의 성능을 자동으로 튜닝하고 최적화하며 유지보수 전후 성능 비교와 영향 분석을 수행하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000049\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-006::SFR-006-008\",\n        \"SFR-006::SFR-006-009\",\n        \"SFR-006::SFR-006-010\"\n      ],\n      \"sources\": [\n        \"SFR-006\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC 작업 실행시간·자원 소모율 분석\",\n      \"requirement_detail\": \"HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000054\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007::SFR-007-005\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 성능 최적화 제안\",\n      \"requirement_detail\": \"HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000056\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007::SFR-007-007\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC 워크로드·스토리지 적합도 분석·시뮬레이션\",\n      \"requirement_detail\": \"HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000078\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-011::SFR-011-005\",\n        \"SFR-011::SFR-011-006\",\n        \"SFR-011::SFR-011-007\",\n        \"SFR-011::SFR-011-008\",\n        \"SFR-011::SFR-011-009\"\n      ],\n      \"sources\": [\n        \"SFR-011\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC I/O 프로파일링 및 분석\",\n      \"requirement_detail\": \"HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000080\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-012::SFR-012-001\"\n      ],\n      \"sources\": [\n        \"SFR-012\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 자원·환경 설정\",\n      \"requirement_detail\": \"지정된 자원과 환경 설정에 따라 HPC 벤치마크를 실행하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000113\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017::SFR-017-001\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"분석\",\n      \"requirement_name\": \"HPC 벤치마크 자원 활용·병목 분석\",\n      \"requirement_detail\": \"자원 활용 효율성과 병목 지점을 시각화하여 분석하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000121\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017::SFR-017-009\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "comparison_ids": [
+              "T2-000049"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-001"
+          },
+          {
+            "comparison_ids": [
+              "T2-000054"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-002"
+          },
+          {
+            "comparison_ids": [
+              "T2-000056"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-003"
+          },
+          {
+            "comparison_ids": [
+              "T2-000078"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-004"
+          },
+          {
+            "comparison_ids": [
+              "T2-000080"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-005"
+          },
+          {
+            "comparison_ids": [
+              "T2-000113"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-006"
+          },
+          {
+            "comparison_ids": [
+              "T2-000121"
+            ],
+            "relation_type": "UNIQUE",
+            "processing_result": "KEPT",
+            "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+            "preserved_conditions": [
+              "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+            ],
+            "excluded_or_absorbed_ids": [],
+            "gold_id": "GOLD-007"
+          }
+        ],
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "산출",
+            "requirement_name": "HPC 자동 튜닝·성능 최적화·유지보수 영향 분석",
+            "requirement_detail": "HPC 클러스터의 성능을 자동으로 튜닝하고 최적화하며 유지보수 전후 성능 비교와 영향 분석을 수행하여야 한다.",
+            "source_task2_ids": [
+              "T2-000049"
+            ],
+            "source_atomic_ids": [
+              "SFR-006::SFR-006-008",
+              "SFR-006::SFR-006-009",
+              "SFR-006::SFR-006-010"
+            ],
+            "sources": [
+              "SFR-006"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "분석",
+            "requirement_name": "HPC 작업 실행시간·자원 소모율 분석",
+            "requirement_detail": "HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.",
+            "source_task2_ids": [
+              "T2-000054"
+            ],
+            "source_atomic_ids": [
+              "SFR-007::SFR-007-005"
+            ],
+            "sources": [
+              "SFR-007"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "조회",
+            "requirement_name": "HPC 성능 최적화 제안",
+            "requirement_detail": "HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.",
+            "source_task2_ids": [
+              "T2-000056"
+            ],
+            "source_atomic_ids": [
+              "SFR-007::SFR-007-007"
+            ],
+            "sources": [
+              "SFR-007"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "분석",
+            "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+            "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+            "source_task2_ids": [
+              "T2-000078"
+            ],
+            "source_atomic_ids": [
+              "SFR-011::SFR-011-005",
+              "SFR-011::SFR-011-006",
+              "SFR-011::SFR-011-007",
+              "SFR-011::SFR-011-008",
+              "SFR-011::SFR-011-009"
+            ],
+            "sources": [
+              "SFR-011"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "분석",
+            "requirement_name": "HPC I/O 프로파일링 및 분석",
+            "requirement_detail": "HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.",
+            "source_task2_ids": [
+              "T2-000080"
+            ],
+            "source_atomic_ids": [
+              "SFR-012::SFR-012-001"
+            ],
+            "sources": [
+              "SFR-012"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 자원·환경 설정",
+            "requirement_detail": "지정된 자원과 환경 설정에 따라 HPC 벤치마크를 실행하여야 한다.",
+            "source_task2_ids": [
+              "T2-000113"
+            ],
+            "source_atomic_ids": [
+              "SFR-017::SFR-017-001"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "분석",
+            "requirement_name": "HPC 벤치마크 자원 활용·병목 분석",
+            "requirement_detail": "자원 활용 효율성과 병목 지점을 시각화하여 분석하여야 한다.",
+            "source_task2_ids": [
+              "T2-000121"
+            ],
+            "source_atomic_ids": [
+              "SFR-017::SFR-017-009"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+          }
+        ],
+        "final_requirement_count": 7
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "comparison_ids": [
+          "T2-000049"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-001"
+      },
+      {
+        "comparison_ids": [
+          "T2-000054"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-002"
+      },
+      {
+        "comparison_ids": [
+          "T2-000056"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-003"
+      },
+      {
+        "comparison_ids": [
+          "T2-000078"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-004"
+      },
+      {
+        "comparison_ids": [
+          "T2-000080"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-005"
+      },
+      {
+        "comparison_ids": [
+          "T2-000113"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-006"
+      },
+      {
+        "comparison_ids": [
+          "T2-000121"
+        ],
+        "relation_type": "UNIQUE",
+        "processing_result": "KEPT",
+        "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+        "preserved_conditions": [
+          "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+        ],
+        "excluded_or_absorbed_ids": [],
+        "gold_id": "GOLD-007"
+      }
+    ],
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "산출",
+        "requirement_name": "HPC 자동 튜닝·성능 최적화·유지보수 영향 분석",
+        "requirement_detail": "HPC 클러스터의 성능을 자동으로 튜닝하고 최적화하며 유지보수 전후 성능 비교와 영향 분석을 수행하여야 한다.",
+        "source_task2_ids": [
+          "T2-000049"
+        ],
+        "source_atomic_ids": [
+          "SFR-006::SFR-006-008",
+          "SFR-006::SFR-006-009",
+          "SFR-006::SFR-006-010"
+        ],
+        "sources": [
+          "SFR-006"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "분석",
+        "requirement_name": "HPC 작업 실행시간·자원 소모율 분석",
+        "requirement_detail": "HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.",
+        "source_task2_ids": [
+          "T2-000054"
+        ],
+        "source_atomic_ids": [
+          "SFR-007::SFR-007-005"
+        ],
+        "sources": [
+          "SFR-007"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "조회",
+        "requirement_name": "HPC 성능 최적화 제안",
+        "requirement_detail": "HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.",
+        "source_task2_ids": [
+          "T2-000056"
+        ],
+        "source_atomic_ids": [
+          "SFR-007::SFR-007-007"
+        ],
+        "sources": [
+          "SFR-007"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "분석",
+        "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+        "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+        "source_task2_ids": [
+          "T2-000078"
+        ],
+        "source_atomic_ids": [
+          "SFR-011::SFR-011-005",
+          "SFR-011::SFR-011-006",
+          "SFR-011::SFR-011-007",
+          "SFR-011::SFR-011-008",
+          "SFR-011::SFR-011-009"
+        ],
+        "sources": [
+          "SFR-011"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "분석",
+        "requirement_name": "HPC I/O 프로파일링 및 분석",
+        "requirement_detail": "HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.",
+        "source_task2_ids": [
+          "T2-000080"
+        ],
+        "source_atomic_ids": [
+          "SFR-012::SFR-012-001"
+        ],
+        "sources": [
+          "SFR-012"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 자원·환경 설정",
+        "requirement_detail": "지정된 자원과 환경 설정에 따라 HPC 벤치마크를 실행하여야 한다.",
+        "source_task2_ids": [
+          "T2-000113"
+        ],
+        "source_atomic_ids": [
+          "SFR-017::SFR-017-001"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "분석",
+        "requirement_name": "HPC 벤치마크 자원 활용·병목 분석",
+        "requirement_detail": "자원 활용 효율성과 병목 지점을 시각화하여 분석하여야 한다.",
+        "source_task2_ids": [
+          "T2-000121"
+        ],
+        "source_atomic_ids": [
+          "SFR-017::SFR-017-009"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+      }
+    ],
+    "final_requirement_count": 7
+  }
+}

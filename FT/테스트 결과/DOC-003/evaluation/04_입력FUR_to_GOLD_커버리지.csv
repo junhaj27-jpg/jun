@@ -1,0 +1,11 @@
+﻿source_fur_id,source_requirement_name,linked_gold_ids,linked_gold_count,lineage_semantic_max,overall_semantic_max,overall_best_gold_id,source_covered,passes_semantic_threshold
+SFR-001,홈패이지 구축 일반사항,GOLD-001; GOLD-002; GOLD-003; GOLD-004; GOLD-005; GOLD-006; GOLD-007,7,0.917887,0.917887,GOLD-004,True,True
+SFR-002,사용자 중심의 홈페이지 구축,GOLD-005; GOLD-007,2,0.921265,0.921265,GOLD-005,True,True
+SFR-003,반응형 웹페이지 방식 도입,GOLD-005; GOLD-008; GOLD-009,3,0.941975,0.941975,GOLD-008,True,True
+SFR-004,랜딩페이지 제작,GOLD-010,1,0.957086,0.957086,GOLD-010,True,True
+SFR-005,콘텐츠관리시스템(CMS) 기능,GOLD-005; GOLD-011; GOLD-012; GOLD-013,4,0.918174,0.918174,GOLD-012,True,True
+SFR-006,통합게시판 구축,GOLD-014,1,0.949478,0.949478,GOLD-014,True,True
+SFR-007,온라인 신청 및 문의,GOLD-015; GOLD-016,2,0.953733,0.953733,GOLD-016,True,True
+SFR-008,SSO,GOLD-017,1,0.956523,0.956523,GOLD-017,True,True
+SFR-009,성과관리,GOLD-018,1,0.95327,0.95327,GOLD-018,True,True
+SFR-010,검색최적화,GOLD-019,1,0.953117,0.953117,GOLD-019,True,True

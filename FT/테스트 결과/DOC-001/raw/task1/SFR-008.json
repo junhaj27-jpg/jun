@@ -1,0 +1,93 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-008",
+      "requirement_name": "장애 예방 및 대응 기능",
+      "requirement_type": "기능",
+      "requirement_definition": "장애 예방 및 대응 기능",
+      "requirement_detail": "○ HPC 통합 관리를 위한 장애 복구 자동화\n클라우드 플랫폼 및 서비스에 대한 자동 복구 프로세스 구축해야 함\n하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림을 제공해야 함\n장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립이 필요함\n자동 복구 프로세스를 수행 후 보고서 생성 및 개선점 분석을 제공해야 함",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2068,
+      "max_new_tokens": 4096,
+      "generated_tokens": 368,
+      "hit_token_limit": false,
+      "elapsed_seconds": 23.36440916499123,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-008\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-008-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"장애 복구 자동화\",\n      \"source_text\": \"클라우드 플랫폼 및 서비스에 대한 자동 복구 프로세스\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"하드웨어·스토리지·네트워크 모니터링\",\n      \"source_text\": \"하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"장애 시나리오별 대응 전략\",\n      \"source_text\": \"장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립\"\n    },\n    {\n      \"atomic_id\": \"SFR-008-004\",\n      \"action_type\": \"산출\",\n      \"output_name\": \"장애 복구 보고서 및 개선점 분석\",\n      \"source_text\": \"자동 복구 프로세스를 수행 후 보고서 생성 및 개선점 분석\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-008",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-008-001",
+            "action_type": "관리",
+            "output_name": "장애 복구 자동화",
+            "source_text": "클라우드 플랫폼 및 서비스에 대한 자동 복구 프로세스"
+          },
+          {
+            "atomic_id": "SFR-008-002",
+            "action_type": "조회",
+            "output_name": "하드웨어·스토리지·네트워크 모니터링",
+            "source_text": "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림"
+          },
+          {
+            "atomic_id": "SFR-008-003",
+            "action_type": "관리",
+            "output_name": "장애 시나리오별 대응 전략",
+            "source_text": "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립"
+          },
+          {
+            "atomic_id": "SFR-008-004",
+            "action_type": "산출",
+            "output_name": "장애 복구 보고서 및 개선점 분석",
+            "source_text": "자동 복구 프로세스를 수행 후 보고서 생성 및 개선점 분석"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-008",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-008-001",
+        "action_type": "관리",
+        "output_name": "장애 복구 자동화",
+        "source_text": "클라우드 플랫폼 및 서비스에 대한 자동 복구 프로세스"
+      },
+      {
+        "atomic_id": "SFR-008-002",
+        "action_type": "조회",
+        "output_name": "하드웨어·스토리지·네트워크 모니터링",
+        "source_text": "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림"
+      },
+      {
+        "atomic_id": "SFR-008-003",
+        "action_type": "관리",
+        "output_name": "장애 시나리오별 대응 전략",
+        "source_text": "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립"
+      },
+      {
+        "atomic_id": "SFR-008-004",
+        "action_type": "산출",
+        "output_name": "장애 복구 보고서 및 개선점 분석",
+        "source_text": "자동 복구 프로세스를 수행 후 보고서 생성 및 개선점 분석"
+      }
+    ]
+  }
+}

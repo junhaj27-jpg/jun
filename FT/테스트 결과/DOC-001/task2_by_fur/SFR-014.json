@@ -1,0 +1,70 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-001",
+  "source_requirement_id": "SFR-014",
+  "atomic_input_sha256": "ccbea79140a2f87aee766d908e848a94728fef3175e488f1fed1519053df9803",
+  "normalized_requirement_count": 4,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-037",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-014::SFR-014-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "관리",
+      "requirement_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+      "requirement_detail": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-014"
+      ],
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "task2_id": "T2-038",
+      "merge_decision": "MERGED",
+      "merged_from": [
+        "SFR-014::SFR-014-002",
+        "SFR-014::SFR-014-003"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산",
+      "requirement_detail": "워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-014"
+      ],
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "task2_id": "T2-039",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-014::SFR-014-004"
+      ],
+      "reference_context_ids": [],
+      "action_type": "산출",
+      "requirement_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+      "requirement_detail": "생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-014"
+      ],
+      "source_fur_id": "SFR-014"
+    },
+    {
+      "task2_id": "T2-040",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-014::SFR-014-005"
+      ],
+      "reference_context_ids": [],
+      "action_type": "처리",
+      "requirement_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+      "requirement_detail": "동적 자원 변화에 따라 스케줄링 정책을 재계산하고 재적용하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-014"
+      ],
+      "source_fur_id": "SFR-014"
+    }
+  ]
+}

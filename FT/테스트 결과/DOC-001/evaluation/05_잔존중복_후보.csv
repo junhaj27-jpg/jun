@@ -1,0 +1,4 @@
+﻿candidate_level,left_gold_id,right_gold_id,left_name,right_name,left_action_type,right_action_type,same_action_type,semantic_similarity,name_jaccard,shared_source_furs
+REVIEW_CANDIDATE,GOLD-005,GOLD-019,CXL 메모리 대역폭·지연·링크별 사용량 모니터링,VM별 CXL 메모리 사용량 모니터링,조회,조회,True,0.964907,0.5,
+REVIEW_CANDIDATE,GOLD-006,GOLD-022,CXL 메모리 풀링 및 동적 확장·축소 관리,CXL 메모리 자동 확장·장애 복구,관리,관리,True,0.94136,0.3,
+REVIEW_CANDIDATE,GOLD-091,GOLD-093,HPC 벤치마크 로그 자동 수집,HPC 벤치마크 상태 로그 자동 수집,처리,처리,True,0.956704,0.833333,SFR-017

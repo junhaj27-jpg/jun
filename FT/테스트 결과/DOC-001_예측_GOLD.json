@@ -1,0 +1,3894 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "document_id": "DOC-001",
+  "final_requirement_count": 99,
+  "final_requirements": [
+    {
+      "gold_id": "GOLD-001",
+      "action_type": "관리",
+      "requirement_name": "CXL 2.0/3.0 메모리·디바이스 호환성 설계",
+      "requirement_detail": "CXL 2.0 또는 3.0 메모리와 Type 1, 2, 3 디바이스의 호환성을 검토하고 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000001"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-001",
+        "SFR-001::SFR-001-002"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-002",
+      "action_type": "관리",
+      "requirement_name": "CXL 메모리 프레임워크 설계·동적 할당·CRD·공유 활용",
+      "requirement_detail": "KI Cloud 환경에서 CXL 메모리 프레임워크를 설계하고 Openstack·Kubernetes·다중 노드와 VM·Container에서 동적으로 할당·해제하며 CRD를 지원하고 Compute·Storage 공유 활용을 위한 OpenMP·MPI 공유 메모리 모델을 개발하여야 한다.",
+      "source_task2_ids": [
+        "T2-000002",
+        "T2-000003",
+        "T2-000006",
+        "T2-000020",
+        "T2-000023",
+        "T2-000027",
+        "T2-000028",
+        "T2-000033"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-003",
+        "SFR-001-004",
+        "SFR-001-005",
+        "SFR-001-009",
+        "SFR-003-003",
+        "SFR-003-006",
+        "SFR-003-010",
+        "SFR-004-001",
+        "SFR-004-007",
+        "SFR-004-008",
+        "SFR-001::SFR-001-003",
+        "SFR-001::SFR-001-004",
+        "SFR-001::SFR-001-005",
+        "SFR-001::SFR-001-009",
+        "SFR-003::SFR-003-003",
+        "SFR-003::SFR-003-006",
+        "SFR-003::SFR-003-010",
+        "SFR-004::SFR-004-001",
+        "SFR-004::SFR-004-007",
+        "SFR-004::SFR-004-008"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-003",
+        "SFR-004"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과를 기준으로 통합하여 하나의 요구사항으로 재정의함."
+    },
+    {
+      "gold_id": "GOLD-003",
+      "action_type": "관리",
+      "requirement_name": "CXL 메모리 QoS 정책 설계",
+      "requirement_detail": "메모리 대역폭과 지연시간 기반 QoS 정책을 설계하여야 한다.",
+      "source_task2_ids": [
+        "T2-000004"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-006"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-004",
+      "action_type": "분석",
+      "requirement_name": "CXL 메모리 대역폭·지연 분석·계층적 관리",
+      "requirement_detail": "CXL 메모리의 대역폭과 지연을 분석하고 기존 DRAM과 계층적 메모리 관리를 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000005",
+        "T2-000019"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-007",
+        "SFR-001::SFR-001-008",
+        "SFR-003::SFR-003-002"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-005",
+      "action_type": "조회",
+      "requirement_name": "CXL 메모리 대역폭·지연·링크별 사용량 모니터링",
+      "requirement_detail": "노드와 VM별 CXL 메모리 사용량을 모니터링하고 CXL 링크별 실시간 대역폭 사용량을 측정하여야 한다.",
+      "source_task2_ids": [
+        "T2-000007",
+        "T2-000011",
+        "T2-000015"
+      ],
+      "source_atomic_ids": [
+        "SFR-001::SFR-001-010",
+        "SFR-002::SFR-002-004",
+        "SFR-002::SFR-002-008"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-002"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-006",
+      "action_type": "관리",
+      "requirement_name": "CXL 메모리 풀링 및 동적 확장·축소 관리",
+      "requirement_detail": "여러 CXL 메모리 장치를 단일 논리적 메모리 풀로 통합 관리하고 동적으로 확장 및 축소할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000008"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-001"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-007",
+      "action_type": "관리",
+      "requirement_name": "워크로드 특성 기반 자동 리소스 할당·메모리 우선순위·인스턴스 추천",
+      "requirement_detail": "워크로드 특성과 I/O 특성을 기반으로 자동 리소스 할당과 구성, 메모리 할당 우선순위 지정 및 최적 VM·BM 인스턴스 추천을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000009",
+        "T2-000010",
+        "T2-000036",
+        "T2-000084"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-002",
+        "SFR-002::SFR-002-003",
+        "SFR-005::SFR-005-001",
+        "SFR-012::SFR-012-005"
+      ],
+      "sources": [
+        "SFR-002",
+        "SFR-005",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-008",
+      "action_type": "조회",
+      "requirement_name": "세분화된 레이턴시 측정",
+      "requirement_detail": "읽기와 쓰기 작업별 및 메모리 영역별 레이턴시를 세분화하여 측정할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000012"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-005"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-009",
+      "action_type": "조회",
+      "requirement_name": "캐시·메모리 접근 패턴 모니터링·시각화",
+      "requirement_detail": "캐시 적중률과 미스 패턴을 모니터링하고 메모리 접근 패턴을 히트맵으로 시각화하여 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000013",
+        "T2-000014",
+        "T2-000016"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-006",
+        "SFR-002::SFR-002-007",
+        "SFR-002::SFR-002-009"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-010",
+      "action_type": "검증",
+      "requirement_name": "성능·자원 이상행위 탐지 및 Alert",
+      "requirement_detail": "성능 이상 징후와 VM, BM 및 컨테이너 자원의 이상행위를 자동으로 감지하고 사용자에게 Alert를 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000017",
+        "T2-000068"
+      ],
+      "source_atomic_ids": [
+        "SFR-002::SFR-002-010",
+        "SFR-009::SFR-009-004"
+      ],
+      "sources": [
+        "SFR-002",
+        "SFR-009"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-011",
+      "action_type": "분석",
+      "requirement_name": "HPC 애플리케이션 메모리 사용패턴 분석",
+      "requirement_detail": "기존 HPC 애플리케이션에서의 메모리 사용 패턴을 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000018"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-001"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-012",
+      "action_type": "설계",
+      "requirement_name": "CXL 메모리 DRAM 데이터 이동 방식",
+      "requirement_detail": "기존 DRAM과 CXL 메모리 간 데이터 이동 방식을 설계하여야 한다.",
+      "source_task2_ids": [
+        "T2-000021"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-004"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-013",
+      "action_type": "개발",
+      "requirement_name": "CXL 메모리 할당·해제·DMA 메커니즘",
+      "requirement_detail": "기존 DRAM과 CXL 메모리 구분 동작, 할당·해제 메커니즘 및 DMA 데이터 이동을 개발하여야 한다.",
+      "source_task2_ids": [
+        "T2-000022"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-005"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-014",
+      "action_type": "개발",
+      "requirement_name": "AI·ML CXL 모델 캐싱·기계학습",
+      "requirement_detail": "AI와 ML 애플리케이션에서 CXL 메모리 활용을 위한 모델 캐싱 및 기계 학습을 개발하여야 한다.",
+      "source_task2_ids": [
+        "T2-000024"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-007"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-015",
+      "action_type": "개발",
+      "requirement_name": "데이터베이스·In-memory CXL 메모리 확장",
+      "requirement_detail": "데이터베이스와 In-memory Computing 소프트웨어에서 CXL 메모리 활용을 위한 메모리 확장 기능을 개발하여야 한다.",
+      "source_task2_ids": [
+        "T2-000025"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-008"
+      ],
+      "sources": [
+        "SFR-003"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-016",
+      "action_type": "제공",
+      "requirement_name": "SLURM CXL-aware Job Scheduling 및 NUMA-Aware·CXL 메모리 기반 클러스터 배포",
+      "requirement_detail": "SLURM을 기반으로 CXL 메모리 특성을 고려한 Job Scheduling과 NUMA-Aware 및 CXL 메모리 기반 최적의 클러스터 배포를 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000026",
+        "T2-000037"
+      ],
+      "source_atomic_ids": [
+        "SFR-003::SFR-003-009",
+        "SFR-005::SFR-005-002"
+      ],
+      "sources": [
+        "SFR-003",
+        "SFR-005"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-017",
+      "action_type": "관리",
+      "requirement_name": "계층적 메모리 관리",
+      "requirement_detail": "기존 DRAM과 CXL 메모리의 계층적 관리와 조합을 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000029"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-002",
+        "SFR-004::SFR-004-011"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-018",
+      "action_type": "관리",
+      "requirement_name": "VM CXL 메모리 인식·활용 설정",
+      "requirement_detail": "VM에서 CXL 메모리의 인식과 활용 설정을 관리하고 특정 VM에 직접 할당할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000030"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-003",
+        "SFR-004::SFR-004-004"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-019",
+      "action_type": "조회",
+      "requirement_name": "VM별 CXL 메모리 사용량 모니터링",
+      "requirement_detail": "VM별 CXL 메모리 사용량을 모니터링하고 CXL 메모리의 성능을 분석할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000031"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-005",
+        "SFR-004::SFR-004-012"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-020",
+      "action_type": "처리",
+      "requirement_name": "CXL 메모리 자동 조정·Auto-scaling",
+      "requirement_detail": "메모리 사용량을 기반으로 CXL 메모리 자동 조정과 Auto-scaling을 수행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000032"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-006",
+        "SFR-004::SFR-004-010"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-021",
+      "action_type": "관리",
+      "requirement_name": "CXL 메모리 리소스 풀 등록·스케줄링",
+      "requirement_detail": "Kubernetes에서 CXL 메모리 리소스 풀을 등록하고 VM·컨테이너에 자동으로 스케줄링할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000034"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-009"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-022",
+      "action_type": "관리",
+      "requirement_name": "CXL 메모리 자동 확장·장애 복구",
+      "requirement_detail": "CXL 메모리의 자동 확장과 장애 감지·복구를 관리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000035"
+      ],
+      "source_atomic_ids": [
+        "SFR-004::SFR-004-013"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-023",
+      "action_type": "처리",
+      "requirement_name": "클러스터 자원 부하 분석·자동 확장",
+      "requirement_detail": "클러스터 내 자원 부하를 분석하고 자동 확장 기능을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000038"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-003",
+        "SFR-005::SFR-005-004"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-024",
+      "action_type": "관리",
+      "requirement_name": "VM·BM 서버 고정·동적 리소스 조정·인스턴스 축소",
+      "requirement_detail": "VM 및 BM 서버의 사용량을 모니터링하고 고정 또는 동적 리소스를 조정하며 사용률이 일정 기준 이하일 경우 인스턴스를 축소하여야 한다.",
+      "source_task2_ids": [
+        "T2-000039"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-005",
+        "SFR-005::SFR-005-006"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-025",
+      "action_type": "관리",
+      "requirement_name": "GPU·고성능 연산 자원 스케줄링",
+      "requirement_detail": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000040"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-007"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-026",
+      "action_type": "분석",
+      "requirement_name": "VM·BM 클러스터 자원 사용량 모니터링·장기 패턴 분석",
+      "requirement_detail": "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량을 모니터링하고 장기적인 사용 패턴을 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000041"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-008",
+        "SFR-005::SFR-005-009"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-027",
+      "action_type": "제공",
+      "requirement_name": "오버커밋·과부하 자동 경고 및 로그 중앙 분석",
+      "requirement_detail": "오버커밋 및 과부하 상태를 감지하여 자동 경고를 제공하고 VM, 컨테이너 및 Baremetal 로그를 중앙에서 취합·분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000042"
+      ],
+      "source_atomic_ids": [
+        "SFR-005::SFR-005-010"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-028",
+      "action_type": "관리",
+      "requirement_name": "스토리지 프록시 상태 모니터링·이상 탐지",
+      "requirement_detail": "스토리지 프록시의 상태를 모니터링하고 이상 상태를 자동으로 탐지하여야 한다.",
+      "source_task2_ids": [
+        "T2-000043"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-001"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-029",
+      "action_type": "관리",
+      "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성",
+      "requirement_detail": "유지보수 일정에 따라 스토리지 프록시를 자동으로 재구성하여야 한다.",
+      "source_task2_ids": [
+        "T2-000044"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-002"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "TASK3 유사 그룹 출력에서 해당 입력 계보가 최종 요구사항과 관계 판정 모두에서 누락되어 데이터 손실 방지를 위해 입력 요구사항을 독립 요구사항으로 보존함"
+    },
+    {
+      "gold_id": "GOLD-030",
+      "action_type": "관리",
+      "requirement_name": "운영 정책 자동 적용",
+      "requirement_detail": "운영 정책을 설정하고 자동으로 적용하여야 한다.",
+      "source_task2_ids": [
+        "T2-000045"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-003"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-031",
+      "action_type": "관리",
+      "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수",
+      "requirement_detail": "데이터 무결성을 유지하기 위해 스냅샷과 복구를 기반으로 유지보수를 수행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000046"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-004"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "TASK3 유사 그룹 출력에서 해당 입력 계보가 최종 요구사항과 관계 판정 모두에서 누락되어 데이터 손실 방지를 위해 입력 요구사항을 독립 요구사항으로 보존함"
+    },
+    {
+      "gold_id": "GOLD-032",
+      "action_type": "처리",
+      "requirement_name": "장애 자동 페일오버",
+      "requirement_detail": "장애 발생 시 고가용성 옵션을 활용하여 자동 페일오버를 수행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000047"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-005"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-033",
+      "action_type": "분석",
+      "requirement_name": "HA 노드 유지보수 이력·Lustre 마운트 성능 영향도 분석",
+      "requirement_detail": "HA 구성 내 노드별 유지보수 이력을 관리하고 성능 변화를 분석하며, Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고 변경 효과를 시각적으로 비교하여야 한다.",
+      "source_task2_ids": [
+        "T2-000048",
+        "T2-000086"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-006",
+        "SFR-006::SFR-006-007",
+        "SFR-013::SFR-013-008"
+      ],
+      "sources": [
+        "SFR-006",
+        "SFR-013"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-034",
+      "action_type": "산출",
+      "requirement_name": "HPC 자동 튜닝·성능 최적화·유지보수 영향 분석",
+      "requirement_detail": "HPC 클러스터의 성능을 자동으로 튜닝하고 최적화하며 유지보수 전후 성능 비교와 영향 분석을 수행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000049"
+      ],
+      "source_atomic_ids": [
+        "SFR-006::SFR-006-008",
+        "SFR-006::SFR-006-009",
+        "SFR-006::SFR-006-010"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-035",
+      "action_type": "조회",
+      "requirement_name": "HPC 클러스터 토폴로지 시각화",
+      "requirement_detail": "HPC 클러스터의 토폴로지와 네트워크 구조를 시각화하여 대시보드에 표시하여야 한다.",
+      "source_task2_ids": [
+        "T2-000050"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-001",
+        "SFR-007::SFR-007-001"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-036",
+      "action_type": "조회",
+      "requirement_name": "HPC 주요 리소스 대시보드",
+      "requirement_detail": "HPC의 CPU, 메모리, 네트워크 및 스토리지 리소스 사용률을 대시보드에서 실시간 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000051"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-002",
+        "SFR-007::SFR-007-002"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-037",
+      "action_type": "조회",
+      "requirement_name": "HPC 장애 노드·네트워크 경로 강조",
+      "requirement_detail": "장애가 발생한 HPC 노드와 관련 네트워크 경로를 대시보드에서 강조 표시하여야 한다.",
+      "source_task2_ids": [
+        "T2-000052"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-003",
+        "SFR-007::SFR-007-003"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-038",
+      "action_type": "조회",
+      "requirement_name": "HPC 사용자별 사용량·작업 현황",
+      "requirement_detail": "사용자별 HPC 사용량과 실행 중인 작업 현황을 대시보드에서 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000053"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-004",
+        "SFR-007::SFR-007-004"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-039",
+      "action_type": "분석",
+      "requirement_name": "HPC 작업 실행시간·자원 소모율 분석",
+      "requirement_detail": "HPC 작업의 실행 시간과 자원 소모율을 분석하여 예측 및 최적화를 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000054"
+      ],
+      "source_atomic_ids": [
+        "SFR-007::SFR-007-005"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-040",
+      "action_type": "조회",
+      "requirement_name": "HPC 사용 로그·과거 작업 내역",
+      "requirement_detail": "HPC 사용 로그와 과거 작업 내역을 대시보드에서 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000055"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-006",
+        "SFR-007::SFR-007-006"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-041",
+      "action_type": "조회",
+      "requirement_name": "HPC 성능 최적화 제안",
+      "requirement_detail": "HPC 성능 저하와 자원 낭비를 분석하여 운영자에게 최적화 제안을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000056"
+      ],
+      "source_atomic_ids": [
+        "SFR-007::SFR-007-007"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-042",
+      "action_type": "조회",
+      "requirement_name": "HPC 성능 저하·장애 알림",
+      "requirement_detail": "HPC 성능 저하와 장애 발생 시 운영자에게 실시간 알림을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000057"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-008",
+        "SFR-007::SFR-007-008"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-043",
+      "action_type": "조회",
+      "requirement_name": "HPC 리소스 임계치 초과 알림",
+      "requirement_detail": "HPC 리소스의 임계치를 초과할 경우 운영자에게 알림을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000058"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-009",
+        "SFR-007::SFR-007-009"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-044",
+      "action_type": "조회",
+      "requirement_name": "HPC 자동 조치 버튼",
+      "requirement_detail": "리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000059"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-010",
+        "SFR-007::SFR-007-010"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-045",
+      "action_type": "관리",
+      "requirement_name": "HPC 자동 스케일링·재시작 정책 설정",
+      "requirement_detail": "사전 정의된 정책에 따라 HPC 자원의 자동 스케일링과 노드 재시작을 설정할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000060"
+      ],
+      "source_atomic_ids": [
+        "SFR-007::SFR-007-011"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-046",
+      "action_type": "관리",
+      "requirement_name": "하이브리드 HPC 자동 배치·이동",
+      "requirement_detail": "하이브리드 HPC 환경 통합 관리 기능을 제공하여야 하며, VM, Container 및 Baremetal 환경을 하나의 대시보드에서 통합 관리하고 자동 배치와 컨테이너 이동을 지원하여야 한다.",
+      "source_task2_ids": [
+        "T2-000061",
+        "T2-000062"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-012",
+        "SFR-007-013",
+        "SFR-007::SFR-007-012",
+        "SFR-007::SFR-007-013"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-047",
+      "action_type": "관리",
+      "requirement_name": "장애 복구 자동화 및 모니터링",
+      "requirement_detail": "클라우드 플랫폼과 서비스의 하드웨어, 스토리지 및 네트워크 상태를 모니터링하고 이상 징후 발생 시 자동 복구를 수행하며 장애 시나리오별 대응 전략을 관리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000063"
+      ],
+      "source_atomic_ids": [
+        "SFR-008::SFR-008-001",
+        "SFR-008::SFR-008-002",
+        "SFR-008::SFR-008-003"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-048",
+      "action_type": "산출",
+      "requirement_name": "장애 복구 보고서 및 개선점 분석",
+      "requirement_detail": "장애 복구 자동화 프로세스를 수행한 결과를 기록하고 복구 이력과 개선점을 분석하여 보고서를 생성하여야 한다.",
+      "source_task2_ids": [
+        "T2-000064"
+      ],
+      "source_atomic_ids": [
+        "SFR-008::SFR-008-004"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-049",
+      "action_type": "관리",
+      "requirement_name": "VM·BM·컨테이너 통합 보안정책 관리",
+      "requirement_detail": "VM, BM 및 컨테이너 자원에 통합 보안정책을 수립하고 일괄 적용하여야 한다.",
+      "source_task2_ids": [
+        "T2-000065"
+      ],
+      "source_atomic_ids": [
+        "SFR-009::SFR-009-001"
+      ],
+      "sources": [
+        "SFR-009"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-050",
+      "action_type": "처리",
+      "requirement_name": "동적 확장 환경 자원 보안정책 자동 적용",
+      "requirement_detail": "대규모 및 동적 확장 환경에서 자원 생성 시 사전 정의된 보안정책이 자동으로 적용되어야 한다.",
+      "source_task2_ids": [
+        "T2-000066"
+      ],
+      "source_atomic_ids": [
+        "SFR-009::SFR-009-002"
+      ],
+      "sources": [
+        "SFR-009"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-051",
+      "action_type": "모니터링",
+      "requirement_name": "자원 유형별 보안상태 실시간 모니터링",
+      "requirement_detail": "VM, BM 및 컨테이너 자원 유형별 보안상태를 실시간으로 모니터링하여야 한다.",
+      "source_task2_ids": [
+        "T2-000067"
+      ],
+      "source_atomic_ids": [
+        "SFR-009::SFR-009-003"
+      ],
+      "sources": [
+        "SFR-009"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-052",
+      "action_type": "권한",
+      "requirement_name": "VM·BM·I/O 프로파일링 기반 접근권한·정책 설정 및 감사",
+      "requirement_detail": "VM 사용자 또는 그룹 역할 기반 접근권한을 설정하고 BM 운영 역할 기반 접근권한을 설정하며 I/O 프로파일링 결과를 기반으로 접근권한과 정책을 설정하고 역할 기반 접근 및 변경 행위를 감사하고 이력 추적하여야 한다.",
+      "source_task2_ids": [
+        "T2-000069",
+        "T2-000083"
+      ],
+      "source_atomic_ids": [
+        "SFR-009::SFR-009-005",
+        "SFR-012::SFR-012-004"
+      ],
+      "sources": [
+        "SFR-009",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-053",
+      "action_type": "처리",
+      "requirement_name": "HPC 장애 실시간 ChatOps 자동화",
+      "requirement_detail": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단 및 조치 명령을 수행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000070"
+      ],
+      "source_atomic_ids": [
+        "SFR-010::SFR-010-001"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-054",
+      "action_type": "조회",
+      "requirement_name": "반복장애 ChatOps 워크플로우 관리·실행결과 공유",
+      "requirement_detail": "반복장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고 지정 명령어로 자동 실행하며, 실행 로그와 처리결과를 실시간 채팅창에 공유하여야 한다.",
+      "source_task2_ids": [
+        "T2-000071"
+      ],
+      "source_atomic_ids": [
+        "SFR-010::SFR-010-002",
+        "SFR-010::SFR-010-003"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-055",
+      "action_type": "제공",
+      "requirement_name": "HPC 장애대응 정보 역할별 보고",
+      "requirement_detail": "장애 발생 시 주요 이벤트, 원인 분석 및 조치 내역을 요약하여 전사 공유 채널로 자동 전송하고, 관리자, 운영자 및 모니터링 요원별 역할 기반 보고 수준을 다르게 구성하여야 한다.",
+      "source_task2_ids": [
+        "T2-000072"
+      ],
+      "source_atomic_ids": [
+        "SFR-010::SFR-010-004"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-056",
+      "action_type": "산출",
+      "requirement_name": "HPC 장애대응 자동 리포트",
+      "requirement_detail": "장애 대응 내역과 결과를 기반으로 자동 리포트를 생성하고 정해진 채널로 주기적으로 전달하여야 한다.",
+      "source_task2_ids": [
+        "T2-000073"
+      ],
+      "source_atomic_ids": [
+        "SFR-010::SFR-010-005"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-057",
+      "action_type": "산출",
+      "requirement_name": "스토리지 성능·최적화 분석 리포트",
+      "requirement_detail": "다양한 병렬 파일 시스템과 클라우드 객체 스토리지의 성능을 벤치마크하고 분석하여 I/O 성능 비교와 최적화 방안을 제안하며 리포트를 자동 생성하여야 한다.",
+      "source_task2_ids": [
+        "T2-000074",
+        "T2-000077",
+        "T2-000079"
+      ],
+      "source_atomic_ids": [
+        "SFR-011-001",
+        "SFR-011-004",
+        "SFR-011-010",
+        "SFR-011::SFR-011-001",
+        "SFR-011::SFR-011-004",
+        "SFR-011::SFR-011-010"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함."
+    },
+    {
+      "gold_id": "GOLD-058",
+      "action_type": "연계",
+      "requirement_name": "클라우드 객체 스토리지·HPC 클라우드 연동 어댑터",
+      "requirement_detail": "클라우드 환경에서 다양한 객체 스토리지와 연동할 수 있는 스토리지 클라우드 어댑터를 제공하여야 하며, 온프레미스 HPC와 퍼블릭 클라우드의 I/O를 연계하여야 한다.",
+      "source_task2_ids": [
+        "T2-000075",
+        "T2-000082"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-002",
+        "SFR-012::SFR-012-003"
+      ],
+      "sources": [
+        "SFR-011",
+        "SFR-012"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-059",
+      "action_type": "보안",
+      "requirement_name": "스토리지 액세스 인증·권한·로그 관리",
+      "requirement_detail": "스토리지와 클라우드 간 데이터 접근에 대한 사용자 인증, 권한 부여 및 접근 로그를 관리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000076"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-003"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-060",
+      "action_type": "분석",
+      "requirement_name": "HPC 워크로드·스토리지 적합도 분석·시뮬레이션",
+      "requirement_detail": "HPC 워크로드를 복제하고 다양한 환경에서 시뮬레이션하며 I/O 패턴과 리소스 이력을 분석하고 워크로드·스토리지 적합도를 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000078"
+      ],
+      "source_atomic_ids": [
+        "SFR-011::SFR-011-005",
+        "SFR-011::SFR-011-006",
+        "SFR-011::SFR-011-007",
+        "SFR-011::SFR-011-008",
+        "SFR-011::SFR-011-009"
+      ],
+      "sources": [
+        "SFR-011"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-061",
+      "action_type": "분석",
+      "requirement_name": "HPC I/O 프로파일링 및 분석",
+      "requirement_detail": "HPC 애플리케이션과 시스템 수준의 I/O를 추적하고 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000080"
+      ],
+      "source_atomic_ids": [
+        "SFR-012::SFR-012-001"
+      ],
+      "sources": [
+        "SFR-012"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-062",
+      "action_type": "연계",
+      "requirement_name": "컨테이너 기반 I/O 추적·통합 분석",
+      "requirement_detail": "컨테이너 단위로 I/O를 분리 수집하고 멀티노드에서 통합 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000081"
+      ],
+      "source_atomic_ids": [
+        "SFR-012::SFR-012-002"
+      ],
+      "sources": [
+        "SFR-012"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-063",
+      "action_type": "관리",
+      "requirement_name": "VM Lustre 자동·동적·스케줄·중앙·워크로드 마운트 관리",
+      "requirement_detail": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트하고 동적으로 변경·유지 관리하며, 스케줄링과 중앙 통합 제어를 지원하여야 하며, 시간대, 워크로드 특성, 사용자 그룹 및 워크로드 기반 자동 스케줄링을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000085"
+      ],
+      "source_atomic_ids": [
+        "SFR-013::SFR-013-001",
+        "SFR-013::SFR-013-002",
+        "SFR-013::SFR-013-003",
+        "SFR-013::SFR-013-004",
+        "SFR-013::SFR-013-005",
+        "SFR-013::SFR-013-006",
+        "SFR-013::SFR-013-007"
+      ],
+      "sources": [
+        "SFR-013"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-064",
+      "action_type": "연계",
+      "requirement_name": "VM NFS·Ceph·GlusterFS 자동 연계",
+      "requirement_detail": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화하여야 한다.",
+      "source_task2_ids": [
+        "T2-000087"
+      ],
+      "source_atomic_ids": [
+        "SFR-013::SFR-013-009"
+      ],
+      "sources": [
+        "SFR-013"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-065",
+      "action_type": "관리",
+      "requirement_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+      "requirement_detail": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링을 제공하여야 하며, 구성 변경 관리, 변경 이력 추적 및 사용 현황, 성능 지표와 병목 구간을 통합 모니터링하고 최적화 정책을 적용할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000088"
+      ],
+      "source_atomic_ids": [
+        "SFR-013::SFR-013-010"
+      ],
+      "sources": [
+        "SFR-013"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-066",
+      "action_type": "관리",
+      "requirement_name": "이종 HPC 워크로드 유형별 분류·자원 우선순위·처리방식 정의",
+      "requirement_detail": "이종 HPC 워크로드 유형별 분류와 계산 자원 특성에 따른 실행 우선순위 및 처리방식을 정의하여야 한다.",
+      "source_task2_ids": [
+        "T2-000089"
+      ],
+      "source_atomic_ids": [
+        "SFR-014::SFR-014-001"
+      ],
+      "sources": [
+        "SFR-014"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-067",
+      "action_type": "처리",
+      "requirement_name": "워크로드 로그·이력·특성·자원 상태 기반 최적 실행 계획 계산",
+      "requirement_detail": "워크로드 실행 로그와 이력 데이터를 기반으로 자원 사용 패턴을 분석하고 워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하여야 한다.",
+      "source_task2_ids": [
+        "T2-000090"
+      ],
+      "source_atomic_ids": [
+        "SFR-014::SFR-014-002",
+        "SFR-014::SFR-014-003"
+      ],
+      "sources": [
+        "SFR-014"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-068",
+      "action_type": "산출",
+      "requirement_name": "최적화 워크로드 스케줄링 정책 생성·자동 배포·변경 이력 추적",
+      "requirement_detail": "생성된 워크로드 스케줄링 정책을 자동으로 배포하고 변경 이력을 추적·관리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000091"
+      ],
+      "source_atomic_ids": [
+        "SFR-014::SFR-014-004"
+      ],
+      "sources": [
+        "SFR-014"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-069",
+      "action_type": "처리",
+      "requirement_name": "동적 자원 변화에 따른 스케줄링 정책 재계산·재적용",
+      "requirement_detail": "동적 자원 변화에 따라 스케줄링 정책을 재계산하고 재적용하여야 한다.",
+      "source_task2_ids": [
+        "T2-000092"
+      ],
+      "source_atomic_ids": [
+        "SFR-014::SFR-014-005"
+      ],
+      "sources": [
+        "SFR-014"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-070",
+      "action_type": "관리",
+      "requirement_name": "서비스 유형별 자원 요구 특성 정의",
+      "requirement_detail": "서비스 유형별로 자원 요구 특성을 정의하여야 하며, 어플리케이션 또는 서비스 유형을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000093"
+      ],
+      "source_atomic_ids": [
+        "SFR-015::SFR-015-001"
+      ],
+      "sources": [
+        "SFR-015"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-071",
+      "action_type": "관리",
+      "requirement_name": "서비스 자원 조합·성능·변경 이력 관리",
+      "requirement_detail": "VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그를 관리하고 서비스 실행 시 사용된 자원의 구성, 성능 및 변경 이력을 추적·관리하여야 한다.",
+      "source_task2_ids": [
+        "T2-000094"
+      ],
+      "source_atomic_ids": [
+        "SFR-015::SFR-015-002",
+        "SFR-015::SFR-015-003"
+      ],
+      "sources": [
+        "SFR-015"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-072",
+      "action_type": "처리",
+      "requirement_name": "서비스 유형별 자원 자동 프로비저닝·컨테이너 배포",
+      "requirement_detail": "서비스 유형별 최적 자원을 자동으로 프로비저닝하고 컨테이너 기반 서비스를 위한 최적화된 리소스를 추천·선택하여 자동으로 컨테이너를 생성·배포하여야 한다.",
+      "source_task2_ids": [
+        "T2-000095"
+      ],
+      "source_atomic_ids": [
+        "SFR-015::SFR-015-004",
+        "SFR-015::SFR-015-005"
+      ],
+      "sources": [
+        "SFR-015"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-073",
+      "action_type": "처리",
+      "requirement_name": "고전 알고리즘 자동 매핑",
+      "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000096"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-001",
+        "SFR-016::SFR-016-001"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-074",
+      "action_type": "제공",
+      "requirement_name": "양자 게이트 세트 지원",
+      "requirement_detail": "다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000097"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-002",
+        "SFR-016::SFR-016-002"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-075",
+      "action_type": "처리",
+      "requirement_name": "양자 회로 최적화 컴파일",
+      "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000098"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-003",
+        "SFR-016::SFR-016-003"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-076",
+      "action_type": "처리",
+      "requirement_name": "게이트 융합·단순화",
+      "requirement_detail": "게이트 융합 및 단순화를 통한 실행 시간 최적화를 수행하여야 하며, 융합·단순화 규칙과 실행 시간 최적화 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000099"
+      ],
+      "source_atomic_ids": [
+        "SFR-016::SFR-016-004"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-077",
+      "action_type": "제공",
+      "requirement_name": "진폭·기저 인코딩",
+      "requirement_detail": "진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000100"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-005",
+        "SFR-016::SFR-016-005"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-078",
+      "action_type": "제공",
+      "requirement_name": "데이터 특성 기반 인코딩 추천",
+      "requirement_detail": "데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000101"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-006",
+        "SFR-016::SFR-016-006"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-079",
+      "action_type": "제공",
+      "requirement_name": "큐비트 사용량 최소화 인코딩",
+      "requirement_detail": "큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000102"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-007",
+        "SFR-016::SFR-016-007"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-080",
+      "action_type": "분석",
+      "requirement_name": "양자 측정 통계 분석",
+      "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000103"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-008",
+        "SFR-016::SFR-016-008"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-081",
+      "action_type": "조회",
+      "requirement_name": "샷기반 카운팅·확률 분포",
+      "requirement_detail": "샷기반 카운팅 및 확률 분포 추정을 제공하여야 하며, 샷기반 카운팅과 확률 분포 추정 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000104"
+      ],
+      "source_atomic_ids": [
+        "SFR-016::SFR-016-009"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "KEPT",
+      "merge_basis": "문서 전체 TASK2 후보 임베딩 비교에서 설정 임계값 이상의 유사 후보가 없어 TASK2 내용을 그대로 보존함"
+    },
+    {
+      "gold_id": "GOLD-082",
+      "action_type": "처리",
+      "requirement_name": "양자 노이즈·에러 필터링",
+      "requirement_detail": "양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000105"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-010",
+        "SFR-016::SFR-016-010"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-083",
+      "action_type": "처리",
+      "requirement_name": "양자 결과 고전 데이터 변환",
+      "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000106"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-011",
+        "SFR-016::SFR-016-011"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-084",
+      "action_type": "처리",
+      "requirement_name": "양자 결과 불확실성·신뢰구간",
+      "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000107"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-012",
+        "SFR-016::SFR-016-012"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-085",
+      "action_type": "조회",
+      "requirement_name": "양자 결과 대시보드 시각화",
+      "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000108"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-013",
+        "SFR-016::SFR-016-013"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-086",
+      "action_type": "분석",
+      "requirement_name": "고전·양자 결과 비교 분석",
+      "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000109"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-014",
+        "SFR-016::SFR-016-014"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-087",
+      "action_type": "제공",
+      "requirement_name": "텐서 네트워크 기반 시뮬레이션",
+      "requirement_detail": "텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000110"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-015",
+        "SFR-016::SFR-016-015"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-088",
+      "action_type": "제공",
+      "requirement_name": "몬테카를로 샘플링 시뮬레이션",
+      "requirement_detail": "몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000111"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-016",
+        "SFR-016::SFR-016-016"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-089",
+      "action_type": "제공",
+      "requirement_name": "GPU·분산 HPC·희소 행렬 시뮬레이션",
+      "requirement_detail": "GPU 가속, 분산 HPC, 희소 행렬 및 메모리 최적화를 지원하여야 하며, GPU·분산 HPC·희소 행렬 시뮬레이션과 메모리 최적화 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000112"
+      ],
+      "source_atomic_ids": [
+        "SFR-016::SFR-016-017"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-090",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 자원·환경 설정",
+      "requirement_detail": "지정된 자원과 환경 설정에 따라 HPC 벤치마크를 실행하여야 한다.",
+      "source_task2_ids": [
+        "T2-000113"
+      ],
+      "source_atomic_ids": [
+        "SFR-017::SFR-017-001"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-091",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 로그 자동 수집",
+      "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+      "source_task2_ids": [
+        "T2-000114"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-002",
+        "SFR-017::SFR-017-002"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-092",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+      "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+      "source_task2_ids": [
+        "T2-000115"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-003",
+        "SFR-017::SFR-017-003"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-093",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+      "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+      "source_task2_ids": [
+        "T2-000116"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-004",
+        "SFR-017::SFR-017-004"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-094",
+      "action_type": "관리",
+      "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+      "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+      "source_task2_ids": [
+        "T2-000117"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-005",
+        "SFR-017::SFR-017-005"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-095",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+      "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000118"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-006",
+        "SFR-017::SFR-017-006"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-096",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 관제 포털",
+      "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000119"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-007",
+        "SFR-017::SFR-017-007"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-097",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+      "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000120"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-008",
+        "SFR-017::SFR-017-008"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-098",
+      "action_type": "분석",
+      "requirement_name": "HPC 벤치마크 자원 활용·병목 분석",
+      "requirement_detail": "자원 활용 효율성과 병목 지점을 시각화하여 분석하여야 한다.",
+      "source_task2_ids": [
+        "T2-000121"
+      ],
+      "source_atomic_ids": [
+        "SFR-017::SFR-017-009"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함."
+    },
+    {
+      "gold_id": "GOLD-099",
+      "action_type": "산출",
+      "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+      "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000122"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-010",
+        "SFR-017::SFR-017-010"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    }
+  ],
+  "relation_decisions": [
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000012"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-008",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000024"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-014",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000034"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-021",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000042"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-027",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000076"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-059",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000081"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-062",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000087"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-064",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000099"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-076",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000104"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-081",
+      "preserved_conditions": [],
+      "rationale": "임베딩 유사 후보 없음"
+    },
+    {
+      "gold_id": "GOLD-001",
+      "comparison_ids": [
+        "T2-000001"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-003",
+      "comparison_ids": [
+        "T2-000004"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-006",
+      "comparison_ids": [
+        "T2-000008"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-012",
+      "comparison_ids": [
+        "T2-000021"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-013",
+      "comparison_ids": [
+        "T2-000022"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-015",
+      "comparison_ids": [
+        "T2-000025"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-020",
+      "comparison_ids": [
+        "T2-000032"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-022",
+      "comparison_ids": [
+        "T2-000035"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "comparison_ids": [
+        "T2-000002",
+        "T2-000003",
+        "T2-000006",
+        "T2-000020",
+        "T2-000023",
+        "T2-000027",
+        "T2-000028",
+        "T2-000033"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과를 기준으로 통합하여 하나의 요구사항으로 재정의함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-002"
+    },
+    {
+      "gold_id": "GOLD-004",
+      "comparison_ids": [
+        "T2-000005",
+        "T2-000019"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-005",
+      "comparison_ids": [
+        "T2-000007",
+        "T2-000011",
+        "T2-000015"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-017",
+      "comparison_ids": [
+        "T2-000029"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-018",
+      "comparison_ids": [
+        "T2-000030"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-019",
+      "comparison_ids": [
+        "T2-000031"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "comparison_ids": [
+        "T2-000009",
+        "T2-000010",
+        "T2-000036",
+        "T2-000084"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-007"
+    },
+    {
+      "gold_id": "GOLD-009",
+      "comparison_ids": [
+        "T2-000013",
+        "T2-000014",
+        "T2-000016"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-011",
+      "comparison_ids": [
+        "T2-000018"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-024",
+      "comparison_ids": [
+        "T2-000039"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-026",
+      "comparison_ids": [
+        "T2-000041"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-049",
+      "comparison_ids": [
+        "T2-000065"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-051",
+      "comparison_ids": [
+        "T2-000067"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 행위, 결과 또는 검수증거가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "comparison_ids": [
+        "T2-000017",
+        "T2-000068"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 의미와 구현 결과를 기준으로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·수행자·데이터·시스템·통계 항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-010"
+    },
+    {
+      "comparison_ids": [
+        "T2-000026",
+        "T2-000037"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·참고 요구사항을 반영하여 통합 결과의 검수 기준을 설정함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-016"
+    },
+    {
+      "gold_id": "GOLD-023",
+      "comparison_ids": [
+        "T2-000038"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-025",
+      "comparison_ids": [
+        "T2-000040"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-030",
+      "comparison_ids": [
+        "T2-000045"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최终 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-045",
+      "comparison_ids": [
+        "T2-000060"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-050",
+      "comparison_ids": [
+        "T2-000066"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-069",
+      "comparison_ids": [
+        "T2-000092"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-072",
+      "comparison_ids": [
+        "T2-000095"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-089",
+      "comparison_ids": [
+        "T2-000112"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·출처를 최종 문장과 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-028",
+      "comparison_ids": [
+        "T2-000043"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000044"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-029",
+      "preserved_conditions": [
+        "TASK3 그룹 출력 계보 누락으로 원문 전체 보존"
+      ],
+      "rationale": "COVERAGE_FALLBACK_KEPT: 모델 출력에서 입력 후보가 누락되어 임의 병합 없이 독립 유지함"
+    },
+    {
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "comparison_ids": [
+        "T2-000046"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-031",
+      "preserved_conditions": [
+        "TASK3 그룹 출력 계보 누락으로 원문 전체 보존"
+      ],
+      "rationale": "COVERAGE_FALLBACK_KEPT: 모델 출력에서 입력 후보가 누락되어 임의 병합 없이 독립 유지함"
+    },
+    {
+      "comparison_ids": [
+        "T2-000047"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-032"
+    },
+    {
+      "comparison_ids": [
+        "T2-000063"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-047"
+    },
+    {
+      "comparison_ids": [
+        "T2-000064"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-048"
+    },
+    {
+      "comparison_ids": [
+        "T2-000070"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-053"
+    },
+    {
+      "comparison_ids": [
+        "T2-000071"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-054"
+    },
+    {
+      "comparison_ids": [
+        "T2-000072"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-055"
+    },
+    {
+      "comparison_ids": [
+        "T2-000073"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.",
+      "preserved_conditions": [
+        "기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-056"
+    },
+    {
+      "comparison_ids": [
+        "T2-000048",
+        "T2-000086"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-033"
+    },
+    {
+      "comparison_ids": [
+        "T2-000049"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-034"
+    },
+    {
+      "comparison_ids": [
+        "T2-000054"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-039"
+    },
+    {
+      "comparison_ids": [
+        "T2-000056"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-041"
+    },
+    {
+      "comparison_ids": [
+        "T2-000078"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-060"
+    },
+    {
+      "comparison_ids": [
+        "T2-000080"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-061"
+    },
+    {
+      "comparison_ids": [
+        "T2-000113"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-090"
+    },
+    {
+      "comparison_ids": [
+        "T2-000121"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-098"
+    },
+    {
+      "gold_id": "GOLD-035",
+      "action_type": "조회",
+      "requirement_name": "HPC 클러스터 토폴로지 시각화",
+      "requirement_detail": "HPC 클러스터의 토폴로지와 네트워크 구조를 시각화하여 대시보드에 표시하여야 한다.",
+      "source_task2_ids": [
+        "T2-000050"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-001"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000050"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-036",
+      "action_type": "조회",
+      "requirement_name": "HPC 주요 리소스 대시보드",
+      "requirement_detail": "HPC의 CPU, 메모리, 네트워크 및 스토리지 리소스 사용률을 대시보드에서 실시간 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000051"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-002"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000051"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-037",
+      "action_type": "조회",
+      "requirement_name": "HPC 장애 노드·네트워크 경로 강조",
+      "requirement_detail": "장애가 발생한 HPC 노드와 관련 네트워크 경로를 대시보드에서 강조 표시하여야 한다.",
+      "source_task2_ids": [
+        "T2-000052"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-003"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000052"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-038",
+      "action_type": "조회",
+      "requirement_name": "HPC 사용자별 사용량·작업 현황",
+      "requirement_detail": "사용자별 HPC 사용량과 실행 중인 작업 현황을 대시보드에서 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000053"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-004"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000053"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-040",
+      "action_type": "조회",
+      "requirement_name": "HPC 사용 로그·과거 작업 내역",
+      "requirement_detail": "HPC 사용 로그와 과거 작업 내역을 대시보드에서 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000055"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-006"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000055"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-042",
+      "action_type": "조회",
+      "requirement_name": "HPC 성능 저하·장애 알림",
+      "requirement_detail": "HPC 성능 저하와 장애 발생 시 운영자에게 실시간 알림을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000057"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-008"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000057"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-043",
+      "action_type": "조회",
+      "requirement_name": "HPC 리소스 임계치 초과 알림",
+      "requirement_detail": "HPC 리소스의 임계치를 초과할 경우 운영자에게 알림을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000058"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-009"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000058"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-044",
+      "action_type": "조회",
+      "requirement_name": "HPC 자동 조치 버튼",
+      "requirement_detail": "리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000059"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-010"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000059"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수결과를 기준으로 통합함."
+    },
+    {
+      "comparison_ids": [
+        "T2-000061",
+        "T2-000062"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-046"
+    },
+    {
+      "comparison_ids": [
+        "T2-000069",
+        "T2-000083"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처를 최종 상세문장 및 계보에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-052"
+    },
+    {
+      "comparison_ids": [
+        "T2-000074",
+        "T2-000077",
+        "T2-000079"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현 결과와 검수 기준을 통합함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·항목과 출처 ID를 최종 상세문장에 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-057"
+    },
+    {
+      "comparison_ids": [
+        "T2-000075",
+        "T2-000082"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 부분 중복 관계인 기능을 구현·검수 결과 기준으로 통합함.",
+      "preserved_conditions": [
+        "문서 전체의 원문 조건·범위·참고 요구사항을 반영하여 문구와 계보를 보존함."
+      ],
+      "excluded_or_absorbed_ids": [],
+      "gold_id": "GOLD-058"
+    },
+    {
+      "gold_id": "GOLD-063",
+      "comparison_ids": [
+        "T2-000085"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-065",
+      "comparison_ids": [
+        "T2-000088"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-066",
+      "comparison_ids": [
+        "T2-000089"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-067",
+      "comparison_ids": [
+        "T2-000090"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-068",
+      "comparison_ids": [
+        "T2-000091"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-070",
+      "comparison_ids": [
+        "T2-000093"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-071",
+      "comparison_ids": [
+        "T2-000094"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 수행행위, 결과 또는 적용 범위가 다른 요구사항과 구분되어 독립 검수 단위로 유지함.",
+      "preserved_conditions": [
+        "각 후보의 원문 조건·범위·출처를 최종 상세문장과 보존함."
+      ],
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-073",
+      "action_type": "처리",
+      "requirement_name": "고전 알고리즘 자동 매핑",
+      "requirement_detail": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하여야 하며, 고전 알고리즘과 양자 알고리즘의 매핑 규칙을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000096"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-001"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000096"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-075",
+      "action_type": "처리",
+      "requirement_name": "양자 회로 최적화 컴파일",
+      "requirement_detail": "양자 회로 최적화를 위한 단계별 컴파일을 수행하여야 하며, 컴파일 단계와 최적화 기준을 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000098"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-003"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000098"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-080",
+      "action_type": "분석",
+      "requirement_name": "양자 측정 통계 분석",
+      "requirement_detail": "양자 상태 측정 결과의 통계 분석을 수행하여야 하며, 통계 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000103"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-008"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000103"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-083",
+      "action_type": "처리",
+      "requirement_name": "양자 결과 고전 데이터 변환",
+      "requirement_detail": "양자 결과를 고전 데이터 형식으로 변환하여야 하며, 변환 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000106"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-011"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000106"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-084",
+      "action_type": "처리",
+      "requirement_name": "양자 결과 불확실성·신뢰구간",
+      "requirement_detail": "결과 불확실성에 대한 정량화 및 신뢰구간을 제공하여야 하며, 불확실성 정량화와 신뢰구간 계산 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000107"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-012"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000107"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-085",
+      "action_type": "조회",
+      "requirement_name": "양자 결과 대시보드 시각화",
+      "requirement_detail": "양자 결과의 대시보드 시각화를 제공하여야 하며, 시각화 대시보드와 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000108"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-013"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000108"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-086",
+      "action_type": "분석",
+      "requirement_name": "고전·양자 결과 비교 분석",
+      "requirement_detail": "고전 데이터와 양자 결과 비교 분석 환경을 제공하여야 하며, 비교 분석 결과와 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000109"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-014"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000109"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-074",
+      "action_type": "제공",
+      "requirement_name": "양자 게이트 세트 지원",
+      "requirement_detail": "다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000097"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-002"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000097"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-077",
+      "action_type": "제공",
+      "requirement_name": "진폭·기저 인코딩",
+      "requirement_detail": "진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000100"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-005"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000100"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-078",
+      "action_type": "제공",
+      "requirement_name": "데이터 특성 기반 인코딩 추천",
+      "requirement_detail": "데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000101"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-006"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000101"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-079",
+      "action_type": "제공",
+      "requirement_name": "큐비트 사용량 최소화 인코딩",
+      "requirement_detail": "큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000102"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-007"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000102"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-082",
+      "action_type": "처리",
+      "requirement_name": "양자 노이즈·에러 필터링",
+      "requirement_detail": "양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000105"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-010"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000105"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-087",
+      "action_type": "제공",
+      "requirement_name": "텐서 네트워크 기반 시뮬레이션",
+      "requirement_detail": "텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000110"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-015"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000110"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-088",
+      "action_type": "제공",
+      "requirement_name": "몬테카를로 샘플링 시뮬레이션",
+      "requirement_detail": "몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.",
+      "source_task2_ids": [
+        "T2-000111"
+      ],
+      "source_atomic_ids": [
+        "SFR-016-016"
+      ],
+      "sources": [
+        "SFR-016"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.",
+      "comparison_ids": [
+        "T2-000111"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "PARENT_CHILD",
+      "rationale": "문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함."
+    },
+    {
+      "gold_id": "GOLD-091",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 로그 자동 수집",
+      "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+      "source_task2_ids": [
+        "T2-000114"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-002"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000114"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-092",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+      "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+      "source_task2_ids": [
+        "T2-000115"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-003"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000115"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-093",
+      "action_type": "처리",
+      "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+      "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+      "source_task2_ids": [
+        "T2-000116"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-004"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000116"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-094",
+      "action_type": "관리",
+      "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+      "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+      "source_task2_ids": [
+        "T2-000117"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-005"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000117"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-095",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+      "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000118"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-006"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000118"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-096",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 관제 포털",
+      "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-000119"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-007"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000119"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-097",
+      "action_type": "조회",
+      "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+      "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000120"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-008"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000120"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-099",
+      "action_type": "산출",
+      "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+      "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-000122"
+      ],
+      "source_atomic_ids": [
+        "SFR-017-010"
+      ],
+      "sources": [
+        "SFR-017"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+      "comparison_ids": [
+        "T2-000122"
+      ],
+      "excluded_or_absorbed_ids": [],
+      "preserved_conditions": [],
+      "processing_result": "KEPT",
+      "relation_type": "UNIQUE",
+      "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+    }
+  ],
+  "quality": {
+    "status": "REVIEW_REQUIRED",
+    "fallback_count": 2,
+    "fallback_records": [
+      {
+        "group_document_id": "DOC-001-EMB-C009-R01-G001",
+        "fallback_gold_id": "GOLD-COVERAGE-001",
+        "current_candidate_id": "T2-000044",
+        "candidate_lineage": [
+          "T2-000044"
+        ],
+        "missing_lineage_ids": [
+          "T2-000044"
+        ],
+        "action": "COVERAGE_FALLBACK_KEPT",
+        "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성"
+      },
+      {
+        "group_document_id": "DOC-001-EMB-C009-R01-G001",
+        "fallback_gold_id": "GOLD-COVERAGE-002",
+        "current_candidate_id": "T2-000046",
+        "candidate_lineage": [
+          "T2-000046"
+        ],
+        "missing_lineage_ids": [
+          "T2-000046"
+        ],
+        "action": "COVERAGE_FALLBACK_KEPT",
+        "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수"
+      }
+    ],
+    "expected_task2_count": 122,
+    "assigned_task2_count": 122,
+    "missing_task2_count": 0,
+    "duplicate_assignment_count": 0,
+    "orphan_relation_count": 0
+  },
+  "trace": {
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "input_file": "/workspace/test_input/DOC-001_기능전체_입력.json",
+    "input_fur_count": 17,
+    "pipeline": "TASK1_TASK2_TASK3_EMBEDDING_GROUP_V10_4_RELATION_REPAIR_EVALUATION",
+    "pipeline_version": "v10.4",
+    "manifest_signatures": {
+      "task1": "a1019bd33323939133c83cc7eb8093551c1abb5120f454a1dca0d6ade52c685a",
+      "task2": "58a70cbf6a5833e2846a9bfa04a5bfaa15fad39a43d4b50f5ee91f02e06e3fb5",
+      "task3": "6ed682ccd2c7c39524dec6a6c17da28d0f47240cf35037fb3a6550bd1b60c085"
+    },
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "embedding_device": "cuda",
+    "task1_atomic_total": 152,
+    "task1_reused_fur_count": 0,
+    "task1_generated_fur_count": 17,
+    "task2_candidate_total": 122,
+    "task2_reused_fur_count": 0,
+    "task2_generated_fur_count": 17,
+    "embedding_model": "intfloat/multilingual-e5-base",
+    "scope_global_count": 0,
+    "scope_local_count": 0,
+    "similar_component_count": 21,
+    "similar_component_item_count": 113,
+    "singleton_count": 9,
+    "task3_component_traces": [
+      {
+        "component_no": 1,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 8,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 2,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 3,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 5,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 4,
+        "initial_count": 4,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 4,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 5,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 6,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 6,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 7,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 8,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 8,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 9,
+        "initial_count": 3,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 3,
+            "chunk_count": 1,
+            "output_final_count": 3,
+            "fallback_count": 2
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": [
+          {
+            "group_document_id": "DOC-001-EMB-C009-R01-G001",
+            "fallback_gold_id": "GOLD-COVERAGE-001",
+            "current_candidate_id": "T2-000044",
+            "candidate_lineage": [
+              "T2-000044"
+            ],
+            "missing_lineage_ids": [
+              "T2-000044"
+            ],
+            "action": "COVERAGE_FALLBACK_KEPT",
+            "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성"
+          },
+          {
+            "group_document_id": "DOC-001-EMB-C009-R01-G001",
+            "fallback_gold_id": "GOLD-COVERAGE-002",
+            "current_candidate_id": "T2-000046",
+            "candidate_lineage": [
+              "T2-000046"
+            ],
+            "missing_lineage_ids": [
+              "T2-000046"
+            ],
+            "action": "COVERAGE_FALLBACK_KEPT",
+            "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수"
+          }
+        ]
+      },
+      {
+        "component_no": 10,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 7,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 11,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 12,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 7,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 13,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 8,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 14,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 15,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 16,
+        "initial_count": 3,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 3,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 17,
+        "initial_count": 2,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 2,
+            "chunk_count": 1,
+            "output_final_count": 1,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 18,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 7,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 19,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 7,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 20,
+        "initial_count": 7,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 7,
+            "chunk_count": 1,
+            "output_final_count": 7,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      },
+      {
+        "component_no": 21,
+        "initial_count": 8,
+        "rounds": [
+          {
+            "round": 1,
+            "input_candidate_count": 8,
+            "chunk_count": 1,
+            "output_final_count": 8,
+            "fallback_count": 0
+          }
+        ],
+        "status": "COMPLETED",
+        "fallback_records": []
+      }
+    ],
+    "task3_fallback_count": 2,
+    "quality_status": "REVIEW_REQUIRED",
+    "assignment_quality": {
+      "expected_task2_count": 122,
+      "assigned_task2_count": 122,
+      "missing_task2_count": 0,
+      "duplicate_assignment_count": 0,
+      "orphan_relation_count": 0
+    },
+    "task3_final_total": 99
+  }
+}

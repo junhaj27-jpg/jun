@@ -1,0 +1,46 @@
+# FastAPI server / API
+fastapi==0.137.0
+uvicorn[standard]==0.48.0
+
+# Settings / validation
+pydantic==2.13.4
+pydantic-settings==2.14.1
+python-dotenv==1.2.2
+
+# Workflow
+langgraph==1.2.2
+
+# Database
+SQLAlchemy==2.0.50
+PyMySQL==1.2.0
+
+# Storage / HTTP
+boto3==1.43.29
+requests==2.34.2
+
+# Vector search / embedding
+qdrant-client==1.18.0
+sentence-transformers==5.5.1
+
+# Document / PDF / image processing
+python-docx==1.2.0
+lxml>=5.0,<7.0
+PyMuPDF==1.27.2.3
+Pillow==12.2.0
+pytesseract==0.3.13
+
+# Requirements Gold contracts / datasets
+# torch/transformers/safetensors는 sentence-transformers의 호환 의존성을 사용합니다.
+# LoRA 추론은 Core가 아닌 vLLM 서버에서 수행합니다.
+datasets==5.0.0
+huggingface_hub==1.19.0
+
+# Utility
+json-repair==0.61.0
+tqdm==4.68.2
+numpy==2.3.5
+networkx==3.5
+
+
+# PyTorch for CUDA 12.4 on RunPod
+# pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124

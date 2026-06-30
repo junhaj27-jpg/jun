@@ -1,0 +1,2054 @@
+{
+  "task_type": "TASK4_FINAL_REQUIREMENTS_TO_CBD",
+  "requirements": [
+    {
+      "requirement_id": "GOLD-001",
+      "requirement_name": "KI Cloud CXL 메모리 프레임워크 설계",
+      "requirement_type": "기능",
+      "description": "KI Cloud R&D 플랫폼을 기반으로 CXL 2.0 또는 3.0 지원 메모리를 고려하고 KI Cloud 환경에서 CXL 메모리를 활용할 수 있는 프레임워크를 설계하여야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "KI Cloud CXL 메모리 프레임워크 설계의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-001 | 원자 ID: SFR-001-001; SFR-001-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-002",
+      "requirement_name": "DRAM·CXL 계층형 메모리 관리·성능 최적화",
+      "requirement_type": "기능",
+      "description": "기존 DRAM과 CXL 메모리를 계층적으로 관리하고 대역폭과 지연시간 분석결과를 기반으로 워크로드 성능을 최적화하여야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "DRAM·CXL 계층형 메모리 관리·성능 최적화의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-002; T2-023 | 원자 ID: SFR-001-007; SFR-001-008; SFR-004-002 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-003",
+      "requirement_name": "CXL Type 1,2,3 디바이스와의 호환성 검증",
+      "requirement_type": "기능",
+      "description": "CXL Type 1,2,3 디바이스와의 호환성을 검토 및 확인해야 함을(를) 검증하여야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL Type 1,2,3 디바이스와의 호환성 검증의 시험조건, 비교지표 및 검증결과 확인"
+      ],
+      "note": "Task2 ID: T2-003 | 원자 ID: SFR-001-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-004",
+      "requirement_name": "Openstack, Kubernetes에서 CXL 메모리를 동적으로 할당할 수 있는 방안",
+      "requirement_type": "기능",
+      "description": "Openstack, Kubernetes에서 CXL 메모리를 동적으로 할당할 수 있는 방안을 고려해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "Openstack, Kubernetes에서 CXL 메모리를 동적으로 할당할 수 있는 방안의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-004 | 원자 ID: SFR-001-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-005",
+      "requirement_name": "CXL 공유 메모리 풀 생성·통합·동적 확장 관리",
+      "requirement_type": "기능",
+      "description": "다중 노드의 여러 CXL 메모리 장치를 하나의 공유 논리 메모리 풀로 생성·통합 관리하고 메모리 풀을 동적으로 확장·축소할 수 있어야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 공유 메모리 풀 생성·통합·동적 확장 관리의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-005; T2-009 | 원자 ID: SFR-001-005; SFR-002-001; SFR-002-002 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-006",
+      "requirement_name": "메모리 대역폭, 지연시간 등을 고려한 QoS 정책 설계",
+      "requirement_type": "기능",
+      "description": "메모리 대역폭, 지연시간 등을 고려한 QoS 정책 설계을(를) 작성·생성하여야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "메모리 대역폭, 지연시간 등을 고려한 QoS 정책 설계의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-006 | 원자 ID: SFR-001-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-007",
+      "requirement_name": "CXL 메모리 동적 할당·해제",
+      "requirement_type": "기능",
+      "description": "VM과 컨테이너 실행 전·중에 CXL 메모리를 동적으로 할당하고 해제할 수 있어야 한다.",
+      "source": [
+        "SFR-001",
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리 동적 할당·해제의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-007; T2-022 | 원자 ID: SFR-001-009; SFR-004-001 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-008",
+      "requirement_name": "노드 간 CXL 메모리 사용량을 모니터링하고 자동 확장 지원",
+      "requirement_type": "기능",
+      "description": "노드 간 CXL 메모리 사용량을 모니터링하고 자동 확장 지원이 가능해야 함을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-001"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "노드 간 CXL 메모리 사용량을 모니터링하고 자동 확장 지원의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-008 | 원자 ID: SFR-001-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-009",
+      "requirement_name": "워크로드별 CXL 메모리 할당 정책 관리",
+      "requirement_type": "기능",
+      "description": "애플리케이션별 메모리 할당 우선순위를 지정하고 워크로드 특성에 따른 메모리 할당 메커니즘을 적용할 수 있어야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "워크로드별 CXL 메모리 할당 정책 관리의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-010 | 원자 ID: SFR-002-003; SFR-002-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-010",
+      "requirement_name": "CXL 메모리·링크·VM 사용량 모니터링·성능 분석",
+      "requirement_type": "기능",
+      "description": "CXL 메모리와 링크별 대역폭 및 VM별 CXL 메모리 사용량을 실시간 모니터링하고 성능을 분석할 수 있어야 한다.",
+      "source": [
+        "SFR-002",
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리·링크·VM 사용량 모니터링·성능 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-011; T2-026 | 원자 ID: SFR-002-005; SFR-002-009; SFR-004-005 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-011",
+      "requirement_name": "CXL 메모리 접근 지연시간 측정·분석",
+      "requirement_type": "기능",
+      "description": "읽기·쓰기 작업과 메모리 영역별 지연시간 및 평균·최소·최대 접근 지연시간을 측정하고 차이를 분석할 수 있어야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리 접근 지연시간 측정·분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-012 | 원자 ID: SFR-002-006; SFR-002-015; SFR-002-016 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-012",
+      "requirement_name": "CXL 캐시·메모리 접근 패턴 분석·시각화",
+      "requirement_type": "기능",
+      "description": "캐시 적중률과 미스 패턴을 모니터링하고 메모리 접근 패턴을 분석하여 히트맵 등으로 시각화하여야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 캐시·메모리 접근 패턴 분석·시각화의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-013 | 원자 ID: SFR-002-007; SFR-002-008; SFR-002-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-013",
+      "requirement_name": "CXL 메모리 트랜잭션 지표 모니터링",
+      "requirement_type": "기능",
+      "description": "초당 메모리 트랜잭션 수, 읽기·쓰기 비율과 분포 및 평균 트랜잭션 크기와 분포를 측정·모니터링할 수 있어야 한다.",
+      "source": [
+        "SFR-002"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리 트랜잭션 지표 모니터링의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-014 | 원자 ID: SFR-002-012; SFR-002-013; SFR-002-014 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-014",
+      "requirement_name": "자원 성능 이상·과부하 자동 감지 알림",
+      "requirement_type": "기능",
+      "description": "메모리 성능 이상징후와 자원 오버커밋·과부하 상태를 자동 감지하고 경고 알림을 제공하여야 한다.",
+      "source": [
+        "SFR-002",
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "자원 성능 이상·과부하 자동 감지 알림의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-015; T2-045 | 원자 ID: SFR-002-011; SFR-005-009 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-015",
+      "requirement_name": "HPC 워크로드 CXL 적용 가능성·병목 분석",
+      "requirement_type": "기능",
+      "description": "기존 HPC 애플리케이션의 메모리 사용 패턴과 CXL 적용 시 성능 병목, 대역폭 및 지연시간을 분석하여야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 워크로드 CXL 적용 가능성·병목 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-016 | 원자 ID: SFR-003-001; SFR-003-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-016",
+      "requirement_name": "HPC CXL 공유자원 활용·데이터 이동 모델 설계",
+      "requirement_type": "기능",
+      "description": "CXL 메모리를 Compute Node와 Storage Node 간 공유자원으로 활용하는 방안과 기존 DRAM·CXL 메모리 간 데이터 이동방식을 설계하여야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC CXL 공유자원 활용·데이터 이동 모델 설계의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-017 | 원자 ID: SFR-003-003; SFR-003-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-017",
+      "requirement_name": "HPC DRAM·CXL 메모리 할당·DMA 데이터 이동",
+      "requirement_type": "기능",
+      "description": "기존 DRAM과 CXL 메모리를 구분하여 할당·해제하고 DMA 기반으로 데이터를 이동할 수 있어야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC DRAM·CXL 메모리 할당·DMA 데이터 이동의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-018 | 원자 ID: SFR-003-005; SFR-003-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-018",
+      "requirement_name": "HPC 애플리케이션 CXL 메모리 활용",
+      "requirement_type": "기능",
+      "description": "OpenMP·MPI 공유메모리, AI·ML 모델 캐싱·학습 및 데이터베이스·인메모리 컴퓨팅의 메모리 확장에 CXL 메모리를 활용할 수 있어야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 애플리케이션 CXL 메모리 활용의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-019 | 원자 ID: SFR-003-007; SFR-003-008; SFR-003-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-019",
+      "requirement_name": "HPC 스케줄러·클라우드 CXL 자원 연계",
+      "requirement_type": "기능",
+      "description": "SLURM 기반 CXL-aware 작업 스케줄링과 클라우드 플랫폼의 CXL 메모리 할당 CRD를 제공하여야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 스케줄러·클라우드 CXL 자원 연계의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-020 | 원자 ID: SFR-003-010; SFR-003-011 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-020",
+      "requirement_name": "HPC 워크로드 CXL 성능 비교·평가",
+      "requirement_type": "기능",
+      "description": "HPC 워크로드의 대역폭·지연시간을 분석하고 NUMA-Local과 CXL 메모리 접근 성능, 캐싱 및 데이터 이동 효율성을 비교·평가하여야 한다.",
+      "source": [
+        "SFR-003"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 워크로드 CXL 성능 비교·평가의 시험조건, 비교지표 및 검증결과 확인"
+      ],
+      "note": "Task2 ID: T2-021 | 원자 ID: SFR-003-012; SFR-003-013 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-021",
+      "requirement_name": "VM에서 CXL 메모리 인식 및 활용을 위한 설정 지원",
+      "requirement_type": "기능",
+      "description": "VM에서 CXL 메모리 인식 및 활용을 위한 설정 지원을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM에서 CXL 메모리 인식 및 활용을 위한 설정 지원의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-024 | 원자 ID: SFR-004-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-022",
+      "requirement_name": "CXL 메모리를 특정 VM에 직접 할당할 수 있는",
+      "requirement_type": "기능",
+      "description": "CXL 메모리를 특정 VM에 직접 할당할 수 있는 기능을 제공해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리를 특정 VM에 직접 할당할 수 있는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-025 | 원자 ID: SFR-004-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-023",
+      "requirement_name": "메모리 사용량을 조절할 수 있는 자동 조정(Auto-Balancing)",
+      "requirement_type": "기능",
+      "description": "메모리 사용량을 조절할 수 있는 자동 조정(Auto-Balancing) 기능을 제공해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "메모리 사용량을 조절할 수 있는 자동 조정(Auto-Balancing)의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-027 | 원자 ID: SFR-004-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-024",
+      "requirement_name": "Kubernetes 및 Docker에서 CXL 메모리를 리소스로 인식하도록 CRD(Custom Resource Definition)를 개발",
+      "requirement_type": "기능",
+      "description": "Kubernetes 및 Docker에서 CXL 메모리를 리소스로 인식하도록 CRD(Custom Resource Definition)를 개발해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "Kubernetes 및 Docker에서 CXL 메모리를 리소스로 인식하도록 CRD(Custom Resource Definition)를 개발의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-028 | 원자 ID: SFR-004-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-025",
+      "requirement_name": "컨테이너별 CXL 메모리 동적 할당 및 해제 기능 구현",
+      "requirement_type": "기능",
+      "description": "컨테이너별 CXL 메모리 동적 할당 및 해제 기능을 구현해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "컨테이너별 CXL 메모리 동적 할당 및 해제 기능 구현의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-029 | 원자 ID: SFR-004-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-026",
+      "requirement_name": "Kubernetes에서 CXL 메모리를 리소스 풀 등록 및 스케줄링 가능하도록 지원",
+      "requirement_type": "기능",
+      "description": "Kubernetes에서 CXL 메모리를 리소스 풀 등록 및 스케줄링 가능하도록 지원해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "Kubernetes에서 CXL 메모리를 리소스 풀 등록 및 스케줄링 가능하도록 지원의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-030 | 원자 ID: SFR-004-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-027",
+      "requirement_name": "CXL 메모리 사용량을 기반으로 Auto-scaling 정책 수립 및 적용",
+      "requirement_type": "기능",
+      "description": "CXL 메모리 사용량을 기반으로 Auto-scaling 정책 수립 및 적용해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리 사용량을 기반으로 Auto-scaling 정책 수립 및 적용의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-031 | 원자 ID: SFR-004-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-028",
+      "requirement_name": "기존 DRAM과 CXL 메모리를 조합하여 메모리 계층을 구성하는 기능 개발",
+      "requirement_type": "기능",
+      "description": "기존 DRAM과 CXL 메모리를 조합하여 메모리 계층을 구성하는 기능 개발해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "기존 DRAM과 CXL 메모리를 조합하여 메모리 계층을 구성하는 기능 개발의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-032 | 원자 ID: SFR-004-011 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-029",
+      "requirement_name": "HPC 및 AI/ML 워크로드에서 CXL 메모리 최적화",
+      "requirement_type": "기능",
+      "description": "HPC 및 AI/ML 워크로드에서 CXL 메모리 최적화을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 및 AI/ML 워크로드에서 CXL 메모리 최적화의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-033 | 원자 ID: SFR-004-012 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-030",
+      "requirement_name": "CXL 메모리기반 모니터링 및 성능 구현",
+      "requirement_type": "기능",
+      "description": "CXL 메모리기반 모니터링 및 성능 분석 기능 구현해야 함을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CXL 메모리기반 모니터링 및 성능 구현의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-034 | 원자 ID: SFR-004-013 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-031",
+      "requirement_name": "서버 부하에 따라 CXL 메모리 자동 확장(Auto Scaling) 기능 구현",
+      "requirement_type": "기능",
+      "description": "서버 부하에 따라 CXL 메모리 자동 확장(Auto Scaling) 기능 구현해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-004"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "서버 부하에 따라 CXL 메모리 자동 확장(Auto Scaling) 기능 구현의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-035 | 원자 ID: SFR-004-014 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-032",
+      "requirement_name": "클라우드·CXL 장애 자동복구·페일오버",
+      "requirement_type": "기능",
+      "description": "클라우드 플랫폼과 CXL 메모리 장애를 자동 감지하고 고가용성 옵션으로 자동복구와 페일오버를 수행하여야 한다.",
+      "source": [
+        "SFR-004",
+        "SFR-006",
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클라우드·CXL 장애 자동복구·페일오버의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-036; T2-050; T2-072 | 원자 ID: SFR-004-015; SFR-006-004; SFR-008-001 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-033",
+      "requirement_name": "워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형 자동 추천 기능 개발",
+      "requirement_type": "기능",
+      "description": "워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형 자동 추천 기능을 개발해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "워크로드 특성에 따라 최적화된 VM 및 BM 인스턴스 유형 자동 추천 기능 개발의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-037 | 원자 ID: SFR-005-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-034",
+      "requirement_name": "NUMA-Aware 및 CXL 메모리 기반 최적 클러스터 배포",
+      "requirement_type": "기능",
+      "description": "NUMA-Aware 및 CXL 메모리 기반 최적 클러스터 배포 기능을 제공해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "NUMA-Aware 및 CXL 메모리 기반 최적 클러스터 배포의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-038 | 원자 ID: SFR-005-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-035",
+      "requirement_name": "클러스터 내 자원(메모리, CPU, 네트워크) 부하 분석 및 자동 확장(Auto Scaling)을 지원",
+      "requirement_type": "기능",
+      "description": "클러스터 내 자원(메모리, CPU, 네트워크) 부하 분석 및 자동 확장(Auto Scaling)을 지원해야 함을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클러스터 내 자원(메모리, CPU, 네트워크) 부하 분석 및 자동 확장(Auto Scaling)을 지원의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-039 | 원자 ID: SFR-005-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-036",
+      "requirement_name": "VM 및 BM 서버의 사용량 모니터링 및 고정/동적 리소스 조정이",
+      "requirement_type": "기능",
+      "description": "VM 및 BM 서버의 사용량 모니터링 및 고정/동적 리소스 조정이 가능해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM 및 BM 서버의 사용량 모니터링 및 고정/동적 리소스 조정이의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-040 | 원자 ID: SFR-005-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-037",
+      "requirement_name": "리소스 사용률이 일정 기준 이하일 경우 인스턴스 축소(Downscaling) 기능 지원",
+      "requirement_type": "기능",
+      "description": "리소스 사용률이 일정 기준 이하일 경우 인스턴스 축소(Downscaling) 기능 지원해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "리소스 사용률이 일정 기준 이하일 경우 인스턴스 축소(Downscaling) 기능 지원의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-041 | 원자 ID: SFR-005-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-038",
+      "requirement_name": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링",
+      "requirement_type": "기능",
+      "description": "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링 기능을 제공해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "GPU 및 고성능 연산 자원의 공유 및 최적 활용을 위한 스케줄링의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-042 | 원자 ID: SFR-005-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-039",
+      "requirement_name": "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량에 대한 모니터링을 제공",
+      "requirement_type": "기능",
+      "description": "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량에 대한 모니터링을 제공해야 함을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM 및 BM 클러스터의 CPU, 메모리, 스토리지 사용량에 대한 모니터링을 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-043 | 원자 ID: SFR-005-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-040",
+      "requirement_name": "장기적인 사용 패턴을 분석하여 최적의 인프라 리소스 할당 방안 도출 설계",
+      "requirement_type": "기능",
+      "description": "장기적인 사용 패턴을 분석하여 최적의 인프라 리소스 할당 방안 도출해야 함을(를) 작성·생성하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장기적인 사용 패턴을 분석하여 최적의 인프라 리소스 할당 방안 도출 설계의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-044 | 원자 ID: SFR-005-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-041",
+      "requirement_name": "클러스터 내 VM, 컨테이너, Baremetal 서버의 로그를 중앙에서 취합 및 분석을 제공",
+      "requirement_type": "기능",
+      "description": "클러스터 내 VM, 컨테이너, Baremetal 서버의 로그를 중앙에서 취합 및 분석을 제공해야 함을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-005"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클러스터 내 VM, 컨테이너, Baremetal 서버의 로그를 중앙에서 취합 및 분석을 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-046 | 원자 ID: SFR-005-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-042",
+      "requirement_name": "스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화를 수행 조회",
+      "requirement_type": "기능",
+      "description": "스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화를 수행해야 함을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 프록시의 상태 모니터링 및 이상 탐지에 대한 자동화를 수행 조회의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-047 | 원자 ID: SFR-006-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-043",
+      "requirement_name": "유지보수 일정에 따른 스토리지 프록시 재구성 및 운영 정책에 대한 자동 적용",
+      "requirement_type": "기능",
+      "description": "유지보수 일정에 따른 스토리지 프록시 재구성 및 운영 정책에 대한 자동 적용 기능을 제공해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "유지보수 일정에 따른 스토리지 프록시 재구성 및 운영 정책에 대한 자동 적용의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-048 | 원자 ID: SFR-006-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-044",
+      "requirement_name": "데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구",
+      "requirement_type": "기능",
+      "description": "데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구 기능을 제공해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "데이터 무결성을 바탕으로 유지보수 진행을 위한 스냅샷 및 복구의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-049 | 원자 ID: SFR-006-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-045",
+      "requirement_name": "HA 노드별 유지보수 이력 관리",
+      "requirement_type": "기능",
+      "description": "HA 구성 내 노드별 유지보수 이력 관리을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HA 노드별 유지보수 이력 관리의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-051 | 원자 ID: SFR-006-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-046",
+      "requirement_name": "HA 노드별 유지보수 성능 변화 분석",
+      "requirement_type": "기능",
+      "description": "HA 구성 내 노드별 성능 변화 분석을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HA 노드별 유지보수 성능 변화 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-052 | 원자 ID: SFR-006-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-047",
+      "requirement_name": "HPC 클러스터의 성능 최적화를 위한 자동 튜닝 및 유지보수",
+      "requirement_type": "기능",
+      "description": "HPC 클러스터의 성능 최적화를 위한 자동 튜닝 및 유지보수 기능을 제공해야 함을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 클러스터의 성능 최적화를 위한 자동 튜닝 및 유지보수의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-053 | 원자 ID: SFR-006-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-048",
+      "requirement_name": "유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅을 제공",
+      "requirement_type": "기능",
+      "description": "유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅을 제공해야 함을(를) 작성·생성하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "유지보수 전후 성능 비교 및 영향 분석을 위한 성능 분석 레포팅을 제공의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-054 | 원자 ID: SFR-006-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-049",
+      "requirement_name": "주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능 구현",
+      "requirement_type": "기능",
+      "description": "주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능을 구현해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "주요 시스템 변경 사항을 사전 검토하고 문제 발생 시 롤백할 수 있는 정책 및 기능 구현의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-055 | 원자 ID: SFR-006-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-050",
+      "requirement_name": "시스템 안정성 검증을 위한 테스트 및 모니터링 자동화를 제공",
+      "requirement_type": "기능",
+      "description": "시스템 안정성 검증을 위한 테스트 및 모니터링 자동화를 제공해야 함을(를) 검증하여야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "시스템 안정성 검증을 위한 테스트 및 모니터링 자동화를 제공의 시험조건, 비교지표 및 검증결과 확인"
+      ],
+      "note": "Task2 ID: T2-056 | 원자 ID: SFR-006-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-051",
+      "requirement_name": "비용 및 성능을 고려한 탄력적인 자원 할당 정책 수립 및 적용",
+      "requirement_type": "기능",
+      "description": "비용 및 성능을 고려한 탄력적인 자원 할당 정책 수립 및 적용해야 함을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-006"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "비용 및 성능을 고려한 탄력적인 자원 할당 정책 수립 및 적용의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-057 | 원자 ID: SFR-006-011 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-052",
+      "requirement_name": "클러스터 토폴로지를 직관적으로 시각화하여 노드 간 연결 상태, 성능, 장애 정보를 실시간 제공",
+      "requirement_type": "기능",
+      "description": "클러스터 토폴로지를 직관적으로 시각화하여 노드 간 연결 상태, 성능, 장애 정보를 실시간 제공을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클러스터 토폴로지를 직관적으로 시각화하여 노드 간 연결 상태, 성능, 장애 정보를 실시간 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-058 | 원자 ID: SFR-007-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-053",
+      "requirement_name": "CPU, 메모리, 네트워크, 스토리지 등 주요 리소스 사용률을 대시보드에서 한눈에 확인 가능",
+      "requirement_type": "기능",
+      "description": "CPU, 메모리, 네트워크, 스토리지 등 주요 리소스 사용률을 대시보드에서 한눈에 확인 가능을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "CPU, 메모리, 네트워크, 스토리지 등 주요 리소스 사용률을 대시보드에서 한눈에 확인 가능의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-059 | 원자 ID: SFR-007-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-054",
+      "requirement_name": "장애 발생 시 해당 노드 및 네트워크 경로를 강조 표시하고, 유지보수 추천 조치 제공",
+      "requirement_type": "기능",
+      "description": "장애 발생 시 해당 노드 및 네트워크 경로를 강조 표시하고, 유지보수 추천 조치 제공을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장애 발생 시 해당 노드 및 네트워크 경로를 강조 표시하고, 유지보수 추천 조치 제공의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-060 | 원자 ID: SFR-007-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-055",
+      "requirement_name": "사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황을 실시간으로 모니터링하는 UI 제공",
+      "requirement_type": "기능",
+      "description": "사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황을 실시간으로 모니터링하는 UI 제공을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "사용자별 HPC 사용량 및 실행 중인 작업(Job) 현황을 실시간으로 모니터링하는 UI 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-061 | 원자 ID: SFR-007-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-056",
+      "requirement_name": "HPC 작업별 실행 시간 예측 및 자원 소모율을 시각적으로 분석하여 최적의 실행 환경 추천",
+      "requirement_type": "기능",
+      "description": "HPC 작업별 실행 시간 예측 및 자원 소모율을 시각적으로 분석하여 최적의 실행 환경 추천을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 작업별 실행 시간 예측 및 자원 소모율을 시각적으로 분석하여 최적의 실행 환경 추천의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-062 | 원자 ID: SFR-007-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-057",
+      "requirement_name": "HPC 사용 로그 및 과거 작업 내역을 기반으로 성능 최적화 제안 기능 구현",
+      "requirement_type": "기능",
+      "description": "HPC 사용 로그 및 과거 작업 내역을 기반으로 성능 최적화 제안 기능 구현을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 사용 로그 및 과거 작업 내역을 기반으로 성능 최적화 제안 기능 구현의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-063 | 원자 ID: SFR-007-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-058",
+      "requirement_name": "성능 저하, 장애 발생 시 운영자에게 실시간 알림 제공 (이메일, 웹 푸시, 슬랙 연동 등) 연계",
+      "requirement_type": "기능",
+      "description": "성능 저하, 장애 발생 시 운영자에게 실시간 알림 제공 (이메일, 웹 푸시, 슬랙 연동 등)을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "성능 저하, 장애 발생 시 운영자에게 실시간 알림 제공 (이메일, 웹 푸시, 슬랙 연동 등) 연계의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-064 | 원자 ID: SFR-007-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-059",
+      "requirement_name": "클러스터 리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼 제공",
+      "requirement_type": "기능",
+      "description": "클러스터 리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼 제공을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클러스터 리소스 임계치 초과 시 운영자가 즉시 대응할 수 있도록 자동 조치 버튼 제공의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-065 | 원자 ID: SFR-007-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-060",
+      "requirement_name": "사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션을 UI에서 쉽게 설정 가능 설계",
+      "requirement_type": "기능",
+      "description": "사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션을 UI에서 쉽게 설정 가능을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "사전 정의된 정책에 따라 자동 스케일링 및 재시작 옵션을 UI에서 쉽게 설정 가능 설계의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-066 | 원자 ID: SFR-007-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-061",
+      "requirement_name": "VM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리할 수 있는 UI 제공",
+      "requirement_type": "기능",
+      "description": "VM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리할 수 있는 UI 제공을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM, Container, Baremetal 환경을 하나의 대시보드에서 통합 관리할 수 있는 UI 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-067 | 원자 ID: SFR-007-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-062",
+      "requirement_name": "VM, 컨테이너, Baremetal 간 최적의 리소스 활용을 위한 자동 배치(Placement) 기능 제공",
+      "requirement_type": "기능",
+      "description": "VM, 컨테이너, Baremetal 간 최적의 리소스 활용을 위한 자동 배치(Placement) 기능 제공을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM, 컨테이너, Baremetal 간 최적의 리소스 활용을 위한 자동 배치(Placement) 기능 제공의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-068 | 원자 ID: SFR-007-011 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-063",
+      "requirement_name": "컨테이너 기반 HPC 작업을 VM 또는 Baremetal 노드로 쉽게 이동(Migrate)할 수 있도록 지원",
+      "requirement_type": "기능",
+      "description": "컨테이너 기반 HPC 작업을 VM 또는 Baremetal 노드로 쉽게 이동(Migrate)할 수 있도록 지원을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "컨테이너 기반 HPC 작업을 VM 또는 Baremetal 노드로 쉽게 이동(Migrate)할 수 있도록 지원의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-069 | 원자 ID: SFR-007-012 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-064",
+      "requirement_name": "VM, 컨테이너, Baremetal 인스턴스를 생성하고 HPC 클러스터에 연결하는 직관적인 UI 제공",
+      "requirement_type": "기능",
+      "description": "VM, 컨테이너, Baremetal 인스턴스를 생성하고 HPC 클러스터에 연결하는 직관적인 UI 제공을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM, 컨테이너, Baremetal 인스턴스를 생성하고 HPC 클러스터에 연결하는 직관적인 UI 제공의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-070 | 원자 ID: SFR-007-013 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-065",
+      "requirement_name": "사용자 요청에 따라 HPC 클러스터 자원을 스케일 업 및 다운이",
+      "requirement_type": "기능",
+      "description": "사용자 요청에 따라 HPC 클러스터 자원을 스케일 업 및 다운이 가능해야 함을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-007"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "사용자 요청에 따라 HPC 클러스터 자원을 스케일 업 및 다운이의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-071 | 원자 ID: SFR-007-014 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-066",
+      "requirement_name": "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림을 제공",
+      "requirement_type": "기능",
+      "description": "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림을 제공해야 함을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "하드웨어, 스토리지, 네트워크 상태를 모니터링하고 이상 징후 발생시 경고 및 알림을 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-073 | 원자 ID: SFR-008-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-067",
+      "requirement_name": "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립이",
+      "requirement_type": "기능",
+      "description": "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립이 필요함을(를) 작성·생성하여야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장애 발생에 대한 장애 시나리오별 최적 대응 전략 수립이의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-074 | 원자 ID: SFR-008-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-068",
+      "requirement_name": "장애 자동복구 개선점 분석",
+      "requirement_type": "기능",
+      "description": "자동 복구 프로세스 수행 후 개선점 분석을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장애 자동복구 개선점 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-076 | 원자 ID: SFR-008-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-069",
+      "requirement_name": "통합 자원 보안정책 수립·자동 적용",
+      "requirement_type": "기능",
+      "description": "VM, BM 및 컨테이너 자원에 대한 통합 보안정책을 수립·일괄 적용하고 자원 생성 시 사전 정의된 보안정책을 자동 적용하여야 한다.",
+      "source": [
+        "SFR-009"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "통합 자원 보안정책 수립·자동 적용의 보안정책 적용, 이상행위 탐지 및 감사로그 결과 확인"
+      ],
+      "note": "Task2 ID: T2-077 | 원자 ID: SFR-009-001; SFR-009-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-070",
+      "requirement_name": "VM·BM 역할 기반 접근권한 관리",
+      "requirement_type": "기능",
+      "description": "VM과 BM 자원에 대해 사용자, 그룹 및 운영 역할 기반 접근권한을 설정할 수 있어야 한다.",
+      "source": [
+        "SFR-009"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM·BM 역할 기반 접근권한 관리의 역할별 허용·차단 및 권한 설정 결과 확인"
+      ],
+      "note": "Task2 ID: T2-078 | 원자 ID: SFR-009-004; SFR-009-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-071",
+      "requirement_name": "자원 유형별 보안 상태를 실시간으로 모니터링하고 이상 행위 발생 시 탐지 및 알림",
+      "requirement_type": "기능",
+      "description": "자원 유형별 보안 상태를 실시간으로 모니터링하고 이상 행위 발생 시 탐지 및 알림 기능을 제공한다을(를) 보안정책에 따라 처리하여야 한다.",
+      "source": [
+        "SFR-009"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "자원 유형별 보안 상태를 실시간으로 모니터링하고 이상 행위 발생 시 탐지 및 알림의 보안정책 적용, 이상행위 탐지 및 감사로그 결과 확인"
+      ],
+      "note": "Task2 ID: T2-079 | 원자 ID: SFR-009-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-072",
+      "requirement_name": "역할 기반 접근 정책에 따른 자원 접근 및 변경 행위에 대한 감사 및 이력 추적",
+      "requirement_type": "기능",
+      "description": "역할 기반 접근 정책에 따른 자원 접근 및 변경 행위에 대한 감사 및 이력 추적 기능을 제공한다을(를) 보안정책에 따라 처리하여야 한다.",
+      "source": [
+        "SFR-009"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "역할 기반 접근 정책에 따른 자원 접근 및 변경 행위에 대한 감사 및 이력 추적의 보안정책 적용, 이상행위 탐지 및 감사로그 결과 확인"
+      ],
+      "note": "Task2 ID: T2-080 | 원자 ID: SFR-009-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-073",
+      "requirement_name": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단, 조치 명령을 수행할 수 있는",
+      "requirement_type": "기능",
+      "description": "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단, 조치 명령을 수행할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 장애 발생 시 실시간 채팅 인터페이스를 통해 자동화된 분석, 진단, 조치 명령을 수행할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-081 | 원자 ID: SFR-010-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-074",
+      "requirement_name": "반복적으로 발생하는 장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고, 지정된 명령어로 자동 실행할 수 있는",
+      "requirement_type": "기능",
+      "description": "반복적으로 발생하는 장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고, 지정된 명령어로 자동 실행할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "반복적으로 발생하는 장애 유형에 대해 사전 정의된 ChatOps 워크플로우를 구성하고, 지정된 명령어로 자동 실행할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-082 | 원자 ID: SFR-010-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-075",
+      "requirement_name": "ChatOps 명령 실행 시 관련 로그, 처리 상태, 결과 등을 실시간으로 채팅창에 표시하여 상황 공유 및 협업을 지원하는",
+      "requirement_type": "기능",
+      "description": "ChatOps 명령 실행 시 관련 로그, 처리 상태, 결과 등을 실시간으로 채팅창에 표시하여 상황 공유 및 협업을 지원하는 기능을 제공한다을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "ChatOps 명령 실행 시 관련 로그, 처리 상태, 결과 등을 실시간으로 채팅창에 표시하여 상황 공유 및 협업을 지원하는의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-083 | 원자 ID: SFR-010-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-076",
+      "requirement_name": "장애 발생 시 주요 이벤트, 원인 분석, 조치 내역 등을 요약해 전사 공유 채널로 자동 전송하는",
+      "requirement_type": "기능",
+      "description": "장애 발생 시 주요 이벤트, 원인 분석, 조치 내역 등을 요약해 전사 공유 채널로 자동 전송하는 기능을 제공한다을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장애 발생 시 주요 이벤트, 원인 분석, 조치 내역 등을 요약해 전사 공유 채널로 자동 전송하는의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-084 | 원자 ID: SFR-010-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-077",
+      "requirement_name": "HPC 운영조직 내 역할 기반으로 보고 수준을 다르게 구성하여, 관리자, 운영자, 모니터링 요원별로 적정 수준의 정보를 전달할 수 있는",
+      "requirement_type": "기능",
+      "description": "HPC 운영조직 내 역할 기반으로 보고 수준을 다르게 구성하여, 관리자, 운영자, 모니터링 요원별로 적정 수준의 정보를 전달할 수 있는 기능을 제공한다을(를) 권한 기준에 따라 제어하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 운영조직 내 역할 기반으로 보고 수준을 다르게 구성하여, 관리자, 운영자, 모니터링 요원별로 적정 수준의 정보를 전달할 수 있는의 역할별 허용·차단 및 권한 설정 결과 확인"
+      ],
+      "note": "Task2 ID: T2-085 | 원자 ID: SFR-010-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-078",
+      "requirement_name": "장애 대응·자동복구 결과 리포트 생성",
+      "requirement_type": "기능",
+      "description": "장애 대응내역과 자동복구 결과를 기반으로 원인, 조치내역 및 처리결과를 포함한 리포트를 자동 생성하여야 한다.",
+      "source": [
+        "SFR-010",
+        "SFR-008"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "장애 대응·자동복구 결과 리포트 생성의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-086; T2-075 | 원자 ID: SFR-010-006; SFR-008-004 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-079",
+      "requirement_name": "ChatOps 장애대응 리포트 주기 전송",
+      "requirement_type": "기능",
+      "description": "자동 리포트를 정해진 채널로 주기적으로 전달을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-010"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "ChatOps 장애대응 리포트 주기 전송의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-087 | 원자 ID: SFR-010-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-080",
+      "requirement_name": "동시 접근 성능 등을 자동 측정",
+      "requirement_type": "기능",
+      "description": "다양한 병렬 파일 시스템 및 스토리지 시스템에 대한 성능 벤치마크 기능을 제공하며, 입출력 처리량, 지연시간, 동시 접근 성능 등을 자동 측정한다을(를) 검증하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "동시 접근 성능 등을 자동 측정의 시험조건, 비교지표 및 검증결과 확인"
+      ],
+      "note": "Task2 ID: T2-088 | 원자 ID: SFR-011-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-081",
+      "requirement_name": "클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터",
+      "requirement_type": "기능",
+      "description": "클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터 기능을 제공한다을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클라우드 환경에서 다양한 객체 스토리지를 연동할 수 있는 스토리지 클라우드 어댑터의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-089 | 원자 ID: SFR-011-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-082",
+      "requirement_name": "스토리지 데이터 접근 인증·권한 제어",
+      "requirement_type": "기능",
+      "description": "스토리지 및 클라우드 간 데이터 접근 사용자 인증 및 권한 부여을(를) 권한 기준에 따라 제어하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 데이터 접근 인증·권한 제어의 역할별 허용·차단 및 권한 설정 결과 확인"
+      ],
+      "note": "Task2 ID: T2-090 | 원자 ID: SFR-011-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-083",
+      "requirement_name": "스토리지 접근제어 로그 수집",
+      "requirement_type": "기능",
+      "description": "스토리지 및 클라우드 간 접근제어 로그 수집을(를) 보안정책에 따라 처리하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 접근제어 로그 수집의 보안정책 적용, 이상행위 탐지 및 감사로그 결과 확인"
+      ],
+      "note": "Task2 ID: T2-091 | 원자 ID: SFR-011-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-084",
+      "requirement_name": "스토리지 I/O 성능 비교·최적화 리포트",
+      "requirement_type": "기능",
+      "description": "벤치마크와 시뮬레이션 결과를 기반으로 스토리지 유형별 I/O 성능 비교와 최적화 방안을 포함한 리포트를 생성하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 I/O 성능 비교·최적화 리포트의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-092; T2-098 | 원자 ID: SFR-011-005; SFR-011-011 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-085",
+      "requirement_name": "스토리지 I/O 최적화 대상 분류",
+      "requirement_type": "기능",
+      "description": "벤치마크 결과 기반 최적화 대상 분류을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 I/O 최적화 대상 분류의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-093 | 원자 ID: SFR-011-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-086",
+      "requirement_name": "시뮬레이션 시 저장소 구성 변경을 반영할 수 있는",
+      "requirement_type": "기능",
+      "description": "실제 HPC 워크로드를 복제하여 다양한 환경에서 시뮬레이션 가능한 프레임워크를 제공하고, 시뮬레이션 시 저장소 구성 변경을 반영할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "시뮬레이션 시 저장소 구성 변경을 반영할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-094 | 원자 ID: SFR-011-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-087",
+      "requirement_name": "스토리지 성능 프로파일링을 스케줄 기반으로 수행하고, 시점별 I/O 패턴 분석 및 리소스 사용 이력을 수집하는",
+      "requirement_type": "기능",
+      "description": "스토리지 성능 프로파일링을 스케줄 기반으로 수행하고, 시점별 I/O 패턴 분석 및 리소스 사용 이력을 수집하는 기능을 제공한다을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "스토리지 성능 프로파일링을 스케줄 기반으로 수행하고, 시점별 I/O 패턴 분석 및 리소스 사용 이력을 수집하는의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-095 | 원자 ID: SFR-011-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-088",
+      "requirement_name": "다양한 규모와 패턴의 대용량 워크로드를 자동으로 생성 또는 복제하여 병렬 환경에서 테스트할 수 있는",
+      "requirement_type": "기능",
+      "description": "다양한 규모와 패턴의 대용량 워크로드를 자동으로 생성 또는 복제하여 병렬 환경에서 테스트할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "다양한 규모와 패턴의 대용량 워크로드를 자동으로 생성 또는 복제하여 병렬 환경에서 테스트할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-096 | 원자 ID: SFR-011-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-089",
+      "requirement_name": "워크로드·스토리지 적합도 분석·최적화 분류",
+      "requirement_type": "기능",
+      "description": "워크로드 특성과 스토리지 구성 적합도 분석 및 최적화 방안 분류을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-011"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "워크로드·스토리지 적합도 분석·최적화 분류의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-097 | 원자 ID: SFR-011-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-090",
+      "requirement_name": "네트워크 I/O에 대한 프로파일링 정보를 수집",
+      "requirement_type": "기능",
+      "description": "HPC 환경에서 발생하는 애플리케이션 및 시스템 수준의 I/O 작업을 추적하고, 디스크, 파일 시스템, 네트워크 I/O에 대한 프로파일링 정보를 수집 및 분석 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "네트워크 I/O에 대한 프로파일링 정보를 수집의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-099 | 원자 ID: SFR-012-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-091",
+      "requirement_name": "컨테이너 클러스터 I/O 추적 연계",
+      "requirement_type": "기능",
+      "description": "컨테이너 기반 클러스터와 연계을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "컨테이너 클러스터 I/O 추적 연계의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-100 | 원자 ID: SFR-012-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-092",
+      "requirement_name": "컨테이너 단위 I/O 추적정보 분리 수집",
+      "requirement_type": "기능",
+      "description": "I/O 추적 정보를 컨테이너 단위로 분리 수집을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "컨테이너 단위 I/O 추적정보 분리 수집의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-101 | 원자 ID: SFR-012-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-093",
+      "requirement_name": "멀티노드 I/O 추적정보 통합 분석",
+      "requirement_type": "기능",
+      "description": "멀티노드 환경 I/O 추적정보 통합 분석을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "멀티노드 I/O 추적정보 통합 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-102 | 원자 ID: SFR-012-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-094",
+      "requirement_name": "클라우드 상에서도 동일한 I/O 추적",
+      "requirement_type": "기능",
+      "description": "온프레미스 HPC 시스템과 퍼블릭 클라우드를 연결하는 HPC 클라우드 어댑터 기능을 제공하며, 클라우드 상에서도 동일한 I/O 추적 및 관리가 가능하도록 한다을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클라우드 상에서도 동일한 I/O 추적의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-103 | 원자 ID: SFR-012-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-095",
+      "requirement_name": "정책을 설정할 수 있는",
+      "requirement_type": "기능",
+      "description": "HPC 클라우드 자원에 대한 액세스를 제어하고, 클라우드 스토리지 I/O 패턴에 대한 프로파일링 결과를 기반으로 접근권한 및 정책을 설정할 수 있는 기능을 제공한다을(를) 권한 기준에 따라 제어하여야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "정책을 설정할 수 있는의 역할별 허용·차단 및 권한 설정 결과 확인"
+      ],
+      "note": "Task2 ID: T2-104 | 원자 ID: SFR-012-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-096",
+      "requirement_name": "구성을 지원하는 연계형 스케줄링",
+      "requirement_type": "기능",
+      "description": "클라우드 기반 HPC 워크로드의 실행 및 스토리지 사용을 스케줄링하고, I/O 특성 기반의 자동 리소스 할당 및 구성을 지원하는 연계형 스케줄링 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-012"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "구성을 지원하는 연계형 스케줄링의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-105 | 원자 ID: SFR-012-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-097",
+      "requirement_name": "VM Lustre 마운트 자동화·구성 변경·이력·롤백 관리",
+      "requirement_type": "기능",
+      "description": "VM 환경에서 Lustre 파일시스템을 자동 마운트하고 운영 중 구성을 변경하며 변경이력을 추적하고 이전 설정으로 롤백할 수 있어야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM Lustre 마운트 자동화·구성 변경·이력·롤백 관리의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-106; T2-109 | 원자 ID: SFR-013-001; SFR-013-002; SFR-013-005 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-098",
+      "requirement_name": "Lustre 마운트 스케줄링·자동 실행 최적화",
+      "requirement_type": "기능",
+      "description": "시간대, 조건, 워크로드 특성 및 사용자 그룹에 따라 Lustre 마운트 구성을 조정하고 마운트·언마운트 작업을 자동 분배·실행할 수 있어야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "Lustre 마운트 스케줄링·자동 실행 최적화의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-107 | 원자 ID: SFR-013-003; SFR-013-006; SFR-013-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-099",
+      "requirement_name": "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어",
+      "requirement_type": "기능",
+      "description": "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-108 | 원자 ID: SFR-013-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-100",
+      "requirement_name": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는",
+      "requirement_type": "기능",
+      "description": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-110 | 원자 ID: SFR-013-008 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-101",
+      "requirement_name": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는",
+      "requirement_type": "기능",
+      "description": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-111 | 원자 ID: SFR-013-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-102",
+      "requirement_name": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링",
+      "requirement_type": "기능",
+      "description": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-112 | 원자 ID: SFR-013-010 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-103",
+      "requirement_name": "VM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는",
+      "requirement_type": "기능",
+      "description": "VM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "VM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-113 | 원자 ID: SFR-013-011 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-104",
+      "requirement_name": "다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능",
+      "requirement_type": "기능",
+      "description": "다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-013"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-114 | 원자 ID: SFR-013-012 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-105",
+      "requirement_name": "처리방식을 정의할 수 있는",
+      "requirement_type": "기능",
+      "description": "이종 HPC 환경에서 실행되는 다양한 Task 및 서비스 워크로드를 유형별로 분류하고, 계산 자원 특성에 따라 실행 우선순위 및 처리방식을 정의할 수 있는 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-014"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "처리방식을 정의할 수 있는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-115 | 원자 ID: SFR-014-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-106",
+      "requirement_name": "HPC 워크로드 로그 기반 자원효율·병목·배치 최적화 분석",
+      "requirement_type": "기능",
+      "description": "워크로드 실행로그와 벤치마크 결과를 기반으로 자원 사용패턴, 활용효율 및 병목지점을 분석하고 작업 구성과 배치전략을 최적화하여야 한다.",
+      "source": [
+        "SFR-014",
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "HPC 워크로드 로그 기반 자원효율·병목·배치 최적화 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-116; T2-140 | 원자 ID: SFR-014-002; SFR-017-010; SFR-017-011 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-107",
+      "requirement_name": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하고, 이를 기반으로 스케줄링 정책을 생성할 수 있는",
+      "requirement_type": "기능",
+      "description": "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하고, 이를 기반으로 스케줄링 정책을 생성할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-014"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "워크로드 특성과 클러스터 자원 상태를 반영하여 최적화된 실행 계획을 계산하고, 이를 기반으로 스케줄링 정책을 생성할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-117 | 원자 ID: SFR-014-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-108",
+      "requirement_name": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적하며, 동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용",
+      "requirement_type": "기능",
+      "description": "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적하며, 동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-014"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "생성된 워크로드 스케줄링 정책에 대한 자동 배포, 변경 이력 추적하며, 동적 자원 변화에 따라 스케줄링 정책을 재계산 및 적용의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-118 | 원자 ID: SFR-014-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-109",
+      "requirement_name": "BM 등 자원 조합을 사전 구성한 카탈로그 형태로 제공하는",
+      "requirement_type": "기능",
+      "description": "어플리케이션 또는 서비스 유형별로 자원 요구 특성을 정의하고, 이를 기반으로 VM, Container, BM 등 자원 조합을 사전 구성한 카탈로그 형태로 제공하는 기능을 제공한다을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "BM 등 자원 조합을 사전 구성한 카탈로그 형태로 제공하는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-119 | 원자 ID: SFR-015-001 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-110",
+      "requirement_name": "향후 자원 추천 정확도 향상을 위한 기준 데이터로 활용할 수 있는",
+      "requirement_type": "기능",
+      "description": "서비스 실행 시 사용된 자원의 구성, 성능, 변경 이력 등을 추적하고, 향후 자원 추천 정확도 향상을 위한 기준 데이터로 활용할 수 있는 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "향후 자원 추천 정확도 향상을 위한 기준 데이터로 활용할 수 있는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-120 | 원자 ID: SFR-015-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-111",
+      "requirement_name": "어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝하고, 정책 기반으로 배포할 수 있는",
+      "requirement_type": "기능",
+      "description": "어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝하고, 정책 기반으로 배포할 수 있는 기능을 제공한다을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "어플리케이션 요구사항에 따라 최적화된 VM 환경을 자동으로 프로비저닝하고, 정책 기반으로 배포할 수 있는의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-121 | 원자 ID: SFR-015-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-112",
+      "requirement_name": "컨테이너 서비스 최적 리소스 추천",
+      "requirement_type": "기능",
+      "description": "컨테이너 기반 서비스 최적 리소스 추천을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "컨테이너 서비스 최적 리소스 추천의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-122 | 원자 ID: SFR-015-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-113",
+      "requirement_name": "추천 컨테이너 환경 자동 생성·배포",
+      "requirement_type": "기능",
+      "description": "선택된 환경에서 컨테이너 자동 생성 및 배포을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "추천 컨테이너 환경 자동 생성·배포의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-123 | 원자 ID: SFR-015-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-114",
+      "requirement_name": "이기종 가속기 요청 분석·환경 추천",
+      "requirement_type": "기능",
+      "description": "이기종 가속기 요청 분석 및 최적 환경 추천을(를) 분석하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "이기종 가속기 요청 분석·환경 추천의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-124 | 원자 ID: SFR-015-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-115",
+      "requirement_name": "이기종 가속기 최적환경 자동 설정",
+      "requirement_type": "기능",
+      "description": "추천된 이기종 가속기 환경 자동 설정을(를) 처리하여야 한다.",
+      "source": [
+        "SFR-015"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "이기종 가속기 최적환경 자동 설정의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-125 | 원자 ID: SFR-015-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-116",
+      "requirement_name": "고전 알고리즘 양자변환·게이트 지원",
+      "requirement_type": "기능",
+      "description": "고전 알고리즘을 양자 알고리즘으로 자동 매핑하고 다양한 양자 게이트 세트를 지원하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "고전 알고리즘 양자변환·게이트 지원의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-126 | 원자 ID: SFR-016-001; SFR-016-002 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-117",
+      "requirement_name": "양자 회로 컴파일·실행시간 최적화",
+      "requirement_type": "기능",
+      "description": "양자 회로 최적화 컴파일 파이프라인을 제공하고 게이트 융합·단순화를 통해 실행시간을 최적화하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "양자 회로 컴파일·실행시간 최적화의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-127 | 원자 ID: SFR-016-003; SFR-016-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-118",
+      "requirement_name": "양자 데이터 인코딩·추천·벤치마킹",
+      "requirement_type": "기능",
+      "description": "진폭·기저 인코딩을 지원하고 데이터 특성에 따른 최적 인코딩 방식을 추천하며 큐비트 사용량 최소화 전략을 제공하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "양자 데이터 인코딩·추천·벤치마킹의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-128 | 원자 ID: SFR-016-005; SFR-016-006; SFR-016-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-119",
+      "requirement_name": "양자 측정결과 통계·확률분포 분석",
+      "requirement_type": "기능",
+      "description": "양자 상태 측정결과를 통계 분석하고 샷 기반 카운팅과 확률분포를 추정할 수 있어야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "양자 측정결과 통계·확률분포 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-129 | 원자 ID: SFR-016-008; SFR-016-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-120",
+      "requirement_name": "양자 결과 오류 필터링·고전데이터 변환·불확실성 계산",
+      "requirement_type": "기능",
+      "description": "양자 노이즈와 오류를 필터링하고 양자 결과를 고전 데이터로 변환하며 결과 불확실성과 신뢰구간을 계산하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "양자 결과 오류 필터링·고전데이터 변환·불확실성 계산의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-130 | 원자 ID: SFR-016-010; SFR-016-011; SFR-016-012 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-121",
+      "requirement_name": "양자 결과 시각화·고전데이터 비교 분석",
+      "requirement_type": "기능",
+      "description": "양자 결과를 대시보드로 시각화하고 고전 데이터와 양자 결과를 비교·분석할 수 있어야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "양자 결과 시각화·고전데이터 비교 분석의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-131 | 원자 ID: SFR-016-013; SFR-016-014 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-122",
+      "requirement_name": "텐서네트워크·몬테카를로 양자 시뮬레이션",
+      "requirement_type": "기능",
+      "description": "텐서 네트워크와 몬테카를로 샘플링 방식의 양자 시뮬레이션을 지원하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "텐서네트워크·몬테카를로 양자 시뮬레이션의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-132 | 원자 ID: SFR-016-015; SFR-016-016 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-123",
+      "requirement_name": "GPU·분산 HPC 양자 시뮬레이션 최적화",
+      "requirement_type": "기능",
+      "description": "GPU 가속과 분산 HPC 클러스터를 활용한 병렬 양자 시뮬레이션을 제공하고 희소행렬·메모리 최적화를 적용하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "GPU·분산 HPC 양자 시뮬레이션 최적화의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-133 | 원자 ID: SFR-016-017; SFR-016-018; SFR-016-019 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-124",
+      "requirement_name": "클라우드 QPU·양자벤더 API 통합 연계",
+      "requirement_type": "기능",
+      "description": "클라우드 QPU 접근 인터페이스와 IBM, Rigetti 및 IonQ 등의 양자벤더 API를 통합 연계·관리하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "클라우드 QPU·양자벤더 API 통합 연계의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-134 | 원자 ID: SFR-016-020; SFR-016-021 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-125",
+      "requirement_name": "작업 실행 상태 모니터링 및 알림을 제공",
+      "requirement_type": "기능",
+      "description": "작업 실행 상태 모니터링 및 알림을 제공해야 함을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "작업 실행 상태 모니터링 및 알림을 제공의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-135 | 원자 ID: SFR-016-022 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-126",
+      "requirement_name": "QPU 자원 할당 최적화",
+      "requirement_type": "기능",
+      "description": "QPU 자원 할당 최적화을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "QPU 자원 할당 최적화의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-136 | 원자 ID: SFR-016-023 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-127",
+      "requirement_name": "QPU 사용 과금 산출",
+      "requirement_type": "기능",
+      "description": "QPU 사용 과금 산출을(를) 작성·생성하여야 한다.",
+      "source": [
+        "SFR-016"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "QPU 사용 과금 산출의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-137 | 원자 ID: SFR-016-024 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-128",
+      "requirement_name": "벤치마크 실행 로그·성능메트릭 자동 수집",
+      "requirement_type": "기능",
+      "description": "벤치마크를 실행하고 프로세스 시간, 자원 사용률, 성공·실패 및 예외내역 등의 로그와 성능메트릭을 자동 수집하여야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 실행 로그·성능메트릭 자동 수집의 자동 실행·변환·배포·복구 결과와 처리로그 확인"
+      ],
+      "note": "Task2 ID: T2-138 | 원자 ID: SFR-017-001; SFR-017-002; SFR-017-003 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-129",
+      "requirement_name": "벤치마크 로그·작업이력·구성 비교 조회",
+      "requirement_type": "기능",
+      "description": "벤치마크 관제 포털에서 로그, 실행이력 및 작업별 구성정보를 조회하고 과거 실행결과와 비교할 수 있어야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 로그·작업이력·구성 비교 조회의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-139 | 원자 ID: SFR-017-008; SFR-017-009 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-130",
+      "requirement_name": "수집된 벤치마크 로그 및 메트릭 데이터를 시계열 기반으로 저장하고, 저장소 내에서 벤치마크 실행 단위로 관리할 수 있는",
+      "requirement_type": "기능",
+      "description": "수집된 벤치마크 로그 및 메트릭 데이터를 시계열 기반으로 저장하고, 저장소 내에서 벤치마크 실행 단위로 관리할 수 있는 기능을 제공한다을(를) 설정·관리할 수 있어야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "수집된 벤치마크 로그 및 메트릭 데이터를 시계열 기반으로 저장하고, 저장소 내에서 벤치마크 실행 단위로 관리할 수 있는의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-141 | 원자 ID: SFR-017-004 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-131",
+      "requirement_name": "벤치마크 로그에 대한 검색, 필터링, 정렬 기능을 지원하며, 사용자가 원하는 기준으로 로그 데이터를 조회할 수 있도록 한다 보안",
+      "requirement_type": "기능",
+      "description": "벤치마크 로그에 대한 검색, 필터링, 정렬 기능을 지원하며, 사용자가 원하는 기준으로 로그 데이터를 조회할 수 있도록 한다을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 로그에 대한 검색, 필터링, 정렬 기능을 지원하며, 사용자가 원하는 기준으로 로그 데이터를 조회할 수 있도록 한다 보안의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-142 | 원자 ID: SFR-017-005 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-132",
+      "requirement_name": "벤치마크 관제 포털 접근 권한",
+      "requirement_type": "기능",
+      "description": "관리자 및 사용자 권한별 관제 포털 접근을(를) 권한 기준에 따라 제어하여야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 관제 포털 접근 권한의 역할별 허용·차단 및 권한 설정 결과 확인"
+      ],
+      "note": "Task2 ID: T2-143 | 원자 ID: SFR-017-006 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-133",
+      "requirement_name": "벤치마크 실행 요청",
+      "requirement_type": "기능",
+      "description": "포털을 통한 벤치마크 요청을(를) 제공하여야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 실행 요청의 기능 동작과 원문 조건 충족 여부 확인"
+      ],
+      "note": "Task2 ID: T2-144 | 원자 ID: SFR-017-007 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-134",
+      "requirement_name": "벤치마크 결과 표·그래프·히트맵 시각화",
+      "requirement_type": "기능",
+      "description": "벤치마크 결과를 표, 그래프, 히트맵으로 제공을(를) 조회·확인할 수 있어야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 결과 표·그래프·히트맵 시각화의 화면, 지표, 분석·시각화 및 비교 결과 확인"
+      ],
+      "note": "Task2 ID: T2-145 | 원자 ID: SFR-017-012 | 처리유형: 유지"
+    },
+    {
+      "requirement_id": "GOLD-135",
+      "requirement_name": "벤치마크 분석 리포트 생성·PDF·HTML 내보내기",
+      "requirement_type": "기능",
+      "description": "벤치마크 분석결과를 리포트로 생성하고 PDF와 HTML 등의 형식으로 내보낼 수 있어야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 분석 리포트 생성·PDF·HTML 내보내기의 설계서·정책·리포트·파일 생성 결과 확인"
+      ],
+      "note": "Task2 ID: T2-146; T2-147 | 원자 ID: SFR-017-013; SFR-017-014 | 처리유형: 통합"
+    },
+    {
+      "requirement_id": "GOLD-136",
+      "requirement_name": "벤치마크 리포트 자동 공유",
+      "requirement_type": "기능",
+      "description": "리포트를 이메일 또는 내부 시스템으로 자동 공유을(를) 연계하여야 한다.",
+      "source": [
+        "SFR-017"
+      ],
+      "constraints": [],
+      "priority": "미지정",
+      "validation_criteria": [
+        "벤치마크 리포트 자동 공유의 연계 대상, 인터페이스, 데이터 및 정상 연계 결과 확인"
+      ],
+      "note": "Task2 ID: T2-148 | 원자 ID: SFR-017-015 | 처리유형: 유지"
+    }
+  ]
+}

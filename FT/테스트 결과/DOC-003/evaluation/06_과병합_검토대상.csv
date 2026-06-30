@@ -1,0 +1,5 @@
+﻿gold_id,requirement_name,source_task2_ids,source_task2_count,source_pair_min_similarity,source_pair_average_similarity,source_to_final_min_similarity,overmerge_review
+GOLD-002,타 대학 분석·최적화 홈페이지 구축 및 저작권 관리,T2-000002; T2-000006,2,0.892239,0.892239,0.943572,False
+GOLD-005,사용자 중심 디자인·메뉴·콘텐츠·게시판 관리,T2-000005; T2-000009; T2-000010; T2-000011; T2-000015; T2-000020,6,0.888548,0.906323,0.907649,False
+GOLD-007,개인정보 동의·SSL 암호화,T2-000008; T2-000012,2,0.940775,0.940775,0.940775,False
+GOLD-019,포털·LLM 검색 최적화,T2-000026; T2-000027,2,0.95009,0.95009,0.976519,False

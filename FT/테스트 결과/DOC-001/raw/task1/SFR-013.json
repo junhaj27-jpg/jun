@@ -1,0 +1,165 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-001",
+    "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+    "requirement": {
+      "requirement_id": "SFR-013",
+      "requirement_name": "병렬 파일 및 스토리지 시스템 성능 최적화",
+      "requirement_type": "기능",
+      "requirement_definition": "병렬 파일 및 스토리지 시스템 성능 최적화",
+      "requirement_detail": "○ VM 기반 Lustre 스토리지 마운트 구성 및 자동화 기능\nVM 환경에서 Lustre 파일 시스템을 자동으로 마운트할 수 있는 구성 자동화 기능을 제공한다.\nLustre 마운트 구성을 동적으로 변경하거나 유지 관리할 수 있는 구성 관리 기능을 제공한다.\n정해진 시간 또는 조건에 따라 Lustre 마운트 작업을 자동으로 실행할 수 있는 스케줄링 기능을 제공한다.\n복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다.\n\n○ 스토리지 마운트 구성 변경 및 스케줄링 최적화 기능\nVM-Lustre 스토리지 마운트 설정을 운영 중에 변경 가능하며, 변경 이력 추적 및 롤백 기능을 제공한다.\nLustre 마운트 구성을 시간대, 워크로드 특성, 사용자 그룹 등에 따라 유연하게 조정할 수 있는 스케줄 기반 구성 관리 기능을 제공한다.\n마운트 및 언마운트 작업을 워크로드 특성에 따라 자동으로 분배 및 실행하는 최적화된 스케줄링 기능을 제공한다.\nLustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다.\n\n○ VM-Lustre 외 스토리지 연계 및 성능 최적화 관리 기능\nVM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다.\nVM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다.\nVM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다.\n다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다.",
+      "source_location": {}
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2535,
+      "max_new_tokens": 4096,
+      "generated_tokens": 1123,
+      "hit_token_limit": false,
+      "elapsed_seconds": 68.60695145512,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-013\",\n  \"decomposition_count\": 10,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-013-001\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM 기반 Lustre 자동 마운트 구성\",\n      \"source_text\": \"VM 환경에서 Lustre 파일 시스템을 자동으로 마운트할 수 있는 구성 자동화 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-002\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"Lustre 마운트 구성 동적 변경·유지관리\",\n      \"source_text\": \"Lustre 마운트 구성을 동적으로 변경하거나 유지 관리할 수 있는 구성 관리 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-003\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"Lustre 마운트 작업 스케줄링\",\n      \"source_text\": \"정해진 시간 또는 조건에 따라 Lustre 마운트 작업을 자동으로 실행할 수 있는 스케줄링 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-004\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM Lustre 중앙 통합 마운트 관리\",\n      \"source_text\": \"복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-005\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"Lustre 마운트 설정 운영 변경·이력·롤백\",\n      \"source_text\": \"VM-Lustre 스토리지 마운트 설정을 운영 중에 변경 가능하며, 변경 이력 추적 및 롤백 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-006\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"Lustre 마운트 스케줄 기반 유연 조정\",\n      \"source_text\": \"Lustre 마운트 구성을 시간대, 워크로드 특성, 사용자 그룹 등에 따라 유연하게 조정할 수 있는 스케줄 기반 구성 관리 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-007\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"Lustre 마운트 워크로드 기반 자동 스케줄링\",\n      \"source_text\": \"마운트 및 언마운트 작업을 워크로드 특성에 따라 자동으로 분배 및 실행하는 최적화된 스케줄링 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-008\",\n      \"action_type\": \"분석\",\n      \"output_name\": \"Lustre 마운트 성능 영향도 분석·비교\",\n      \"source_text\": \"Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-009\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"VM NFS·Ceph·GlusterFS 자동 연계\",\n      \"source_text\": \"VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다.\"\n    },\n    {\n      \"atomic_id\": \"SFR-013-010\",\n      \"action_type\": \"관리\",\n      \"output_name\": \"VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링\",\n      \"source_text\": \"VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다.\\nVM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다.\\n다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다.\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-013",
+        "decomposition_count": 10,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-013-001",
+            "action_type": "관리",
+            "output_name": "VM 기반 Lustre 자동 마운트 구성",
+            "source_text": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트할 수 있는 구성 자동화 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-002",
+            "action_type": "관리",
+            "output_name": "Lustre 마운트 구성 동적 변경·유지관리",
+            "source_text": "Lustre 마운트 구성을 동적으로 변경하거나 유지 관리할 수 있는 구성 관리 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-003",
+            "action_type": "관리",
+            "output_name": "Lustre 마운트 작업 스케줄링",
+            "source_text": "정해진 시간 또는 조건에 따라 Lustre 마운트 작업을 자동으로 실행할 수 있는 스케줄링 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-004",
+            "action_type": "관리",
+            "output_name": "VM Lustre 중앙 통합 마운트 관리",
+            "source_text": "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-005",
+            "action_type": "관리",
+            "output_name": "Lustre 마운트 설정 운영 변경·이력·롤백",
+            "source_text": "VM-Lustre 스토리지 마운트 설정을 운영 중에 변경 가능하며, 변경 이력 추적 및 롤백 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-006",
+            "action_type": "관리",
+            "output_name": "Lustre 마운트 스케줄 기반 유연 조정",
+            "source_text": "Lustre 마운트 구성을 시간대, 워크로드 특성, 사용자 그룹 등에 따라 유연하게 조정할 수 있는 스케줄 기반 구성 관리 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-007",
+            "action_type": "관리",
+            "output_name": "Lustre 마운트 워크로드 기반 자동 스케줄링",
+            "source_text": "마운트 및 언마운트 작업을 워크로드 특성에 따라 자동으로 분배 및 실행하는 최적화된 스케줄링 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-008",
+            "action_type": "분석",
+            "output_name": "Lustre 마운트 성능 영향도 분석·비교",
+            "source_text": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-009",
+            "action_type": "연계",
+            "output_name": "VM NFS·Ceph·GlusterFS 자동 연계",
+            "source_text": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다."
+          },
+          {
+            "atomic_id": "SFR-013-010",
+            "action_type": "관리",
+            "output_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+            "source_text": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다.\nVM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다.\n다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다."
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-013",
+    "decomposition_count": 10,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-013-001",
+        "action_type": "관리",
+        "output_name": "VM 기반 Lustre 자동 마운트 구성",
+        "source_text": "VM 환경에서 Lustre 파일 시스템을 자동으로 마운트할 수 있는 구성 자동화 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-002",
+        "action_type": "관리",
+        "output_name": "Lustre 마운트 구성 동적 변경·유지관리",
+        "source_text": "Lustre 마운트 구성을 동적으로 변경하거나 유지 관리할 수 있는 구성 관리 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-003",
+        "action_type": "관리",
+        "output_name": "Lustre 마운트 작업 스케줄링",
+        "source_text": "정해진 시간 또는 조건에 따라 Lustre 마운트 작업을 자동으로 실행할 수 있는 스케줄링 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-004",
+        "action_type": "관리",
+        "output_name": "VM Lustre 중앙 통합 마운트 관리",
+        "source_text": "복수의 VM에서 Lustre 스토리지 마운트 설정을 일괄 적용하거나 템플릿 기반으로 관리할 수 있는 중앙 통합 제어 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-005",
+        "action_type": "관리",
+        "output_name": "Lustre 마운트 설정 운영 변경·이력·롤백",
+        "source_text": "VM-Lustre 스토리지 마운트 설정을 운영 중에 변경 가능하며, 변경 이력 추적 및 롤백 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-006",
+        "action_type": "관리",
+        "output_name": "Lustre 마운트 스케줄 기반 유연 조정",
+        "source_text": "Lustre 마운트 구성을 시간대, 워크로드 특성, 사용자 그룹 등에 따라 유연하게 조정할 수 있는 스케줄 기반 구성 관리 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-007",
+        "action_type": "관리",
+        "output_name": "Lustre 마운트 워크로드 기반 자동 스케줄링",
+        "source_text": "마운트 및 언마운트 작업을 워크로드 특성에 따라 자동으로 분배 및 실행하는 최적화된 스케줄링 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-008",
+        "action_type": "분석",
+        "output_name": "Lustre 마운트 성능 영향도 분석·비교",
+        "source_text": "Lustre 파일 시스템의 마운트 구성 변경 전후에 성능 영향도를 분석하고, 변경 효과를 시각적으로 비교할 수 있는 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-009",
+        "action_type": "연계",
+        "output_name": "VM NFS·Ceph·GlusterFS 자동 연계",
+        "source_text": "VM 환경에서 NFS, Ceph, GlusterFS 등 다양한 스토리지 시스템과의 연계 구성을 자동화할 수 있는 기능을 제공한다."
+      },
+      {
+        "atomic_id": "SFR-013-010",
+        "action_type": "관리",
+        "output_name": "VM 외 스토리지 워크로드 기반 스케줄링·변경·모니터링",
+        "source_text": "VM-Lustre 외 스토리지에 대해 워크로드 기반의 접근 패턴을 고려한 최적화된 마운트/언마운트 스케줄링 기능을 제공한다.\nVM-Lustre 외 스토리지 시스템의 구성 변경을 관리하고, 이력 및 변경 내역을 추적할 수 있는 기능을 제공한다.\n다양한 스토리지 시스템의 사용 현황, 성능 지표, 병목 구간 등을 통합 모니터링하고 최적화 정책을 적용할 수 있는 관리기능을 제공한다."
+      }
+    ]
+  }
+}

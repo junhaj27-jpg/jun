@@ -1,0 +1,28 @@
+{
+  "document_id": "DOC-003",
+  "candidate_count": 27,
+  "distribution": {
+    "pair_count": 351,
+    "min": 0.845207,
+    "q50": 0.879916,
+    "q75": 0.89062,
+    "q90": 0.902059,
+    "q95": 0.914809,
+    "q97": 0.924003,
+    "q99": 0.938692,
+    "max": 0.961646
+  },
+  "adaptive_floor": 0.91,
+  "settings": {
+    "high_similarity": 0.92,
+    "review_similarity": 0.86,
+    "pair_quantile": 0.97,
+    "mutual_top_k": 5,
+    "name_jaccard": 0.12,
+    "lexical_cosine": 0.82,
+    "lexical_name_jaccard": 0.4,
+    "adaptive_floor_max": 0.91,
+    "group_min_pair": 0.84,
+    "max_group_size": 8
+  }
+}

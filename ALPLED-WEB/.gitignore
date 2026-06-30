@@ -1,0 +1,48 @@
+
+# 1. 파이썬 컴파일 및 캐시 파일 (절대 올리면 안 됨)
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 2. Django 프로젝트 관련 파일
+db.sqlite3
+db.sqlite3-journal
+media/                # 사용자가 업로드한 파일 폴더 (서버 용량 및 보안)
+# 로컬 파일 관리 업로드 저장소
+.storage/project-files/
+staticfiles/          # collectstatic 명령어로 모인 정적 파일 폴더
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# 3. 환경 변수 및 비밀 키 파일 (보안 핵심: GitHub에 올리면 유출 위험!)
+.env
+.env.local
+.env.dev
+.env.prod
+secrets.json
+
+# 4. OS 및 IDE 관련 설정 파일 (팀원 간 충돌 방지)
+.DS_Store             # macOS
+Thumbs.db             # Windows
+
+.idea/                # PyCharm
+.vscode/              # VS Code
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# 5. 로그 및 백업 파일
+*.log
+local_settings.py
+
+# 6. 사용자 개별 추가
+ref_assets/

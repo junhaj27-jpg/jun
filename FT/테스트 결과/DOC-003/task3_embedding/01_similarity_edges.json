@@ -1,0 +1,469 @@
+{
+  "document_id": "DOC-003",
+  "adaptive_floor": 0.91,
+  "connected_edges": [
+    {
+      "left_index": 1,
+      "right_index": 5,
+      "left_id": "T2-000002",
+      "right_id": "T2-000006",
+      "cosine_similarity": 0.892239,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.142857,
+      "mutual_top_k": false,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": false,
+      "lexical_match": false,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 2,
+      "right_index": 3,
+      "left_id": "T2-000003",
+      "right_id": "T2-000004",
+      "cosine_similarity": 0.936579,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 2,
+      "right_index": 12,
+      "left_id": "T2-000003",
+      "right_id": "T2-000013",
+      "cosine_similarity": 0.926762,
+      "same_action_type": false,
+      "source_overlap": false,
+      "name_jaccard": 0.166667,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 3,
+      "right_index": 16,
+      "left_id": "T2-000004",
+      "right_id": "T2-000017",
+      "cosine_similarity": 0.926105,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.333333,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 3,
+      "right_index": 17,
+      "left_id": "T2-000004",
+      "right_id": "T2-000018",
+      "cosine_similarity": 0.907777,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.125,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": false,
+      "lexical_match": false,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 4,
+      "right_index": 8,
+      "left_id": "T2-000005",
+      "right_id": "T2-000009",
+      "cosine_similarity": 0.912968,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 7,
+      "right_index": 11,
+      "left_id": "T2-000008",
+      "right_id": "T2-000012",
+      "cosine_similarity": 0.940775,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.4,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": true,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "LEXICAL_NAME_OVERLAP",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 8,
+      "right_index": 10,
+      "left_id": "T2-000009",
+      "right_id": "T2-000011",
+      "cosine_similarity": 0.914149,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 8,
+      "right_index": 14,
+      "left_id": "T2-000009",
+      "right_id": "T2-000015",
+      "cosine_similarity": 0.916381,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 9,
+      "right_index": 14,
+      "left_id": "T2-000010",
+      "right_id": "T2-000015",
+      "cosine_similarity": 0.923452,
+      "same_action_type": false,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": false,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE"
+      ]
+    },
+    {
+      "left_index": 9,
+      "right_index": 19,
+      "left_id": "T2-000010",
+      "right_id": "T2-000020",
+      "cosine_similarity": 0.924555,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 10,
+      "right_index": 12,
+      "left_id": "T2-000011",
+      "right_id": "T2-000013",
+      "cosine_similarity": 0.913432,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 10,
+      "right_index": 14,
+      "left_id": "T2-000011",
+      "right_id": "T2-000015",
+      "cosine_similarity": 0.921029,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 12,
+      "right_index": 13,
+      "left_id": "T2-000013",
+      "right_id": "T2-000014",
+      "cosine_similarity": 0.933938,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.142857,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 13,
+      "right_index": 14,
+      "left_id": "T2-000014",
+      "right_id": "T2-000015",
+      "cosine_similarity": 0.91917,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 13,
+      "right_index": 16,
+      "left_id": "T2-000014",
+      "right_id": "T2-000017",
+      "cosine_similarity": 0.927597,
+      "same_action_type": false,
+      "source_overlap": false,
+      "name_jaccard": 0.142857,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 16,
+      "right_index": 17,
+      "left_id": "T2-000017",
+      "right_id": "T2-000018",
+      "cosine_similarity": 0.955182,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.5,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": true,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "LEXICAL_NAME_OVERLAP",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 20,
+      "right_index": 22,
+      "left_id": "T2-000021",
+      "right_id": "T2-000023",
+      "cosine_similarity": 0.916386,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 20,
+      "right_index": 24,
+      "left_id": "T2-000021",
+      "right_id": "T2-000025",
+      "cosine_similarity": 0.936608,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.4,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": true,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "LEXICAL_NAME_OVERLAP",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 21,
+      "right_index": 22,
+      "left_id": "T2-000022",
+      "right_id": "T2-000023",
+      "cosine_similarity": 0.961646,
+      "same_action_type": false,
+      "source_overlap": true,
+      "name_jaccard": 0.5,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": true,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "LEXICAL_NAME_OVERLAP"
+      ]
+    },
+    {
+      "left_index": 22,
+      "right_index": 24,
+      "left_id": "T2-000023",
+      "right_id": "T2-000025",
+      "cosine_similarity": 0.914065,
+      "same_action_type": true,
+      "source_overlap": false,
+      "name_jaccard": 0.0,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": false,
+      "evidence_match": true,
+      "lexical_match": false,
+      "action_match": false,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE"
+      ]
+    },
+    {
+      "left_index": 25,
+      "right_index": 26,
+      "left_id": "T2-000026",
+      "right_id": "T2-000027",
+      "cosine_similarity": 0.95009,
+      "same_action_type": true,
+      "source_overlap": true,
+      "name_jaccard": 0.5,
+      "mutual_top_k": true,
+      "adaptive_floor": 0.91,
+      "high_match": true,
+      "evidence_match": true,
+      "lexical_match": true,
+      "action_match": true,
+      "connect": true,
+      "reason": [
+        "MUTUAL_TOPK_HIGH_COSINE",
+        "MUTUAL_TOPK_ADAPTIVE_WITH_EVIDENCE",
+        "LEXICAL_NAME_OVERLAP",
+        "ACTION_AND_NAME_EVIDENCE"
+      ]
+    }
+  ]
+}

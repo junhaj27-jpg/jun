@@ -1,0 +1,74 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-003-EMB-C005-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000021",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-006::SFR-006-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "사업단 통합게시판 게시글 조회",
+        "requirement_detail": "사업단 통합게시판의 공지사항과 게시글을 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-006"
+        ]
+      },
+      {
+        "task2_id": "T2-000022",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "입력",
+        "requirement_name": "온라인 신청·문의 입력",
+        "requirement_detail": "사용자는 온라인으로 신청과 문의사항을 입력할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000023",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-007::SFR-007-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "온라인 신청·문의 관리자 확인",
+        "requirement_detail": "관리자는 온라인 신청과 문의사항을 이메일 또는 관리자 기능으로 확인할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-007"
+        ]
+      },
+      {
+        "task2_id": "T2-000025",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-009::SFR-009-001"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "사업단 성과 조회",
+        "requirement_detail": "사업단별 성과를 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-009"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 1,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2373,
+  "max_new_tokens": 3559,
+  "generated_tokens": 1333,
+  "hit_token_limit": false,
+  "elapsed_seconds": 77.96204708563164,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"comparison_ids\": [\n        \"T2-000021\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000022\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000023\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    },\n    {\n      \"comparison_ids\": [\n        \"T2-000025\"\n      ],\n      \"relation_type\": \"UNIQUE\",\n      \"processing_result\": \"KEPT\",\n      \"rationale\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\",\n      \"preserved_conditions\": \"기관·시스템명, 데이터 범위, 화면·지도·API·스트리밍 결과, 오프라인 조건과 출처를 최종 문장 및 계보에 보존함.\",\n      \"excluded_or_absorbed_ids\": []\n    }\n  ],\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"사업단 통합게시판 게시글 조회\",\n      \"requirement_detail\": \"사업단 통합게시판의 공지사항과 게시글을 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000021\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-006::SFR-006-001\"\n      ],\n      \"sources\": [\n        \"SFR-006\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"입력\",\n      \"requirement_name\": \"온라인 신청·문의 입력\",\n      \"requirement_detail\": \"사용자는 온라인으로 신청과 문의사항을 입력할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000022\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007::SFR-007-001\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"온라인 신청·문의 관리자 확인\",\n      \"requirement_detail\": \"관리자는 온라인 신청과 문의사항을 이메일 또는 관리자 기능으로 확인할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000023\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-007::SFR-007-002\"\n      ],\n      \"sources\": [\n        \"SFR-007\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"사업단 성과 조회\",\n      \"requirement_detail\": \"사업단별 성과를 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000025\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-009::SFR-009-001\"\n      ],\n      \"sources\": [\n        \"SFR-009\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 사용자, 데이터 원천, 행위 또는 검수 결과가 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}"
+}

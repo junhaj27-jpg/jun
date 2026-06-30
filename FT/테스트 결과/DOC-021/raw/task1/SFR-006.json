@@ -1,0 +1,96 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+  "adapter_name": "stage1",
+  "user": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "document_id": "DOC-021",
+    "document_name": "21. GNU 생성형 AI 서비스 플랫폼 구축 사업 조달 구매.docx",
+    "requirement": {
+      "requirement_id": "SFR-006",
+      "requirement_name": "챗봇 스토어 구축",
+      "requirement_type": "기능",
+      "requirement_definition": "퍼블리시된 챗봇을 검색 및 불러올 수 있는 스토어 구축",
+      "requirement_detail": "▪ 챗봇 검색 및 탐색 기능\n- 플랫폼 내에서 퍼블리시된 챗봇을 탐색 및 검색할 수 있는 인터페이스\n- 각 챗봇에 대한 상세 설명(기능, 사용 사례 등)을 표시\n- 필터링 옵션을 통해 필요한 챗봇을 빠르게 찾을 수 있는 기능\n▪ 사용자 그룹별 서비스 구분\n- 사용자 그룹(학생, 교수, 교직원 등)별로 적합한 챗봇 조회\n- 사용자 로그인 시 그룹에 맞는 챗봇만 표시 및 활용 가능\n▪ 챗봇 활용\n- 선택한 챗봇을 불러와 사용자의 환경에 즉시 적용 가능",
+      "source_location": {
+        "table_index": 19,
+        "source_type": "detailed_requirement_table"
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "adapter_name": "stage1",
+      "prompt_tokens": 2157,
+      "max_new_tokens": 4096,
+      "generated_tokens": 324,
+      "hit_token_limit": false,
+      "elapsed_seconds": 19.37349663861096,
+      "raw_text": "{\n  \"task_type\": \"TASK1_FUR_ATOMIC_DECOMPOSITION\",\n  \"source_requirement_id\": \"SFR-006\",\n  \"decomposition_count\": 4,\n  \"atomic_requirements\": [\n    {\n      \"atomic_id\": \"SFR-006-001\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"퍼블리시 챗봇 검색·탐색·필터링\",\n      \"source_text\": \"퍼블리시 챗봇 검색·탐색·필터링\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-002\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사용자 그룹별 챗봇 조회\",\n      \"source_text\": \"사용자 그룹별 챗봇 조회\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-003\",\n      \"action_type\": \"조회\",\n      \"output_name\": \"사용자 그룹별 챗봇 활용\",\n      \"source_text\": \"사용자 그룹별 챗봇 활용\"\n    },\n    {\n      \"atomic_id\": \"SFR-006-004\",\n      \"action_type\": \"연계\",\n      \"output_name\": \"선택 챗봇 환경 적용\",\n      \"source_text\": \"선택 챗봇 환경 적용\"\n    }\n  ]\n}",
+      "parse_mode": "strict",
+      "prediction": {
+        "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+        "source_requirement_id": "SFR-006",
+        "decomposition_count": 4,
+        "atomic_requirements": [
+          {
+            "atomic_id": "SFR-006-001",
+            "action_type": "조회",
+            "output_name": "퍼블리시 챗봇 검색·탐색·필터링",
+            "source_text": "퍼블리시 챗봇 검색·탐색·필터링"
+          },
+          {
+            "atomic_id": "SFR-006-002",
+            "action_type": "조회",
+            "output_name": "사용자 그룹별 챗봇 조회",
+            "source_text": "사용자 그룹별 챗봇 조회"
+          },
+          {
+            "atomic_id": "SFR-006-003",
+            "action_type": "조회",
+            "output_name": "사용자 그룹별 챗봇 활용",
+            "source_text": "사용자 그룹별 챗봇 활용"
+          },
+          {
+            "atomic_id": "SFR-006-004",
+            "action_type": "연계",
+            "output_name": "선택 챗봇 환경 적용",
+            "source_text": "선택 챗봇 환경 적용"
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK1_FUR_ATOMIC_DECOMPOSITION",
+    "source_requirement_id": "SFR-006",
+    "decomposition_count": 4,
+    "atomic_requirements": [
+      {
+        "atomic_id": "SFR-006-001",
+        "action_type": "조회",
+        "output_name": "퍼블리시 챗봇 검색·탐색·필터링",
+        "source_text": "퍼블리시 챗봇 검색·탐색·필터링"
+      },
+      {
+        "atomic_id": "SFR-006-002",
+        "action_type": "조회",
+        "output_name": "사용자 그룹별 챗봇 조회",
+        "source_text": "사용자 그룹별 챗봇 조회"
+      },
+      {
+        "atomic_id": "SFR-006-003",
+        "action_type": "조회",
+        "output_name": "사용자 그룹별 챗봇 활용",
+        "source_text": "사용자 그룹별 챗봇 활용"
+      },
+      {
+        "atomic_id": "SFR-006-004",
+        "action_type": "연계",
+        "output_name": "선택 챗봇 환경 적용",
+        "source_text": "선택 챗봇 환경 적용"
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "task_type": "TASK2_FUR_LOCAL_MERGE_NORMALIZE",
+  "document_id": "DOC-003",
+  "source_requirement_id": "SFR-008",
+  "atomic_input_sha256": "f5878e80b538e3711ef2c64bbc621f1d71b3929f5a6e08354e8952993ed91ae7",
+  "normalized_requirement_count": 1,
+  "normalized_requirements": [
+    {
+      "task2_id": "T2-017",
+      "merge_decision": "KEPT",
+      "merged_from": [
+        "SFR-008::SFR-008-001"
+      ],
+      "reference_context_ids": [],
+      "action_type": "연계",
+      "requirement_name": "우리대학 SSO 로그인 연계",
+      "requirement_detail": "우리대학 SSO를 연계하여야 하며, 우리대학 SSO 로그인을 포함하여야 한다.",
+      "source_requirement_ids": [
+        "SFR-008"
+      ],
+      "source_fur_id": "SFR-008"
+    }
+  ]
+}

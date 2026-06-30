@@ -1,0 +1,564 @@
+{
+  "document_id": "DOC-001",
+  "document_name": "1. 고용량 메모리 지원을 위한 고성능 클라우드 플랫폼 기능 개발.docx",
+  "input_file": "/workspace/test_input/DOC-001_기능전체_입력.json",
+  "input_fur_count": 17,
+  "pipeline": "TASK1_TASK2_TASK3_EMBEDDING_GROUP_V10_4_RELATION_REPAIR_EVALUATION",
+  "pipeline_version": "v10.4",
+  "manifest_signatures": {
+    "task1": "a1019bd33323939133c83cc7eb8093551c1abb5120f454a1dca0d6ade52c685a",
+    "task2": "58a70cbf6a5833e2846a9bfa04a5bfaa15fad39a43d4b50f5ee91f02e06e3fb5",
+    "task3": "6ed682ccd2c7c39524dec6a6c17da28d0f47240cf35037fb3a6550bd1b60c085"
+  },
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "embedding_device": "cuda",
+  "task1_atomic_total": 152,
+  "task1_reused_fur_count": 0,
+  "task1_generated_fur_count": 17,
+  "task2_candidate_total": 122,
+  "task2_reused_fur_count": 0,
+  "task2_generated_fur_count": 17,
+  "embedding_model": "intfloat/multilingual-e5-base",
+  "scope_global_count": 0,
+  "scope_local_count": 0,
+  "similar_component_count": 21,
+  "similar_component_item_count": 113,
+  "singleton_count": 9,
+  "task3_component_traces": [
+    {
+      "component_no": 1,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 8,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 2,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 3,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 5,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 4,
+      "initial_count": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 4,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 5,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 6,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 6,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 7,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 8,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 8,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 9,
+      "initial_count": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 3,
+          "chunk_count": 1,
+          "output_final_count": 3,
+          "fallback_count": 2
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": [
+        {
+          "group_document_id": "DOC-001-EMB-C009-R01-G001",
+          "fallback_gold_id": "GOLD-COVERAGE-001",
+          "current_candidate_id": "T2-000044",
+          "candidate_lineage": [
+            "T2-000044"
+          ],
+          "missing_lineage_ids": [
+            "T2-000044"
+          ],
+          "action": "COVERAGE_FALLBACK_KEPT",
+          "requirement_name": "유지보수 일정 기반 스토리지 프록시 재구성"
+        },
+        {
+          "group_document_id": "DOC-001-EMB-C009-R01-G001",
+          "fallback_gold_id": "GOLD-COVERAGE-002",
+          "current_candidate_id": "T2-000046",
+          "candidate_lineage": [
+            "T2-000046"
+          ],
+          "missing_lineage_ids": [
+            "T2-000046"
+          ],
+          "action": "COVERAGE_FALLBACK_KEPT",
+          "requirement_name": "스냅샷·복구 기반 데이터 무결성 유지보수"
+        }
+      ]
+    },
+    {
+      "component_no": 10,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 7,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 11,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 12,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 7,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 13,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 8,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 14,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 15,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 16,
+      "initial_count": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 3,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 17,
+      "initial_count": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 2,
+          "chunk_count": 1,
+          "output_final_count": 1,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 18,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 7,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 19,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 7,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 20,
+      "initial_count": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 7,
+          "chunk_count": 1,
+          "output_final_count": 7,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    },
+    {
+      "component_no": 21,
+      "initial_count": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "input_candidate_count": 8,
+          "chunk_count": 1,
+          "output_final_count": 8,
+          "fallback_count": 0
+        }
+      ],
+      "status": "COMPLETED",
+      "fallback_records": []
+    }
+  ],
+  "task3_fallback_count": 2,
+  "quality_status": "REVIEW_REQUIRED",
+  "assignment_quality": {
+    "expected_task2_count": 122,
+    "assigned_task2_count": 122,
+    "missing_task2_count": 0,
+    "duplicate_assignment_count": 0,
+    "orphan_relation_count": 0
+  },
+  "task3_final_total": 99,
+  "evaluation": {
+    "evaluation_version": "v10.5-residual-duplicate",
+    "evaluated_at_utc": "2026-06-15T17:34:04.325625+00:00",
+    "document_id": "DOC-001",
+    "status": "FAIL",
+    "intrinsic_quality_score": 100.0,
+    "score_components": {
+      "structure_completeness": 15.0,
+      "task2_lineage": 20.0,
+      "atomic_lineage": 10.0,
+      "fur_source_coverage": 10.0,
+      "semantic_retention": 20.0,
+      "residual_duplicate_cleanliness": 15.0,
+      "text_quality": 10.0
+    },
+    "counts_and_transformation": {
+      "input_fur_count": 17,
+      "input_detail_character_count": 11078,
+      "task1_atomic_count": 152,
+      "task2_candidate_count": 122,
+      "final_gold_count": 99,
+      "relation_decision_count": 99,
+      "task1_decomposition_ratio": 8.941176,
+      "task2_reduction_ratio_from_task1": 0.197368,
+      "task3_reduction_ratio_from_task2": 0.188525,
+      "output_to_input_character_ratio": 0.538816
+    },
+    "lineage": {
+      "expected_task2_count": 122,
+      "assigned_task2_count": 122,
+      "missing_task2_ids": [],
+      "duplicate_task2_assignments": {},
+      "unknown_task2_ids": [],
+      "expected_atomic_count": 152,
+      "covered_atomic_count": 152,
+      "missing_atomic_ids": [],
+      "unknown_atomic_ids": [
+        "SFR-001-003",
+        "SFR-001-004",
+        "SFR-001-005",
+        "SFR-001-009",
+        "SFR-003-003",
+        "SFR-003-006",
+        "SFR-003-010",
+        "SFR-004-001",
+        "SFR-004-007",
+        "SFR-004-008",
+        "SFR-007-001",
+        "SFR-007-002",
+        "SFR-007-003",
+        "SFR-007-004",
+        "SFR-007-006",
+        "SFR-007-008",
+        "SFR-007-009",
+        "SFR-007-010",
+        "SFR-007-012",
+        "SFR-007-013",
+        "SFR-011-001",
+        "SFR-011-004",
+        "SFR-011-010",
+        "SFR-016-001",
+        "SFR-016-002",
+        "SFR-016-003",
+        "SFR-016-005",
+        "SFR-016-006",
+        "SFR-016-007",
+        "SFR-016-008",
+        "SFR-016-010",
+        "SFR-016-011",
+        "SFR-016-012",
+        "SFR-016-013",
+        "SFR-016-014",
+        "SFR-016-015",
+        "SFR-016-016",
+        "SFR-017-002",
+        "SFR-017-003",
+        "SFR-017-004",
+        "SFR-017-005",
+        "SFR-017-006",
+        "SFR-017-007",
+        "SFR-017-008",
+        "SFR-017-010"
+      ],
+      "expected_fur_count": 17,
+      "covered_fur_count": 17,
+      "missing_fur_ids": [],
+      "unknown_fur_ids": [],
+      "task2_coverage_rate": 1.0,
+      "atomic_coverage_rate": 1.0,
+      "fur_source_coverage_rate": 1.0
+    },
+    "metrics": {
+      "required_field_completeness_rate": 1.0,
+      "text_quality_check_pass_rate": 1.0,
+      "task2_to_gold_similarity_average": 0.987973,
+      "task2_to_gold_similarity_minimum": 0.907961,
+      "fur_to_gold_lineage_similarity_average": 0.931047,
+      "fur_to_gold_lineage_similarity_minimum": 0.8995,
+      "name_detail_similarity_average": 0.929371,
+      "residual_strong_duplicate_pair_count": 0,
+      "residual_duplicate_review_pair_count": 3,
+      "residual_duplicate_affected_gold_count": 0,
+      "overmerge_review_count": 0,
+      "review_item_count": 4,
+      "high_review_item_count": 1,
+      "critical_error_count": 45
+    },
+    "thresholds": {
+      "task2_retention": 0.72,
+      "fur_coverage": 0.68,
+      "name_detail": 0.55,
+      "residual_strong_similarity": 0.965,
+      "residual_review_similarity": 0.94,
+      "residual_strong_name_jaccard": 0.45,
+      "residual_review_name_jaccard": 0.3,
+      "overmerge_pair": 0.65,
+      "reference_match": 0.8,
+      "pass_score": 85.0,
+      "review_score": 70.0
+    },
+    "reference_gold_evaluation": {
+      "gold_file": "/workspace/test_input/DOC-001_gold_final.json",
+      "predicted_count": 99,
+      "gold_count": 136,
+      "count_difference": -37,
+      "count_similarity": 0.727941,
+      "exact_name_overlap": 0,
+      "exact_name_precision": 0.0,
+      "exact_name_recall": 0.0,
+      "exact_name_f1": 0.0,
+      "semantic_match_threshold": 0.8,
+      "semantic_match_count": 99,
+      "semantic_precision": 1.0,
+      "semantic_recall": 0.727941,
+      "semantic_f1": 0.842553,
+      "matched_average_similarity": 0.9479,
+      "reference_score": 70.47
+    },
+    "review_items": [
+      {
+        "severity": "HIGH",
+        "category": "LINEAGE",
+        "item_id": "SFR-001-003; SFR-001-004; SFR-001-005; SFR-001-009; SFR-003-003; SFR-003-006; SFR-003-010; SFR-004-001; SFR-004-007; SFR-004-008; SFR-007-001; SFR-007-002; SFR-007-003; SFR-007-004; SFR-007-006; SFR-007-008; SFR-007-009; SFR-007-010; SFR-007-012; SFR-007-013; SFR-011-001; SFR-011-004; SFR-011-010; SFR-016-001; SFR-016-002; SFR-016-003; SFR-016-005; SFR-016-006; SFR-016-007; SFR-016-008",
+        "metric": "unknown_atomic_ids",
+        "value": 45,
+        "threshold": 0,
+        "reason": "입력→출력 계보 누락 또는 알 수 없는 ID 발생"
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "RESIDUAL_DUPLICATE_REVIEW",
+        "item_id": "GOLD-005 | GOLD-019",
+        "metric": "review_duplicate_pair",
+        "value": 0.964907,
+        "threshold": "sim>=0.94, same_action=True, name_jaccard>=0.3",
+        "reason": "관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토"
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "RESIDUAL_DUPLICATE_REVIEW",
+        "item_id": "GOLD-006 | GOLD-022",
+        "metric": "review_duplicate_pair",
+        "value": 0.94136,
+        "threshold": "sim>=0.94, same_action=True, name_jaccard>=0.3",
+        "reason": "관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토"
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "RESIDUAL_DUPLICATE_REVIEW",
+        "item_id": "GOLD-091 | GOLD-093",
+        "metric": "review_duplicate_pair",
+        "value": 0.956704,
+        "threshold": "sim>=0.94, same_action=True, name_jaccard>=0.3",
+        "reason": "관련성이 높지만 자동 중복 확정 대상은 아니므로 필요할 때만 검토"
+      }
+    ],
+    "interpretation": {
+      "intrinsic_quality_score": "정답 파일 없이 구조·계보·의미 보존·잔존 중복·문장 품질을 규칙과 임베딩으로 평가한 휴리스틱 점수",
+      "reference_score": "정답 GOLD가 있을 때 의미 기반 일대일 매칭과 이름 일치를 결합한 별도 점수",
+      "residual_duplicate": "강한 중복은 수행행위·명칭 핵심어·의미 유사도를 함께 만족한 쌍이며, 검토 후보는 점수 감점 없이 참고 목록으로만 제공",
+      "status": "FAIL은 계보·필수필드 오류 또는 낮은 점수, REVIEW_REQUIRED는 강한 자동 검토 항목이나 fallback 존재, PASS는 자동 지표상 중대한 이상 없음"
+    }
+  }
+}

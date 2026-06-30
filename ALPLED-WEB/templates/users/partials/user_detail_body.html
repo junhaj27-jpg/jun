@@ -1,0 +1,91 @@
+<div class="grid gap-6 md:grid-cols-2">
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">사원번호</label>
+    <input id="user-detail-id" type="text" value="{{ selected_user.user_id }}" readonly class="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-900">
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">이름</label>
+    <input id="user-detail-name" form="user-detail-update-form" name="name" type="text" value="{{ selected_user.name }}" required minlength="2" maxlength="100" pattern="[A-Za-z0-9가-힣_ ]+" title="이름은 한글, 영문, 숫자, 밑줄(_)로 2자 이상 100자 이하로 입력해 주세요." class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900">
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">부서</label>
+    <input id="user-detail-department" form="user-detail-update-form" name="department" type="text" value="{{ selected_user.department|default:'' }}" maxlength="100" pattern="[A-Za-z0-9가-힣_ ]+" title="부서는 한글, 영문, 숫자, 밑줄(_)로 최대 100자까지 입력해 주세요." class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900">
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">직급</label>
+    <input id="user-detail-position" form="user-detail-update-form" name="position" type="text" value="{{ selected_user.position|default:'' }}" maxlength="100" pattern="[A-Za-z0-9가-힣_ ]+" title="직급은 한글, 영문, 숫자, 밑줄(_)로 최대 100자까지 입력해 주세요." class="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900">
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">비밀번호</label>
+    <form method="post" action="{% url 'user_list' %}" data-confirm-form data-confirm-title="임시 비밀번호 초기화" data-confirm-message="임시 비밀번호로 초기화하시겠습니까?" data-confirm-text="초기화" data-confirm-tone="danger">
+      {% csrf_token %}
+      <input id="user-detail-sn" type="hidden" name="user_sn" value="{{ selected_user.sn }}">
+      <input type="hidden" name="action" value="reset_user_password">
+      <button type="submit" class="w-full rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700">
+        임시 비밀번호 초기화
+      </button>
+    </form>
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">활성 여부</label>
+    <select id="user-detail-active" form="user-detail-update-form" name="use_yn" class="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900">
+      <option value="Y" {% if selected_user.use_yn == "Y" %}selected{% endif %}>사용</option>
+      <option value="N" {% if selected_user.use_yn == "N" %}selected{% endif %}>비활성화</option>
+    </select>
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">등록일자</label>
+    <input id="user-detail-created-at" type="text" value="{{ selected_user.created_at|date:'Y-m-d H:i:s' }}" readonly class="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-900">
+  </div>
+
+  <div class="space-y-2">
+    <label class="block text-sm font-medium text-slate-900">임시 비밀번호 여부</label>
+    <input id="user-detail-temp-password-yn" type="text" value="{{ selected_user.tmpr_pswd_yn|default:'N' }}" readonly class="w-full rounded-lg border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-900">
+  </div>
+</div>
+
+<div class="mt-6">
+  <div class="mb-3 flex items-center justify-between">
+    <h4 class="text-sm font-semibold text-slate-900">소속 프로젝트</h4>
+  </div>
+  <div class="max-h-56 overflow-y-auto rounded-2xl bg-slate-100 p-4">
+    <div class="space-y-3" data-user-project-role-list>
+      {% for role in user_roles %}
+        <div class="flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm">
+          <div>
+            <p class="text-sm font-medium text-slate-900">{{ role.project.name }}</p>
+            <p class="mt-1 text-xs text-slate-500">{{ role.role.code|default:role.role }}</p>
+          </div>
+          <span class="rounded-lg bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">연결됨</span>
+        </div>
+      {% empty %}
+        <div class="rounded-xl bg-white px-4 py-3 text-sm text-slate-500">소속 프로젝트가 없습니다.</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="mt-8 flex items-center justify-end gap-3">
+  <form id="user-detail-delete-form" method="post" action="{% url 'user_list' %}" data-confirm-form data-confirm-title="사용자 삭제" data-confirm-message="선택한 사용자를 삭제하시겠습니까?" data-confirm-text="삭제" data-confirm-tone="danger">
+    {% csrf_token %}
+    <input id="user-detail-delete-sn" type="hidden" name="user_sn" value="{{ selected_user.sn }}">
+    <input type="hidden" name="action" value="delete_user">
+  </form>
+  <form id="user-detail-update-form" method="post" action="{% url 'user_list' %}" data-confirm-form data-confirm-title="사용자 수정" data-confirm-message="사용자 정보를 수정하시겠습니까?" data-confirm-text="수정">
+    {% csrf_token %}
+    <input id="user-detail-update-sn" type="hidden" name="user_sn" value="{{ selected_user.sn }}">
+    <input type="hidden" name="action" value="update_user">
+  </form>
+  <button type="submit" form="user-detail-delete-form" class="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700">
+    사용자 삭제
+  </button>
+  <button type="submit" form="user-detail-update-form" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+    사용자 수정
+  </button>
+</div>

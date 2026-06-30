@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} | ALPLED{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <section class="space-y-4">
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <h1 class="text-2xl font-bold text-slate-900">{{ title }}</h1>
+        <p class="mt-1 text-sm text-slate-500">{{ current_project.name }}</p>
+      </div>
+      <a href="{% url 'doc_approval_list' %}" class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+        목록으로
+      </a>
+    </div>
+  </section>
+
+  <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div class="grid gap-4 lg:grid-cols-4">
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">산출물</p>
+        <p class="mt-2 text-sm font-semibold text-slate-900">{{ document.document_type.name }}</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">요청자</p>
+        <p class="mt-2 text-sm font-semibold text-slate-900">{{ requester_name }}</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">승인 상태</p>
+        <p class="mt-2 text-sm font-semibold text-slate-900">{{ approval.approval_status.name }}</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">요청 버전</p>
+        <p class="mt-2 text-sm font-semibold text-slate-900">{{ document.version }}</p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <p class="text-sm font-semibold text-slate-900">요청 내용</p>
+      <p class="mt-2 text-sm leading-6 text-slate-700">{{ approval.request_content|default:"요청 내용이 없습니다." }}</p>
+      {% if approval.rejection_reason %}
+        <div class="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">
+          반려 사유: {{ approval.rejection_reason }}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if is_manager %}
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-slate-900">변경 전후 비교</h2>
+      {% if review_succeeded %}
+        <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div><h3 class="text-base font-semibold text-slate-900">변경 이력</h3><p class="mt-1 text-sm text-slate-500">실제로 추가·삭제·수정된 항목만 표시합니다.</p></div>
+            <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">검토 완료</span>
+          </div>
+          <div class="mt-4 grid gap-3 sm:grid-cols-3">
+            <div class="rounded-xl bg-white px-4 py-3 text-sm text-slate-700">추가 <strong class="float-right text-emerald-700">{{ review_view.change_summary.added_count|default:0 }}</strong></div>
+            <div class="rounded-xl bg-white px-4 py-3 text-sm text-slate-700">삭제 <strong class="float-right text-rose-700">{{ review_view.change_summary.deleted_count|default:0 }}</strong></div>
+            <div class="rounded-xl bg-white px-4 py-3 text-sm text-slate-700">수정 <strong class="float-right text-amber-700">{{ review_view.change_summary.modified_count|default:0 }}</strong></div>
+          </div>
+          {% if review_view.changes %}
+            <div class="mt-5 space-y-3">
+              {% for change in review_view.changes %}
+                <div class="rounded-xl border border-slate-200 bg-white px-4 py-3">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="rounded-full px-2.5 py-1 text-xs font-semibold {% if change.change_type == 'added' %}bg-emerald-100 text-emerald-800{% elif change.change_type == 'deleted' %}bg-rose-100 text-rose-800{% else %}bg-amber-100 text-amber-800{% endif %}">{% if change.change_type == "added" %}추가{% elif change.change_type == "deleted" %}삭제{% else %}수정{% endif %}</span>
+                    <strong class="text-sm text-slate-900">{% if change.title %}{{ change.title }}{% elif change.target_path %}{{ change.target_path }}{% else %}변경 항목{% endif %}</strong>
+                    {% for artifact in change.affected_artifacts %}<span class="rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700">{{ artifact }}</span>{% endfor %}
+                  </div>
+                  {% if change.target_path %}<code class="mt-2 block break-all text-xs text-slate-400">{{ change.target_path }}</code>{% endif %}
+                  <div class="mt-4 grid gap-3 lg:grid-cols-2">
+                    <div class="rounded-lg border border-rose-100 bg-rose-50 p-3">
+                      <p class="text-xs font-semibold text-rose-700">변경 전</p>
+                      <pre class="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-words text-xs leading-5 text-slate-700">{{ change.before_display }}</pre>
+                    </div>
+                    <div class="rounded-lg border border-emerald-100 bg-emerald-50 p-3">
+                      <p class="text-xs font-semibold text-emerald-700">변경 후</p>
+                      <pre class="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-words text-xs leading-5 text-slate-700">{{ change.after_display }}</pre>
+                    </div>
+                  </div>
+                  {% if change.message or change.reason %}
+                    <p class="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm leading-6 text-slate-700">{% if change.message %}{{ change.message }}{% else %}{{ change.reason }}{% endif %}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-5 py-5 text-emerald-900">
+              <p class="font-semibold">변경된 항목이 없습니다.</p>
+              <p class="mt-1 text-sm leading-6">변경 전후 데이터가 동일합니다.</p>
+            </div>
+          {% endif %}
+
+        </div>
+
+        <details class="mt-4 rounded-2xl border border-slate-200 bg-white">
+          <summary class="cursor-pointer px-5 py-4 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+            전체 원본 데이터 보기
+          </summary>
+          <div class="grid gap-6 border-t border-slate-200 p-5 xl:grid-cols-2">
+            {% include "docs/partials/approval_data_panel.html" with panel_title="변경 전 전체 데이터" data_view=before_data_view detail_sn=review_job.before_detail_id %}
+            {% include "docs/partials/approval_data_panel.html" with panel_title="변경 후 전체 데이터" data_view=after_data_view detail_sn=review_job.after_detail_id %}
+          </div>
+        </details>
+
+        {% if can_take_action %}
+          <div class="mt-6 flex flex-wrap justify-end gap-3">
+            <button type="button" data-modal-target="approval-approve-modal" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">승인</button>
+            <button type="button" data-modal-target="approval-reject-modal" class="rounded-lg bg-rose-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-700">반려</button>
+          </div>
+        {% endif %}
+      {% elif review_failed %}
+        <div class="mt-6 rounded-2xl border border-rose-200 bg-rose-50 px-5 py-5 text-rose-900">
+          <p class="font-semibold">변경 이력과 정합성 검토를 완료하지 못했습니다.</p>
+          <p class="mt-2 text-sm leading-6">{{ review_job.error_message|default:"검토 작업 중 오류가 발생했습니다. 관리자에게 문의해 주세요." }}</p>
+          {% if review_status %}<p class="mt-2 text-xs text-rose-600">상태 코드: {{ review_status }}</p>{% endif %}
+        </div>
+      {% else %}
+        <div class="mt-6 rounded-2xl border border-blue-200 bg-blue-50 px-5 py-6 text-blue-900" data-approval-review-pending data-refresh-interval-ms="{{ review_poll_interval_ms }}">
+          <div class="flex items-start gap-3">
+            <span class="mt-1 inline-block h-4 w-4 animate-spin rounded-full border-2 border-blue-200 border-t-blue-700"></span>
+            <div>
+              <p class="font-semibold">변경 이력과 정합성을 확인하고 있습니다.</p>
+              <p class="mt-2 text-sm leading-6">{{ review_job.message|default:"자동 검토가 완료되면 결과가 표시됩니다. 잠시만 기다려 주세요." }}</p>
+              <p class="mt-2 text-xs text-blue-600">
+                현재 상태: {{ review_status|default:"작업 생성 대기" }}
+                {% if review_job.step_code %} · 단계: {{ review_job.step_code }}{% endif %}
+                {% if review_job %} · 진행률: {{ review_job.progress_rate }}%{% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </section>
+  {% else %}
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+      <p class="text-sm text-slate-700">멤버 권한에서는 본인이 제출한 요청 내용만 확인할 수 있습니다.</p>
+    </section>
+  {% endif %}
+</div>
+
+{% if can_take_action %}
+  <div id="approval-approve-modal" data-modal-root class="fixed inset-0 z-50 {% if open_approve_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+    <div class="relative w-full max-w-xl">
+      <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+        <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+          <div>
+            <h3 class="text-lg font-semibold text-slate-900">승인</h3>
+            <p class="mt-1 text-sm text-slate-500">생성할 새 버전명과 수정 내용을 입력해 주세요.</p>
+          </div>
+          <button type="button" data-modal-hide="approval-approve-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+            <span class="text-3xl leading-none">&times;</span>
+          </button>
+        </div>
+        <div class="px-6 py-6">
+          <form method="post" action="{% url 'doc_approval_approve' approval.sn %}" class="space-y-4">
+            {% csrf_token %}
+            <div>
+              <label class="text-sm font-semibold text-slate-700" for="new_version">새 버전명</label>
+              <input id="new_version" type="text" name="new_version" class="mt-2 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-900 shadow-sm" placeholder="예: 1.1">
+            </div>
+            <div>
+              <label class="text-sm font-semibold text-slate-700" for="modification_content">수정 내용</label>
+              <input id="modification_content" type="text" name="modification_content" class="mt-2 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm text-slate-900 shadow-sm" placeholder="수정 내용을 입력해 주세요.">
+            </div>
+            <div class="flex justify-end gap-3">
+              <button type="button" data-modal-hide="approval-approve-modal" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                취소
+              </button>
+              <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+                승인
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="approval-reject-modal" data-modal-root class="fixed inset-0 z-50 {% if open_reject_modal %}flex{% else %}hidden{% endif %} items-center justify-center bg-slate-950/55 p-4">
+    <div class="relative w-full max-w-xl">
+      <div class="overflow-hidden rounded-[1.5rem] bg-white shadow-lg">
+        <div class="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+          <div>
+            <h3 class="text-lg font-semibold text-slate-900">반려</h3>
+            <p class="mt-1 text-sm text-slate-500">반려 사유를 입력해 주세요.</p>
+          </div>
+          <button type="button" data-modal-hide="approval-reject-modal" aria-label="닫기" class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+            <span class="text-3xl leading-none">&times;</span>
+          </button>
+        </div>
+        <div class="px-6 py-6">
+          <form method="post" action="{% url 'doc_approval_reject' approval.sn %}" class="space-y-4">
+            {% csrf_token %}
+            <label class="text-sm font-semibold text-slate-700" for="rejection_reason">반려 사유</label>
+            <textarea id="rejection_reason" name="rejection_reason" rows="4" class="w-full rounded-lg border border-slate-200 px-4 py-3 text-sm text-slate-900 shadow-sm" placeholder="반려 사유를 입력하세요."></textarea>
+            <div class="flex justify-end gap-3">
+              <button type="button" data-modal-hide="approval-reject-modal" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                취소
+              </button>
+              <button type="submit" class="rounded-lg bg-rose-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-700">
+                반려
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,593 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "relation_decisions": [
+    {
+      "gold_id": "GOLD-001",
+      "comparison_ids": [
+        "T2-001"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-002",
+      "comparison_ids": [
+        "T2-002",
+        "T2-014"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-003",
+      "comparison_ids": [
+        "T2-003",
+        "T2-017",
+        "T2-018",
+        "T2-020"
+      ],
+      "relation_type": "PARENT_CHILD",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-004",
+      "comparison_ids": [
+        "T2-004"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-005",
+      "comparison_ids": [
+        "T2-005"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-006",
+      "comparison_ids": [
+        "T2-006"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-007",
+      "comparison_ids": [
+        "T2-007"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-008",
+      "comparison_ids": [
+        "T2-008"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-009",
+      "comparison_ids": [
+        "T2-009",
+        "T2-013"
+      ],
+      "relation_type": "SEMANTIC_DUPLICATE",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-010",
+      "comparison_ids": [
+        "T2-010",
+        "T2-012"
+      ],
+      "relation_type": "COMPLEMENTARY",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-011",
+      "comparison_ids": [
+        "T2-011",
+        "T2-015"
+      ],
+      "relation_type": "PARTIAL_OVERLAP",
+      "processing_result": "MERGED",
+      "rationale": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-012",
+      "comparison_ids": [
+        "T2-016"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-013",
+      "comparison_ids": [
+        "T2-019"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-014",
+      "comparison_ids": [
+        "T2-021"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-015",
+      "comparison_ids": [
+        "T2-022"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-016",
+      "comparison_ids": [
+        "T2-023"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-017",
+      "comparison_ids": [
+        "T2-024"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-018",
+      "comparison_ids": [
+        "T2-025"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-019",
+      "comparison_ids": [
+        "T2-026"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    },
+    {
+      "gold_id": "GOLD-020",
+      "comparison_ids": [
+        "T2-027"
+      ],
+      "relation_type": "UNIQUE",
+      "processing_result": "KEPT",
+      "rationale": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함.",
+      "preserved_conditions": "각 원문의 적용 대상, 시스템명, 보안 조건, 콘텐츠 범위와 출처를 최종 문장 및 계보에 보존함.",
+      "excluded_or_absorbed_ids": []
+    }
+  ],
+  "final_requirement_count": 20,
+  "final_requirements": [
+    {
+      "gold_id": "GOLD-001",
+      "action_type": "산출",
+      "requirement_name": "대학 최적화 홈페이지 구축방안 수립",
+      "requirement_detail": "타 대학 홈페이지 분석 등을 활용하여 대학에 최적화된 홈페이지 구축방안을 수립하고 추진하여야 한다.",
+      "source_task2_ids": [
+        "T2-001"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-001"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-002",
+      "action_type": "준수",
+      "requirement_name": "전자정부 표준프레임워크 기반 멀티디바이스 반응형 웹",
+      "requirement_detail": "전자정부 표준프레임워크를 기반으로 다양한 디바이스와 브라우저를 지원하는 반응형 웹 기술을 적용하여야 하며, 모바일 기기의 OS 및 브라우저 호환성을 준수하여야 한다.",
+      "source_task2_ids": [
+        "T2-002",
+        "T2-014"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-002",
+        "SFR-003-001"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-003"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-003",
+      "action_type": "관리",
+      "requirement_name": "대학 CMS 호환·기능 활성화 및 홈페이지 콘텐츠 통합 관리",
+      "requirement_detail": "구축되는 홈페이지를 전자정부 표준프레임워크 기반 콘텐츠관리시스템에서 생성·운영하여야 하며, 현재 대학 CMS와의 호환성과 기존 기능을 유지하고 메뉴, 콘텐츠 및 게시판을 생성·수정·삭제·제어할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-003",
+        "T2-017",
+        "T2-018",
+        "T2-020"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-003",
+        "SFR-005-001",
+        "SFR-005-002",
+        "SFR-005-004"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-005"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-004",
+      "action_type": "준수",
+      "requirement_name": "웹 접근성·호환성·표준문법 준수",
+      "requirement_detail": "구축되는 홈페이지는 웹 접근성, 웹 호환성 및 표준문법을 준수하여야 한다.",
+      "source_task2_ids": [
+        "T2-004"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-004"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-005",
+      "action_type": "준수",
+      "requirement_name": "수요기관 제공 콘텐츠 활용",
+      "requirement_detail": "홈페이지 게시 콘텐츠는 수요기관에서 제공하는 콘텐츠를 활용하여 개발하여야 한다.",
+      "source_task2_ids": [
+        "T2-005"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-005"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-006",
+      "action_type": "산출",
+      "requirement_name": "홈페이지 이미지 제작·수집 및 저작권 준수",
+      "requirement_detail": "홈페이지에 사용하는 일러스트와 사진 등의 이미지를 직접 제작·수집하여야 하며, 저작권 문제가 발생하지 않도록 하여야 한다.",
+      "source_task2_ids": [
+        "T2-006"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-006"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-007",
+      "action_type": "분석",
+      "requirement_name": "웹 로그 이용률·방문경로·오류 분석",
+      "requirement_detail": "웹 로그를 기반으로 이용률 추이, 방문경로 및 오류 내용을 분석하여 홈페이지 운영에 활용할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-007"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-007"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-008",
+      "action_type": "보안",
+      "requirement_name": "개인정보 수집·이용 동의 절차",
+      "requirement_detail": "시설 대관과 수강신청 등 개인정보 수집·이용이 필요한 기능에는 개인정보 동의 절차를 반영하여야 한다.",
+      "source_task2_ids": [
+        "T2-008"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-008"
+      ],
+      "sources": [
+        "SFR-001"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-009",
+      "action_type": "보안",
+      "requirement_name": "개인식별정보·비밀번호 암호화 처리·전송",
+      "requirement_detail": "개인식별정보와 비밀번호 등의 데이터를 안전하게 암호화 처리하여야 하며, 송수신 시 SSL 인증서를 통해 암호화하여 전송하여야 한다.",
+      "source_task2_ids": [
+        "T2-009",
+        "T2-013"
+      ],
+      "source_atomic_ids": [
+        "SFR-001-009",
+        "SFR-002-004"
+      ],
+      "sources": [
+        "SFR-001",
+        "SFR-002"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-010",
+      "action_type": "산출",
+      "requirement_name": "사용자 중심 UI·UX 디자인 및 웹 스타일 가이드",
+      "requirement_detail": "사용자의 시각적·기능적 요소와 가독성·사용성을 고려한 홈페이지 UI·UX 디자인을 제작하여야 하며, 레이아웃과 서체 규정을 포함한 웹 스타일 가이드를 통해 일관성을 유지하여야 한다.",
+      "source_task2_ids": [
+        "T2-010",
+        "T2-012"
+      ],
+      "source_atomic_ids": [
+        "SFR-002-001",
+        "SFR-002-003"
+      ],
+      "sources": [
+        "SFR-002"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-011",
+      "action_type": "제공",
+      "requirement_name": "직관적 메뉴·UI 구성 및 사용자 편의성 확보",
+      "requirement_detail": "요청된 메뉴를 포함하는 간결하고 직관적인 메뉴 구조와 UI를 제공하여 정보 접근성, 가독성, 편리성 및 확장성을 확보하여야 하며, 주관부서 요구에 따라 추가 메뉴를 구성할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-011",
+        "T2-015"
+      ],
+      "source_atomic_ids": [
+        "SFR-002-002",
+        "SFR-003-002"
+      ],
+      "sources": [
+        "SFR-002",
+        "SFR-003"
+      ],
+      "processing_type": "통합",
+      "merge_basis": "문서 전체에서 동일하거나 상위·하위 및 보완 관계인 기능 결과와 조건을 하나의 구현·검수 단위로 통합함."
+    },
+    {
+      "gold_id": "GOLD-012",
+      "action_type": "제공",
+      "requirement_name": "RISE사업단·센터 통합 랜딩페이지",
+      "requirement_detail": "RISE사업단과 각 센터 홈페이지에 효과적으로 접근할 수 있는 통합 랜딩페이지를 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-016"
+      ],
+      "source_atomic_ids": [
+        "SFR-004-001"
+      ],
+      "sources": [
+        "SFR-004"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-013",
+      "action_type": "권한",
+      "requirement_name": "관리자 시스템 접근 제어",
+      "requirement_detail": "관리자 시스템에 대한 사용자별 접근을 제어할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-019"
+      ],
+      "source_atomic_ids": [
+        "SFR-005-003"
+      ],
+      "sources": [
+        "SFR-005"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-014",
+      "action_type": "조회",
+      "requirement_name": "통합게시판 공지·주요 게시글 범위별 조회",
+      "requirement_detail": "사업단 홈페이지에서 전체 공지사항과 주요 게시글을 조회할 수 있어야 하며, 해당 사업단의 공지사항과 게시글도 구분하여 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-021"
+      ],
+      "source_atomic_ids": [
+        "SFR-006-001"
+      ],
+      "sources": [
+        "SFR-006"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-015",
+      "action_type": "입력",
+      "requirement_name": "온라인 신청·문의 등록",
+      "requirement_detail": "사용자가 홈페이지에서 온라인 신청과 문의사항을 등록할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-022"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-001"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-016",
+      "action_type": "조회",
+      "requirement_name": "온라인 신청·문의 접수 확인",
+      "requirement_detail": "사용자가 등록한 온라인 신청과 문의사항을 이메일 또는 관리자 기능을 통해 확인할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-023"
+      ],
+      "source_atomic_ids": [
+        "SFR-007-002"
+      ],
+      "sources": [
+        "SFR-007"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-017",
+      "action_type": "연계",
+      "requirement_name": "대학 SSO 통합 로그인",
+      "requirement_detail": "대학에서 사용 중인 SSO와 연계하여 통합 로그인 기능을 제공하여야 한다.",
+      "source_task2_ids": [
+        "T2-024"
+      ],
+      "source_atomic_ids": [
+        "SFR-008-001"
+      ],
+      "sources": [
+        "SFR-008"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-018",
+      "action_type": "조회",
+      "requirement_name": "사업단 성과 조회",
+      "requirement_detail": "사업단의 성과정보를 조회할 수 있어야 한다.",
+      "source_task2_ids": [
+        "T2-025"
+      ],
+      "source_atomic_ids": [
+        "SFR-009-001"
+      ],
+      "sources": [
+        "SFR-009"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-019",
+      "action_type": "준수",
+      "requirement_name": "포털사이트 검색 최적화",
+      "requirement_detail": "네이버와 구글 등의 포털사이트에서 홈페이지 콘텐츠가 효과적으로 검색되도록 최적화하여야 한다.",
+      "source_task2_ids": [
+        "T2-026"
+      ],
+      "source_atomic_ids": [
+        "SFR-010-001"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    },
+    {
+      "gold_id": "GOLD-020",
+      "action_type": "준수",
+      "requirement_name": "LLM 검색 최적화",
+      "requirement_detail": "ChatGPT 등 LLM 기반 검색에서 홈페이지 콘텐츠가 효과적으로 검색되도록 최적화하여야 한다.",
+      "source_task2_ids": [
+        "T2-027"
+      ],
+      "source_atomic_ids": [
+        "SFR-010-002"
+      ],
+      "sources": [
+        "SFR-010"
+      ],
+      "processing_type": "유지",
+      "merge_basis": "수행대상, 핵심 행위, 결과 및 검수 방식이 구분되는 독립 요구사항으로 유지함."
+    }
+  ]
+}

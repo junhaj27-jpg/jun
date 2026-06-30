@@ -1,0 +1,116 @@
+{
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C020-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000097",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "양자 게이트 세트 지원",
+        "requirement_detail": "다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000100",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "진폭·기저 인코딩",
+        "requirement_detail": "진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000101",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "데이터 특성 기반 인코딩 추천",
+        "requirement_detail": "데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000102",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "큐비트 사용량 최소화 인코딩",
+        "requirement_detail": "큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000105",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "양자 노이즈·에러 필터링",
+        "requirement_detail": "양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000110",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-015"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "텐서 네트워크 기반 시뮬레이션",
+        "requirement_detail": "텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      },
+      {
+        "task2_id": "T2-000111",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-016::SFR-016-016"
+        ],
+        "reference_context_ids": [],
+        "action_type": "제공",
+        "requirement_name": "몬테카를로 샘플링 시뮬레이션",
+        "requirement_detail": "몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-016"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempt": 2,
+  "adapter_name": "stage3",
+  "prompt_tokens": 2998,
+  "max_new_tokens": 6571,
+  "generated_tokens": 2886,
+  "hit_token_limit": false,
+  "elapsed_seconds": 172.59163411101326,
+  "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"양자 게이트 세트 지원\",\n      \"requirement_detail\": \"다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000097\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-002\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"진폭·기저 인코딩\",\n      \"requirement_detail\": \"진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000100\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-005\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"데이터 특성 기반 인코딩 추천\",\n      \"requirement_detail\": \"데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000101\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-006\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"큐비트 사용량 최소화 인코딩\",\n      \"requirement_detail\": \"큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000102\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-007\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 노이즈·에러 필터링\",\n      \"requirement_detail\": \"양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000105\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-010\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"텐서 네트워크 기반 시뮬레이션\",\n      \"requirement_detail\": \"텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000110\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-015\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"몬테카를로 샘플링 시뮬레이션\",\n      \"requirement_detail\": \"몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000111\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-016\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    }\n  ],\n  \"final_requirement_count\": 7,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"양자 게이트 세트 지원\",\n      \"requirement_detail\": \"다양한 양자 게이트 세트를 지원하여야 하며, 게이트 세트의 종류와 사용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000097\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-002\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"진폭·기저 인코딩\",\n      \"requirement_detail\": \"진폭(Amplitude)과 기저(Basis) 인코딩을 제공하여야 하며, 인코딩 방식과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000100\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-005\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"데이터 특성 기반 인코딩 추천\",\n      \"requirement_detail\": \"데이터 특성에 따른 최적 인코딩 방식을 추천하여야 하며, 데이터 특성과 인코딩 추천 결과를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000101\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-006\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"큐비트 사용량 최소화 인코딩\",\n      \"requirement_detail\": \"큐비트 사용량 최소화 인코딩 벤치마킹 전략을 제공하여야 하며, 큐비트 사용량 최소화 인코딩 전략과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000102\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-007\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"양자 노이즈·에러 필터링\",\n      \"requirement_detail\": \"양자 노이즈 및 에러 필터링 메커니즘을 제공하여야 하며, 노이즈·에러 필터링 규칙과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000105\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-010\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"텐서 네트워크 기반 시뮬레이션\",\n      \"requirement_detail\": \"텐서 네트워크 기반 시뮬레이션을 제공하여야 하며, 텐서 네트워크 시뮬레이션과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000110\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-015\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"제공\",\n      \"requirement_name\": \"몬테카를로 샘플링 시뮬레이션\",\n      \"requirement_detail\": \"몬테카를로 샘플링 시뮬레이션을 제공하여야 하며, 샘플링 시뮬레이션과 적용 범위를 포함하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000111\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-016-016\"\n      ],\n      \"sources\": [\n        \"SFR-016\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"문서 전체에서 동일하거나 부분 중복·상위하위·보완 관계인 기능을 의미와 검수 결과를 기준으로 통합함.\"\n    }\n  ]\n}"
+}

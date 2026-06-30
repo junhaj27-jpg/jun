@@ -1,0 +1,832 @@
+{
+  "status": "SUCCESS",
+  "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+  "adapter_name": "stage3",
+  "user": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "document_id": "DOC-001-EMB-C021-R01-G001",
+    "candidate_requirements": [
+      {
+        "task2_id": "T2-000114",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-002"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 로그 자동 수집",
+        "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000115",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-003"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+        "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000116",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-004"
+        ],
+        "reference_context_ids": [],
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+        "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000117",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-005"
+        ],
+        "reference_context_ids": [],
+        "action_type": "관리",
+        "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+        "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000118",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-006"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+        "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000119",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-007"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 관제 포털",
+        "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000120",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-008"
+        ],
+        "reference_context_ids": [],
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+        "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      },
+      {
+        "task2_id": "T2-000122",
+        "merge_decision": "KEPT",
+        "merged_from": [
+          "SFR-017::SFR-017-010"
+        ],
+        "reference_context_ids": [],
+        "action_type": "산출",
+        "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+        "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+        "source_requirement_ids": [
+          "SFR-017"
+        ]
+      }
+    ],
+    "scope_reference_requirements": []
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "error_type": "ValueError",
+      "error_message": "TASK3.relation_decisions[0] 필수 필드 누락=['gold_id']",
+      "traceback": "Traceback (most recent call last):\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 527, in generate_from_messages\n    obj = validate_task_output(task_type, obj)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/ipykernel_6383/3536088354.py\", line 442, in validate_task_output\n    raise ValueError(f'TASK3.relation_decisions[{relation_index}] 필수 필드 누락={sorted(missing)}')\nValueError: TASK3.relation_decisions[0] 필수 필드 누락=['gold_id']\n",
+      "hit_token_limit": false
+    },
+    {
+      "attempt": 2,
+      "adapter_name": "stage3",
+      "prompt_tokens": 3082,
+      "max_new_tokens": 6760,
+      "generated_tokens": 3096,
+      "hit_token_limit": false,
+      "elapsed_seconds": 182.82057110592723,
+      "raw_text": "{\n  \"task_type\": \"TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE\",\n  \"relation_decisions\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 로그 자동 수집\",\n      \"requirement_detail\": \"HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000114\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-002\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 메트릭 자동 기록\",\n      \"requirement_detail\": \"프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000115\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-003\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 상태 로그 자동 수집\",\n      \"requirement_detail\": \"성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000116\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-004\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"HPC 벤치마크 로그 시계열 저장\",\n      \"requirement_detail\": \"수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000117\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-005\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 로그 검색·필터링·정렬\",\n      \"requirement_detail\": \"로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000118\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-006\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 관제 포털\",\n      \"requirement_detail\": \"관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000119\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-007\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 이력·구성정보 조회\",\n      \"requirement_detail\": \"각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000120\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-008\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"HPC 벤치마크 분석 리포트 생성·공유\",\n      \"requirement_detail\": \"리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000122\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-010\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    }\n  ],\n  \"final_requirement_count\": 8,\n  \"final_requirements\": [\n    {\n      \"gold_id\": \"GOLD-001\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 로그 자동 수집\",\n      \"requirement_detail\": \"HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000114\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-002\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-002\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 메트릭 자동 기록\",\n      \"requirement_detail\": \"프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000115\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-003\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-003\",\n      \"action_type\": \"처리\",\n      \"requirement_name\": \"HPC 벤치마크 상태 로그 자동 수집\",\n      \"requirement_detail\": \"성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000116\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-004\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-004\",\n      \"action_type\": \"관리\",\n      \"requirement_name\": \"HPC 벤치마크 로그 시계열 저장\",\n      \"requirement_detail\": \"수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000117\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-005\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-005\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 로그 검색·필터링·정렬\",\n      \"requirement_detail\": \"로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000118\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-006\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-006\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 관제 포털\",\n      \"requirement_detail\": \"관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000119\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-007\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-007\",\n      \"action_type\": \"조회\",\n      \"requirement_name\": \"HPC 벤치마크 이력·구성정보 조회\",\n      \"requirement_detail\": \"각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000120\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-008\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    },\n    {\n      \"gold_id\": \"GOLD-008\",\n      \"action_type\": \"산출\",\n      \"requirement_name\": \"HPC 벤치마크 분석 리포트 생성·공유\",\n      \"requirement_detail\": \"리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.\",\n      \"source_task2_ids\": [\n        \"T2-000122\"\n      ],\n      \"source_atomic_ids\": [\n        \"SFR-017-010\"\n      ],\n      \"sources\": [\n        \"SFR-017\"\n      ],\n      \"processing_type\": \"유지\",\n      \"merge_basis\": \"수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.\"\n    }\n  ]\n}",
+      "parse_mode": "strict+shape_repair",
+      "prediction": {
+        "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+        "relation_decisions": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 로그 자동 수집",
+            "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+            "source_task2_ids": [
+              "T2-000114"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-002"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000114"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+            "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+            "source_task2_ids": [
+              "T2-000115"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-003"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000115"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+            "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+            "source_task2_ids": [
+              "T2-000116"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-004"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000116"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "관리",
+            "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+            "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+            "source_task2_ids": [
+              "T2-000117"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-005"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000117"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+            "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000118"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-006"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000118"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 관제 포털",
+            "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+            "source_task2_ids": [
+              "T2-000119"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-007"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000119"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+            "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000120"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-008"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000120"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-008",
+            "action_type": "산출",
+            "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+            "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000122"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-010"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+            "comparison_ids": [
+              "T2-000122"
+            ],
+            "excluded_or_absorbed_ids": [],
+            "preserved_conditions": [],
+            "processing_result": "KEPT",
+            "relation_type": "UNIQUE",
+            "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          }
+        ],
+        "final_requirement_count": 8,
+        "final_requirements": [
+          {
+            "gold_id": "GOLD-001",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 로그 자동 수집",
+            "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+            "source_task2_ids": [
+              "T2-000114"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-002"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-002",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+            "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+            "source_task2_ids": [
+              "T2-000115"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-003"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-003",
+            "action_type": "처리",
+            "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+            "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+            "source_task2_ids": [
+              "T2-000116"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-004"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-004",
+            "action_type": "관리",
+            "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+            "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+            "source_task2_ids": [
+              "T2-000117"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-005"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-005",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+            "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000118"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-006"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-006",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 관제 포털",
+            "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+            "source_task2_ids": [
+              "T2-000119"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-007"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-007",
+            "action_type": "조회",
+            "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+            "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000120"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-008"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          },
+          {
+            "gold_id": "GOLD-008",
+            "action_type": "산출",
+            "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+            "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+            "source_task2_ids": [
+              "T2-000122"
+            ],
+            "source_atomic_ids": [
+              "SFR-017-010"
+            ],
+            "sources": [
+              "SFR-017"
+            ],
+            "processing_type": "유지",
+            "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+          }
+        ]
+      }
+    }
+  ],
+  "prediction": {
+    "task_type": "TASK3_DOCUMENT_GLOBAL_DEDUP_FINALIZE",
+    "relation_decisions": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 로그 자동 수집",
+        "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+        "source_task2_ids": [
+          "T2-000114"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-002"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000114"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+        "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+        "source_task2_ids": [
+          "T2-000115"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-003"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000115"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+        "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+        "source_task2_ids": [
+          "T2-000116"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-004"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000116"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "관리",
+        "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+        "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+        "source_task2_ids": [
+          "T2-000117"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-005"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000117"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+        "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000118"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-006"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000118"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 관제 포털",
+        "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+        "source_task2_ids": [
+          "T2-000119"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-007"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000119"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+        "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000120"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-008"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000120"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-008",
+        "action_type": "산출",
+        "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+        "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000122"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-010"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함.",
+        "comparison_ids": [
+          "T2-000122"
+        ],
+        "excluded_or_absorbed_ids": [],
+        "preserved_conditions": [],
+        "processing_result": "KEPT",
+        "relation_type": "UNIQUE",
+        "rationale": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      }
+    ],
+    "final_requirement_count": 8,
+    "final_requirements": [
+      {
+        "gold_id": "GOLD-001",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 로그 자동 수집",
+        "requirement_detail": "HPC 워크플로우 실행 전 벤치마크 로그를 자동으로 수집하여야 한다.",
+        "source_task2_ids": [
+          "T2-000114"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-002"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-002",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 메트릭 자동 기록",
+        "requirement_detail": "프로세스 시작과 종료 시간, CPU, GPU, 메모리 및 I/O 사용률을 자동으로 기록하여야 한다.",
+        "source_task2_ids": [
+          "T2-000115"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-003"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-003",
+        "action_type": "처리",
+        "requirement_name": "HPC 벤치마크 상태 로그 자동 수집",
+        "requirement_detail": "성공·실패 여부와 예외 발생 내역을 포함한 상태 로그를 자동으로 수집하여야 한다.",
+        "source_task2_ids": [
+          "T2-000116"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-004"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-004",
+        "action_type": "관리",
+        "requirement_name": "HPC 벤치마크 로그 시계열 저장",
+        "requirement_detail": "수집된 로그와 메트릭 데이터를 시계열 기반으로 저장하여야 한다.",
+        "source_task2_ids": [
+          "T2-000117"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-005"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-005",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 로그 검색·필터링·정렬",
+        "requirement_detail": "로그 데이터를 검색, 필터링 및 정렬하여 조회할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000118"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-006"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-006",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 관제 포털",
+        "requirement_detail": "관리자 및 사용자 권한에 따라 웹 기반 HPC 벤치마크 관제 포털을 제공하여야 한다.",
+        "source_task2_ids": [
+          "T2-000119"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-007"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-007",
+        "action_type": "조회",
+        "requirement_name": "HPC 벤치마크 이력·구성정보 조회",
+        "requirement_detail": "각 벤치마크 작업의 상세 이력과 구성 정보를 조회할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000120"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-008"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      },
+      {
+        "gold_id": "GOLD-008",
+        "action_type": "산출",
+        "requirement_name": "HPC 벤치마크 분석 리포트 생성·공유",
+        "requirement_detail": "리포트를 표, 그래프 및 히트맵으로 생성하고 PDF와 HTML로 내보내며 이메일 또는 시스템에서 공유할 수 있어야 한다.",
+        "source_task2_ids": [
+          "T2-000122"
+        ],
+        "source_atomic_ids": [
+          "SFR-017-010"
+        ],
+        "sources": [
+          "SFR-017"
+        ],
+        "processing_type": "유지",
+        "merge_basis": "수행대상, 핵심 수행행위, 기능 결과, 검수 방식 또는 적용 조건이 다른 독립 요구사항으로 유지함."
+      }
+    ]
+  }
+}
